@@ -14,7 +14,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: pauselab
-  password: ENV['GROUP_PWD']
+  password: <%= ENV["GROUP_PWD"] %>
   host: localhost
 
 development:
@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: pauselab_production
-  username: pauselab
-  password: <%= ENV['PAUSELAB_DATABASE_PASSWORD'] %>
+  username: slp_pauselab
+  password: <%= ENV['GROUP_PWD'] %>
