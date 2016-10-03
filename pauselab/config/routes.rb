@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # makes RESTful routes for artciles controller
   resources :ideas
+  root to: 'idea#index'
 
 end
