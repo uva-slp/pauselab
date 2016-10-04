@@ -1,7 +1,3 @@
-Pauselab
+#Pauselab
 
-Prioritites:
-immediate, very-high, high, medium, low, very-low, unknown
-
-Story Points (Fibbionacci):
-0, 1, 2, 3, 5, 8, 13
+A system to manage community engagement in proposing and selecting public art projects.
