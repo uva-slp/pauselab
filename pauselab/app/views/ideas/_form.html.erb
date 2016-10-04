@@ -1,0 +1,41 @@
+<%= form_for @idea do |f| %>
+ 
+  <% if @idea.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <strong>
+        <%= pluralize(@idea.errors.count, "error") %> prohibited
+        this article from being saved:
+      </strong>
+      <ul>
+        <% @idea.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </p>
+ 
+  <p>
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </p>
+
+  <p>
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: 'form-control' %>
+  </p>
+ 
+  <p>
+    <%= f.submit 'create article', class: 'btn btn-primary' %>
+  </p>
+ 
+<% end %>

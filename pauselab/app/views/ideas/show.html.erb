@@ -1,0 +1,10 @@
+<%= link_to 'Back', ideas_path %> |
+<%= link_to 'Edit', edit_idea_path(@idea) %> 
+
+<h2>
+  By <%= @idea.first_name %> <%= @idea.last_name %>
+</h2>
+ 
+<p>
+  <%= @idea.description %>
+</p>
