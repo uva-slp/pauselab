@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 #### gems we are adding ####
 gem 'figaro' # easy way to add environment variables
 gem 'bootstrap-sass', '~> 3.3.6' # bootstrap for rails
+# Ruby insists this be added "to avoid polling for changes"
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
