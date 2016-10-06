@@ -62,9 +62,3 @@ User
 Role
 + user: user_id
 + type: string
-
-
-
-
-
->>>>>>> Stashed changes
