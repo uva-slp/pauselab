@@ -13,12 +13,11 @@ class IdeasController < ApplicationController
 	end 
 
 	def create
-		render plain: params[:idea].inspect
 		@idea = Idea.new ideas_params
 		if @idea.save
-		  redirect_to @idea
+			redirect_to @idea
 		else
-		  render 'new'
+			render 'new'
 		end
 	end
 
@@ -35,7 +34,7 @@ class IdeasController < ApplicationController
 	def update
 	  @idea = Idea.find(params[:id])
 	  if @idea.update ideas_params
-	    redirect_to @idea
+	  	redirect_to @idea
 	  else
 	    render 'edit'
 	  end
