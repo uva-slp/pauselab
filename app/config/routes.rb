@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # makes RESTful routes for artciles controller
   resources :ideas
   resources :categories
-  root to: 'ideas#index'
+  root to: 'pages#index'
 
 end

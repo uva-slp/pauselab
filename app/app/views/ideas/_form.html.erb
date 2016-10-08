@@ -1,3 +1,4 @@
+  
 <%= form_for @idea do |f| %>
  
   <% if @idea.errors.any? %>
@@ -14,28 +15,24 @@
     </div>
   <% end %>
  
-  <p>
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name, class: 'form-control' %>
-  </p>
- 
-  <p>
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name, class: 'form-control' %>
-  </p>
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= f.label :phone %><br>
     <%= f.text_field :phone, class: 'form-control' %>
-  </p>
+  </div>
 
-  <p>
+  <div class="form-group">
     <%= f.label :description %><br>
     <%= f.text_area :description, class: 'form-control' %>
-  </p>
+  </div>
  
-  <p>
-    <%= f.submit 'create article', class: 'btn btn-primary' %>
-  </p>
+  <div class="form-group pull-right">
+    <%= f.submit 'submit idea', class: 'btn btn-primary' %>
+  </div>
  
 <% end %>
+

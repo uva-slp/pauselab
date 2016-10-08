@@ -1,8 +1,19 @@
-body {
-	margin: 0px;
-	padding: 0px;
+// body {
+// 	margin: 0px;
+// 	padding: 0px;
+// }
+
+// .wrapper {
+// 	margin: 20px;
+// }
+
+.site_wrapper {
+	width: 70%;
+	// min-width: 900px;
+	margin: 50px auto 0px auto;
 }
 
-.wrapper {
-	margin: 20px;
-}
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+
