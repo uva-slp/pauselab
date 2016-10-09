@@ -62,3 +62,43 @@ User
 Role
 + user: user_id
 + type: string
+
+
+
+<!--   <% if @idea.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <strong>
+        <%= pluralize(@idea.errors.count, "error") %> prohibited
+        this article from being saved:
+      </strong>
+      <ul>
+        <% @idea.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> -->
+
+
+  ```html
+  <ol class="breadcrumb">
+    <li class="active">home</li>
+    <li><a href="">about</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+        get involved <!-- <span class="caret"></span> -->
+      </a>
+      <ul class="dropdown-menu multi-level">
+         <li><a href="#">submit an idea</a></li>
+      </ul>
+    </li>
+    <li><a href="">contact</a></li>
+    <% if user_signed_in? %>
+    <li class="pull-right"><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>
+    <% else %>
+    <li class=""><%= link_to "login", new_user_session_path %></a>
+    <li class=""><%= link_to "sign up", new_user_registration_path %></a>
+    <% end %>
+  </ol>
+
+  ```

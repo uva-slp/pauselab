@@ -1,36 +1,28 @@
-<div class="col-md-6">
+<h2>Log in</h2>
 
-  <h2>Log in</h2>
 
-  <%= form_for resource, as: resource_name, url: registration_path(resource_name)  do |f| %>
 
-  <%= devise_error_messages! %>
+<%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
 
-  <div class="form-group">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'john.smith@domain.com'%>
-  </div>
+  <%= f.input :email, placeholder: 'john.smith@company.com' %>
+  <%= f.input :password, placeholder: 'password' %>
+  <%= f.input :remember_me, as: 'boolean' %>
 
   <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'password' %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="form-check">
-      <%= f.check_box :remember_me, class: 'form-check-input' %>
-      <%= f.label :remember_me, class: 'form-check-label' %>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.submit "Log in", class: 'btn btn-primary' %>
+    <%= f.button :submit, value: 'sign in' %>
   </div>
 
   <div class="form-group">
       <%= render "users/shared/links" %>
   </div>
 
-  <% end %>
+<% end %>
 
-</div>
+<% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+<% end %> 
+
+
+
+
+

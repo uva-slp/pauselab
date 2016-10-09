@@ -15,9 +15,11 @@ class IdeasController < ApplicationController
 	def create
 		@idea = Idea.new ideas_params
 		if @idea.save
-			redirect_to @idea
+			flash[:notice] = 'your idea was sent'
+			redirect_to 'pages/index'
 		else
-			render 'new'
+			# TODO: need to add logic here
+			render 'pages/index'
 		end
 	end
 
@@ -43,8 +45,7 @@ class IdeasController < ApplicationController
 	private
 	  def ideas_params
 	    params.require(:idea).permit(
-	    	:first_name, 
-	    	:last_name, 
+	    	:name,
 	    	:phone, 
 	    	:description
 	    	)

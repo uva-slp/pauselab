@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '~> 3.3.6' # bootstrap for rails
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'devise' # authentication gem
 gem 'cancan' # authorization gem
+gem 'simple_form' # easier forms
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

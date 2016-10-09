@@ -1,33 +1,7 @@
 
+<%= render 'header' %>
 
-<br/>
-<br/>
-<%= image_tag 'masthead/beCville.png', :alt => 'beCville', class: 'img-responsive' %>
-<br/>
-
-<ol class="breadcrumb">
-	<li class="active">home</li>
-	<li><a href="">about</a></li>
-	<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-			get involved <!-- <span class="caret"></span> -->
-		</a>
-		<ul class="dropdown-menu multi-level">
-		   <li><a href="#">submit an idea</a></li>
-		   <li role="separator" class="divider"></li>
-		   <% if user_signed_in? %>
-		   <li><%= link_to "logout", destroy_user_session_path, :method => :delete %></li>	
-		   <% else %>
-		   <li class="dropdown-submenu">
-		   	<%= link_to "login", new_user_session_path %>
-		   </li>
-		   <li><%= link_to "become an artist", new_user_registration_path %></li>
-		   <% end %>
-
-		 </ul>
-	</li>
-	<li><a href="">contact</a></li>
-</ol>
+<%= flash_messages %>
 
 <h2>idea collection</h2>
 
