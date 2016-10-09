@@ -1,0 +1,24 @@
+
+// we can extend bootstrap styles and override if necessary
+
+$muted_red: #e74c3c;
+
+// hover will open submenu
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+
+// remove underline from mandatory asterix
+abbr[title] {
+	border-bottom: none;
+}
+
+// our custom styles
+#flash_alert {
+	color: $muted_red;
+}
+
+.navbar-top {
+	margin-top: 25px;
+}
+

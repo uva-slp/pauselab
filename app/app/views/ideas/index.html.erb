@@ -1,9 +1,13 @@
 
 
+<%= render 'pages/navbar' %>
 
-<h1>pauseLab</h1>
-<h2>idea collection</h2>
-<p><%= link_to 'create new idea', new_idea_path%></p>
+<%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right' %>
+<h2>ideas</h2>
+
+<h3>favorites</h3>
+<h3>new ideas</h3>
+<h3>rejected ideas</h3>
 
 <table class="table">
   <thead>
@@ -16,6 +20,10 @@
   <% @ideas.each do |idea| %>
     <tr>
       <td><%= idea.name %></td>
+      <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
+      <td><%= idea.created_at %></td>
+      <td><%= truncate(idea.description) %></td>
+      <td><%= idea.status %></td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
       <td><%= link_to 'Destroy', idea_path(idea),
@@ -23,4 +31,5 @@
                data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
+
 </table>

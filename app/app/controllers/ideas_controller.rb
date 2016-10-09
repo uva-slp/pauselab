@@ -19,7 +19,7 @@ class IdeasController < ApplicationController
 			redirect_to 'pages/index'
 		else
 			# TODO: need to add logic here
-			render 'pages/index'
+			redirect_back fallback_location: root_url
 		end
 	end
 
