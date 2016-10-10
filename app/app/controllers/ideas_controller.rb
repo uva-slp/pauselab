@@ -1,7 +1,8 @@
 class IdeasController < ApplicationController
 
 	def index
-		@ideas = Idea.all
+		@ideas = Idea.where nil
+		@ideas = @ideas.status(params[:status]) if params[:status].present?
 	end
 
 	def new
