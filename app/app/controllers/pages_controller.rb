@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
 	def index
-		@idea = Idea.new
+	  @idea = Idea.new
 	end
 
 end
