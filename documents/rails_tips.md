@@ -1,7 +1,7 @@
 ## Rails tips
 
 ### Adding/removing a new field to a table
-1. generate a new migration `rails g migration`
+1. generate a new migration `rails g migration [MIGRATION NAME]`
 2. add a change method with the statement `add_column :table, :column, :type`
 3. removing is similar `remove_column :ideas, :first_name, :string`
 
