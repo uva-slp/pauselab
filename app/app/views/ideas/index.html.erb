@@ -9,8 +9,13 @@
 
   <thead>
     <tr>
-      <th>name</th>
-      <th colspan="6">Actions</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Created At</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Likes</th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
  
@@ -22,6 +27,7 @@
       <td><%= idea.created_at %></td>
       <td><%= truncate(idea.description) %></td>
       <td><%= idea.status %></td>
+      <td><%= idea.likes %></td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
       <td><%= link_to 'Destroy', idea_path(idea),

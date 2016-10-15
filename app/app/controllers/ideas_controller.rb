@@ -14,10 +14,10 @@ class IdeasController < ApplicationController
 	end 
 
 	def create
-		@idea = Idea.new ideas_params
+		@idea = Idea.new(ideas_params)
 		if @idea.save
 			flash[:notice] = 'your idea was sent'
-			redirect_to 'pages/index'
+			redirect_to '/ideas/'
 		else
 			# TODO: need to add logic here
 			redirect_back fallback_location: root_url
