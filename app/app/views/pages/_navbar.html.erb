@@ -36,15 +36,16 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#">artist</a>
           <ul class="dropdown-menu">
-          <li><%= link_to 'show proposals', proposals_path %></li>
-          <li><%= link_to 'create proposal', proposals_path %></li>
+          <li><%= link_to 'create proposal', '/proposals/new/' %></li>
+            <li role="separator" class="divider"></li>
+          <li><%= link_to 'proposals console', proposals_path %></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">moderator</a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'show ideas', ideas_path %></li>
+            <li><%= link_to 'create idea',  '/ideas/new/' %></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">idea console</a></li>
           </ul>

@@ -7,6 +7,7 @@ class ProposalsController < ApplicationController
 	def new
 		@proposal = Proposal.new
 	end
+        
 
 	def edit
 		@proposal = Proposal.find params[:id]
