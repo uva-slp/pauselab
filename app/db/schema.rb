@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009014037) do
+ActiveRecord::Schema.define(version: 20161015203447) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20161009014037) do
     t.string   "phone"
     t.text     "description", limit: 65535
     t.string   "location"
-    t.integer  "likes"
+    t.integer  "likes",                     default: 0
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "name"
