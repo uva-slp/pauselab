@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  def index
+        def index
 		@proposals = Proposal.where nil
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
 	end
@@ -13,7 +13,8 @@ class ProposalsController < ApplicationController
 	end 
 
 	def create
-		 @proposal = Proposal.new proposal_params
+                @proposal = Proposal.new proposal_params
+                @proposal.user_id = current_user.id
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
 			redirect_to '/proposals/'

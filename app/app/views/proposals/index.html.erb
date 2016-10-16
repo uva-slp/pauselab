@@ -1,5 +1,3 @@
-
-
 <%= render 'pages/navbar' %>
 
 <%= link_to 'create new proposal', new_proposal_path, class: 'btn btn-default pull-right' %>
@@ -9,7 +7,13 @@
 
   <thead>
     <tr>
-      <th>name</th>
+      <th>User ID</th>
+      <th>Arist Name</th>
+      <th>Created at</th>
+      <th>Description</th>
+      <th>Cost</th>
+      <th>Website Link</th>
+      <th>Status</th>
       <th colspan="6">Actions</th>
     </tr>
   </thead>
@@ -17,6 +21,8 @@
   <% @proposals.each do |proposal| %>
     <tr>
       <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
+      <td><%= proposal.user_id.to_i %></td>
+      <td><%= "#{User.find(proposal.user_id.to_i).first_name} #{User.find(proposal.user_id.to_i).last_name}" %></td>
       <td><%= proposal.created_at %></td>
       <td><%= truncate(proposal.description) %></td>
       <td><%= proposal.cost %></td>
