@@ -47,7 +47,8 @@ class ProposalsController < ApplicationController
 	    params.require(:proposal).permit(
 	    	:description,
                 :cost,
-                :essay
+                :essay,
+                :website_link
 	    	)
 	  end
 
