@@ -12,18 +12,18 @@
 
 ActiveRecord::Schema.define(version: 20161016220842) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories_ideas", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories_ideas", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "idea_id",     null: false
     t.integer "category_id", null: false
   end
 
-  create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "phone"
     t.text     "description",  limit: 65535
     t.string   "location"
@@ -31,22 +31,26 @@ ActiveRecord::Schema.define(version: 20161016220842) do
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
     t.string   "status",                     default: "unchecked", null: false
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "email"
-    t.string   "neighborhood"
+    t.string   "category"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "status",                    default: "unchecked", null: false
   end
 
-  create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "cost"
-    t.text     "description", limit: 65535
+    t.text     "description",  limit: 65535
     t.string   "status"
-    t.text     "essay",       limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.text     "essay",        limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "website_link"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "",       null: false
     t.string   "encrypted_password",     default: "",       null: false
     t.string   "reset_password_token"

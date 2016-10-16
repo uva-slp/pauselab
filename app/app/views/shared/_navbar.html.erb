@@ -27,23 +27,30 @@
       	  <a class="nav-link" href="#">get involved</a>
       	</li>
 
+      <!-- Hide NavBar for specific users-->        
+      <% if user_signed_in? %>
         <li class="nav-item">
           <a class="nav-link" href="#">admin</a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#">artist</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">artist</a>
+          <ul class="dropdown-menu">
+          <li><%= link_to 'create proposal', '/proposals/new/' %></li>
+            <li role="separator" class="divider"></li>
+          <li><%= link_to 'proposals console', proposals_path %></li>
+          </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">moderator</a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'show ideas', ideas_path %></li>
+            <li><%= link_to 'create idea',  '/ideas/new/' %></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">idea console</a></li>
           </ul>
         </li>
-
+      <% end %>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">

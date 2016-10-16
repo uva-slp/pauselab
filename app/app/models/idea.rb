@@ -7,5 +7,4 @@ class Idea < ApplicationRecord
 	validates :first_name, :last_name, :phone, :email, :description, presence: true
 
 	scope :status, -> (status) { where status: status }
-
 end

@@ -9,28 +9,18 @@
 
   <thead>
     <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Created At</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Likes</th>
-      <th colspan="3">Actions</th>
+      <th>name</th>
+      <th colspan="6">Actions</th>
     </tr>
   </thead>
  
   <% @ideas.each do |idea| %>
     <tr>
-      <td><%= idea.first_name %></td>
-<<<<<<< HEAD
-=======
-      <td><%= idea.last_name %></td> 
->>>>>>> 7adaa9b3b3bae7a34a7411b4da5ed6f18fa4ceec
+      <td><%= idea.name %></td>
       <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
       <td><%= idea.created_at %></td>
       <td><%= truncate(idea.description) %></td>
       <td><%= idea.status %></td>
-      <td><%= idea.likes %></td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
       <td><%= link_to 'Destroy', idea_path(idea),

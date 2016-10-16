@@ -16,5 +16,7 @@ class User < ApplicationRecord
 
 	# this is creating a static array of roles (%w creates words by separating in whitespace)
 	Roles = %w[admin steerer artist moderator].freeze
+        
+        has_many :proposals
 
 end
