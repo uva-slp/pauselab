@@ -16,7 +16,7 @@
  
   <% @ideas.each do |idea| %>
     <tr>
-      <td><%= idea.name %></td>
+      <td><%= idea.first_name %></td>
       <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
       <td><%= idea.created_at %></td>
       <td><%= truncate(idea.description) %></td>

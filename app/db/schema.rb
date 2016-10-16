@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015203447) do
+ActiveRecord::Schema.define(version: 20161016220842) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -25,13 +25,16 @@ ActiveRecord::Schema.define(version: 20161015203447) do
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "phone"
-    t.text     "description", limit: 65535
+    t.text     "description",  limit: 65535
     t.string   "location"
-    t.integer  "likes",                     default: 0
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "name"
-    t.string   "status",                    default: "unchecked", null: false
+    t.integer  "likes",                      default: 0
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+    t.string   "status",                     default: "unchecked", null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "neighborhood"
   end
 
   create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

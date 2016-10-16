@@ -1,7 +1,9 @@
 
 <%= simple_form_for @idea do |f| %>
-    <%= f.input :name, placeholder: 'your name' %>
+    <%= f.input :first_name, placeholder: 'Peter' %>
+    <%= f.input :last_name, placeholder: 'Parker' %>
     <%= f.input :phone, placeholder: '555-555-5555' %>
+    <%= f.input :email, placeholder: 'pparker@dailybugle.com' %>
     <%= f.input :description, placeholder: "what's your idea?" %>
     <div class='form-group pull-right'>
       <%= f.button :submit, value: 'submit idea', class: 'btn-primary' %>

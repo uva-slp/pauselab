@@ -46,7 +46,9 @@ class IdeasController < ApplicationController
 	private
 	  def ideas_params
 	    params.require(:idea).permit(
-	    	:name,
+	    	:first_name,
+	    	:last_name,
+	    	:email,
 	    	:phone, 
 	    	:description
 	    	)
