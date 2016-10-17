@@ -1,6 +1,6 @@
 
 
-<%= render 'pages/navbar' %>
+<%= render 'shared/navbar' %>
 
 <%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right' %>
 <h2>ideas</h2>
@@ -22,10 +22,7 @@
   <% @ideas.each do |idea| %>
     <tr>
       <td><%= idea.first_name %></td>
-<<<<<<< HEAD
-=======
       <td><%= idea.last_name %></td> 
->>>>>>> 7adaa9b3b3bae7a34a7411b4da5ed6f18fa4ceec
       <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
       <td><%= idea.created_at %></td>
       <td><%= truncate(idea.description) %></td>

@@ -9,6 +9,10 @@ class IdeasController < ApplicationController
 		@idea = Idea.new
 	end
 
+	def idea_collection
+		@idea = Idea.new
+	end
+
 	def edit
 		@idea = Idea.find params[:id]
 	end 
@@ -19,8 +23,7 @@ class IdeasController < ApplicationController
 			flash[:notice] = 'your idea was sent'
 			redirect_to '/ideas/'
 		else
-			# TODO: need to add logic here
-			redirect_back fallback_location: root_url
+			render :idea_collection
 		end
 	end
 
@@ -48,9 +51,11 @@ class IdeasController < ApplicationController
 	    params.require(:idea).permit(
 	    	:first_name,
 	    	:last_name,
+	    	:category_id,
 	    	:email,
 	    	:phone, 
-	    	:description
+	    	:description,
+	    	:location
 	    	)
 	  end
 
