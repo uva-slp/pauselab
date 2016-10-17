@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # makes RESTful routes for artciles controller
   resources :categories, :proposals
-  resources :ideas, except: [:index]
+  resources :ideas
 
   # this will change depending on the current phase of 
   # the process
