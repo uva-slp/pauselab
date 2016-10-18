@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017000140) do
+ActiveRecord::Schema.define(version: 20161017200412) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",       null: false
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20161017000140) do
   create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "cost"
     t.text     "description",  limit: 65535
-    t.string   "status"
+    t.string   "status",                     default: "unchecked"
     t.text     "essay",        limit: 65535
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "website_link"
     t.integer  "user_id"
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree

@@ -3,9 +3,18 @@
 <%= link_to 'Edit', edit_idea_path(@idea) %> 
 
 <h2>
-  By <%= @idea.first_name %> <%= @idea.last_name %>
+  By <b><%= @idea.first_name %> <%= @idea.last_name %></b>
 </h2>
  
+<h3>Description:</h3> 
 <p>
   <%= @idea.description %>
+</p>
+
+<h3>Likes: <b><%= @idea.likes %></b> </h3>
+
+
+<h3>Status:</h3>
+<p>
+  <%= @idea.status %>
 </p>
