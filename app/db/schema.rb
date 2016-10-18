@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017200412) do
+ActiveRecord::Schema.define(version: 20161018053817) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "categories_ideas", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "categories_ideas", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "idea_id",     null: false
     t.integer "category_id", null: false
   end
 
-  create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone"
@@ -38,19 +38,23 @@ ActiveRecord::Schema.define(version: 20161017200412) do
     t.integer  "category_id"
   end
 
-  create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "cost"
-    t.text     "description",  limit: 65535
-    t.string   "status",                     default: "unchecked"
-    t.text     "essay",        limit: 65535
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.text     "description",            limit: 65535
+    t.string   "status",                               default: "unchecked"
+    t.text     "essay",                  limit: 65535
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.string   "website_link"
     t.integer  "user_id"
+    t.string   "artist_cv_file_name"
+    t.string   "artist_cv_content_type"
+    t.integer  "artist_cv_file_size"
+    t.datetime "artist_cv_updated_at"
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "email",                  default: "",       null: false
     t.string   "encrypted_password",     default: "",       null: false
     t.string   "reset_password_token"

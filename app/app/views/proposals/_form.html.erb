@@ -5,6 +5,10 @@
     <%= f.input :essay, placeholder: "how would this project help the community" %>
     <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
     <div class='form-group'>
+      <b>CV</b>
+      <%= f.file_field :artist_cv %>
+    </div>
+    <div class='form-group'>
       <%= f.button :submit, value: 'Submit Proposal', class: 'btn-primary' %>
       <%= link_to 'Cancel', proposals_path %>
     </div>
