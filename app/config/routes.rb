@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   root 'ideas#idea_collection'
 
   get '/ideas', to: 'ideas#idea_collection'
-  get '/users', to: 'pages#index'
   get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
+
+  # admins routes
+  get '/admin', to: 'admins#index'
+  get '/admin/user/:id', to: 'admins#show', as: 'user_info'
 
 end

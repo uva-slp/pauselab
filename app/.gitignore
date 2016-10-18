@@ -21,4 +21,6 @@
 
 # MAC files
 .DS_Store
-../.DS_Store
+
+# where gems are installed in server
+vendor/bundle

@@ -30,7 +30,7 @@
       <!-- Hide NavBar for specific users-->        
       <% if user_signed_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="#">admin</a>
+          <%= link_to 'admin', '/admin' %>
         </li>
 
         <li class="nav-item dropdown">

@@ -8,9 +8,14 @@
   </head>
 
   <body>
+
+    <%= image_tag 'masthead/beCville.png', :alt => 'beCville', class: 'img-responsive' %>
+
   	<div class="container">
+      <%= render 'shared/navbar' %>
       <%= yield %>
     </div>
+
   </body>
 
 </html>

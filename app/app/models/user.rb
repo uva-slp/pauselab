@@ -7,6 +7,8 @@ class User < ApplicationRecord
 	validates :first_name, :last_name, :email, :password, presence: true
 	validates :email, uniqueness: true
 
+    has_many :proposals
+
 	# validates_presence_of :first_name, :on => :create
 	# validates_presence_of :last_name, :on => :create
 	# validates_presence_of :email, :on => :create
@@ -16,7 +18,9 @@ class User < ApplicationRecord
 
 	# this is creating a static array of roles (%w creates words by separating in whitespace)
 	Roles = %w[admin steerer artist moderator].freeze
-        
-        has_many :proposals
+
+    def fullname
+      "#{first_name} #{last_name}"
+    end
 
 end
