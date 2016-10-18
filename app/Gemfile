@@ -39,6 +39,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'devise' # authentication gem
 gem 'cancan' # authorization gem
 gem 'simple_form' # easier forms
+gem 'paperclip','~> 4.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

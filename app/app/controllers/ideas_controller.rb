@@ -15,8 +15,8 @@ class IdeasController < ApplicationController
 
 	def edit
 		@idea = Idea.find params[:id]
-	end 
-
+	end
+               
 	def create
 		@idea = Idea.new(ideas_params)
 		if @idea.save
@@ -26,9 +26,12 @@ class IdeasController < ApplicationController
 			render :idea_collection
 		end
 	end
+        
 
 	def show
 		@idea = Idea.find(params[:id])
+                @idea.increment!(:likes)
+                @idea.save
 	end
 
 	def destroy

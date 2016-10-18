@@ -12,7 +12,8 @@
 
     <%= f.input :description, placeholder: "what's your idea?" %>
     <div class='form-group'>
-      <%= f.button :submit, value: 'submit idea', class: 'btn-primary' %>
+      <%= f.button :submit, value: 'Submit Idea', class: 'btn-primary' %>
+      <%= link_to ' Cancel', ideas_path %>
     </div>
 
 <% end %>

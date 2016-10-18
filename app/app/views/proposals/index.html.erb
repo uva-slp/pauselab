@@ -1,14 +1,15 @@
 <%= render 'shared/navbar' %>
 
-<%= link_to 'create new proposal', new_proposal_path, class: 'btn btn-default pull-right' %>
-<h2>proposal</h2>
+<%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right' %>
+<h2>Proposals</h2>
 
 <table class="table">
 
   <thead>
     <tr>
       <th>User ID</th>
-      <th>Arist Name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Created at</th>
       <th>Description</th>
       <th>Cost</th>
@@ -22,8 +23,8 @@
     <tr>
       <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
       <td><%= proposal.user_id.to_i %></td>
-      <td><%= "#{User.find(proposal.user_id.to_i).first_name} 
-      #{User.find(proposal.user_id.to_i).last_name}" %></td>
+      <td><%= User.find(proposal.user_id.to_i).first_name %></td>
+      <td><%= User.find(proposal.user_id.to_i).last_name  %></td>
       <td><%= proposal.created_at %></td>
       <td><%= truncate(proposal.description) %></td>
       <td><%= proposal.cost %></td>

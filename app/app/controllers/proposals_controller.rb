@@ -50,7 +50,8 @@ class ProposalsController < ApplicationController
 	    	:description,
                 :cost,
                 :essay,
-                :website_link
+                :website_link,
+                :artist_cv
 	    	)
 	  end
 
