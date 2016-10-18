@@ -2,13 +2,14 @@
 
 <%= render 'shared/navbar' %>
 
-<%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right' %>
-<h2>ideas</h2>
+<%= link_to 'Create New Idea', new_idea_path, class: 'btn btn-default pull-right' %>
+<h2>Ideas</h2>
 
 <table class="table">
 
   <thead>
     <tr>
+      <th>ID </th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Created At</th>
@@ -21,6 +22,7 @@
  
   <% @ideas.each do |idea| %>
     <tr>
+      <td><%= idea.id %></td>
       <td><%= idea.first_name %></td>
       <td><%= idea.last_name %></td> 
       <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->

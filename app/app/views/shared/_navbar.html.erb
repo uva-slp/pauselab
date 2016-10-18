@@ -29,25 +29,30 @@
 
       <!-- Hide NavBar for specific users-->        
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <a class="nav-link" href="#">admin</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#">admin</a>
+          <ul class="dropdown-menu">
+          <li><%= link_to 'Create Category', new_category_path %></li>
+            <li role="separator" class="divider"></li>
+          <li><%= link_to 'Categories Console', categories_path %></li>
+          </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#">artist</a>
           <ul class="dropdown-menu">
-          <li><%= link_to 'create proposal', '/proposals/new/' %></li>
+          <li><%= link_to 'Create Proposal', new_proposal_path %></li>
             <li role="separator" class="divider"></li>
-          <li><%= link_to 'proposals console', proposals_path %></li>
+          <li><%= link_to 'Proposals Console', proposals_path %></li>
           </ul>
         </li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">moderator</a>
           <ul class="dropdown-menu">
-            <li><%= link_to 'create idea',  '/ideas/new/' %></li>
+            <li><%= link_to 'Create Idea',  new_idea_path %></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">idea console</a></li>
+            <li><%= link_to 'Ideas Console',  ideas_path %></li>
           </ul>
         </li>
       <% end %>

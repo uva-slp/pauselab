@@ -1,0 +1,28 @@
+<%= render 'shared/navbar' %>
+
+<%= link_to 'Create New Category', new_category_path, class: 'btn btn-default pull-right' %>
+<h2>Categories</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th>Category ID</th>
+      <th>Name</th>
+      <th colspan="6">Actions</th>
+    </tr>
+  </thead>
+  
+   <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.id %></td>
+      <td><%= category.name %></td>
+      <td><%= link_to 'Show', category_path(category) %></td>
+      <td><%= link_to 'Edit', edit_category_path(category) %></td>
+      <td><%= link_to 'Destroy', category_path(category),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
