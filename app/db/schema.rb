@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20161018053817) do
     t.datetime "updated_at",                                          null: false
     t.string   "status",                        default: "unchecked", null: false
     t.string   "email"
-    t.string   "neighborhood"
     t.integer  "category_id"
   end
 
