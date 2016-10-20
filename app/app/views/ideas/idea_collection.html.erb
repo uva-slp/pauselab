@@ -1,22 +1,36 @@
 
 
+<% content_for :masthead do %>
+    <%= image_tag 'masthead/beCville.png', :alt => 'beCville', class: 'img-responsive' %>
+    <br/>
+<% end %>
+
 <%= flash_messages %>
 
 <h2>idea collection</h2>
 
-<h3>How would you spend $15000 to improve your neighborhood?</h3>
+<div class="row">
+  <div class="col-sm-6">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7098.94326104394!2d78.0430654485247!3d60.172909818538997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1385710909804" width="450" height="450" frameborder="0" style="border:0"></iframe>
+  </div>
+  <div class="col-sm-6">
 
-<p>Over the next two months we are inviting everyone in Charlottesville to share ideas for improving their neighborhood.  With our focus on the south side of Charlottesville, we are specifically interested in hearing ideas for the Belmont and Ridge St. neighborhoods.</p>
+  	<h3>How would you spend $15000 to improve your neighborhood?</h3>
 
-<p>No matter how small or large, vague or specific, we want to hear from YOU.  Send us your ideas by filling out the form below and have a say in making your neighborhood better.</p>
+  	<p>Over the next two months we are inviting everyone in Charlottesville to share ideas for improving their neighborhood.  With our focus on the south side of Charlottesville, we are specifically interested in hearing ideas for the Belmont and Ridge St. neighborhoods.</p>
 
-<p>Remember, we have $15000 for you to spend on public art projects and programs.</p>
+  	<p>No matter how small or large, vague or specific, we want to hear from YOU.  Send us your ideas by filling out the form below and have a say in making your neighborhood better.</p>
 
-<br/>
+  	<p>Remember, we have $15000 for you to spend on public art projects and programs.</p>
 
-<div class="center-block">
-	<%= render "ideas/form" %>
+  	<div class="center-block">
+  		<%= render "ideas/form" %>
+  	</div>
+
+  </div>
+
 </div>
 
-<%= render 'shared/footer' %>
+
+
 

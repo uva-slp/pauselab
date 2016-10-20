@@ -18,6 +18,39 @@ abbr[title] {
 	color: $muted_red;
 }
 
-.navbar-top {
-	margin-top: 25px;
+
+// navigation bar
+.navbar-static-top {
+	background: transparent;
 }
+.navbar {
+	margin-bottom: 0;
+	min-height: 80px;
+}
+.navbar-nav {
+	margin-top: 13px;
+}
+.navbar-brand {
+	padding: 0 15px; 
+	height: 80px; 
+	line-height: 80px;
+}
+.navbar-toggle {
+	margin-top: 20px;
+}
+
+
+.google-maps {
+    position: relative;
+    padding-bottom: 75%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
