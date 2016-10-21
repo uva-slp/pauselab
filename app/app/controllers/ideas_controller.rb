@@ -26,7 +26,6 @@ class IdeasController < ApplicationController
 			render :idea_collection
 		end
 	end
-        
 
 	def show
 		@idea = Idea.find(params[:id])
