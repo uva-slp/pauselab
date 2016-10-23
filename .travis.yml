@@ -6,14 +6,16 @@ rvm:
 services:
     - mysql
 
+gemfile: app/Gemfile
+
 before_script:
     - "mysql -u root -e \"create database slp_pauselab_test;\""
     - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
     - cd app
 
-sudo: false
-
 notifications:
     email:
         on_success: never
         on_failure: always
+
+sudo: false
