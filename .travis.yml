@@ -9,6 +9,7 @@ services:
 before_script:
     - "mysql -u root -e \"create database slp_pauselab_test;\""
     - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
+    - cd app
 
 sudo: false
 
