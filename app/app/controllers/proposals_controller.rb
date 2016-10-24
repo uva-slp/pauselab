@@ -14,8 +14,8 @@ class ProposalsController < ApplicationController
 	end 
 
 	def create
-                @proposal = Proposal.new proposal_params
-                @proposal.user_id = current_user.id
+        @proposal = Proposal.new proposal_params
+        @proposal.user_id = current_user.id
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
 			redirect_to '/proposals/'
@@ -42,6 +42,10 @@ class ProposalsController < ApplicationController
 	  else
 	    render 'edit'
 	  end
+	end
+
+	def proposal_collection
+		@ideas = Idea.all
 	end
 
 	private

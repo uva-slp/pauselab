@@ -1,0 +1,31 @@
+
+<% content_for :masthead do %>
+	<div class="masthead">
+		<h1 class="text-center text-masthead">Calling all artists</h1>
+	</div>
+    <br/>
+<% end %>
+
+ <div class="grid">
+
+	 <% for idea in @ideas %>
+	 <div class="grid-item">
+	 	<div class="panel panel-default grid-panel">
+	 		<div class="panel-heading">
+	 			<%= idea.category.name %>
+	 		</div>
+	 		<div class="panel-body">
+	 			<%= idea.description %>
+	 		</div>
+	 		<div class="panel-footer">
+	 			<span class="pull-left"><%= idea.likes %></span>
+	 			<a class="btn btn-sm btn-default pull-right"><i class="glyphicon glyphicon-thumbs-up"></i></a>	
+	 			<div class="clearfix"></div>
+	 		</div>
+	 	</div>
+	 </div>
+	 <% end %>
+
+ </div>
+
+<!-- <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script> -->
