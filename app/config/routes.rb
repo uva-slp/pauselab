@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/ideas', to: 'ideas#idea_collection'
   get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
+  post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
   # admins routes
   get '/admin', to: 'admins#index'

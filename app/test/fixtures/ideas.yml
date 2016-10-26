@@ -4,8 +4,11 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  first_name: Joe
+  last_name: Schmoe
+  phone: 434-555-3434
+  email: joe.schmoe@example.com
+  description: Park benches
+  location: The Park
+  category: two
