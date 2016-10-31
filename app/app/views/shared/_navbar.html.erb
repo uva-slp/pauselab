@@ -20,40 +20,49 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
 
+        <li><a class="nav-link" href="#">about</a></li>
+        <li><a class="nav-link" href="#">get involved</a></li>
+      
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'admin', '/admin' %>
-          </li>
+          <!-- Admin Options -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">admin</a>
             <ul class="dropdown-menu">
-            <li><%= link_to 'Create Category', new_category_path %></li>
-              <li role="separator" class="divider"></li>
+            <li><%= link_to 'Blogs Console', blogs_admin_console_path %></li>
+            <li role="separator" class="divider"></li>
             <li><%= link_to 'Categories Console', categories_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Proposals Console', proposals_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Users Console', '/admin' %></li>
             </ul>
-          </li>
-
+          </li>          
+          
+          <!-- Artist Options -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">artist</a>
             <ul class="dropdown-menu">
             <li><%= link_to 'Create Proposal', new_proposal_path %></li>
-              <li role="separator" class="divider"></li>
-            <li><%= link_to 'Proposals Console', proposals_path %></li>
+            <li><%= link_to 'Proposals Home', proposals_path %></li>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to 'Create Blog Post', new_blog_path %></li>
+            <li><%= link_to 'Recent Blogs', blogs_path %></li>
+            <li><%= link_to 'Blogs Console', blogs_admin_console_path %></li>
             </ul>
           </li>
 
+          <!-- Moderator Options -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">moderator</a>
             <ul class="dropdown-menu">
               <li><%= link_to 'Create Idea',  new_idea_path %></li>
-              <li role="separator" class="divider"></li>
               <li><%= link_to 'Ideas Console',  ideas_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to 'Create Category', new_category_path %></li>
+            <li><%= link_to 'Categories Console', categories_path %></li>
             </ul>
           </li>
         <% end %>
-
-        <li><a class="nav-link" href="#">about</a></li>
-        <li><a class="nav-link" href="#">get involved</a></li>
 
         <li class="navbar-button-item">
           <% if user_signed_in? %>

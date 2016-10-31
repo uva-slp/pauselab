@@ -1,8 +1,12 @@
 class BlogsController < ApplicationController
   
   def index
-    @blogs = Blog.all
+    @blogs = Blog.all.sort_by(&:created_at).reverse!
   end
+  
+  def admin_console
+    @blogs = Blog.all
+  end  
   
   def show
     @blog = Blog.find(params[:id])

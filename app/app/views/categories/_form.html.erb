@@ -2,7 +2,7 @@
 <%= simple_form_for @category do |f| %>
     <%= f.input :name, placeholder: 'Nature' %>
     <div class='form-group'>
-      <%= f.button :submit, value: 'Create Category', class: 'btn-primary' %>
+      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
       <%= link_to 'Cancel', categories_path %>
     </div>
 <% end %>

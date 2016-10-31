@@ -1,35 +1,13 @@
 
 <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-default pull-right' %>
-<h2>Blogs</h2>
+<h2>Recent Blogs</h2>
 
-<table class="table">
-
-  <thead>
-    <tr>
-      <th>Blog ID</th>
-      <th>Created At</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Title </th>
-      <th>Body </th>
-      <th colspan="3">Actions</th>
-    </tr>
-  </thead>
-  
-   <% @blogs.each do |blog| %>
-    <tr>
-      <td><%= blog.id %></td>
-      <td><%= blog.created_at %></td>
-      <td><%= User.find(blog.user_id.to_i).first_name %></td>
-      <td><%= User.find(blog.user_id.to_i).last_name  %></td>
-      <td><%= blog.title %></td>
-      <td><%= truncate(blog.body) %></td>
-      <td><%= link_to 'Show', blog_path(blog) %></td>
-      <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-      <td><%= link_to 'Destroy', blog_path(blog),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-
-</table>
+<% @blogs.each do |blog| %>
+  <hr>
+  <%= link_to 'Edit', edit_blog_path(blog) %> |
+  <%= link_to 'Destroy', blog_path(blog),method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h4>By <b><%= User.find(blog.user_id.to_i).first_name %> <%= User.find(blog.user_id.to_i).last_name %></b></h4>
+  Published <%= blog.created_at %>
+  <h2><b><%= blog.title %></b></h2>
+  <p><%= blog.body %></p>
+<% end %>
