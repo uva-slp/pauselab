@@ -37,7 +37,7 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
     test "should delete an idea" do
-        idea = ideas(:two)
+        idea = ideas(:one)
         assert_difference('Idea.count',-1) do
             delete idea_path(idea.id)
         end
