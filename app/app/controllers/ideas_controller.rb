@@ -29,8 +29,13 @@ class IdeasController < ApplicationController
 
 	def show
 		@idea = Idea.find(params[:id])
-                @idea.increment!(:likes)
-                @idea.save
+	end
+        
+        def like
+            @idea = Idea.find(params[:id])
+            @idea.increment!(:likes)
+            @idea.save
+            redirect_to ideas_path
 	end
 
 	def destroy
