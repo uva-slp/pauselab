@@ -50,16 +50,11 @@ class IdeasController < ApplicationController
 
         def approve
           @idea = Idea.find(params[:id])
-          puts @idea.first_name
-          #if @idea.status == "unchecked"
           @idea.status = "approved"
-          #@idea.update(status, "approved")
-          puts @idea.status
           @idea.save
-          puts @idea.errors.full_messages
          # end
            redirect_to ideas_path
-        end
+        end 
           
 
 	private
