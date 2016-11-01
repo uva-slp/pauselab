@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161029141950) do
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "phone"
-    t.text     "description", limit: 65535
+    t.text     "description",  limit: 65535
     t.string   "location"
     t.integer  "likes",                     default: 0
     t.datetime "created_at",                                      null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema.define(version: 20161029141950) do
   create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cost"
     t.text     "description",            limit: 65535
-    t.string   "status",                               default: "unchecked"
+    t.string   "status",                                  default: "unchecked"
     t.text     "essay",                  limit: 65535
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.string   "website_link"
     t.integer  "user_id"
     t.string   "artist_cv_file_name"
