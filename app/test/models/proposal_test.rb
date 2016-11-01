@@ -10,7 +10,7 @@ class ProposalTest < ActiveSupport::TestCase
     assert proposal.save, "could not save proposal"
   end
 
-   test "status should be uncheked" do
+   test "status should be unchecked" do
      proposal = Proposal.new
      assert_equal "unchecked", proposal.status, "Status should be unchecked"
    end

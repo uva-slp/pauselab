@@ -24,7 +24,7 @@ class BlogsController < ApplicationController
       redirect_to blogs_path
     else
       # TODO: need to add logic here
-      redirect_back new_blog_path
+      render new_blog_path
     end
   end
   
