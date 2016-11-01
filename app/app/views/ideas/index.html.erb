@@ -30,6 +30,9 @@
       <td><%= idea.likes %></td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+      <td><%= link_to 'Approve', idea_approve_path(idea),
+	      method: :post,
+	      data: {confirm: 'Are you sure?' } %></td>
       <td><%= link_to 'Destroy', idea_path(idea),
                method: :delete,
                data: { confirm: 'Are you sure?' } %></td>
