@@ -64,6 +64,10 @@
           </li>
         <% end %>
 
+	 <li><%= link_to 'Approved Ideas', ideas_path %></li>
+        <li><a class="nav-link" href="#">about</a></li>
+        <li><a class="nav-link" href="#">get involved</a></li>
+	
         <li class="navbar-button-item">
           <% if user_signed_in? %>
           <div class="navbar-form">

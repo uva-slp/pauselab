@@ -12,12 +12,14 @@
       <th>Last Name</th>
       <th>Created At</th>
       <th>Description</th>
-      <th>Status</th>
       <th>Likes</th>
-      <th colspan="3">Actions</th>
+     <% if user_signed_in? %>
+      <th>Status</th>
+      <th colspan="4">Actions</th>
+     <% end %>
     </tr>
   </thead>
- 
+ <% if user_signed_in? %>
   <% @ideas.each do |idea| %>
     <tr>
       <td><%= idea.id %></td>
@@ -36,8 +38,24 @@
 	      data: {confirm: 'Are you sure?' } %></td>
       <td><%= link_to 'Destroy', idea_path(idea),
                method: :delete,
-               data: { confirm: 'Are you sure?' } %></td>
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
-  <% end %>
+    <% end %>
+    <% else %>
+    <% @ideas.each do |idea| %>
+    <% if idea.is_approved == true %>
+    <tr>
+      <td><%= idea.id %></td>
+      <td><%= idea.first_name %></td>
+      <td><%= idea.last_name %></td> 
+      <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
+      <td><%= idea.created_at %></td>
+      <td><%= truncate(idea.description) %></td>
+      <td><%= idea.likes %></td>
+       <td><%= link_to 'Like', idea_like_path(idea) %></td>
+      <td><%= link_to 'Show', idea_path(idea) %></td>
+      <% end %>
+      <% end %>
+     <% end %>
 
 </table>
