@@ -1,28 +1,28 @@
 
 <%= link_to 'Back', proposals_path %> |
-<%= link_to 'Edit', edit_proposal_path(@proposal) %> 
-  
+<%= link_to 'Edit', edit_proposal_path(@proposal) %>
+
 <h2>
   By <b><%= User.find(@proposal.user_id.to_i).first_name %> <%= User.find(@proposal.user_id.to_i).last_name %></b>
 </h2>
-  
+
 <h3>Description:</h3>
 <p>
   <%= @proposal.description %>
 </p>
- 
-<h3>Cost:</h3> 
+
+<h3>Cost:</h3>
 <p>
   <%= @proposal.cost %>
 </p>
- 
+
 <h3>Essay:</h3>
 <p>
   <%= @proposal.essay %>
 </p>
 
 <h3>Website:</h3>
-<% if @proposal.website_link.length != 0 %>
+<% if @proposal.website_link %>
   <p>
     <%= link_to @proposal.website_link, @proposal.website_link %>
   </p>
@@ -43,4 +43,3 @@
 <p>
   <%= @proposal.status %>
 </p>
-

@@ -33,17 +33,16 @@ ActiveRecord::Schema.define(version: 20161029141950) do
   end
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "phone"
     t.text     "description",  limit: 65535
     t.string   "location"
-    t.integer  "likes",                         default: 0
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.string   "status",                        default: "unchecked", null: false
+    t.integer  "likes",                     default: 0
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "status",                    default: "unchecked", null: false
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
-    t.string   "neighborhood"
     t.integer  "category_id"
   end
 

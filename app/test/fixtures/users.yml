@@ -9,7 +9,12 @@ valid_human:
   first_name: Kanye
   last_name: West
   email: kanye@west.com
-  encrypted_password: password
+
+oscar:
+  first_name: Oscar
+  last_name: Sandoval
+  email: oscar.sandoval@gmail.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   phone: 1234567890
   created_at: '2016-11-01 02:12:03'
   updated_at: '2016-11-01 02:12:03'
@@ -29,10 +34,9 @@ missing_last_name:
   encrypted_password: password
   phone: 1234567890
 
-
 missing_password:
-  first_name: Tyra 
-  last_name: Banks 
+  first_name: Tyra
+  last_name: Banks
   encrypted_password: ""
   email: messy_witch@life.com
   phone: 1234567890
@@ -41,7 +45,7 @@ missing_email:
   first_name: Penny
   last_name: Tration
   email: ""
-  encrypted_password: password  
+  encrypted_password: password
   phone: 1234567890
 
 missing_phone:
@@ -57,4 +61,3 @@ invalid_phone:
   email: TheOne@TheOnly.com
   encrypted_password: password
   phone: invalidnumber
-

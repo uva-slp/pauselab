@@ -7,11 +7,11 @@ class ProposalsController < ApplicationController
 	def new
 		@proposal = Proposal.new
 	end
-        
+
 
 	def edit
 		@proposal = Proposal.find params[:id]
-	end 
+	end
 
 	def create
         @proposal = Proposal.new proposal_params
@@ -51,11 +51,11 @@ class ProposalsController < ApplicationController
 	private
 	  def proposal_params
 	    params.require(:proposal).permit(
-	    	:description,
-                :cost,
-                :essay,
-                :website_link,
-                :artist_cv
+  	        :description,
+            :cost,
+            :essay,
+            :website_link,
+            :artist_cv
 	    	)
 	  end
 
