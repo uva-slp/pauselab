@@ -7,12 +7,12 @@ class BlogTest < ActiveSupport::TestCase
     assert blog.save, "could not save blog"
   end
   
-  test "blog missing title" do
+  test "blog: missing title" do
     blog = blogs(:missing_title)
     assert_not blog.save, "blog saved without title"
   end
 
-  test "blog missing body" do
+  test "blog: missing body" do
     blog = blogs(:missing_body)
     assert_not blog.save, "blog saved without body"
   end
