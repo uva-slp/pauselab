@@ -4,9 +4,11 @@ Rails.application.routes.draw do
 
   #This is really cheesy, but I'm declaring this URL before resouce :blogs so the 'show' function stops declaring admin_console as an unknown id  
   get 'blogs/admin_console' => "blogs#admin_console"
-  
-  # makes RESTful routes for artciles controller
-  resources :categories, :proposals, :blogs
+  get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
+  get 'about' => "static_pages#about_page"
+
+  # makes RESTful routes for articles controller
+  resources :categories, :proposals, :blogs, :static_pages
   
   resources :ideas
   # this will change depending on the current phase of 

@@ -33,26 +33,26 @@ ActiveRecord::Schema.define(version: 20161029141950) do
   end
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "phone"
-    t.text     "description", limit: 65535
-    t.string   "location"
-    t.integer  "likes",                     default: 0
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "status",                    default: "unchecked", null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
+    t.text     "description",  limit: 16777215
+    t.string   "location"
+    t.integer  "likes",                         default: 0
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+    t.string   "status",                        default: "unchecked", null: false
     t.string   "email"
     t.integer  "category_id"
   end
 
   create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cost"
-    t.text     "description",            limit: 65535
-    t.string   "status",                               default: "unchecked"
-    t.text     "essay",                  limit: 65535
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.text     "description",            limit: 16777215
+    t.string   "status",                                  default: "unchecked"
+    t.text     "essay",                  limit: 16777215
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
     t.string   "website_link"
     t.integer  "user_id"
     t.string   "artist_cv_file_name"
