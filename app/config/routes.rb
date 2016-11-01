@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
   get 'about' => "static_pages#about_page"
 
-  # makes RESTful routes for artciles controller
+  # makes RESTful routes for articles controller
   resources :categories, :proposals, :blogs, :static_pages
   
   resources :ideas
