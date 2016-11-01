@@ -19,9 +19,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-
-        <li><a class="nav-link" href="#">about</a></li>
-        <li><a class="nav-link" href="#">get involved</a></li>
       
         <% if user_signed_in? %>
           <!-- Admin Options -->
@@ -65,8 +62,8 @@
         <% end %>
 
 	 <li><%= link_to 'Approved Ideas', ideas_path %></li>
-        <li><a class="nav-link" href="#">about</a></li>
-        <li><a class="nav-link" href="#">get involved</a></li>
+        <li><a class="nav-link" href=<%= about_path %>>about</a></li>
+        <li><a class="nav-link" href=<%= root_path %>>get involved</a></li> <!-- Or is it supposed to be idea_collection_path???-->
 	
         <li class="navbar-button-item">
           <% if user_signed_in? %>
