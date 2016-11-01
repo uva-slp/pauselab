@@ -11,7 +11,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_difference('Category.count', 1) do
-      post categories_path, {category: {name: "New category"}}
+      post categories_path, {category: {name: "New category"}
     end
     assert_response :redirect
     follow_redirect!
@@ -27,4 +27,15 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
   end
+
+  test "should remove category" do
+    cat = categories(:three)
+    assert_difference 'Category.count', -1 do
+      delete category_path cat
+    end
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+  end
+
 end

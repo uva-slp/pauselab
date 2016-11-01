@@ -5,8 +5,8 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  id: 55
   cost : $100
   description: colorful bench
   essay: this will help everyone
   status: unchecked
+  user: oscar
