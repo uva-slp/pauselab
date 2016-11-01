@@ -1,13 +1,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-	# @SUGAT: Corresponding test case
-	# test "user: valid" do
-	# 	user = users(:valid_human)
-	# 	assert user.save, "user not saved: missing none"
-	# 	#assert: should happen
-	# 	#"" After means it didn't happen
-	# end
+	test "user: valid" do
+		user = users(:valid_human)
+		assert user.save, "user not saved: missing none"
+		#assert: should happen
+		#"" After means it didn't happen
+	end
 
 	test "user: missing first name" do
 		user = users(:missing_first_name)
