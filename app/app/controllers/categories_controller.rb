@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
       redirect_to '/categories/'
     else
       # TODO: need to add logic here
-      redirect_back '/categories/new/'
+      render '/categories/new/'
     end
   end
   
