@@ -7,7 +7,8 @@ class User < ApplicationRecord
 	validates :first_name, :last_name, :email, :password, presence: true
 	validates :email, uniqueness: true
 
-    has_many :proposals
+        has_many :proposals
+        has_many :blogs
 
 	# validates_presence_of :first_name, :on => :create
 	# validates_presence_of :last_name, :on => :create

@@ -18,7 +18,7 @@ class ProposalsController < ApplicationController
         @proposal.user_id = current_user.id
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
-			redirect_to '/proposals/'
+			redirect_to proposals_path
 		else
 			# TODO: need to add logic here
 			redirect_back fallback_location: root_url
