@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+valid_post:
+  title: "xmas post"
+  body: "tis the season!"
+
+missing_title:
+  body: "only body"
+
+missing_body:
+  title: "only title"

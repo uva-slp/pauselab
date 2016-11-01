@@ -1,17 +1,17 @@
 class CategoriesController < ApplicationController
-  
+
   def index
     @categories = Category.all
   end
-  
+
   def show
     @category = Category.find(params[:id])
-  end  
-  
+  end
+
   def new
     @category = Category.new
   end
-  
+
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -19,14 +19,14 @@ class CategoriesController < ApplicationController
       redirect_to '/categories/'
     else
       # TODO: need to add logic here
-      redirect_back '/categories/new/'
+      render '/categories/new/'
     end
   end
-  
+
   def edit
     @category = Category.find(params[:id])
-  end 
-  
+  end
+
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
@@ -40,13 +40,13 @@ class CategoriesController < ApplicationController
     else
       render edit_category_path
     end
-  end  
-  
+  end
+
   private
     def category_params
       params.require(:category).permit(
           :name
           )
     end
-  
+
 end

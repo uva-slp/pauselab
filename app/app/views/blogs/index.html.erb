@@ -1,0 +1,13 @@
+
+<%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-default pull-right' %>
+<h2>Recent Blogs</h2>
+
+<% @blogs.each do |blog| %>
+  <hr>
+  <%= link_to 'Edit', edit_blog_path(blog) %> |
+  <%= link_to 'Destroy', blog_path(blog),method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h4>By <b><%= User.find(blog.user_id.to_i).first_name %> <%= User.find(blog.user_id.to_i).last_name %></b></h4>
+  Published <%= blog.created_at %>
+  <h2><b><%= blog.title %></b></h2>
+  <p><%= blog.body %></p>
+<% end %>

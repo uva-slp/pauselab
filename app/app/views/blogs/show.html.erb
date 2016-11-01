@@ -1,0 +1,14 @@
+
+<%= link_to 'Back', blogs_path %> |
+<%= link_to 'Edit', edit_blog_path(@blog) %> 
+  
+<h4>
+  By <b><%= User.find(@blog.user_id.to_i).first_name %> <%= User.find(@blog.user_id.to_i).last_name %></b>
+</h4>
+  
+<h2><b><%= @blog.title %></b></h2>
+ 
+<p>
+  <%= @blog.body %>
+</p>
+ 
