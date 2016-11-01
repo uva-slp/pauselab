@@ -23,7 +23,7 @@
         <% if user_signed_in? %>
           <!-- Admin Options -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">admin</a>
+            <a class="nav-link dropdown-toggle" href="#">Admin</a>
             <ul class="dropdown-menu">
             <li><%= link_to 'Blogs Console', blogs_admin_console_path %></li>
             <li role="separator" class="divider"></li>
@@ -37,7 +37,7 @@
           
           <!-- Artist Options -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">artist</a>
+            <a class="nav-link dropdown-toggle" href="#">Artist</a>
             <ul class="dropdown-menu">
             <li><%= link_to 'Create Proposal', new_proposal_path %></li>
             <li><%= link_to 'Proposals Home', proposals_path %></li>
@@ -50,7 +50,7 @@
 
           <!-- Moderator Options -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">moderator</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Moderator</a>
             <ul class="dropdown-menu">
               <li><%= link_to 'Create Idea',  new_idea_path %></li>
               <li><%= link_to 'Ideas Console',  ideas_path %></li>
@@ -62,8 +62,8 @@
         <% end %>
 
 	 <li><%= link_to 'Approved Ideas', ideas_path %></li>
-        <li><a class="nav-link" href=<%= about_path %>>about</a></li>
-        <li><a class="nav-link" href=<%= root_path %>>get involved</a></li> <!-- Or is it supposed to be idea_collection_path???-->
+        <li><a class="nav-link" href=<%= about_path %> >About</a></li>
+        <li><a class="nav-link" href=<%= root_path %> >Get Involved</a></li> <!-- Or is it supposed to be idea_collection_path???-->
 	
         <li class="navbar-button-item">
           <% if user_signed_in? %>
