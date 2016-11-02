@@ -49,7 +49,7 @@
       <td><%= idea.first_name %></td>
       <td><%= idea.last_name %></td> 
       <!-- <td><%= time_ago_in_words(idea.created_at) %></td> -->
-      <td><%= idea.created_at %></td>
+      <td><%= idea.created_at.strftime("%B %d") %></td>
       <td><%= truncate(idea.description) %></td>
       <td><%= idea.likes %></td>
        <td><%= link_to 'Like', idea_like_path(idea) %></td>
