@@ -19,5 +19,7 @@ notifications:
     email:
         on_success: never
         on_failure: always
+    notifications:
+        slack: slp-pauselab:TaS7lyjK15WmuNh3p44WYvyS
 
 sudo: false
