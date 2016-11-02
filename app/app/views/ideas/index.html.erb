@@ -12,9 +12,9 @@
       <th>Last Name</th>
       <th>Created At</th>
       <th>Description</th>
-      <th>Likes</th>
-     <% if user_signed_in? %>
       <th>Status</th>
+     <% if user_signed_in? %>
+      <th>Likes</th>
       <th colspan="4">Actions</th>
      <% end %>
     </tr>
@@ -30,7 +30,7 @@
       <td><%= truncate(idea.description) %></td>
       <td><%= idea.status %></td>
       <td><%= idea.likes %></td>
-      <td><%= link_to 'Like', idea_like_path(idea) %></td>
+      <td><a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></a></td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
       <td><%= link_to 'Approve', idea_approve_path(idea),
