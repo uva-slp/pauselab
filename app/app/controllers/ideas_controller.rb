@@ -21,7 +21,7 @@ class IdeasController < ApplicationController
 		@idea = Idea.new(ideas_params)
 		if @idea.save
 			flash[:notice] = 'your idea was sent'
-			redirect_to '/ideas/'
+			redirect_to ideas_path
 		else
 			render :idea_collection
 		end
