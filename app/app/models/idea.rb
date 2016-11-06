@@ -15,4 +15,3 @@ class Idea < ApplicationRecord
         end
 
 end
-

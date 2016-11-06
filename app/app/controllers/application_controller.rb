@@ -5,10 +5,13 @@ class ApplicationController < ActionController::Base
   # NOTE DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead.
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # Catch all CanCan errors and alert the user of the exception
+  rescue_from CanCan::AccessDenied do | exception |
+    redirect_to root_url, alert: exception.message
+  end
+
   protected
-
-      def configure_permitted_parameters
-      	devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
-      end
-
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
+    end
 end

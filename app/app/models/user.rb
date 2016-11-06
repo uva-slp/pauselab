@@ -7,8 +7,8 @@ class User < ApplicationRecord
 	validates :first_name, :last_name, :email, :password, presence: true
 	validates :email, uniqueness: true
 
-        has_many :proposals
-        has_many :blogs
+    has_many :proposals
+    has_many :blogs
 
 	# validates_presence_of :first_name, :on => :create
 	# validates_presence_of :last_name, :on => :create
@@ -18,7 +18,13 @@ class User < ApplicationRecord
 	# validates_presence_of :phone, :on => :create
 
 	# this is creating a static array of roles (%w creates words by separating in whitespace)
-	Roles = %w[admin steerer artist moderator].freeze
+	#Roles = %w[admin steerer artist moderator].freeze
+	enum role: [:admin, :steerer, :artist, :moderator, :resident]
+
+	after_initialize :set_default_role, :if => :new_record?
+	def set_default_role
+		self.role ||= :resident
+	end
 
     def fullname
       "#{first_name} #{last_name}"

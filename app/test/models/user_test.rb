@@ -9,10 +9,10 @@ class UserTest < ActiveSupport::TestCase
 
 	test "user: valid" do
 		user = User.new
-    user.first_name = 'kanye'
-    user.last_name = 'west'
-    user.email = 'kanye.west@yahoo.com'
-    user.password = 'password'
+        user.first_name = 'kanye'
+        user.last_name = 'west'
+        user.email = 'kanye.west@yahoo.com'
+        user.password = 'password'
 		assert user.save, "user not saved: all fields fine"
 		#assert: should happen
 		#"" After means it didn't happen
