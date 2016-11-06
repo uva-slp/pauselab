@@ -33,15 +33,37 @@ class Ability
     user ||= User.new
 
     if user.admin?
-        can :manage, :all
-    elsif user.steerer?
-        can :read, :all
-    elsif user.artist?
-        can :manage, :all
+      can :manage, :all
     elsif user.moderator?
-        can :manage, :all
-    else
-        can :read, :all
+      can :manage, [Blog, Category, Idea, Proposal]
+    elsif user.steerer?
+      can :read, [Blog, Category, Idea, Proposal]
+      can :manage, Proposal
+      can :update, Idea
+      can :create, Idea
+      can :idea_collection, Idea
+    elsif user.artist?
+      # can edit blogs and proposals they own
+      can :manage, Blog do |blog|
+        blog.try(:user) == user
+      end
+      can :manage, Proposal do |proposal|
+        proposal.try(:user) == user
+      end
+      can :create, [Blog, Proposal, Idea]
+      can :read, [Blog, Category, Proposal]
+      can :read, Idea, approved?: true
+      can :create, Idea
+      can :idea_collection, Idea
+      can :like, Idea
+      can :show, Idea
+    else  # resident, lowest permissions
+      can :read, [Blog, Category, Proposal]
+      can :read, Idea, approved?: true
+      can :create, Idea
+      can :idea_collection, Idea  #TODO eliminate redundancy between create and idea_collection
+      can :like, Idea
+      can :show, Idea
     end
 
   end

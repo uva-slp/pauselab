@@ -4,8 +4,6 @@ class Idea < ApplicationRecord
 
 	validates :first_name, :last_name, :phone, :email, :description, :location, :category_id, presence: true
 
-	scope :status, -> (status) { where status: status }
-
 	enum status: [:unchecked, :approved]
-	
+
 end

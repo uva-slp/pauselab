@@ -1,22 +1,23 @@
 class IdeasController < ApplicationController
+	load_and_authorize_resource
 
 	def index
-		@ideas = Idea.where nil
-		@ideas = @ideas.status(params[:status]) if params[:status].present?
+		@ideas = Idea.all
+		# TODO status check?
 	end
 
 	def new
 		@idea = Idea.new
 	end
 
-	def idea_collection
+	def idea_collection	# TODO redundant?
 		@idea = Idea.new
 	end
 
 	def edit
 		@idea = Idea.find params[:id]
 	end
-               
+
 	def create
 		@idea = Idea.new(ideas_params)
 		if @idea.save
@@ -30,12 +31,12 @@ class IdeasController < ApplicationController
 	def show
 		@idea = Idea.find(params[:id])
 	end
-        
-        def like
-            @idea = Idea.find(params[:id])
-            @idea.increment!(:likes)
-            @idea.save
-            redirect_to ideas_path
+
+  def like
+    @idea = Idea.find(params[:id])
+    @idea.increment!(:likes)
+    @idea.save
+    redirect_to ideas_path
 	end
 
 	def destroy
@@ -53,14 +54,14 @@ class IdeasController < ApplicationController
 	  end
 	end
 
-        def approve
-          @idea = Idea.find(params[:id])
-          @idea.status = "approved"
-          @idea.save
-         # end
-           redirect_to ideas_path
-        end 
-          
+  def approve
+    @idea = Idea.find(params[:id])
+    @idea.approved!
+    @idea.save
+		# end
+		redirect_to ideas_path
+	end
+
 
 	private
 	  def ideas_params
@@ -69,7 +70,7 @@ class IdeasController < ApplicationController
 	    	:last_name,
 	    	:category_id,
 	    	:email,
-	    	:phone, 
+	    	:phone,
 	    	:description,
 	    	:location
 	    	)
