@@ -43,7 +43,15 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
   test "should update proposal" do
     patch proposal_url(@proposal), params: {
       proposal: {
-        cost: 100,
+        artist_fees: 100,
+        project_materials: 100,
+        printing: 100,
+        marketing: 100,
+        documentation: 100,
+        volunteer: 100,
+        insurance: 100,
+        events: 100,
+        cost: 800,
         description: 'colorful bench',
         essay: 'this will help everyone',
         status: 'unchecked',
