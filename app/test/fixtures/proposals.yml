@@ -5,7 +5,23 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  cost : $100
+  cost : 100
+  description: colorful bench
+  essay: this will help everyone
+  status: unchecked
+  user: oscar
+  
+two:
+  cost : 100
+  artist_fees: 100
+  project_materials: 100
+  printing: 100
+  marketing: 100
+  documentation: 100
+  volunteer: 100
+  insurance: 100
+  events: 100
+  cost: 800
   description: colorful bench
   essay: this will help everyone
   status: unchecked

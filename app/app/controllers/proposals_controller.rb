@@ -52,10 +52,19 @@ class ProposalsController < ApplicationController
 	  def proposal_params
 	    params.require(:proposal).permit(
   	        :description,
-            :cost,
-            :essay,
-            :website_link,
-            :artist_cv
+                :artist_fees,
+                :project_materials,
+                :printing,
+                :marketing,
+                :documentation,
+                :volunteer,
+                :insurance,
+                :events,
+                :cost,
+                :essay,
+                :website_link,
+                :artist_cv,
+            
 	    	)
 	  end
 
