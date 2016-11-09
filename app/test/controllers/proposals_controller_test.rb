@@ -40,6 +40,11 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   #
+  test "should also get edit" do
+    get edit_proposal_url(proposals(:two))
+    assert_response :success
+  end
+  #
   test "should update proposal" do
     patch proposal_url(@proposal), params: {
       proposal: {
