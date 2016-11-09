@@ -1,9 +1,20 @@
 
 <%= simple_form_for @proposal do |f| %>
     <%= f.input :description, placeholder: 'your proposal' %>
-    <%= f.input :cost, placeholder: 'budget' %>
     <%= f.input :essay, placeholder: "how would this project help the community" %>
     <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
+    Budget Information
+    <pre>
+        <%= f.input :artist_fees, placeholder: 'atrist fees budget' %>
+        <%= f.input :project_materials, placeholder: 'project materials budget' %>
+        <%= f.input :printing, placeholder: 'printing budget' %>
+        <%= f.input :marketing, placeholder: 'marketing budget' %>
+        <%= f.input :documentation, placeholder: 'documentation budget' %>
+        <%= f.input :volunteer, placeholder: 'volunteer budget' %>
+        <%= f.input :insurance, placeholder: 'insurance/legal budget' %>
+        <%= f.input :events, placeholder: 'events budget' %>
+        <%= f.input :cost, placeholder: 'total cost' %>
+    </pre>
     <div class='form-group'>
       <b>CV</b>
       <%= f.file_field :artist_cv %>
