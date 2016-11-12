@@ -10,9 +10,7 @@ class IdeasController < ApplicationController
 		@idea = Idea.new
 	end
 
-	def idea_collection	# TODO redundant?
-		@idea = Idea.new
-	end
+	alias_method :idea_collection, :new
 
 	def edit
 		@idea = Idea.find params[:id]

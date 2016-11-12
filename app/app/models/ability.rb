@@ -32,6 +32,9 @@ class Ability
     # if user not logged in, create guest user
     user ||= User.new
 
+    # define aliases
+    alias_action(:idea_collection, :to => :create)
+
     if user.admin?
       can :manage, :all
     elsif user.moderator?
@@ -41,7 +44,6 @@ class Ability
       can :manage, Proposal
       can :update, Idea
       can :create, Idea
-      can :idea_collection, Idea
     elsif user.artist?
       # can edit blogs and proposals they own
       can :manage, Blog do |blog|
@@ -53,14 +55,12 @@ class Ability
       can :create, [Blog, Proposal, Idea]
       can :read, [Blog, Category, Proposal]
       can :read, Idea, approved?: true
-      can :idea_collection, Idea
       can :like, Idea
       can :show, Idea
     else  # resident, lowest permissions
       can :read, [Blog, Category, Proposal]
       can :read, Idea, approved?: true
       can :create, Idea
-      can :idea_collection, Idea  #TODO eliminate redundancy between create and idea_collection
       can :like, Idea
       can :show, Idea
     end
