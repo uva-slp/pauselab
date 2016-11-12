@@ -3,10 +3,7 @@ require 'test_helper'
 class ProposalsControllerTest < ActionDispatch::IntegrationTest
 
   setup do
-    @proposal = proposals(:one)
-    # make the proposal's owner the user used for sign in
-    @proposal.user = users(:valid_human)
-    @proposal.save!
+    @proposal = proposals(:two) # valid fixture
   end
 
   test "should get index" do
@@ -21,18 +18,28 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   #
-  # test "should create proposal" do
-  #   assert_difference('Proposal.count') do
-  #     post proposals_url, params: { proposal: {
-  #         description: "I will creating something",
-  #         cost: 100,
-  #         essay: "shortest essay ever",
-  #         user: 0
-  #        } }
-  #   end
-  #
-  #   assert_redirected_to proposal_url(Proposal.last)
-  # end
+  test "should create proposal" do
+    sign_in_as :artist
+    assert_difference('Proposal.count', 1) do
+      post proposals_url, params: {
+        proposal: {
+          artist_fees: 100,
+          project_materials: 100,
+          printing: 100,
+          marketing: 100,
+          documentation: 100,
+          volunteer: 100,
+          insurance: 100,
+          events: 100,
+          cost: 800,
+          description: "I am creating something",
+          essay: "shortest essay ever",
+          user: :valid_human
+         }
+       }
+    end
+    assert_redirected_to proposals_url
+  end
 
   test "should show proposal" do
     sign_in_as :resident
@@ -43,11 +50,6 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     sign_in_as :artist
     get edit_proposal_url(@proposal)
-    assert_response :success
-  end
-  #
-  test "should also get edit" do
-    get edit_proposal_url(proposals(:two))
     assert_response :success
   end
   #
@@ -67,7 +69,7 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
         description: 'colorful bench',
         essay: 'this will help everyone',
         status: 'unchecked',
-        user: :oscar
+        user: :valid_human
        }
      }
     assert_redirected_to proposal_url(@proposal)

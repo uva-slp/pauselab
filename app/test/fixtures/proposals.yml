@@ -10,7 +10,7 @@ one:
   essay: this will help everyone
   status: unchecked
   user: oscar
-  
+
 two:
   cost : 100
   artist_fees: 100
@@ -25,4 +25,4 @@ two:
   description: colorful bench
   essay: this will help everyone
   status: unchecked
-  user: oscar
+  user: valid_human   # this is the mock user for authentication
