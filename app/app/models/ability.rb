@@ -53,7 +53,6 @@ class Ability
       can :create, [Blog, Proposal, Idea]
       can :read, [Blog, Category, Proposal]
       can :read, Idea, approved?: true
-      can :create, Idea
       can :idea_collection, Idea
       can :like, Idea
       can :show, Idea

@@ -9,10 +9,10 @@ class UserTest < ActiveSupport::TestCase
 
 	test "user: valid" do
 		user = User.new
-        user.first_name = 'kanye'
-        user.last_name = 'west'
-        user.email = 'kanye.west@yahoo.com'
-        user.password = 'password'
+    user.first_name = 'kanye'
+    user.last_name = 'west'
+    user.email = 'kanye.west@yahoo.com'
+    user.password = 'password'
 		assert user.save, "user not saved: all fields fine"
 		#assert: should happen
 		#"" After means it didn't happen
@@ -33,22 +33,22 @@ class UserTest < ActiveSupport::TestCase
 		assert_not user.save, "user saved: missing password"
 		#assert_not: should not happen
 		#"" After means it did happen (which is messed up)
-   	end
+ 	end
 
-   	test "user: missing email" do
-   		user = users(:missing_email)
-   		assert_not user.save , "user saved: missing email"
-   	end
+ 	test "user: missing email" do
+ 		user = users(:missing_email)
+ 		assert_not user.save , "user saved: missing email"
+ 	end
 
-   	test "user: missing phone" do
-   		user = users(:missing_phone)
-   		assert_not user.save, "user saved: missing phone number"
-   	end
+ 	test "user: missing phone" do
+ 		user = users(:missing_phone)
+ 		assert_not user.save, "user saved: missing phone number"
+ 	end
 
-   	# MUST FIX LATER
-   	# test "user: invalid phone" do
-   	# 	user = users(:invalid_phone)
-   	# 	assert_not user.save, "user saved: invalid phone number"
-   	# end
+ 	# MUST FIX LATER
+ 	# test "user: invalid phone" do
+ 	# 	user = users(:invalid_phone)
+ 	# 	assert_not user.save, "user saved: invalid phone number"
+ 	# end
 
 end

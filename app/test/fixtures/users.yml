@@ -9,6 +9,8 @@ valid_human:
   first_name: Kanye
   last_name: West
   email: kanye@west.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  role: artist
 
 oscar:
   first_name: Oscar

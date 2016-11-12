@@ -19,7 +19,7 @@ class IdeasController < ApplicationController
 	end
 
 	def create
-		@idea = Idea.new(ideas_params)
+		@idea = Idea.new(idea_params)
 		if @idea.save
 			flash[:notice] = 'your idea was sent'
 			redirect_to ideas_path
@@ -47,7 +47,7 @@ class IdeasController < ApplicationController
 
 	def update
 	  @idea = Idea.find(params[:id])
-	  if @idea.update ideas_params
+	  if @idea.update idea_params
 	  	redirect_to @idea
 	  else
 	    render 'edit'
@@ -64,7 +64,7 @@ class IdeasController < ApplicationController
 
 
 	private
-	  def ideas_params
+	  def idea_params
 	    params.require(:idea).permit(
 	    	:first_name,
 	    	:last_name,
