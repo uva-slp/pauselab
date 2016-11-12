@@ -3,7 +3,15 @@ require 'test_helper'
 class ProposalTest < ActiveSupport::TestCase
   test "should save proposal" do
     proposal = Proposal.new
-    proposal.cost = 100
+    proposal.artist_fees = 100
+    proposal.project_materials = 100
+    proposal.printing = 100
+    proposal.marketing = 100
+    proposal.documentation = 100
+    proposal.volunteer = 100
+    proposal.insurance = 100
+    proposal.events = 100
+    proposal.cost = 800
     proposal.description = "colorful bench"
     proposal.essay = "this will help everyone"
     proposal.status = "unchecked"

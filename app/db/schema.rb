@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 20161106044645) do
     t.string   "artist_cv_content_type"
     t.integer  "artist_cv_file_size"
     t.datetime "artist_cv_updated_at"
+    t.decimal  "artist_fees",                          precision: 10
+    t.decimal  "project_materials",                    precision: 10
+    t.decimal  "printing",                             precision: 10
+    t.decimal  "marketing",                            precision: 10
+    t.decimal  "documentation",                        precision: 10
+    t.decimal  "volunteer",                            precision: 10
+    t.decimal  "insurance",                            precision: 10
+    t.decimal  "events",                               precision: 10
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 

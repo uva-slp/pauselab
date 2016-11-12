@@ -46,11 +46,24 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   #
+  test "should also get edit" do
+    get edit_proposal_url(proposals(:two))
+    assert_response :success
+  end
+  #
   test "should update proposal" do
     sign_in_as :artist
     patch proposal_url(@proposal), params: {
       proposal: {
-        cost: 100,
+        artist_fees: 100,
+        project_materials: 100,
+        printing: 100,
+        marketing: 100,
+        documentation: 100,
+        volunteer: 100,
+        insurance: 100,
+        events: 100,
+        cost: 800,
         description: 'colorful bench',
         essay: 'this will help everyone',
         status: 'unchecked',
