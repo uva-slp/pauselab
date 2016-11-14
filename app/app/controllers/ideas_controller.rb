@@ -1,20 +1,24 @@
 class IdeasController < ApplicationController
-	load_and_authorize_resource
+  load_and_authorize_resource
 
-	def index
-		@ideas = Idea.all
-		# TODO status check?
-	end
+  def index
+          @ideas = Idea.all
+          @likes = Array.new
+          if cookies[:likes] != nil
+            @likes = JSON.parse(cookies[:likes])
+          end 
+          # TODO status check?
+  end
 
-	def new
-		@idea = Idea.new
-	end
+  def new
+          @idea = Idea.new
+  end
 
-	alias_method :idea_collection, :new
+  alias_method :idea_collection, :new
 
-	def edit
-		@idea = Idea.find params[:id]
-	end
+  def edit
+          @idea = Idea.find params[:id]
+  end
 
 	def create
 		@idea = Idea.new(idea_params)
@@ -33,31 +37,73 @@ class IdeasController < ApplicationController
 		end
 	end
 
-	def show
-		@idea = Idea.find(params[:id])
-	end
+
+  def show
+          @idea = Idea.find(params[:id])
+  end
 
   def like
     @idea = Idea.find(params[:id])
     @idea.increment!(:likes)
     @idea.save
+    @id = @idea.id
+    @likes = Array.new
+    #Check if cookie already exists
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+      #Only add new like to cookie if it doesn't already have it
+      unless @likes.include?(@id)
+        @likes.push(@id)
+        @json_likes = JSON.generate(@likes) 
+        cookies[:likes] = @json_likes
+      end
+    #Else make a new cookie!
+    else
+      @likes.push(@id)
+      @json_likes = JSON.generate(@likes) 
+      cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
+    end
     redirect_to ideas_path
-	end
+  end
+  
+  def dislike
+    @idea = Idea.find(params[:id])
+    @idea.increment!(:likes)
+    @idea.save
+    @id = @idea.id
+    @likes = Array.new
+    #Check if cookie already exists
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+      #Only add new like to cookie if it doesn't already have it
+      unless @likes.include?(@id)
+        @likes.push(@id)
+        @json_likes = JSON.generate(@likes) 
+        cookies[:likes] = @json_likes
+      end
+    #Else make a new cookie!
+    else
+      @likes.push(@id)
+      @json_likes = JSON.generate(@likes) 
+      cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
+    end
+    redirect_to ideas_path
+  end
 
-	def destroy
-	  @idea = Idea.find(params[:id])
-	  @idea.destroy
-	  redirect_to ideas_path
-	end
+  def destroy
+    @idea = Idea.find(params[:id])
+    @idea.destroy
+    redirect_to ideas_path
+  end
 
-	def update
-	  @idea = Idea.find(params[:id])
-	  if @idea.update idea_params
-	  	redirect_to @idea
-	  else
-	    render 'edit'
-	  end
-	end
+  def update
+    @idea = Idea.find(params[:id])
+    if @idea.update idea_params
+          redirect_to @idea
+    else
+      render 'edit'
+    end
+  end
 
   def approve
     @idea = Idea.find(params[:id])

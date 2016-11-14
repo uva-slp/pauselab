@@ -30,7 +30,13 @@
       <td><%= truncate(idea.description) %></td>
       <td><%= idea.status %></td>
       <td><%= idea.likes %></td>
-      <td><a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></a></td>
+      <td>
+        <% unless @likes.include?(idea.id) %>
+          <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></i></a>
+        <% else %>
+          <a href=<%= idea_dislike_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+        <% end %>
+      </td>
       <td><%= link_to 'Show', idea_path(idea) %></td>
       <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
       <td><%= link_to 'Approve', idea_approve_path(idea),
