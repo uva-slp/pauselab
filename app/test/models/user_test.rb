@@ -33,22 +33,22 @@ class UserTest < ActiveSupport::TestCase
 		assert_not user.save, "user saved: missing password"
 		#assert_not: should not happen
 		#"" After means it did happen (which is messed up)
-   	end
+ 	end
 
-   	test "user: missing email" do
-   		user = users(:missing_email)
-   		assert_not user.save , "user saved: missing email"
-   	end
+ 	test "user: missing email" do
+ 		user = users(:missing_email)
+ 		assert_not user.save , "user saved: missing email"
+ 	end
 
-   	test "user: missing phone" do
-   		user = users(:missing_phone)
-   		assert_not user.save, "user saved: missing phone number"
-   	end
+ 	test "user: missing phone" do
+ 		user = users(:missing_phone)
+ 		assert_not user.save, "user saved: missing phone number"
+ 	end
 
-   	# MUST FIX LATER
-   	# test "user: invalid phone" do
-   	# 	user = users(:invalid_phone)
-   	# 	assert_not user.save, "user saved: invalid phone number"
-   	# end
+ 	# MUST FIX LATER
+ 	# test "user: invalid phone" do
+ 	# 	user = users(:invalid_phone)
+ 	# 	assert_not user.save, "user saved: invalid phone number"
+ 	# end
 
 end

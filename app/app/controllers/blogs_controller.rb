@@ -1,21 +1,22 @@
 class BlogsController < ApplicationController
+  load_and_authorize_resource
   
   def index
     @blogs = Blog.all.sort_by(&:created_at).reverse!
   end
-  
+
   def admin_console
     @blogs = Blog.all
-  end  
-  
+  end
+
   def show
     @blog = Blog.find(params[:id])
-  end  
-  
+  end
+
   def new
     @blog = Blog.new
   end
-  
+
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
@@ -27,11 +28,11 @@ class BlogsController < ApplicationController
       render new_blog_path
     end
   end
-  
+
   def edit
     @blog = Blog.find(params[:id])
-  end 
-  
+  end
+
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
@@ -45,8 +46,8 @@ class BlogsController < ApplicationController
     else
       render edit_blog_path
     end
-  end  
-  
+  end
+
   private
     def blog_params
       params.require(:blog).permit(
@@ -54,5 +55,5 @@ class BlogsController < ApplicationController
           :body
           )
     end
-  
+
 end

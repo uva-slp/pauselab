@@ -1,11 +1,8 @@
 require 'test_helper'
 
 class AdminsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-
   test "should get admin index" do
+    sign_in_as :admin
     get admin_path
     assert_response :success
   end

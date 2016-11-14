@@ -1,5 +1,7 @@
 class ProposalsController < ApplicationController
-        def index
+  load_and_authorize_resource
+
+  def index
 		@proposals = Proposal.where nil
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
 	end
