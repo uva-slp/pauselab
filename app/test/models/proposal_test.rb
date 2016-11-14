@@ -46,4 +46,39 @@ class ProposalTest < ActiveSupport::TestCase
      proposal.status = "unchecked"
      assert_not proposal.save, "proposal saved without essay"
    end
+    test "Tests the pressence of artist_fees" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.artist_fees = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without artist fees"
+   end
+    test "Tests the pressence of project_materials" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.project_materials = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without project materials"
+   end
+    test "Tests the pressence of printing" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.printing = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without printing"
+   end
+    test "Tests the pressence of marketing" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.marketing = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without marketing"
+   end
+    test "Tests the pressence of documentation" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.documentation = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without documentation"
+   end
 end
