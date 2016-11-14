@@ -1,28 +1,45 @@
 class IdeasController < ApplicationController
+  load_and_authorize_resource
 
-	def index
-		@ideas = Idea.where nil
-		@ideas = @ideas.status(params[:status]) if params[:status].present?
-	end
+  def index
+          @ideas = Idea.all
+          @likes = Array.new
+          if cookies[:likes] != nil
+            @likes = JSON.parse(cookies[:likes])
+          end 
+          # TODO status check?
+  end
 
-	def new
-		@idea = Idea.new
-	end
+  def new
+          @idea = Idea.new
+  end
 
-	def idea_collection
-		@idea = Idea.new
-	end
+  alias_method :idea_collection, :new
 
+  def edit
+          @idea = Idea.find params[:id]
+  end
+
+<<<<<<< HEAD
 	def edit
 		@idea = Idea.find params[:id]
 	end
 
+=======
+>>>>>>> f0060613ecc3a79d702fea1fb046ae4d9101c24f
 	def create
-		@idea = Idea.new(ideas_params)
+		@idea = Idea.new(idea_params)
+		# code for verifying recaptcha - requires SSL, which would need effort
+		#unless verify_recaptcha or user_signed_in?
+		#	flash[:error] = 'Use RECAPTCHA'
+		#	render :idea_collection
+		#end
+		#
 		if @idea.save
-			flash[:notice] = 'your idea was sent'
+			flash[:notice] = 'Your idea was sent.'
 			redirect_to ideas_path
 		else
+<<<<<<< HEAD
 			render 'new'
 		end
 	end
@@ -37,22 +54,90 @@ class IdeasController < ApplicationController
       @idea.save
       redirect_to ideas_path
 	end
-
-	def destroy
-	  @idea = Idea.find(params[:id])
-	  @idea.destroy
-	  redirect_to ideas_path
+=======
+			flash[:error] = 'There was an error in sending your idea.'
+			render :idea_collection
+		end
 	end
 
-	def update
-	  @idea = Idea.find(params[:id])
-	  if @idea.update ideas_params
-	  	redirect_to @idea
-	  else
-	    render 'edit'
-	  end
+>>>>>>> f0060613ecc3a79d702fea1fb046ae4d9101c24f
+
+  def show
+          @idea = Idea.find(params[:id])
+  end
+
+  def like
+    @idea = Idea.find(params[:id])
+    @idea.increment!(:likes)
+    @idea.save
+    @id = @idea.id
+    @likes = Array.new
+    #Check if cookie already exists
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+      #Only add new like to cookie if it doesn't already have it
+      unless @likes.include?(@id)
+        @likes.push(@id)
+        @json_likes = JSON.generate(@likes) 
+        cookies[:likes] = @json_likes
+      end
+    #Else make a new cookie!
+    else
+      @likes.push(@id)
+      @json_likes = JSON.generate(@likes) 
+      cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
+    end
+    redirect_to ideas_path
+  end
+  
+  def dislike
+    @idea = Idea.find(params[:id])
+    @idea.increment!(:likes)
+    @idea.save
+    @id = @idea.id
+    @likes = Array.new
+    #Check if cookie already exists
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+      #Only add new like to cookie if it doesn't already have it
+      unless @likes.include?(@id)
+        @likes.push(@id)
+        @json_likes = JSON.generate(@likes) 
+        cookies[:likes] = @json_likes
+      end
+    #Else make a new cookie!
+    else
+      @likes.push(@id)
+      @json_likes = JSON.generate(@likes) 
+      cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
+    end
+    redirect_to ideas_path
+  end
+
+  def destroy
+    @idea = Idea.find(params[:id])
+    @idea.destroy
+    redirect_to ideas_path
+  end
+
+  def update
+    @idea = Idea.find(params[:id])
+    if @idea.update idea_params
+          redirect_to @idea
+    else
+      render 'edit'
+    end
+  end
+
+  def approve
+    @idea = Idea.find(params[:id])
+    @idea.approved!
+    @idea.save
+		# end
+		redirect_to ideas_path
 	end
 
+<<<<<<< HEAD
   def approve
     @idea = Idea.find(params[:id])
     @idea.status = "approved"
@@ -61,9 +146,11 @@ class IdeasController < ApplicationController
      redirect_to ideas_path
   end
 
+=======
+>>>>>>> f0060613ecc3a79d702fea1fb046ae4d9101c24f
 
 	private
-	  def ideas_params
+	  def idea_params
 	    params.require(:idea).permit(
 	    	:first_name,
 	    	:last_name,

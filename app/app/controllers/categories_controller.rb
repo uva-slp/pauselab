@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @categories = Category.all
@@ -15,10 +16,10 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      flash[:notice] = 'your category was saved'
+      flash[:notice] = 'Your category was saved.'
       redirect_to categories_path
     else
-      # TODO: need to add logic here
+      flash[:error] = 'There was in error in creating a category.'
       render new_category_path
     end
   end
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update category_params
-          redirect_to @category
+      redirect_to @category
     else
       render edit_category_path
     end
