@@ -18,28 +18,27 @@ class ProposalTest < ActiveSupport::TestCase
     assert proposal.save, "could not save proposal"
   end
 
-  test "status should be unchecked" do
-   proposal = Proposal.new
-   assert_equal "unchecked", proposal.status, "Status should be unchecked"
-  end
+   test "status should be unchecked" do
+     proposal = Proposal.new
+     assert_equal "unchecked", proposal.status, "Status should be unchecked"
+   end
 
-  test "Tests the pressence of cost" do
-   proposal = Proposal.new
-   proposal.description = "new sign"
-   proposal.essay = "cheerful environment"
-   proposal.status = "unchecked"
-   assert_not proposal.save, "proposal saved without cost"
-  end
+   test "Tests the pressence of cost" do
+     proposal = Proposal.new
+     proposal.description = "new sign"
+     proposal.essay = "cheerful environment"
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without cost"
+   end
 
-  test "Tests the pressence of description" do
-   proposal = Proposal.new
-   proposal.cost = 123
-   proposal.essay = "cheerful environment"
-   proposal.status = "unchecked"
-   assert_not proposal.save, "proposal saved without description"
-  end
+    test "Tests the pressence of description" do
+     proposal = Proposal.new
+     proposal.cost = 123
+     proposal.essay = "cheerful environment"
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without description"
+    end
 
-<<<<<<< HEAD
     test "Tests the pressence of essay" do
      proposal = Proposal.new
      proposal.description = "new sign"
@@ -82,13 +81,4 @@ class ProposalTest < ActiveSupport::TestCase
      proposal.status = "unchecked"
      assert_not proposal.save, "proposal saved without documentation"
    end
-=======
-  test "Tests the pressence of essay" do
-   proposal = Proposal.new
-   proposal.description = "new sign"
-   proposal.cost = 123
-   proposal.status = "unchecked"
-   assert_not proposal.save, "proposal saved without essay"
- end
->>>>>>> 4a4268832317b56bc044fd5a06c55f5a49854071
 end
