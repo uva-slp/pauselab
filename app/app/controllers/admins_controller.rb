@@ -9,5 +9,10 @@ class AdminsController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def change_phase
+	end
+
+	def edit_phase
+	end
 
 end

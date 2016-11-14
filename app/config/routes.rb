@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   # admins routes
   get '/admin', to: 'admins#index'
   get '/admin/user/:id', to: 'admins#show', as: 'user_info'
+  get '/admin/edit_phase', to: 'admins#edit_phase'
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
