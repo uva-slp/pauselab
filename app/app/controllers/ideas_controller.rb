@@ -18,10 +18,17 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
+		# code for verifying recaptcha - requires SSL, which would need effort
+		#unless verify_recaptcha or user_signed_in?
+		#	flash[:error] = 'Use RECAPTCHA'
+		#	render :idea_collection
+		#end
+		#
 		if @idea.save
-			flash[:notice] = 'your idea was sent'
+			flash[:notice] = 'Your idea was sent.'
 			redirect_to ideas_path
 		else
+			flash[:error] = 'There was an error in sending your idea.'
 			render :idea_collection
 		end
 	end
