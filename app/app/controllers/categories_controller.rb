@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @categories = Category.all
@@ -36,7 +37,7 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     if @category.update category_params
-          redirect_to @category
+      redirect_to @category
     else
       render edit_category_path
     end

@@ -9,6 +9,8 @@ valid_human:
   first_name: Kanye
   last_name: West
   email: kanye@west.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  role: artist
 
 oscar:
   first_name: Oscar
@@ -18,7 +20,7 @@ oscar:
   phone: 1234567890
   created_at: '2016-11-01 02:12:03'
   updated_at: '2016-11-01 02:12:03'
-  sign_in_count: '0' #WHY DOES THIS NEED TO BE A STRING???
+  sign_in_count: 0
 
 missing_first_name:
   first_name: ""

@@ -1,24 +1,23 @@
 class IdeasController < ApplicationController
+	load_and_authorize_resource
 
 	def index
-		@ideas = Idea.where nil
-		@ideas = @ideas.status(params[:status]) if params[:status].present?
+		@ideas = Idea.all
+		# TODO status check?
 	end
 
 	def new
 		@idea = Idea.new
 	end
 
-	def idea_collection
-		@idea = Idea.new
-	end
+	alias_method :idea_collection, :new
 
 	def edit
 		@idea = Idea.find params[:id]
 	end
-               
+
 	def create
-		@idea = Idea.new(ideas_params)
+		@idea = Idea.new(idea_params)
 		if @idea.save
 			flash[:notice] = 'your idea was sent'
 			redirect_to ideas_path
@@ -30,12 +29,12 @@ class IdeasController < ApplicationController
 	def show
 		@idea = Idea.find(params[:id])
 	end
-        
-        def like
-            @idea = Idea.find(params[:id])
-            @idea.increment!(:likes)
-            @idea.save
-            redirect_to ideas_path
+
+  def like
+    @idea = Idea.find(params[:id])
+    @idea.increment!(:likes)
+    @idea.save
+    redirect_to ideas_path
 	end
 
 	def destroy
@@ -46,30 +45,30 @@ class IdeasController < ApplicationController
 
 	def update
 	  @idea = Idea.find(params[:id])
-	  if @idea.update ideas_params
+	  if @idea.update idea_params
 	  	redirect_to @idea
 	  else
 	    render 'edit'
 	  end
 	end
 
-        def approve
-          @idea = Idea.find(params[:id])
-          @idea.status = "approved"
-          @idea.save
-         # end
-           redirect_to ideas_path
-        end 
-          
+  def approve
+    @idea = Idea.find(params[:id])
+    @idea.approved!
+    @idea.save
+		# end
+		redirect_to ideas_path
+	end
+
 
 	private
-	  def ideas_params
+	  def idea_params
 	    params.require(:idea).permit(
 	    	:first_name,
 	    	:last_name,
 	    	:category_id,
 	    	:email,
-	    	:phone, 
+	    	:phone,
 	    	:description,
 	    	:location
 	    	)
