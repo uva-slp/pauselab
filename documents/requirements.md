@@ -5,6 +5,7 @@ A system to manage community engagement in proposing and selecting public art pr
 
 ### Purpose
 The system serves two primary purposes:
+
 1. Collection and exposition of ideas and proposals from and to the community.
 2. Facilitation of community input on which ideas will receive funding.
 
