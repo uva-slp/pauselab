@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <title>Pauselab</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <%= render 'shared/navbar' %>
+
+    <%= yield :masthead if content_for?(:masthead) %>
+
+    <%= yield %>
+
+    <%= render 'shared/footer' %>
+
+  </body>
+
+</html>
