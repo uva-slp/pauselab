@@ -41,46 +41,37 @@ class IdeasController < ApplicationController
 	end
 
   def like
-    @idea = Idea.find(params[:id])
-    @idea.increment!(:likes)
-    @idea.save
     @id = @idea.id
     @likes = Array.new
     #Check if cookie already exists
     if cookies[:likes] != nil
       @likes = JSON.parse(cookies[:likes])
       #Only add new like to cookie if it doesn't already have it
-      unless @likes.include?(@id)
+      if @likes.include?(@id)
+        #Decrease value in database
+        @idea = Idea.find(params[:id])
+        @idea.decrement!(:likes)
+        @idea.save
+        #Update likes cookie
+        @likes.delete(@idea.id)
+        @json_likes = JSON.generate(@likes) 
+        cookies[:likes] = @json_likes
+      else
+        #Update database values
+        @idea = Idea.find(params[:id])
+        @idea.increment!(:likes)
+        @idea.save
         @likes.push(@id)
         @json_likes = JSON.generate(@likes)
         cookies[:likes] = @json_likes
       end
     #Else make a new cookie!
     else
-      @likes.push(@id)
-      @json_likes = JSON.generate(@likes)
-      cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
-    end
-    redirect_to ideas_path
-  end
-
-  def dislike
-    @idea = Idea.find(params[:id])
-    @idea.increment!(:likes)
-    @idea.save
-    @id = @idea.id
-    @likes = Array.new
-    #Check if cookie already exists
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-      #Only add new like to cookie if it doesn't already have it
-      unless @likes.include?(@id)
-        @likes.push(@id)
-        @json_likes = JSON.generate(@likes)
-        cookies[:likes] = @json_likes
-      end
-    #Else make a new cookie!
-    else
+      #Update database values
+      @idea = Idea.find(params[:id])
+      @idea.increment!(:likes)
+      @idea.save
+      #Make a new cookie
       @likes.push(@id)
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
