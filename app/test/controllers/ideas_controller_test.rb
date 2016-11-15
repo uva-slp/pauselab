@@ -69,5 +69,33 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
         follow_redirect!
         assert_response :success
     end      
+    
+    test "create cookie for likes" do
+        #cookies['likes'] = nil
+        assert_equal cookies['likes'], nil
+        get idea_like_path(12)
+        assert_response :redirect
+        follow_redirect!
+        assert_response :success
+        assert_equal cookies['likes'], '[12]'
+    end      
+    
+    test "add like to cookie" do
+        cookies['likes'] = '[12]'
+        get idea_like_path(14)
+        assert_response :redirect
+        follow_redirect!
+        assert_response :success
+        assert_equal cookies['likes'], '[12,14]'
+    end   
+    
+    test "remove like from cookie" do
+        cookies['likes'] = '[12,14]'
+        get idea_like_path(14)
+        assert_response :redirect
+        follow_redirect!
+        assert_response :success
+        assert_equal cookies['likes'], '[12]'
+    end  
       
 end
