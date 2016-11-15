@@ -12,3 +12,35 @@ one:
   description: Mural
   location: The School
   category: one
+
+missing_first_name:
+  last_name: "Doe"
+  phone: "5555555555"
+  email: "john.doe@example.com"
+  description: "something cool"
+  location: "somewhere"
+  category: categories(:two)
+
+missing_last_name:
+  first_name: John
+  phone: "5555555555"
+  email: "john.doe@example.com"
+  description: "something cool"
+  location: "somewhere"
+  category: categories(:two)
+
+missing_phone:
+  first_name: John
+  last_name: Smith
+  email: jsmith@gmail.com
+  description: Mural
+  location: The School
+  category: one
+
+missing_email:
+  first_name: John
+  last_name: Smith
+  phone: 123-456-7890
+  description: Mural
+  location: The School
+  category: one

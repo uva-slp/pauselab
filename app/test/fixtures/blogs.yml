@@ -3,9 +3,17 @@
 valid_post:
   title: "xmas post"
   body: "tis the season!"
+  user: valid_human
+
+post_by_other:
+  title: "easter post"
+  body: "not my season!"
+  user: oscar
 
 missing_title:
   body: "only body"
+  user: oscar
 
 missing_body:
   title: "only title"
+  user: oscar

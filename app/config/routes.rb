@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   get 'blogs/admin_console' => "blogs#admin_console"
   get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
   get 'ideas/dislike/:id' => "ideas#dislike", as: 'idea_dislike'
-  get 'about' => "static_pages#about_page"
-  get 'cookies' => "static_pages#cookies_song"
+  get 'cookies' => "pages#cookies_song"
+  get 'test_email' => "pages#test_email"
 
   # makes RESTful routes for articles controller
-  resources :categories, :proposals, :blogs, :static_pages
+  resources :categories, :proposals, :blogs
 
   resources :ideas
   # this will change depending on the current phase of
@@ -33,5 +33,6 @@ Rails.application.routes.draw do
 
   # static pages routes
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
+  get '/about', to: 'pages#about_page', as: 'about'
 
 end

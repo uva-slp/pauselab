@@ -23,4 +23,25 @@ class IdeaTest < ActiveSupport::TestCase
     idea.category = categories(:two)
     assert_not idea.save, "saved idea without description"
   end
+
+  test "should validate first name presence" do
+    idea = ideas(:missing_first_name)
+    assert_not idea.save, "saved idea without first name"
+  end
+
+  test "should validate last name presence" do
+    idea = ideas(:missing_last_name)
+    assert_not idea.save, "saved idea without last name presence"
+  end
+
+  test "should validate phone presence" do
+    idea = ideas(:missing_phone)
+    assert_not idea.save, "saved idea without phone presence"
+  end
+
+  test "should validate email presence" do
+    idea = ideas(:missing_email)
+    assert_not idea.save, "saved idea without email presence"
+  end
+
 end
