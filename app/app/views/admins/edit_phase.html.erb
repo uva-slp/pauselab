@@ -1,2 +1,8 @@
 
-hello world
+<%= render :layout => 'dashboard', :locals => { title: 'Change Phase', position: 'change_phase' } do %>
+  <p>currently on <strong><%= @phase.phase %></strong></p>
+  <span class="text-muted">on this phase for: <%= time_ago_in_words @phase.updated_at %></span>
+
+
+
+<% end %>

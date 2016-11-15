@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
   # admins routes
-  get '/admin', to: 'admins#index'
+  get '/admin', to: 'admins#index', as: 'admin_overview'
   get '/admin/users', to: 'admins#index_users', as: 'list_users'
-  get '/admin/user/:id', to: 'admins#show', as: 'show_user'
+  get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
   get '/admin/edit_phase', to: 'admins#edit_phase'
 
   # proposal routes

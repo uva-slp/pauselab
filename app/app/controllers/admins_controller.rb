@@ -11,22 +11,22 @@ class AdminsController < ApplicationController
 		@users = User.all
 	end
 
-	def show
-		@user = User.find(params[:id])
+	def show_user
+		@user = User.find(params[:num])
 	end
 
-	def show_user_info
-		# @user = User.find(params[:id])
-		# @user = User.first
-		render 'hello world'
-	end
+	# def show_user_info
+	# 	# @user = User.
+	# 	# @user = User.first
+	# 	render 'hello world'
+	# end
 
 	def change_phase
 
 	end
 
 	def edit_phase
-
+		@phase = Phase.get_current
 	end
 
 end
