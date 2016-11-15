@@ -7,9 +7,10 @@
 </h2>
 
 <h3>Description:</h3>
-<p>
-  <%= @proposal.description %>
-</p>
+<div class="fr-view">
+  <!-- Sanitize!! But I don't know if I've done that properly.. --> 
+  <%= @proposal.description.html_safe %> 
+</div>
 
 <h3>Cost:</h3>
 <p>

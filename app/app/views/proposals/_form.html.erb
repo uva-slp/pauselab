@@ -1,6 +1,10 @@
 
 <%= simple_form_for @proposal do |f| %>
-    <%= f.input :description, placeholder: 'your proposal' %>
+    <!-- %= f.input :description, placeholder: 'your proposal' % -->
+    <%= f.label :description, placeholder: 'your proposal thing' %> 
+    <%= f.text_area :description, id: "wysiwyg" %> <!-- Checks the script on bottom--> 
+
+
     <%= f.input :essay, placeholder: "how would this project help the community" %>
     <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
     Budget Information
@@ -24,3 +28,11 @@
       <%= link_to 'Cancel', proposals_path %>
     </div>
 <% end %>
+
+<script>
+$('#wysiwyg').froalaEditor({
+    inlinemode: false, //Keep to your css, won't expand?
+    heightMin: '200px',
+    toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertFile' ],
+})
+</script>

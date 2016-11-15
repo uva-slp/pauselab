@@ -14,4 +14,7 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require froala_editor.min.js
+//= require plugins/file.min.js
+//= require plugins/image.min.js
 //= require_tree .
