@@ -15,14 +15,12 @@ class AdminsController < ApplicationController
 		@user = User.find(params[:num])
 	end
 
-	# def show_user_info
-	# 	# @user = User.
-	# 	# @user = User.first
-	# 	render 'hello world'
-	# end
-
 	def change_phase
-
+		new_phase = params[:phase]
+		@phase = Phase.get_current
+		@phase.phase = new_phase.to_i
+		@phase.save
+		render 'edit_phase'
 	end
 
 	def edit_phase

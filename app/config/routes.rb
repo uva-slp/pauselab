@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get '/admin/users', to: 'admins#index_users', as: 'list_users'
   get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
   get '/admin/edit_phase', to: 'admins#edit_phase'
+  put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
