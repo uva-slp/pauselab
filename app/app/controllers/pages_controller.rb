@@ -3,6 +3,9 @@ class PagesController < ApplicationController
   def ideas
   end
 
+  def about
+  end
+
   def cookies_song
     if cookies[:likes] != nil
       @likes = cookies[:likes]
