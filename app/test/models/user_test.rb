@@ -21,6 +21,8 @@ class UserTest < ActiveSupport::TestCase
 	test "user: missing first name" do
 		user = users(:missing_first_name)
 		assert_not user.save, "user saved: missing first name"
+		#assert_not: should not happen
+		#"" After means it did happen (which is messed up)
 	end
 
 	test "user: missing last name" do
@@ -31,8 +33,6 @@ class UserTest < ActiveSupport::TestCase
 	test "user: missing password" do
 		user = users(:missing_password)
 		assert_not user.save, "user saved: missing password"
-		#assert_not: should not happen
-		#"" After means it did happen (which is messed up)
  	end
 
  	test "user: missing email" do
@@ -45,11 +45,17 @@ class UserTest < ActiveSupport::TestCase
  		assert_not user.save, "user saved: missing phone number"
  	end
 
- 	# MUST FIX LATER
- 	# test "user: invalid phone" do
- 	# 	user = users(:invalid_phone)
- 	# 	assert_not user.save, "user saved: invalid phone number"
- 	# end
+ 	#Fix phone checking
+ 	test "user: invalid phone" do
+ 		user = users(:invalid_phone)
+ 		assert_not user.save, "user saved: invalid phone number"
+ 	end
+
+ 	#Fix email checking
+ 	test "user: invalid email" do
+ 		user = users(:invalid_email)
+ 		assert_not user.save, "user saved: invalid email"
+ 	end
 
     test "user defaults to resident" do
       user = User.new
