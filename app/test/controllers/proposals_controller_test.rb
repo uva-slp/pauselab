@@ -83,4 +83,19 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to proposals_url
   end
+    
+   test "residents can't look at  proposal form" do
+    sign_in_as :resident
+    get new_proposal_url
+    assert_response :redirect, "If success resident created proposal"
+   end
+
+    test "residents can't edit proposals" do
+    sign_in_as :resident
+    get edit_proposal_url(@proposal)
+    assert_response :redirect, "If success resident can edit proposal"
+    end
+
+    
+   
 end
