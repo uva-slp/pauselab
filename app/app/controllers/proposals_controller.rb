@@ -66,7 +66,7 @@ class ProposalsController < ApplicationController
                 :essay,
                 :website_link,
                 :artist_cv,
-            
+
 	    	)
 	  end
 

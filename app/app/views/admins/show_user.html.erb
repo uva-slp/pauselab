@@ -55,7 +55,10 @@
 
   <br>
 
-  <a class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+  <%= link_to edit_user(@user), class: 'btn btn-sm btn-warning' do   %>
+    <i class="glyphicon glyphicon-edit"></i>
+  <% end %>
+
   <a class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
 
 
