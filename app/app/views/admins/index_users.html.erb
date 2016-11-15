@@ -1,11 +1,11 @@
 
 <h1 class="page-header admin-title">Admin Console</h1>
-
+<!--
 <div class="list-group">
   <% @users.each do |user| %>
-    <%= link_to user.email, user_info_path(user), class: 'list-group-item' %>
+    <%= link_to user.email, show_user_path(user), class: 'list-group-item' %>
   <% end %>
-</div>
+</div> -->
 
 <div class="container-fluid">
 	<div class="row">
@@ -34,7 +34,7 @@
                 <td><%= user.id %></td>
                 <td><%= user.fullname %></td>
                 <td><%= user.email %></td>
-                <td><%= link_to 'show', user_info_path(user) %></td>
+                <td><%= link_to 'show', show_user_path(user) %></td>
                 <td><%= link_to 'edit' %></td>
                 <td><%= link_to 'delete' %></td>
               </tr>

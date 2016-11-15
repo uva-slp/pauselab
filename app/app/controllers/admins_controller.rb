@@ -11,7 +11,11 @@ class AdminsController < ApplicationController
 		@users = User.all
 	end
 
-	def show_user
+	def show
+		@user = User.find(params[:id])
+	end
+
+	def show_user_info
 		# @user = User.find(params[:id])
 		# @user = User.first
 		render 'hello world'
