@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  #This is really cheesy, but I'm declaring this URL before resouce :blogs so the 'show' function stops declaring admin_console as an unknown id  
+  #This is really cheesy, but I'm declaring this URL before resouce :blogs so the 'show' function stops declaring admin_console as an unknown id
   get 'blogs/admin_console' => "blogs#admin_console"
   get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
+  get 'ideas/dislike/:id' => "ideas#dislike", as: 'idea_dislike'
   get 'about' => "static_pages#about_page"
+  get 'cookies' => "static_pages#cookies_song"
 
   # makes RESTful routes for articles controller
   resources :categories, :blogs, :static_pages
@@ -15,10 +17,10 @@ Rails.application.routes.draw do
   end
   
   resources :ideas
-  # this will change depending on the current phase of 
+  # this will change depending on the current phase of
   # the process
   # root to: 'pages#index'
-  root 'ideas#idea_collection'
+  root 'pages#ideas'
 
   get '/ideas', to: 'ideas#idea_collection'
   get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
@@ -31,5 +33,8 @@ Rails.application.routes.draw do
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
   post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
+
+  # static pages routes
+  get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
 
 end

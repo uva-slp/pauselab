@@ -1,3 +1,18 @@
-<h1>Submit New Idea</h1>
-<%= render 'form' %>
 
+<%= flash_messages %>
+<h1>Submit New Idea</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="idea-map-pick">
+      <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=University+of+Virginia,+Charlottesville,+VA,+United+States&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+    <div class="center-block">
+      <%= render 'form' %>
+    </div>
+  </div>
+
+</div>
