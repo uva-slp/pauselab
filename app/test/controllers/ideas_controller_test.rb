@@ -68,5 +68,6 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
         assert_response :redirect
         follow_redirect!
         assert_response :success
-    end
+    end      
+      
 end
