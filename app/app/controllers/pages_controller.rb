@@ -1,5 +1,18 @@
 class PagesController < ApplicationController
 
+  def go_home
+    case Phase.get_current.phase
+    when 'ideas'
+      redirect_to :action => :ideas
+    when 'proposals'
+      redirect_to :action => :proposal_collection, :controller => :proposals
+    when 'voting'
+    when 'progress'
+    else
+      render :text => 'not in ideas'
+    end
+  end
+
   def ideas
   end
 

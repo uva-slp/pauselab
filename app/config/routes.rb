@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   # this will change depending on the current phase of
   # the process
   # root to: 'pages#index'
-  root 'pages#ideas'
+  root 'pages#go_home'
 
   get '/ideas', to: 'ideas#idea_collection'
   get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
