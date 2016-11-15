@@ -63,3 +63,12 @@ invalid_phone:
   email: TheOne@TheOnly.com
   encrypted_password: password
   phone: invalidnumber
+
+valid_resident:
+  first_name: Kanye1
+  last_name: West1
+  email: kanye@west.com1
+  encrypted_password: password
+  phone: 1234567890
+  role: resident
+

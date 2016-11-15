@@ -51,4 +51,14 @@ class UserTest < ActiveSupport::TestCase
  	# 	assert_not user.save, "user saved: invalid phone number"
  	# end
 
+    test "user defaults to resident" do
+      user = User.new
+      user.first_name = 'kanye1'
+      user.last_name = 'west1'
+      user.email = 'kanye.west@yahoo.com'
+      user.password = 'password'
+      assert_equal("resident",user.role, "User should be resident by default")
+    end
+
+
 end

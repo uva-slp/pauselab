@@ -50,4 +50,15 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "residents can't create categories" do
+    sign_in_as :resident
+    get new_category_path
+    assert_response :redirect, "A success would mean resident create category"
+  end
+
+  test "artist can't create categories" do
+    sign_in_as :artist
+    get new_category_path
+    assert_response :redirect, "A succes means artist can see category form"
+  end
 end
