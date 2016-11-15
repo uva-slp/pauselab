@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get 'about' => "static_pages#about_page"
 
   # makes RESTful routes for articles controller
-  resources :categories, :proposals, :blogs, :static_pages
+  resources :categories, :blogs, :static_pages
+
+  resources :proposals do
+    resources :votes
+  end
   
   resources :ideas
   # this will change depending on the current phase of 
@@ -26,5 +30,6 @@ Rails.application.routes.draw do
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
+  post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
 
 end
