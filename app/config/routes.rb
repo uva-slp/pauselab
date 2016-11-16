@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get '/admin', to: 'admins#index', as: 'admin_overview'
   get '/admin/users', to: 'admins#index_users', as: 'list_users'
   get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
+  post '/admin/user/:num', to: 'admins#change_role', as: 'change_role'
   get '/admin/edit_phase', to: 'admins#edit_phase'
   put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
 
@@ -34,5 +35,10 @@ Rails.application.routes.draw do
   # static pages routes
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
   get '/about', to: 'pages#about_page', as: 'about'
+
+
+  # user routes TODO: possibly in the future
+  get 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
+  # devise_for :users, :controllers => { :registrations => 'users/registrations' }
 
 end

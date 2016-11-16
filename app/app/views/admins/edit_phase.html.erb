@@ -9,7 +9,7 @@
 
   <%= simple_form_for :change_phase, url: change_phase_path, method: :put, wrapper: :inline_form, html: {class: 'form-inline'} do |f| %>
     <!-- TODO: auto selected field needs work -->
-    <%= f.input :phase, as: :select, collection: Phase.phases, selected: @phase.phase, input_html: { name: 'phase' } %>
+    <%= f.input :phase, as: :select, collection: Phase.phases, selected: Phase.phases[@phase.phase], input_html: { name: 'phase' } %>
     <%= f.button :submit, value: 'change phase' %>
   <% end %>
 

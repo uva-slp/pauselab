@@ -8,6 +8,9 @@
   }
   .vert {
   }
+  .role_form {
+    display: inline;
+  }
 </style>
 
 
@@ -50,16 +53,22 @@
     </div>
   </div>
 
-
-
-
   <br>
 
-  <%= link_to edit_user(@user), class: 'btn btn-sm btn-warning' do   %>
-    <i class="glyphicon glyphicon-edit"></i>
+  <%= simple_form_for :change_role, url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} do |f| %>
+    <!-- TODO: auto selected field needs work -->
+    <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
+    <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+    <%= f.button :submit, value: 'change role' %>
   <% end %>
 
-  <a class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+  <span class="pull-right">
+    <button type="button" name="toggle_role_form" class="btn btn-sm btn-info"><i class="glyphicon glyphicon-edit"></i></button>
+    <%= link_to registration_path(@user), data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger', method: :delete do   %>
+      <i class="glyphicon glyphicon-remove"></i>
+    <% end %>
+  </span>
+
 
 
 <% end %>

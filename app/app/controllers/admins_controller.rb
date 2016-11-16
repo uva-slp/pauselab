@@ -27,4 +27,10 @@ class AdminsController < ApplicationController
 		@phase = Phase.get_current
 	end
 
+	def change_role
+		@user = User.find(params[:user])
+		@user.update_attribute :role, params[:role].to_i
+		render 'show_user'
+	end
+
 end
