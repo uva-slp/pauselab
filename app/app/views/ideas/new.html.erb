@@ -1,11 +1,11 @@
 
 <%= flash_messages %>
+
 <h1>Submit New Idea</h1>
 
 <div class="row">
   <div class="col-sm-6">
     <div class="idea-map-pick">
-      <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=University+of+Virginia,+Charlottesville,+VA,+United+States&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
     </div>
   </div>
 
@@ -16,3 +16,6 @@
   </div>
 
 </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initAutocomplete&libraries=places"></script>

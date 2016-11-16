@@ -13,7 +13,10 @@
     <p>Remember, we have $15000 for you to spend on public art projects and programs.</p>
   </div>
   <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-default' %>
-  <div class="ideas-map-show">
-    <iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=University+of+Virginia,+Charlottesville,+VA,+United+States&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU"></iframe>
-  </div>
+
+  <div id="map" class="ideas-map-info"></div>
+
 </div>
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
