@@ -66,7 +66,7 @@ class IdeasController < ApplicationController
 
   def dislike
     @idea = Idea.find(params[:id])
-    @idea.increment!(:likes)
+    @idea.decrement!(:likes)
     @idea.save
     @id = @idea.id
     @likes = Array.new
