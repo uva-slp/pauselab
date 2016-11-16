@@ -10,13 +10,6 @@ class User < ApplicationRecord
   has_many :proposals
   has_many :blogs
 
-	# validates_presence_of :first_name, :on => :create
-	# validates_presence_of :last_name, :on => :create
-	# validates_presence_of :email, :on => :create
-	# validates_uniqueness_of :email, :on => :create
-	# validates_presence_of :password, :on => :create
-	# validates_presence_of :phone, :on => :create
-
 	enum role: [:admin, :steerer, :artist, :moderator, :resident]
 
 	after_initialize :set_default_role, :if => :new_record?

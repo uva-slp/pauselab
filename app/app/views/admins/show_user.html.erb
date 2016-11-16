@@ -1,0 +1,62 @@
+
+<style media="screen">
+  .cols {
+    /*border: 1px solid black;*/
+  }
+  .prof-pic {
+    padding-top: 20px;
+  }
+  .vert {
+  }
+</style>
+
+
+
+<%= render :layout => 'dashboard', :locals => { title: @user.fullname, position: 'users' } do %>
+
+  <div class="row">
+    <div class="col-md-3 cols">
+      <strong>role</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.role %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>email</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.email %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>phone</strong>
+    </div>
+    <div class="col-md-4">
+      <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>last signed in</strong>
+    </div>
+    <div class="col-md-4">
+      <%= time_ago_in_words @user.last_sign_in_at %> ago
+    </div>
+  </div>
+
+
+
+
+  <br>
+
+  <a class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+  <a class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+
+
+<% end %>

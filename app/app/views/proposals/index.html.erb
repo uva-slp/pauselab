@@ -25,7 +25,7 @@
       <td><%= User.find(proposal.user_id.to_i).first_name %></td>
       <td><%= User.find(proposal.user_id.to_i).last_name  %></td>
       <td><%= proposal.created_at %></td>
-      <td><%= truncate(proposal.description) %></td>
+      <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. --> 
       <td><%= proposal.cost %></td>
       <td><%= proposal.website_link %></td>
       <td><%= proposal.status %></td>

@@ -57,9 +57,34 @@ missing_phone:
   encrypted_password: password
   phone: ""
 
+#Seems like rails doesn't like testing this. 
+#Is it because there's already a minimum to password length?
+invalid_password:
+  first_name: Thorgy
+  last_name: Thor
+  email: wow@presents.com
+  encrypted_password: <%= User.new.send(:password_digest, 'abc') %>
+  phone: 1234567890
+
 invalid_phone:
   first_name: Ru
   last_name: Paul
   email: TheOne@TheOnly.com
   encrypted_password: password
   phone: invalidnumber
+
+invalid_email:
+  first_name: Kylie
+  last_name: Minogue
+  email: void
+  encrypted_password: password
+  phone: 1234567890
+
+valid_resident:
+  first_name: Kanye1
+  last_name: West1
+  email: kanye@west.com1
+  encrypted_password: password
+  phone: 1234567890
+  role: resident
+

@@ -1,7 +1,7 @@
 
 
 <%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right' %>
-<h2>ideas</h2>
+<h2 class="page-header">ideas</h2>
 
 <table class="table">
 
@@ -34,7 +34,7 @@
         <% unless @likes.include?(idea.id) %>
           <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></i></a>
         <% else %>
-          <a href=<%= idea_dislike_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+          <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
         <% end %>
       </td>
       <td><%= link_to 'Show', idea_path(idea) %></td>

@@ -1,0 +1,26 @@
+<h1 class="page-header admin-title">Admin Console</h1>
+
+<div class="container-fluid">
+
+	<div class="row">
+
+		<div class="col-sm-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="<%= 'active' if position == 'overview' %>" ><%= link_to 'Overview', admin_overview_path %></li>
+        <li class="<%= 'active' if position == 'users' %>" ><%= link_to 'Users', list_users_path %></li>
+        <li class="<%= 'active' if position == 'change_phase' %>" ><%= link_to 'Change phase', admin_edit_phase_path %></li>
+      </ul>
+      <ul class="nav nav-sidebar">
+        <li><a href="">Misc.</a></li>
+      </ul>
+		</div>
+
+		<div class="col-sm-10 main">
+			<% if defined? title %>
+				<h2 class="sub-header"><%= title %></h2>
+			<% end %>
+      <%= yield %>
+		</div>
+
+	</div>
+</div>

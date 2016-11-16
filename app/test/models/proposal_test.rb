@@ -81,4 +81,5 @@ class ProposalTest < ActiveSupport::TestCase
      proposal.status = "unchecked"
      assert_not proposal.save, "proposal saved without documentation"
    end
+
 end
