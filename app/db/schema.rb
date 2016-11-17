@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115195535) do
+ActiveRecord::Schema.define(version: 20161117165947) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -35,15 +35,17 @@ ActiveRecord::Schema.define(version: 20161115195535) do
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "phone"
     t.text     "description", limit: 65535
-    t.string   "location"
-    t.integer  "likes",                     default: 0
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.integer  "likes",                                              default: 0
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.integer  "category_id"
-    t.integer  "status",                    default: 0
+    t.integer  "status",                                             default: 0
+    t.decimal  "lat",                       precision: 10, scale: 6
+    t.decimal  "lng",                       precision: 10, scale: 6
+    t.string   "address"
   end
 
   create_table "phases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(version: 20161115195535) do
     t.string   "first_name",                          null: false
     t.string   "last_name",                           null: false
     t.integer  "role"
+    t.datetime "deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
