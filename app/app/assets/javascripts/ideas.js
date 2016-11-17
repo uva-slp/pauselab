@@ -1,70 +1,78 @@
 
+var map;
+var cville;
 
 function initAutocomplete() {
+  load_map();
+  link_search_box();
+}
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
-        });
+function load_map() {
+  var pos = {lat: 38.0293, lng: -78.4767};
+  map = new google.maps.Map(document.getElementById('map'), {
+    // arbitrarily picked cville b/c geolocation was slow
+    center: pos,
+    zoom: 10,
+    mapTypeId: 'roadmap',
+    mapTypeControl: false,
+    streetViewControl: false,
+  });
+}
 
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+function link_search_box() {
 
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  // this adds the custom search control at the top left position
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
 
-          if (places.length == 0) {
-            return;
-          }
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  var marker;
+  searchBox.addListener('places_changed', function() {
 
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
+    var places = searchBox.getPlaces();
+    if (places.length == 0)
+      return;
 
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
+    // TODO: for multiple places, pick the closest one
 
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
+    var address = places[0].adr_address || places[0].formatted_address;
+    console.log(address);
+    $('.address').html(address);
 
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
+    var place = places[0];
+
+    // Clear out the old markers.
+    if (marker)
+      marker.setMap(null);
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return
+    }
+
+    marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location,
+    });
+
+    if (place.geometry.viewport)
+      bounds.union(place.geometry.viewport);
+    else
+      bounds.extend(place.geometry.location);
+
+    // sets the viewport to the given bounds
+    map.fitBounds(bounds);
+
+  });
 
 }

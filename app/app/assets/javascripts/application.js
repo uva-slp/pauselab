@@ -23,5 +23,6 @@
 //= require init
 //= require admins
 //= require pages
+//= require ideas
 
 // disabled for now:  require_tree .

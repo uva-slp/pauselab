@@ -54,7 +54,7 @@ class IdeasController < ApplicationController
         @idea.save
         #Update likes cookie
         @likes.delete(@idea.id)
-        @json_likes = JSON.generate(@likes) 
+        @json_likes = JSON.generate(@likes)
         cookies[:likes] = @json_likes
       else
         #Update database values
