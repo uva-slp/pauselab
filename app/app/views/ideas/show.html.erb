@@ -6,7 +6,7 @@
 
   <div class="col-sm-6">
     <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>"></div>
-    <span class="text-muted"><%= @idea.address %></span>
+    <span class="text-muted"><i><%= @idea.address %></i></span>
   </div>
 
   <div class="col-sm-6">
@@ -19,10 +19,9 @@
         <span><b>email: </b> <%= @idea.email%></span><br>
         <span><b>likes:</b> <%= @idea.likes %> </span><br>
         <span><b>phone:</b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
+        <span><b>status:</b> <%= @idea.status %></span><br>
         <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
       </div>
-
-      <span><b>status:</b> <%= @idea.status %></span>
 
     </div>
   </div>

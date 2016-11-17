@@ -24,3 +24,6 @@
 
 # where gems are installed in server
 vendor/bundle
+
+Makefile
+Makefile~

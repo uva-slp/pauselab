@@ -10,7 +10,9 @@ one:
   phone: 123-456-7890
   email: jsmith@gmail.com
   description: Mural
-  location: The School
+  address: "1 infinity loop"
+  lat: -10.000
+  lng: 10.0000
   category: one
 
 missing_first_name:
@@ -18,37 +20,43 @@ missing_first_name:
   phone: "5555555555"
   email: "john.doe@example.com"
   description: "something cool"
-  location: "somewhere"
   category: categories(:two)
+  address: "1 infinity loop"
+  lat: -10.000
+  lng: 10.0000
 
 missing_last_name:
   first_name: John
   phone: "5555555555"
   email: "john.doe@example.com"
   description: "something cool"
-  location: "somewhere"
   category: categories(:two)
+  address: "1 infinity loop"
+  lat: -10.000
+  lng: 10.0000
 
 missing_phone:
   first_name: John
   last_name: Smith
   email: jsmith@gmail.com
   description: Mural
-  location: The School
   category: one
+  address: "1 infinity loop"
+  lat: -10.000
+  lng: 10.0000
 
 missing_email:
   first_name: John
   last_name: Smith
   phone: 123-456-7890
   description: Mural
-  location: The School
   category: one
+  address: "1 infinity loop"
+  lat: -10.000
+  lng: 10.0000
 
 testing_cookie_12:
   id: 12
-  
+
 testing_cookie_14:
   id: 14
-  
-
