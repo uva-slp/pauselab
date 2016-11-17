@@ -9,13 +9,25 @@
 
 
 function initMap() {
-  var uluru = {lat: -25.363, lng: 131.044};
+
+  var pos = {lat: 38.0293, lng: -78.4767};
   var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: uluru
+          zoom: 10,
+          center: pos
         });
-  var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
+
+  var bounds = new google.maps.LatLngBounds();
+  $.get('/pages/ideas_json', function(ideas) {
+    ideas.forEach(function(idea) {
+      pos = {lat: parseFloat(idea.lat), lng: parseFloat(idea.lng)};
+      var marker = new google.maps.Marker({
+              position: pos,
+              map: map
+            });
+      bounds.union(new google.maps.LatLngBounds(pos));
+    });
+  });
+
+  map.fitBounds(bounds);
+
 }

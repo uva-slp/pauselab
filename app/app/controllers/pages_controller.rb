@@ -13,6 +13,11 @@ class PagesController < ApplicationController
     end
   end
 
+  def get_ideas
+    ideas = Idea.all
+    render json: ideas
+  end
+
   def ideas
   end
 
