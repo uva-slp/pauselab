@@ -57,10 +57,15 @@
 <h1>Submit New Idea</h1>
 
 <div class="row">
-  <div class="col-sm-6">
+
+  <div class="col-sm-6 <%= 'has-error' if @idea.errors.key?(:lat) %>">
     <input id="pac-input" class="controls form-control" type="text" placeholder="lee park etc.">
     <div id="map" class="idea-map-pick"></div>
-    <div class="address text-muted">Hello world</div>
+    <% if @idea.errors.key?(:lat) %>
+      <span class="help-block">no location specified</span>
+    <% else %>
+      <div class="address text-muted"></div>
+    <% end %>
   </div>
 
   <div class="col-sm-6">

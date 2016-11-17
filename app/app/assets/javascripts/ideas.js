@@ -42,11 +42,16 @@ function link_search_box() {
 
     // TODO: for multiple places, pick the closest one
 
-    var address = places[0].adr_address || places[0].formatted_address;
-    console.log(address);
-    $('.address').html(address);
-
     var place = places[0];
+    console.log(place);
+    var address = place.formatted_address;
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+
+    $('.address').html(address);
+    $("#idea_lat").val(lat);
+    $("#idea_lng").val(lng);
+    $("#idea_address").val(address);
 
     // Clear out the old markers.
     if (marker)

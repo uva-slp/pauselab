@@ -112,7 +112,9 @@ class IdeasController < ApplicationController
 	    	:email,
 	    	:phone,
 	    	:description,
-	    	:location
+        :address,
+        :lat,
+        :lng
 	    	)
 	  end
 
