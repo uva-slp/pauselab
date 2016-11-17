@@ -1,25 +1,24 @@
 
-var map;
-var cville;
 
 function initAutocomplete() {
-  load_map();
-  link_search_box();
+  var pos = {lat: 38.0293, lng: -78.4767};
+  var map = load_map(pos);
+  link_search_box(map);
 }
 
-function load_map() {
-  var pos = {lat: 38.0293, lng: -78.4767};
-  map = new google.maps.Map(document.getElementById('map'), {
+function load_map(pos, zoom = 10) {
+  var map = new google.maps.Map(document.getElementById('map'), {
     // arbitrarily picked cville b/c geolocation was slow
     center: pos,
-    zoom: 10,
+    zoom: zoom,
     mapTypeId: 'roadmap',
     mapTypeControl: false,
     streetViewControl: false,
   });
+  return map;
 }
 
-function link_search_box() {
+function link_search_box(map) {
 
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
@@ -80,4 +79,14 @@ function link_search_box() {
 
   });
 
+}
+
+function showMap() {
+  var pos = {lat: $("#map").data('lat'), lng: $("#map").data('lng')};
+  // console.log(pos);
+  var map = load_map(pos, 18);
+  var marker = new google.maps.Marker({
+    map: map,
+    position: pos,
+  });
 }
