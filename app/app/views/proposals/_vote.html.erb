@@ -1,0 +1,15 @@
+
+<h1> Vote </h1>
+<h3>Pick your top three </h3>
+<%= form_for Vote.new do |f| %>
+<%= f.collection_select(:proposal_id, Proposal.all, :id, :description) %>
+<%= f.collection_select(:proposal_id, Proposal.all, :id, :description) %>
+<%= f.collection_select(:proposal_id, Proposal.all, :id, :description) %>
+
+ <div class='form-group'>
+      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
+    </div>
+<% end %>
+
+
+
