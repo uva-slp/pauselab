@@ -62,7 +62,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     # redirect still happens
     assert_response :redirect
     follow_redirect!
-    assert_response :success
+    # assert_response :redirect
 
     # but the parameters should not have changed
     post.reload

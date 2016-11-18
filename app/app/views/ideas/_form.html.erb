@@ -1,12 +1,15 @@
 
 <%= simple_form_for @idea do |f| %>
 
+	<%= f.input :lat, :as => :hidden  %>
+	<%= f.input :lng, :as => :hidden %>
+	<%= f.input :address, :as => :hidden %>
+
 	<%= f.input :first_name, placeholder: 'first name' %>
 	<%= f.input :last_name, placeholder: 'last name' %>
 
 	<%= f.input :email, placeholder: 'pparker@dailybugle.com' %>
 	<%= f.input :phone, placeholder: '555-555-5555' %>
-	<%= f.input :location, placeholder: 'queens' %>
 
 	<%= f.input :category_id, as: "select", collection: Category.all, selected: 1 %>
 
