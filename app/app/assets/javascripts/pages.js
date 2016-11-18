@@ -17,7 +17,8 @@ function initMap() {
         });
 
   var bounds = new google.maps.LatLngBounds();
-  $.get('/pages/ideas_json', function(ideas) {
+  $.get('ideas_json', function(ideas) {
+    console.log(ideas);
     ideas.forEach(function(idea) {
       pos = {lat: parseFloat(idea.lat), lng: parseFloat(idea.lng)};
       var marker = new google.maps.Marker({
