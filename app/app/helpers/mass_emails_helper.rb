@@ -1,0 +1,2 @@
+module MassEmailsHelper
+end
