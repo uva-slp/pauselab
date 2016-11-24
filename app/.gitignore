@@ -26,5 +26,10 @@ db/schema.rb
 # where gems are installed in server
 vendor/bundle
 
+#Other things to ignore
 Makefile
 Makefile~
+.Makefile.un~
+config/.application.yml.un~
+config/application.yml~
+
