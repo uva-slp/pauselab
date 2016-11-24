@@ -18,6 +18,7 @@
 
 # Ignore application configuration
 /config/application.yml
+db/schema.rb
 
 # MAC files
 .DS_Store
