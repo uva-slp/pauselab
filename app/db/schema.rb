@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109171450) do
+ActiveRecord::Schema.define(version: 20161125190504) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -71,6 +71,13 @@ ActiveRecord::Schema.define(version: 20161109171450) do
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
+  create_table "proposals_votes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "proposal_id"
+    t.integer "vote_id"
+    t.index ["proposal_id"], name: "index_proposals_votes_on_proposal_id", using: :btree
+    t.index ["vote_id"], name: "index_proposals_votes_on_vote_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -92,14 +99,9 @@ ActiveRecord::Schema.define(version: 20161109171450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "choice"
-    t.integer  "proposal_id"
-    t.string   "ip_address"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["proposal_id"], name: "index_votes_on_proposal_id", using: :btree
+  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "votes", "proposals"
 end

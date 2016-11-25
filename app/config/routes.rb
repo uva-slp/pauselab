@@ -12,7 +12,14 @@ Rails.application.routes.draw do
   # makes RESTful routes for articles controller
   resources :categories, :blogs, :static_pages
 
-  resources :proposals, :votes
+  resources :proposals do
+    resources :votes
+  end
+
+  resources :votes do
+    resources :proposals
+  end
+   
   
   
   resources :ideas

@@ -1,0 +1,6 @@
+class CreateProposalsVotes < ActiveRecord::Migration[5.0]
+  def change
+    create_table :proposals_votes do |t|
+    end
+  end
+end

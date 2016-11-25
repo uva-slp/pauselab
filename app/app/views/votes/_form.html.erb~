@@ -1,0 +1,11 @@
+    <%= simple_form_for @vote do |f| %>
+    <%= f.input :proposal_id1, as: "select", collection: Proposal.all, selected: 1 %>
+    <%= f.input :proposal_id2, as: "select", collection: Proposal.all, selected: 1 %>
+    <%= f.input :proposal_id3, as: "select", collection: Proposal.all, selected: 1 %>
+    
+ <div class='form-group'>
+    <%= f.button :submit, value: 'Submit', class: 'btn-primary pull-right' %>
+    <%# link_to ' Cancel', ideas_path %>
+  </div>
+
+<% end %>

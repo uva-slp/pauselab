@@ -5,19 +5,22 @@ class VotesController < ApplicationController
     @vote = Vote.new
   end
   def create
-    @proposal1 = Proposal.find(params[:proposal_id])
-    @proposal2 = Proposal.find(params[:proposal_id])
-    @proposal3 = Proposal.find(params[:proposal_id])
-    @vote1 = @proposal1.votes.create(vote_params)
-    @vote2 = @proposal2.votes.create(vote_params)
-    @vote3 = @proposal3.votes.create(vote_params)
+    puts "check check"
+    puts :proposal1
+    @proposal1 = Proposal.find(params[:proposal1])
+    @proposal2 = Proposal.find(params[:proposal2])
+    @proposal3 = Proposal.find(params[:proposal3])
+    puts @proposal1
+    puts @proposal2
+    puts @proposal3
+    #@vote1 = @proposal1.votes.create(vote_params)
     
     redirect_to proposals_path
   end
 
   private
   def vote_params
-    params.require(:vote).permit(:proposal_id)
+    params.require(:vote).permit(:proposal)
   end
 
 end

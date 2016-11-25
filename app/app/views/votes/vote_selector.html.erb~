@@ -1,0 +1,2 @@
+<h2> Pick Your Top Three <h2>
+    <%= select_tag(:proposal_id) =%>
