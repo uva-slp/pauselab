@@ -24,5 +24,6 @@
 //= require admins
 //= require pages
 //= require ideas
+//= require categories
 
 // disabled for now:  require_tree .
