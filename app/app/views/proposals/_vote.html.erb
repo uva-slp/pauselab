@@ -1,0 +1,19 @@
+
+<h1> Vote </h1>
+<h3>Pick your top three </h3>
+<%= simple_form_for :votes do |f| %>
+
+<%= f.input :proposal1, collection: @proposals, label_method: :description %>
+
+<%= f.input :proposal2, collection: @proposals, label_method: :description %>
+
+
+<%= f.input :proposal3, collection: @proposals, label_method: :description %>
+
+ <div class='form-group'>
+      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
+    </div>
+<% end %>
+
+
+

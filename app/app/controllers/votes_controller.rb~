@@ -1,0 +1,8 @@
+class VotesController < ApplicationController
+
+  def create
+    @proposal =Proposal.find(params[:proposal_id])
+    @vote = @proposal.comments.create(comment_params)
+    redirect_to article_path(@proposal)
+  end
+end

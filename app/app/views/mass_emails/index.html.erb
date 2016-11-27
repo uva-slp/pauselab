@@ -1,0 +1,31 @@
+
+<%= link_to 'Create New Email', new_mass_email_path, class: 'btn btn-default pull-right' %>
+<h2>Mass Emails</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th>Email ID</th>
+      <th>Sent At</th>
+      <th>To</th>
+      <th>Subject</th>
+      <th>Description</th>
+      <th colspan="6">Actions</th>
+    </tr>
+  </thead>
+  
+   <% @mes.each do |me| %>
+    <tr>
+      <td><%= me.id %></td>
+      <td><%= me.created_at.strftime("%B %d, %Y") %></td>
+      <td><%= me.to %></td>
+      <td><%= me.subject %></td>
+      <td><%= truncate(me.body) %></td>
+      <td><%= link_to 'Show', mass_email_path(me) %></td>
+      <td><%= link_to 'Destroy', mass_email_path(me),
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
