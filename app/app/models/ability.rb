@@ -2,6 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    # NOTE using CanCan 2.0, some of the below comments are deprecated
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -33,36 +34,47 @@ class Ability
     user ||= User.new
 
     # define aliases
-    alias_action(:idea_collection, :to => :create)
+    alias_action :idea_collection, :to => :create
+
+    # globally accessible actions
+    can :access, :pages
 
     if user.admin?
-      can :manage, :all
+      can :access, :all
     elsif user.moderator?
-      can :manage, [Blog, Category, Idea, Proposal]
+      can :access, [:blogs, :categories, :ideas, :proposals]
     elsif user.steerer?
-      can :read, [Blog, Category, Idea, Proposal]
-      can :manage, Proposal
-      can :update, Idea
-      can :create, Idea
-    elsif user.artist?
+      can :read, [:blogs, :categories, :ideas, :proposals]
+      can :access, :proposals
+      can [:create, :update], :ideas
+    elsif user.super_artist?
       # can edit blogs and proposals they own
-      can :manage, Blog do |blog|
+      can :access, :blogs do |blog|
         blog.try(:user) == user
       end
-      can :manage, Proposal do |proposal|
+      can :access, :proposals do |proposal|
         proposal.try(:user) == user
       end
-      can :create, [Blog, Proposal, Idea]
-      can :read, [Blog, Category, Proposal]
-      can :read, Idea, approved?: true
-      can :like, Idea
-      can :show, Idea
+      can :create, [:blogs, :proposals, :ideas]
+      can :read, [:blogs, :categories, :proposals]
+      can [:like, :show, :read], :ideas
+      cannot :read, :ideas, approved?: false
+      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
+    elsif user.artist?
+      # can edit proposals they own
+      can :access, :proposals do |proposal|
+        proposal.try(:user) == user
+      end
+      can :create, [:proposals, :ideas]
+      can :read, [:blogs, :categories, :proposals]
+      can [:like, :show, :read], :ideas
+      cannot :read, :ideas, approved?: false
+      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     else  # resident, lowest permissions
-      can :read, [Blog, Category, Proposal]
-      can :read, Idea, approved?: true
-      can :create, Idea
-      can :like, Idea
-      can :show, Idea
+      can :create, :ideas
+      can :read, [:blogs, :categories, :proposals]
+      can [:like, :show, :read], :ideas, approved?: true
+      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     end
 
   end
