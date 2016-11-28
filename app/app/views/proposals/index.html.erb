@@ -2,6 +2,16 @@
 <%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right' %>
 <h2>Proposals</h2>
 
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort Proposals<b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <!-- We are passing the sort parameter here -->
+    <li><a href="?sort=cost">cost</a></li>
+    <li><a href="?sort=date">date</a></li>
+    <li><a href="?sort=id">id</a></li>
+  </ul>
+</li>
+
 <table class="table">
 
   <thead>
