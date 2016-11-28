@@ -7,12 +7,14 @@ class VotesController < ApplicationController
 
   def create
     # render :plain => params.to_yaml
+   
     @vote = Vote.new(vote_params)
-    render :plain => @vote.proposals.to_yaml
+    render :plain => @proposal.to_yaml
   end
 
   private
   def vote_params
+
     params.require(:vote).permit(:proposal_ids => [])
   end
 
