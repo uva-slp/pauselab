@@ -3,8 +3,27 @@ class IdeasController < ApplicationController
 
   def index
           @ideas = Idea.all
-          @ideas = @ideas.sort_by &:likes
-          @ideas = @ideas.reverse!
+          if params[:sort].present?
+              if params[:sort]=="likes"
+                @ideas = @ideas.sort_by &:likes
+                @ideas = @ideas.reverse!
+              end
+              if params[:sort]=="id"
+                @ideas = @ideas.sort_by &:id
+              end
+              if params[:sort]=="category"
+                @ideas = @ideas.sort_by &:category_id
+              end
+              if params[:sort]=="date"
+                @ideas = @ideas.sort_by &:created_at
+              end
+              if params[:sort]=="author_last_name"
+                @ideas = @ideas.sort_by &:last_name
+              end
+              if params[:sort]=="author_first_name"
+                @ideas = @ideas.sort_by &:first_name
+              end
+          end
           @likes = Array.new
           if cookies[:likes] != nil
             @likes = JSON.parse(cookies[:likes])
