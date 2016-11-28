@@ -7,62 +7,94 @@
 
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Created At</th>
-        <th>Description</th>
-        <th>Status</th>
+        <th>ID</th>  <%# TODO remove column %>
 
-         <% if user_signed_in? %>
+        <% if can? :read, :ideas, :first_name and can? :read, :ideas, :last_name %>
+          <th>Author</th>
+        <% end %>
+
+        <% if can? :read, :ideas, :created_at %>
+          <th>Created At</th>
+        <% end %>
+
+        <% if can? :read, :ideas, :description %>
+          <th>Description</th>
+        <% end %>
+
+        <% if can? :read, :ideas, :status %>
+          <th>Status</th>
+        <% end %>
+
+        <% if can? :read, :ideas, :likes %>
           <th>Likes</th>
+        <% end %>
+
+        <% if can? :like, :ideas or
+          can? :show, :ideas or
+          can? :edit, :ideas or
+          can? :approve, :ideas or
+          can? :destroy, :ideas %>
           <th colspan="5">Actions</th>
          <% end %>
-
       </tr>
     </thead>
 
-    <% if user_signed_in? %>
-      <% @ideas.each do |idea| %>
-
+    <% @ideas.each do |idea| %>
+      <% if can? :read, idea %>
         <tr>
           <td><%= idea.id %></td>
-          <td><%= idea.author %></td>
-          <td><%= idea.created_at.strftime("%B %d, %Y") %></td>
-          <td><%= truncate(idea.description) %></td>
-          <td><%= idea.status %></td>
-          <td><%= idea.likes %></td>
-          <td>
-            <% unless @likes.include?(idea.id) %>
-              <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></i></a>
-            <% else %>
-              <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
-            <% end %>
-          </td>
-          <td><%= link_to 'Show', idea_path(idea) %></td>
-          <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-          <td><%= link_to 'Approve', idea_approve_path(idea),
-    	      method: :post,
-    	      data: {confirm: 'Are you sure?' } %></td>
-          <td><%= link_to 'Destroy', idea_path(idea),
-                   method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
+
+          <% if can? :read, idea, :first_name and can? :read, idea, :last_name %>
+            <td><%= idea.author %></td>
+          <% end %>
+
+          <% if can? :read, :ideas, :created_at %>
+            <td><%= idea.created_at.strftime("%B %d, %Y") %></td>
+          <% end %>
+
+          <% if can? :read, :ideas, :description %>
+            <td><%= truncate(idea.description) %></td>
+          <% end %>
+
+          <% if can? :read, :ideas, :status %>
+            <td><%= idea.status %></td>
+          <% end %>
+
+          <% if can? :read, :ideas, :likes %>
+            <td><%= idea.likes %></td>
+          <% end %>
+
+          <% if can? :like, idea %>
+            <td>
+              <% unless @likes.include?(idea.id) %>
+                <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></i></a>
+              <% else %>
+                <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+              <% end %>
+            </td>
+          <% end %>
+
+          <% if can? :show, idea %>
+            <td><%= link_to 'Show', idea_path(idea) %></td>
+          <% end %>
+
+          <% if can? :edit, idea %>
+            <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+          <% end %>
+
+          <% if can? :approve, idea %>
+            <td><%= link_to 'Approve', idea_approve_path(idea),
+      	      method: :post,
+      	      data: {confirm: 'Are you sure?' } %></td>
+          <% end %>
+
+          <% if can? :destroy, idea %>
+            <td><%= link_to 'Destroy', idea_path(idea),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
         </tr>
       <% end %>
-    <% else %>
-      <% @ideas.each do |idea| %>
-      <% if idea.approved? == true %>
-      <tr>
-        <td><%= idea.id %></td>
-        <td><%= idea.first_name %></td>
-        <td><%= idea.last_name %></td>
-        <td><%= idea.created_at.strftime("%B %d") %></td>
-        <td><%= truncate(idea.description) %></td>
-        <td><%= idea.likes %></td>
-         <td><%= link_to 'Like', idea_like_path(idea) %></td>
-        <td><%= link_to 'Show', idea_path(idea) %></td>
-        <% end %>
-      <% end %>
-
     <% end %>
 
   </table>

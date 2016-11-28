@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :proposals
   has_many :blogs
 
-	enum role: [:admin, :steerer, :artist, :moderator, :resident]
+	enum role: [:admin, :steerer, :artist, :moderator, :resident, :super_artist]
 
 	after_initialize :set_default_role, :if => :new_record?
 	def set_default_role

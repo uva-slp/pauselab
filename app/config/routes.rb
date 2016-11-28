@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'test_email' => "pages#test_email"
 
   # makes RESTful routes for articles controller
-  resources :categories, :proposals, :blogs
+  resources :categories, :proposals, :blogs, :mass_emails
 
   resources :ideas
   # this will change depending on the current phase of

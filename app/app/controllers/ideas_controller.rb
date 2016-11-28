@@ -3,6 +3,8 @@ class IdeasController < ApplicationController
 
   def index
           @ideas = Idea.all
+          @ideas = @ideas.sort_by &:likes
+          @ideas = @ideas.reverse!
           @likes = Array.new
           if cookies[:likes] != nil
             @likes = JSON.parse(cookies[:likes])
@@ -77,6 +79,7 @@ class IdeasController < ApplicationController
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
     redirect_to ideas_path
+
   end
 
   def destroy

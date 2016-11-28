@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BlogsControllerTest < ActionDispatch::IntegrationTest
   test "should create a blog post" do
-    sign_in_as :artist  # TODO only artists who have passed voting stage
+    sign_in_as :super_artist
     get new_blog_path
     assert_response :success
 
@@ -26,7 +26,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update a blog post, by owner" do
-    sign_in_as :artist
+    sign_in_as :super_artist
     post = blogs(:valid_post)
     # post belongs to valid_human, who is signed in
     assert_no_difference 'Blog.count' do
@@ -48,7 +48,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should not update a blog post, by non-owner" do
-    sign_in_as :artist
+    sign_in_as :super_artist
     post = blogs(:post_by_other)
     # post does not belong to the signed in user
     assert_no_difference 'Blog.count' do
