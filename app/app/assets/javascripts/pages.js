@@ -21,8 +21,8 @@ function initMap() {
 
   var bounds = new google.maps.LatLngBounds();
   $.get('ideas_json', function(ideas) {
-    console.log(ideas);
     ideas.forEach(function(idea) {
+      console.log(idea);
 
       var idea_info = "<div>" + idea.description + "</div>";
       var infowindow = new google.maps.InfoWindow({

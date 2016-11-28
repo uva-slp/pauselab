@@ -1,7 +1,7 @@
 
-<%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right' %>
-<h2>Proposals</h2>
+<%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right top-40' %>
 
+<h2 class="page-header">proposals</h2>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort Proposals<b class="caret"></b></a>
   <ul class="dropdown-menu">
@@ -12,48 +12,48 @@
   </ul>
 </li>
 
-<table class="table">
+<div class="table-responsive">
+  <table class="table table-striped">
 
-  <thead>
-    <tr>
-      <th>User ID</th>
-      <th> Name</th>
-      
-      <th>Created at</th>
-      <th>Description</th>
-      <th>Cost</th>
-      <th>Website Link</th>
-      <th>Status</th>
-      <th>Votes</th>
-      <th colspan="6">Actions</th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th> Name</th>
+        <th>Created at</th>
+        <th>Description</th>
+        <th>Cost</th>
+        <th>Website Link</th>
+        <th>Status</th>
+        <th>Votes</th>
+        <th colspan="6">Actions</th>
+      </tr>
+    </thead>
 
-  <% @proposals.each do |proposal| %>
-    <tr>
-      <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
-      <td><%= proposal.user_id.to_i %></td>
-      <td><%= User.find(proposal.user_id.to_i).first_name %>  <%= User.find(proposal.user_id.to_i).last_name  %></td>
-      <td><%= proposal.created_at.strftime("%B %d") %></td>
-      <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. --> 
-      <td><%= proposal.cost %></td>
-      <td><%= proposal.website_link %></td>
-      <td><%= proposal.status %></td>
-      <td><%= proposal.number_of_votes %></td>
-      <td><%= link_to 'Show', proposal_path(proposal) %></td>
-      <td><%= link_to 'Approve', proposal_approve_path(proposal),
-	      method: :post,
-	      data: {confirm: 'Are you sure?' } %></td>
-      <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-      <td><%= link_to 'Destroy', proposal_path(proposal),
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
+        <td><%= proposal.user_id.to_i %></td>
+        <td><%= User.find(proposal.user_id.to_i).first_name %>  <%= User.find(proposal.user_id.to_i).last_name  %></td>
+        <td><%= proposal.created_at.strftime("%B %d") %></td>
+        <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. -->
+        <td><%= proposal.cost %></td>
+        <td><%= proposal.website_link %></td>
+        <td><%= proposal.status %></td>
+        <td><%= proposal.number_of_votes %></td>
+        <td><%= link_to 'Show', proposal_path(proposal) %></td>
+        <td><%= link_to 'Approve', proposal_approve_path(proposal),
+  	      method: :post,
+  	      data: {confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
+        <td><%= link_to 'Destroy', proposal_path(proposal),
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
 
-</table>
+  </table>
+</div>
+
+
 
 <%= render 'votes/form' %>
-
-
-

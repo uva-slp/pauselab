@@ -3,7 +3,6 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  console.log 'here'
   $(':checkbox').click ->
     count = $(':checked').length
     if count == 3
