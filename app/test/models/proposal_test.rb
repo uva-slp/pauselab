@@ -15,6 +15,7 @@ class ProposalTest < ActiveSupport::TestCase
     proposal.description = "colorful bench"
     proposal.essay = "this will help everyone"
     proposal.status = "unchecked"
+    proposal.user = users(:valid_human)
     assert proposal.save, "could not save proposal"
   end
 

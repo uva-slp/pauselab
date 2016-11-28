@@ -57,6 +57,8 @@ missing_email:
 
 testing_cookie_12:
   id: 12
+  status: approved
 
 testing_cookie_14:
   id: 14
+  status: approved

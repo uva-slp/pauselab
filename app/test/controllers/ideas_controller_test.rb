@@ -18,9 +18,9 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
                 email: "johnsmith@gmail.com",
                 phone: "1234567890",
                 address: "Charlottesville",
-                lat: "1.00",
-                lng: "2.00",
-                category_id: "1",
+                lat: 1.00,
+                lng: 2.00,
+                category_id: categories(:one).id,
                 description: "An idea."
                 }
               }
@@ -72,6 +72,7 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "create cookie for likes" do
+        sign_in_as :resident
         #cookies['likes'] = nil
         assert_equal cookies['likes'], nil
         get idea_like_path(12)
@@ -82,6 +83,7 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "add like to cookie" do
+        sign_in_as :resident
         cookies['likes'] = '[12]'
         get idea_like_path(14)
         assert_response :redirect
@@ -91,6 +93,7 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "remove like from cookie" do
+        sign_in_as :resident
         cookies['likes'] = '[12,14]'
         get idea_like_path(14)
         assert_response :redirect
