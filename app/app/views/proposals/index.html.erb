@@ -14,10 +14,11 @@
       <th>Cost</th>
       <th>Website Link</th>
       <th>Status</th>
+      <th>Votes</th>
       <th colspan="6">Actions</th>
     </tr>
   </thead>
- 
+
   <% @proposals.each do |proposal| %>
     <tr>
       <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
@@ -29,12 +30,21 @@
       <td><%= proposal.cost %></td>
       <td><%= proposal.website_link %></td>
       <td><%= proposal.status %></td>
+      <td><%= proposal.number_of_votes %></td>
       <td><%= link_to 'Show', proposal_path(proposal) %></td>
+      <td><%= link_to 'Approve', proposal_approve_path(proposal),
+	      method: :post,
+	      data: {confirm: 'Are you sure?' } %></td>
       <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
       <td><%= link_to 'Destroy', proposal_path(proposal),
                method: :delete,
                data: { confirm: 'Are you sure?' } %></td>
     </tr>
-  <% end %>
+    <% end %>
 
 </table>
+
+<%= render 'votes/form' %>
+
+
+

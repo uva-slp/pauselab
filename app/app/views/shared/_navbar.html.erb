@@ -38,7 +38,8 @@
               <li><%= link_to 'Create Mass Email', new_mass_email_path %></li>
               <li><%= link_to 'Mass Emails Console', mass_emails_path %></li>
               <li role="separator" class="divider"></li>
-            <% end %>
+              <% end %>
+	      <li><%= link_to 'Votes Console', votes_path %></li>
             </ul>
           </li>
         <% end %>
@@ -81,6 +82,7 @@
               <% if can? :read, :ideas %>
                 <li><%= link_to 'Ideas Console',  ideas_path %></li>
               <% end %>
+	     
             </ul>
           </li>
         <% end %>

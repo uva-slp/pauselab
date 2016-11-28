@@ -9,8 +9,19 @@ Rails.application.routes.draw do
   get 'test_email' => "pages#test_email"
 
   # makes RESTful routes for articles controller
-  resources :categories, :proposals, :blogs, :mass_emails
+  resources :categories, :blogs, :mass_emails
 
+
+
+  resources :proposals do
+    resources :votes
+  end
+
+  resources :votes do
+    resources :proposals
+  end
+   
+  
   resources :ideas
   # this will change depending on the current phase of
   # the process
@@ -31,6 +42,7 @@ Rails.application.routes.draw do
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
+  post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
 
   # static pages routes
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
