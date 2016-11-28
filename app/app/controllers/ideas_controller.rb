@@ -11,9 +11,6 @@ class IdeasController < ApplicationController
               if params[:sort]=="id"
                 @ideas = @ideas.sort_by &:id
               end
-              if params[:sort]=="category"
-                @ideas = @ideas.sort_by &:category_id
-              end
               if params[:sort]=="date"
                 @ideas = @ideas.sort_by &:created_at
               end
