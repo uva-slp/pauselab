@@ -9,4 +9,8 @@ class Proposal < ApplicationRecord
     #commit
     validates :cost, :essay, :description, :artist_fees, :project_materials, :printing, :marketing, :documentation, :volunteer, :insurance, :events, presence:true
 
+
+    def number_of_votes
+      return self.votes.size
+    end
 end

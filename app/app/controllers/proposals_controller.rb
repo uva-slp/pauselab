@@ -4,6 +4,7 @@ class ProposalsController < ApplicationController
   def index
 		@proposals = Proposal.where nil
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
+                @vote = Vote.new
 	end
 
 	def new

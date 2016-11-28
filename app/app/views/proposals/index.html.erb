@@ -14,6 +14,7 @@
       <th>Cost</th>
       <th>Website Link</th>
       <th>Status</th>
+      <th>Votes</th>
       <th colspan="6">Actions</th>
     </tr>
   </thead>
@@ -29,6 +30,7 @@
       <td><%= proposal.cost %></td>
       <td><%= proposal.website_link %></td>
       <td><%= proposal.status %></td>
+      <td><%= proposal.number_of_votes %></td>
       <td><%= link_to 'Show', proposal_path(proposal) %></td>
       <td><%= link_to 'Approve', proposal_approve_path(proposal),
 	      method: :post,
@@ -41,6 +43,8 @@
     <% end %>
 
 </table>
+
+<%= render 'votes/form' %>
 
 
 

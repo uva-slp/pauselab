@@ -1,6 +1,9 @@
 class VotesController < ApplicationController
 
-
+  def index
+    @votes = Vote.all
+  end
+    
   def new
     @vote = Vote.new
   end
@@ -8,7 +11,6 @@ class VotesController < ApplicationController
   def create
 
     @vote = Vote.new(vote_params)
-    render :plain => @vote.proposals.to_yaml
     if @vote.save
       flash[:notice] = 'You just voted'
       redirect_to root_path
@@ -16,6 +18,8 @@ class VotesController < ApplicationController
       render 'new'
     end
   end
+
+  
 
   private
   def vote_params

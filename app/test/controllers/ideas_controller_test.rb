@@ -17,7 +17,6 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
                 last_name: "Smith",
                 email: "johnsmith@gmail.com",
                 phone: "1234567890",
-                location: "Charlottesville",
                 category_id: "1",
                 description: "An idea."
                 }
@@ -38,7 +37,6 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
                 last_name: "Smith",
                 email: "johnsmith@gmail.com",
                 phone: "1234567890",
-                location: "Charlottesville",
                 category_id: "1",
                 description: "An idea."
                 }

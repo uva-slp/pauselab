@@ -8,7 +8,6 @@ class IdeaTest < ActiveSupport::TestCase
     idea.phone = "5555555555"
     idea.email = "john.doe@example.com"
     idea.description = "something cool"
-    idea.location = "somewhere"
     idea.category = categories(:two)
     assert idea.save, "could not save idea"
   end
@@ -19,7 +18,6 @@ class IdeaTest < ActiveSupport::TestCase
     idea.last_name = "Doe"
     idea.phone = "5555555555"
     idea.email = "john.doe@example.com"
-    idea.location = "somewhere"
     idea.category = categories(:two)
     assert_not idea.save, "saved idea without description"
   end
