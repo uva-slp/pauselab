@@ -3,6 +3,24 @@ class IdeasController < ApplicationController
 
   def index
           @ideas = Idea.all
+          if params[:sort].present?
+              if params[:sort]=="likes"
+                @ideas = @ideas.sort_by &:likes
+                @ideas = @ideas.reverse!
+              end
+              if params[:sort]=="id"
+                @ideas = @ideas.sort_by &:id
+              end
+              if params[:sort]=="date"
+                @ideas = @ideas.sort_by &:created_at
+              end
+              if params[:sort]=="author_last_name"
+                @ideas = @ideas.sort_by &:last_name
+              end
+              if params[:sort]=="author_first_name"
+                @ideas = @ideas.sort_by &:first_name
+              end
+          end
           @likes = Array.new
           if cookies[:likes] != nil
             @likes = JSON.parse(cookies[:likes])
@@ -77,6 +95,7 @@ class IdeasController < ApplicationController
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
     redirect_to ideas_path
+
   end
 
   def destroy
