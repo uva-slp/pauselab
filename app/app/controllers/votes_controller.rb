@@ -1,26 +1,30 @@
 class VotesController < ApplicationController
 
+  def index
+    @votes = Vote.all
+  end
 
   def new
     @vote = Vote.new
   end
+
   def create
-    puts "check check"
-    puts :proposal1
-    @proposal1 = Proposal.find(params[:proposal1])
-    @proposal2 = Proposal.find(params[:proposal2])
-    @proposal3 = Proposal.find(params[:proposal3])
-    puts @proposal1
-    puts @proposal2
-    puts @proposal3
-    #@vote1 = @proposal1.votes.create(vote_params)
-    
-    redirect_to proposals_path
+
+    @vote = Vote.new(vote_params)
+    if @vote.save
+      flash[:notice] = 'You just voted'
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
+
+
 
   private
   def vote_params
-    params.require(:vote).permit(:proposal)
+
+    params.require(:vote).permit(:proposal_ids => [])
   end
 
 end

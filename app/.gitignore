@@ -26,9 +26,11 @@ db/schema.rb
 # where gems are installed in server
 vendor/bundle
 
+
 # ignore build file
 Makefile
 
 # ignore temporaries
 *~
 *.un
+
