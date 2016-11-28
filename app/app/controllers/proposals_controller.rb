@@ -57,6 +57,8 @@ class ProposalsController < ApplicationController
          # end
            redirect_to proposals_path
          end
+
+     
            
 
 	private
