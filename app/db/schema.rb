@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20161125190504) do
 
-  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.text     "body",       limit: 65535
     t.datetime "created_at",               null: false
@@ -33,22 +33,31 @@ ActiveRecord::Schema.define(version: 20161125190504) do
   end
 
   create_table "ideas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "phone"
-    t.text     "description", limit: 65535
-    t.integer  "likes",                                              default: 0
-    t.datetime "created_at",                                                     null: false
-    t.datetime "updated_at",                                                     null: false
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
+    t.text     "description",  limit: 16777215
+    t.integer  "likes",                                                  default: 0
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
     t.string   "email"
+    t.string   "neighborhood"
     t.integer  "category_id"
-    t.integer  "status",                                             default: 0
-    t.decimal  "lat",                       precision: 10, scale: 6
-    t.decimal  "lng",                       precision: 10, scale: 6
+    t.integer  "status",                                                 default: 0
+    t.decimal  "lat",                           precision: 10, scale: 6
+    t.decimal  "lng",                           precision: 10, scale: 6
     t.string   "address"
   end
 
-  create_table "phases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "mass_emails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "to"
+    t.string   "subject"
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "phases", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "phase",      default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -56,29 +65,29 @@ ActiveRecord::Schema.define(version: 20161125190504) do
 
   create_table "proposals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cost"
-    t.text     "description",            limit: 65535
-    t.string   "status",                                              default: "unchecked"
-    t.text     "essay",                  limit: 65535
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.text     "description",            limit: 16777215
+    t.string   "status",                                                 default: "unchecked"
+    t.text     "essay",                  limit: 16777215
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
     t.string   "website_link"
     t.integer  "user_id"
     t.string   "artist_cv_file_name"
     t.string   "artist_cv_content_type"
     t.integer  "artist_cv_file_size"
     t.datetime "artist_cv_updated_at"
-    t.decimal  "artist_fees",                          precision: 10
-    t.decimal  "project_materials",                    precision: 10
-    t.decimal  "printing",                             precision: 10
-    t.decimal  "marketing",                            precision: 10
-    t.decimal  "documentation",                        precision: 10
-    t.decimal  "volunteer",                            precision: 10
-    t.decimal  "insurance",                            precision: 10
-    t.decimal  "events",                               precision: 10
+    t.decimal  "artist_fees",                             precision: 10
+    t.decimal  "project_materials",                       precision: 10
+    t.decimal  "printing",                                precision: 10
+    t.decimal  "marketing",                               precision: 10
+    t.decimal  "documentation",                           precision: 10
+    t.decimal  "volunteer",                               precision: 10
+    t.decimal  "insurance",                               precision: 10
+    t.decimal  "events",                                  precision: 10
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 
-  create_table "proposals_votes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "proposals_votes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer "proposal_id"
     t.integer "vote_id"
     t.index ["proposal_id"], name: "index_proposals_votes_on_proposal_id", using: :btree
@@ -107,7 +116,7 @@ ActiveRecord::Schema.define(version: 20161125190504) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

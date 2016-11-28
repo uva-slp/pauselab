@@ -7,8 +7,8 @@
   <thead>
     <tr>
       <th>User ID</th>
-      <th>First Name</th>
-      <th>Last Name</th>
+      <th> Name</th>
+      
       <th>Created at</th>
       <th>Description</th>
       <th>Cost</th>
@@ -23,9 +23,8 @@
     <tr>
       <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
       <td><%= proposal.user_id.to_i %></td>
-      <td><%= User.find(proposal.user_id.to_i).first_name %></td>
-      <td><%= User.find(proposal.user_id.to_i).last_name  %></td>
-      <td><%= proposal.created_at %></td>
+      <td><%= User.find(proposal.user_id.to_i).first_name %>  <%= User.find(proposal.user_id.to_i).last_name  %></td>
+      <td><%= proposal.created_at.strftime("%B %d") %></td>
       <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. --> 
       <td><%= proposal.cost %></td>
       <td><%= proposal.website_link %></td>
