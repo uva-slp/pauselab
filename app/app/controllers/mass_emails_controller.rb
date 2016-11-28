@@ -1,12 +1,15 @@
 class MassEmailsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @mes = MassEmail.all
+    authorize! :read, @mes  # TODO not sure why this doesn't work automatically
   end
 
   def new
     @me = MassEmail.new
   end
-  
+
   def show
     @me = MassEmail.find(params[:id])
   end
@@ -17,22 +20,22 @@ class MassEmailsController < ApplicationController
     if @rl.size == 0
       @rl = nil
     end
-    @me.to = @rl 
+    @me.to = @rl
     if @me.save
       flash[:notice] = 'Your mass email was sent.'
       @to = Array.new
       #Get an array of all users, then add desired groups to email list
       @emails_users = User.pluck(:email, :role)
-      @emails_users.each do |eu| 
+      @emails_users.each do |eu|
           if @rl.include?(eu[1])
-            @to.push(eu[0])    
+            @to.push(eu[0])
           end
       end
       #Email idea submitters if residents requested
       if @rl.include?('resident')
         @emails_ideas = Idea.pluck(:email)
-        @emails_ideas.each do |ei| 
-            @to.push(ei)    
+        @emails_ideas.each do |ei|
+            @to.push(ei)
         end
       end
       #Send e-mail
@@ -44,7 +47,7 @@ class MassEmailsController < ApplicationController
       flash[:error] = 'There was in error in sending the email.'
       render new_mass_email_path
     end
-  end  
+  end
 
   def destroy
     @me = MassEmail.find(params[:id])
@@ -59,6 +62,6 @@ class MassEmailsController < ApplicationController
           :subject,
           :body
           )
-    end  
-  
+    end
+
 end

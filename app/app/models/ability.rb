@@ -42,7 +42,7 @@ class Ability
     if user.admin?
       can :access, :all
     elsif user.moderator?
-      can :access, [:blogs, :categories, :ideas, :proposals]
+      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails]
     elsif user.steerer?
       can :read, [:blogs, :categories, :ideas, :proposals]
       can :access, :proposals
@@ -57,8 +57,7 @@ class Ability
       end
       can :create, [:blogs, :proposals, :ideas]
       can :read, [:blogs, :categories, :proposals]
-      can [:like, :show, :read], :ideas
-      cannot :read, :ideas, approved?: false
+      can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     elsif user.artist?
       # can edit proposals they own
@@ -67,8 +66,7 @@ class Ability
       end
       can :create, [:proposals, :ideas]
       can :read, [:blogs, :categories, :proposals]
-      can [:like, :show, :read], :ideas
-      cannot :read, :ideas, approved?: false
+      can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     else  # resident, lowest permissions
       can :create, :ideas
