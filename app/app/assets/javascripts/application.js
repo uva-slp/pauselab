@@ -5,7 +5,6 @@
 //= require turbolinks
 
 
-// disabled for now = require froala_editor.min.js
 //= require plugins/file.min.js
 //= require plugins/image.min.js
 
