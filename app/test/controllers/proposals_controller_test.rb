@@ -43,7 +43,8 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show proposal" do
     sign_in_as :resident
-    get proposal_url(@proposal)
+    approved_proposal = proposals(:approved)
+    get proposal_url(approved_proposal)
     assert_response :success
   end
   #
@@ -83,7 +84,7 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to proposals_url
   end
-    
+
    test "residents can't look at  proposal form" do
     sign_in_as :resident
     get new_proposal_url
@@ -96,6 +97,6 @@ class ProposalsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect, "If success resident can edit proposal"
     end
 
-    
-   
+
+
 end

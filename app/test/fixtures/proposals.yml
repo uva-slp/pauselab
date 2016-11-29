@@ -12,7 +12,6 @@ one:
   user: oscar
 
 two:
-  cost : 100
   artist_fees: 100
   project_materials: 100
   printing: 100
@@ -27,6 +26,21 @@ two:
   status: unchecked
   user: valid_human   # this is the mock user for authentication
 
+approved:
+  artist_fees: 100
+  project_materials: 100
+  printing: 100
+  marketing: 100
+  documentation: 100
+  volunteer: 100
+  insurance: 100
+  events: 100
+  cost: 800
+  description: colorful bench
+  essay: this will help everyone
+  status: approved
+  user: valid_human
+
 invalid_cost:
   cost: -10
   artist_fees: 100
@@ -37,9 +51,7 @@ invalid_cost:
   volunteer: 100
   insurance: 100
   events: 100
-  cost: 800
   description: I want to ruin the world
   essay: I'm pure evil
   status: unchecked
-  user: valid_human 
-
+  user: valid_human
