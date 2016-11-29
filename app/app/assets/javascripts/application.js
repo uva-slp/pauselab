@@ -5,8 +5,9 @@
 //= require turbolinks
 
 
-//= require plugins/file.min.js
-//= require plugins/image.min.js
+// disabled for now = require froala_editor.min.js
+//disabled for now = require plugins/file.min.js
+//disabled for now = require plugins/image.min.js
 
 //= require trumbowyg/trumbowyg
 
