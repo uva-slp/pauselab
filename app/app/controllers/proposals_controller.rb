@@ -4,6 +4,7 @@ class ProposalsController < ApplicationController
   def index
 		@proposals = Proposal.where nil
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
+                @vote = Vote.new
 	end
 
 	def new
@@ -49,6 +50,14 @@ class ProposalsController < ApplicationController
 	def proposal_collection
 		@ideas = Idea.all
 	end
+
+   def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.approved!
+    @proposal.save
+   # end
+     redirect_to proposals_path
+   end
 
 	private
 	  def proposal_params

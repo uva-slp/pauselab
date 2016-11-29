@@ -1,5 +1,7 @@
 
-<%= link_to 'Create New Category', new_category_path, class: 'btn btn-default pull-right' %>
+<% if can? :create, :categories %>
+  <%= link_to 'Create New Category', new_category_path, class: 'btn btn-default pull-right' %>
+<% end %>
 <h2>Categories</h2>
 
 <table class="table">
@@ -11,7 +13,7 @@
       <th colspan="6">Actions</th>
     </tr>
   </thead>
-  
+
    <% @categories.each do |category| %>
     <tr>
       <td><%= category.id %></td>

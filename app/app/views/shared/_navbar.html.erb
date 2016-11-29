@@ -38,7 +38,8 @@
               <li><%= link_to 'Create Mass Email', new_mass_email_path %></li>
               <li><%= link_to 'Mass Emails Console', mass_emails_path %></li>
               <li role="separator" class="divider"></li>
-            <% end %>
+              <% end %>
+	            <li><%= link_to 'Votes Console', votes_path %></li>
             </ul>
           </li>
         <% end %>
@@ -61,6 +62,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Proposals</a>
             <ul class="dropdown-menu">
+              <% if can? :create, :votes %>
+                <li><%= link_to 'Vote on Proposals', new_vote_path %></li>
+                <li role="separator" class="divider"></li>
+              <% end %>
               <% if can? :create, :proposals %>
                 <li><%= link_to 'Create Proposal', new_proposal_path %></li>
               <% end %>
@@ -81,6 +86,7 @@
               <% if can? :read, :ideas %>
                 <li><%= link_to 'Ideas Console',  ideas_path %></li>
               <% end %>
+
             </ul>
           </li>
         <% end %>

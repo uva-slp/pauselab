@@ -1,0 +1,27 @@
+
+<% if can? :create, :votes %>
+  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-default pull-right' %>
+<% end %>
+<h2>Votes</h2>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th>Vote ID</th>
+      <th>Sumbmitted
+      <th>Proposals</th>
+    </tr>
+  </thead>
+
+  <% @votes.each do |vote| %>
+    <tr>
+      <td><%= vote.id %></td>
+      <td><%= vote.created_at.strftime("%B %d") %></td>
+      <% vote.proposals.each do |proposal| %>
+      <td><%= proposal.description %></td>
+      <% end %>
+    </tr>
+    <% end %>
+
+</table>
