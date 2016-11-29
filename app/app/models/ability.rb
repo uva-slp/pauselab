@@ -48,6 +48,12 @@ class Ability
       can :access, :proposals
       can [:create, :update], :ideas
     elsif user.super_artist?
+      can :create, [:blogs, :proposals, :ideas]
+      can :read, [:blogs, :categories]
+      can :read, :proposals#, approved?: true
+      cannot :read, :proposals, [:status, :number_of_votes]
+      can [:like, :show, :read], :ideas, approved?: true
+      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
       # can edit blogs and proposals they own
       can :access, :blogs do |blog|
         blog.try(:user) == user
@@ -55,22 +61,22 @@ class Ability
       can :access, :proposals do |proposal|
         proposal.try(:user) == user
       end
-      can :create, [:blogs, :proposals, :ideas]
-      can :read, [:blogs, :categories, :proposals]
+    elsif user.artist?
+      can :create, [:proposals, :ideas]
+      can :read, [:blogs, :categories]
+      can :read, :proposals#, approved?: true
+      cannot :read, :proposals, [:status, :number_of_votes]
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
-    elsif user.artist?
       # can edit proposals they own
       can :access, :proposals do |proposal|
         proposal.try(:user) == user
       end
-      can :create, [:proposals, :ideas]
-      can :read, [:blogs, :categories, :proposals]
-      can [:like, :show, :read], :ideas, approved?: true
-      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     else  # resident, lowest permissions
       can :create, :ideas
-      can :read, [:blogs, :categories, :proposals]
+      can :read, [:blogs, :categories]
+      can :read, :proposals#, approved?: true
+      cannot :read, :proposals, [:status, :number_of_votes]
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     end

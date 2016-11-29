@@ -1,5 +1,7 @@
 
-<%= link_to 'Create New Email', new_mass_email_path, class: 'btn btn-default pull-right' %>
+<% if can? :create, :mass_emails %>
+  <%= link_to 'Create New Email', new_mass_email_path, class: 'btn btn-default pull-right' %>
+<% end %>
 <h2>Mass Emails</h2>
 
 <table class="table">
@@ -14,7 +16,7 @@
       <th colspan="6">Actions</th>
     </tr>
   </thead>
-  
+
    <% @mes.each do |me| %>
     <tr>
       <td><%= me.id %></td>

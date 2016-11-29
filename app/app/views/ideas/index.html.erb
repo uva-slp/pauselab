@@ -1,5 +1,7 @@
 
-<%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right top-40' %>
+<% if can? :create, :ideas %>
+  <%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right top-40' %>
+<% end %>
 
 <h2 class="page-header">ideas</h2>
 <li class="dropdown">
@@ -19,7 +21,9 @@
 
     <thead>
       <tr>
-        <th>ID</th>  <%# TODO remove column %>
+        <% if not current_user.nil? and [:admin, :moderator].include? current_user.role %>
+          <th>ID</th>
+        <% end %>
 
         <% if can? :read, :ideas, :first_name and can? :read, :ideas, :last_name %>
           <th>Author</th>
@@ -54,7 +58,9 @@
     <% @ideas.each do |idea| %>
       <% if can? :read, idea %>
         <tr>
-          <td><%= idea.id %></td>
+          <% if not current_user.nil? and [:admin, :moderator].include? current_user.role %>
+            <td><%= idea.id %></td>
+          <% end %>
 
           <% if can? :read, idea, :first_name and can? :read, idea, :last_name %>
             <td><%= idea.author %></td>
