@@ -18,7 +18,8 @@
 
   <thead>
     <tr>
-      <% if not current_user.nil? and [:admin, :moderator].include? current_user.role %>
+      <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <th>ID</th>
         <th>User ID</th>
       <% end %>
       <% if can? :read, :proposals, :user_id %>
@@ -53,7 +54,8 @@
 
   <% @proposals.each do |proposal| %>
     <tr>
-      <% if not current_user.nil? and [:admin, :moderator].include? current_user.role %>
+      <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <td><%= proposal.id %></td>
         <td><%= proposal.user_id.to_i %></td>
       <% end %>
       <% if can? :read, proposal, :user_id %>

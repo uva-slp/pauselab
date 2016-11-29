@@ -25,7 +25,6 @@ class IdeasController < ApplicationController
           if cookies[:likes] != nil
             @likes = JSON.parse(cookies[:likes])
           end
-          # TODO status check?
   end
 
   def new

@@ -42,15 +42,15 @@ class Ability
     if user.admin?
       can :access, :all
     elsif user.moderator?
-      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails]
+      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails, :votes]
     elsif user.steerer?
-      can :read, [:blogs, :categories, :ideas, :proposals]
+      can :read, [:blogs, :categories, :ideas, :proposals, :votes]
       can :access, :proposals
       can [:create, :update], :ideas
     elsif user.super_artist?
-      can :create, [:blogs, :proposals, :ideas]
+      can :create, [:blogs, :proposals, :ideas, :votes]
       can :read, [:blogs, :categories]
-      can :read, :proposals#, approved?: true
+      can :read, :proposals, approved?: true
       cannot :read, :proposals, [:status, :number_of_votes]
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
@@ -62,9 +62,9 @@ class Ability
         proposal.try(:user) == user
       end
     elsif user.artist?
-      can :create, [:proposals, :ideas]
+      can :create, [:proposals, :ideas, :votes]
       can :read, [:blogs, :categories]
-      can :read, :proposals#, approved?: true
+      can :read, :proposals, approved?: true
       cannot :read, :proposals, [:status, :number_of_votes]
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
@@ -73,9 +73,9 @@ class Ability
         proposal.try(:user) == user
       end
     else  # resident, lowest permissions
-      can :create, :ideas
+      can :create, [:ideas, :votes]
       can :read, [:blogs, :categories]
-      can :read, :proposals#, approved?: true
+      can :read, :proposals, approved?: true
       cannot :read, :proposals, [:status, :number_of_votes]
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]

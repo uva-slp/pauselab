@@ -51,16 +51,13 @@ class ProposalsController < ApplicationController
 		@ideas = Idea.all
 	end
 
-         def approve
-          @proposal = Proposal.find(params[:id])
-          @proposal.status = "approved"
-          @proposal.save
-         # end
-           redirect_to proposals_path
-         end
-
-     
-           
+   def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.approved!
+    @proposal.save
+   # end
+     redirect_to proposals_path
+   end
 
 	private
 	  def proposal_params

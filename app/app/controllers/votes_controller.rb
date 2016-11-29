@@ -1,9 +1,10 @@
 class VotesController < ApplicationController
+  load_and_authorize_resource
 
   def index
     @votes = Vote.all
   end
-    
+
   def new
     @vote = Vote.new
   end
@@ -19,7 +20,7 @@ class VotesController < ApplicationController
     end
   end
 
-  
+
 
   private
   def vote_params

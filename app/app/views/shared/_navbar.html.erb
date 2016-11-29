@@ -21,7 +21,7 @@
       <ul class="nav navbar-nav navbar-right">
 
         <!-- Admin Options -->
-        <% if not current_user.nil? and [:admin, :moderator].include? current_user.role %>
+        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Admin</a>
             <ul class="dropdown-menu">
@@ -62,6 +62,10 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Proposals</a>
             <ul class="dropdown-menu">
+              <% if can? :create, :votes %>
+                <li><%= link_to 'Vote on Proposals', new_vote_path %></li>
+                <li role="separator" class="divider"></li>
+              <% end %>
               <% if can? :create, :proposals %>
                 <li><%= link_to 'Create Proposal', new_proposal_path %></li>
               <% end %>
