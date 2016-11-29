@@ -20,6 +20,8 @@
 //= require plugins/file.min.js
 //= require plugins/image.min.js
 
+//= require trumbowyg/trumbowyg
+
 //= require init
 //= require admins
 //= require pages

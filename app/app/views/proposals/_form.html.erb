@@ -2,7 +2,7 @@
 <%= simple_form_for @proposal do |f| %>
     <!-- %= f.input :description, placeholder: 'your proposal' % -->
     <%= f.label :description, placeholder: 'your proposal' %> 
-    <%= f.text_area :description, id: "wysiwyg" %> <!-- Checks the script on bottom--> 
+    <%= f.text_area :description, id: "trumbowyg-wysiwyg", placeholder: 'Detail how the plan will be implemented' %> <!-- Checks the script on bottom--> 
 
 
     <%= f.input :essay, placeholder: "how would this project help the community" %>
@@ -27,6 +27,7 @@
       <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
       <%= link_to 'Cancel', proposals_path %>
     </div>
+
 <% end %>
 
 <script>
@@ -35,4 +36,11 @@ $('#wysiwyg').froalaEditor({
     heightMin: '200px',
     toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertFile' ],
 })
+</script>
+
+<script>
+$('#trumbowyg-wysiwyg').trumbowyg({
+    svgPath: '<%= image_path("icons.svg")%>' //Doesn't seem to work??
+    //svgPath :'/assets/images/icons.svg' This line won't work either
+});
 </script>
