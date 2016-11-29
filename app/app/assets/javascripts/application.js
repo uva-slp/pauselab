@@ -5,9 +5,9 @@
 //= require turbolinks
 
 
-//= require froala_editor.min.js
-//= require plugins/file.min.js
-//= require plugins/image.min.js
+//asd//= require froala_editor.min.js
+//asd//= require plugins/file.min.js
+//asd//= require plugins/image.min.js
 
 //= require trumbowyg/trumbowyg
 
