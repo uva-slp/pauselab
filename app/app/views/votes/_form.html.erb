@@ -1,10 +1,30 @@
- <h1> Vote </h1>
+<style media="screen">
+
+  .checkbox {
+    display: block;
+  }
+
+  .check_boxes {
+    margin-right: 10px;
+  }
+
+</style>
+
+
+<h1> Vote </h1>
 <h3>Pick your top three! </h3>
+
 <%= simple_form_for @vote do |f| %>
 
-<%= f.association :proposals, collection: Proposal.approved, as: :check_boxes, label_method: :description %>
+  <%=
+    f.association :proposals,
+    as: :check_boxes,
+    # wrapper: false,
+    label_method: :description
+  %>
 
- <div class='form-group'>
-      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
-    </div>
+  <div class='form-group'>
+    <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
+  </div>
+
 <% end %>

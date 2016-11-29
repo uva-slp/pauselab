@@ -18,14 +18,17 @@
             <% if can? :access, :users %>
               <%= link_to 'Users Console', admin_overview_path, class: 'dropdown-item' %>
             <% end %>
+            <div class="dropdown-divider"></div>
             <% if can? :access, :categories %>
               <%= link_to 'Create Category', new_category_path, class: 'dropdown-item' %>
               <%= link_to 'Categories Console', categories_path, class: 'dropdown-item' %>
             <% end %>
+            <div class="dropdown-divider"></div>
             <% if can? :access, :mass_emails %>
               <%= link_to 'Create Mass Email', new_mass_email_path, class: 'dropdown-item' %>
               <%= link_to 'Mass Emails Console', mass_emails_path, class: 'dropdown-item' %>
             <% end %>
+            <div class="dropdown-divider"></div>
             <%= link_to 'Votes Console', votes_path, class: 'dropdown-item' %>
           </div>
           </li>
@@ -50,7 +53,7 @@
             <a class="nav-link dropdown-toggle" href="#">Proposals</a>
             <div class="dropdown-menu">
               <% if can? :create, :votes %>
-                <%= link_to 'Vote on Proposals', new_vote_path %>
+                <%= link_to 'Vote on Proposals', new_vote_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :create, :proposals %>
                 <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>

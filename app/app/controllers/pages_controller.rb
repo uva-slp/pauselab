@@ -7,7 +7,9 @@ class PagesController < ApplicationController
     when 'proposals'
       redirect_to :action => :proposal_collection, :controller => :proposals
     when 'voting'
+      redirect_to :action => :new, :controller => :votes
     when 'progress'
+      redirect_to :action => :index, :controller => :blogs
     else
       render :text => 'not in ideas'
     end
@@ -28,7 +30,7 @@ class PagesController < ApplicationController
     #SlpMailer.email_self.deliver_later
     #SlpMailer.email_self.deliver
     @to   = 'goldjet45@gmail.com'
-    @subj = 'subways $5 for 5 deals' 
+    @subj = 'subways $5 for 5 deals'
     @body = 'non html body'
     SlpMailer.email_custom_text(@to, @subj, @body).deliver
     flash[:notice] = "Your mail has been sent"
@@ -49,9 +51,9 @@ class PagesController < ApplicationController
     @emails_list = Array.new
     @role_list = ["admin"]
     @emails_users = User.pluck(:email, :role)
-    @emails_users.each do |eu| 
+    @emails_users.each do |eu|
         if @role_list.include?(eu[1])
-          @emails_list.push(eu[0])    
+          @emails_list.push(eu[0])
         end
     end
     @emails_ideas = JSON.generate(Idea.pluck(:email))

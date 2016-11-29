@@ -4,7 +4,9 @@
 <% end %>
 
 	<h1 class="page-header text-lg-center">Calling all artists</h1>
-
+	<div class="text-lg-center" style="margin-top: 20px;">
+		<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>
+	</div>
 	<br/>
 
 	<div class="card-columns">
@@ -26,6 +28,8 @@
 			&markers=color:red%7C<%= "#{idea.lat},#{idea.lng}"%>
 			&key=<%= ENV['GOOGLE_API_KEY'] %>"
 			alt="map" class="card-img-middle img-fluid">
+
+			<!-- hidden-md-down -->
 
 			<!-- <%= image_tag 'JFK.jpg', :alt => 'jfk', class: 'card-img-middle img-fluid' %> -->
 

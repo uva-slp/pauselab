@@ -16,7 +16,6 @@
 //= require pages
 //= require ideas
 //= require categories
+//= require votes
 
 // disabled for now:  require_tree .
-
-//= require votes
