@@ -49,6 +49,10 @@ class ProposalsController < ApplicationController
 
 	def proposal_collection
 		@ideas = Idea.all
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
 	end
 
          def approve
@@ -59,8 +63,8 @@ class ProposalsController < ApplicationController
            redirect_to proposals_path
          end
 
-     
-           
+
+
 
 	private
 	  def proposal_params

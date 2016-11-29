@@ -19,10 +19,9 @@ function initMap() {
           streetViewControl: false,
         });
 
-  var bounds = new google.maps.LatLngBounds();
+  var bounds = new google.maps.LatLngBounds(pos);
   $.get('ideas_json', function(ideas) {
     ideas.forEach(function(idea) {
-      console.log(idea);
 
       var idea_info = "<div>" + idea.description + "</div>";
       var infowindow = new google.maps.InfoWindow({
@@ -39,8 +38,8 @@ function initMap() {
       marker.addListener('click', function() {
         infowindow.open(map, marker);
       });
-      bounds.union(new google.maps.LatLngBounds(pos));
-
+      m_bounds = new google.maps.LatLngBounds(pos);
+      bounds.union(m_bounds);
     });
   });
 

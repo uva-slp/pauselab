@@ -3,27 +3,54 @@
     <!-- <%= image_tag 'masthead/artist-med.jpg', :alt => 'beCville', class: 'img-responsive' %> -->
 <% end %>
 
-	<h1 class="page-header">Calling all artists</h1>
+	<h1 class="page-header text-lg-center">Calling all artists</h1>
 
-	<div class="grid">
+	<br/>
 
+	<div class="card-columns">
 
-	 <% for idea in @ideas %>
-		 <div class="grid-item">
-		 	<div class="panel panel-default grid-panel">
-		 		<div class="panel-heading">
-		 			<%= idea.category.name %>
-		 		</div>
-		 		<div class="panel-body">
-		 			<%= idea.description %>
-		 		</div>
-		 		<div class="panel-footer">
-		 			<span class="pull-left"><%= idea.likes %></span>
-		 			<a class="btn btn-sm btn-default pull-right"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-		 			<div class="clearfix"></div>
-		 		</div>
-		 	</div>
-		 </div>
+	 <% @ideas.each do |idea| %>
+
+		<div class="card">
+
+			<div class="card-header text-muted">
+				<%= idea.category.name %>
+				<!-- <a href="#" class="btn btn-primary pull-right">submit</a> -->
+			</div>
+
+			<img
+			src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{idea.lat},#{idea.lng}"%>
+			&size=600x300
+			&zoom=17
+			&scale=2
+			&markers=color:red%7C<%= "#{idea.lat},#{idea.lng}"%>
+			&key=<%= ENV['GOOGLE_API_KEY'] %>"
+			alt="map" class="card-img-middle img-fluid">
+
+			<!-- <%= image_tag 'JFK.jpg', :alt => 'jfk', class: 'card-img-middle img-fluid' %> -->
+
+			<div class="card-block">
+				<h4 class="card-title"></h4>
+				<p class="card-text"><%= truncate idea.description, length: 50 %></p>
+
+				<% if can? :like, idea %>
+						<% unless @likes.include?(idea.id) %>
+							<%= link_to idea_like_path(idea), class: 'btn btn-sm btn-outline-primary' do %>
+								<i class="fa fa-thumbs-o-up"></i>
+							<% end %>
+						<% else %>
+							<%= link_to idea_like_path(idea), class: 'btn btn-sm btn-outline-primary' do %>
+								<i class="fa fa-thumbs-o-down"></i>
+							<% end %>
+						<% end %>
+				<% end %>
+
+				<!-- <a class="btn btn-sm btn-outline-primary"><i class="fa fa-thumbs-o-up "></i></a> -->
+				<span class="pull-right"><%= idea.likes %></span>
+			</div>
+
+		</div>
+
 	 <% end %>
 
 	</div>

@@ -4,6 +4,27 @@
     padding: 20px;
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
+
+    ul {
+      width: 100%;
+      // border: 1px solid black;
+    }
+
+    a {
+      width: 100%;
+      display: block;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #bdc3c7;
+        color: white;
+        cursor: pointer;
+      }
+
+    }
+
 }
 
 .main {

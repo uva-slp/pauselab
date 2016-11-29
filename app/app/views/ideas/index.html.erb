@@ -79,9 +79,9 @@
           <% if can? :like, idea %>
             <td>
               <% unless @likes.include?(idea.id) %>
-                <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-up"></i></a>
+                <a href=<%= idea_like_path(idea) %> ><i class="fa fa-thumbs-o-up"></i></a>
               <% else %>
-                <a href=<%= idea_like_path(idea) %> ><i class="glyphicon glyphicon-thumbs-down"></i></a>
+                <a href=<%= idea_like_path(idea) %> ><i class="fa fa-thumbs-o-down"></i></a>
               <% end %>
             </td>
           <% end %>

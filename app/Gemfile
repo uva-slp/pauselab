@@ -37,7 +37,15 @@ gem 'jbuilder', '~> 2.5'
 
 #### gems we are adding ####
 gem 'figaro' # easy way to add environment variables
-gem 'bootstrap-sass', '~> 3.3.6' # bootstrap for rails
+# gem 'bootstrap-sass', '~> 3.3.6' # bootstrap for rails
+
+# needed for bootstrap 4
+gem 'bootstrap', '~> 4.0.0.alpha5'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
+
 # Ruby insists this be added "to avoid polling for changes"
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'devise' # authentication gem
