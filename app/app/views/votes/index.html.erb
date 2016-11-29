@@ -1,4 +1,7 @@
 
+<% if can? :create, :votes %>
+  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-default pull-right' %>
+<% end %>
 <h2>Votes</h2>
 
 <table class="table">
@@ -22,4 +25,3 @@
     <% end %>
 
 </table>
-

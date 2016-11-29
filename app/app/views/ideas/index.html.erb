@@ -1,5 +1,7 @@
 
-<%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right top-40' %>
+<% if can? :create, :ideas %>
+  <%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right top-40' %>
+<% end %>
 
 <h2 class="page-header">ideas</h2>
 <li class="dropdown">
@@ -7,8 +9,12 @@
   <ul class="dropdown-menu">
     <!-- We are passing the sort parameter here -->
     <li><a href="?sort=likes">likes</a></li>
-    <li><a href="?sort=author_last_name">author last name</a></li>
-    <li><a href="?sort=author_first_name">author first name</a></li>
+    <% if can? :read, :ideas, :first_name %>
+      <li><a href="?sort=author_last_name">author last name</a></li>
+    <% end %>
+    <% if can? :read, :ideas, :last_name %>
+      <li><a href="?sort=author_first_name">author first name</a></li>
+    <% end %>
     <li><a href="?sort=date">date</a></li>
     <li><a href="?sort=id">id</a></li>
     <li><a href="?sort=category">category</a></li>
@@ -19,7 +25,9 @@
 
     <thead>
       <tr>
-        <th>ID</th>  <%# TODO remove column %>
+        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+          <th>ID</th>
+        <% end %>
 
         <% if can? :read, :ideas, :first_name and can? :read, :ideas, :last_name %>
           <th>Author</th>
@@ -27,6 +35,10 @@
 
         <% if can? :read, :ideas, :created_at %>
           <th>Created At</th>
+        <% end %>
+
+        <% if can? :read, :ideas, :category %>
+          <th>Category</th>
         <% end %>
 
         <% if can? :read, :ideas, :description %>
@@ -54,25 +66,31 @@
     <% @ideas.each do |idea| %>
       <% if can? :read, idea %>
         <tr>
-          <td><%= idea.id %></td>
+          <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+            <td><%= idea.id %></td>
+          <% end %>
 
           <% if can? :read, idea, :first_name and can? :read, idea, :last_name %>
             <td><%= idea.author %></td>
           <% end %>
 
-          <% if can? :read, :ideas, :created_at %>
+          <% if can? :read, idea, :created_at %>
             <td><%= idea.created_at.strftime("%B %d, %Y") %></td>
           <% end %>
 
-          <% if can? :read, :ideas, :description %>
+          <% if can? :read, idea, :category %>
+            <td><%= idea.category.name %></td>
+          <% end %>
+
+          <% if can? :read, idea, :description %>
             <td><%= truncate(idea.description) %></td>
           <% end %>
 
-          <% if can? :read, :ideas, :status %>
+          <% if can? :read, idea, :status %>
             <td><%= idea.status %></td>
           <% end %>
 
-          <% if can? :read, :ideas, :likes %>
+          <% if can? :read, idea, :likes %>
             <td><%= idea.likes %></td>
           <% end %>
 

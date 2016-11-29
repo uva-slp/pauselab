@@ -53,6 +53,7 @@ gem 'cancan', github: 'ryanb/cancan', branch: '2.0' # authorization gem
 gem 'simple_form' # easier forms
 gem 'paperclip','~> 4.2'
 gem 'wysiwyg-rails' # Froala wsyiwyg. I don't think this is free though..
+gem 'trumbowyg_rails' # Trumbowyg editor
 gem 'sanitize' #Sanitize info inside the wysiwig
 
 group :development, :test do

@@ -9,7 +9,9 @@
 //= require plugins/file.min.js
 //= require plugins/image.min.js
 
-// //= require init
+//= require trumbowyg/trumbowyg
+
+//= require init
 //= require admins
 //= require pages
 //= require ideas

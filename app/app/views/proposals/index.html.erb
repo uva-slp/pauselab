@@ -1,5 +1,8 @@
 
-<%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right top-40' %>
+<% if can? :create, :proposals %>
+  <%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-default pull-right top-40' %>
+<% end %>
+<h2>Proposals</h2>
 
 <h2 class="page-header">proposals</h2>
 <li class="dropdown">
@@ -12,48 +15,93 @@
   </ul>
 </li>
 
-<div class="table-responsive">
-  <table class="table table-striped">
+<table class="table table-striped">
 
-    <thead>
-      <tr>
+  <thead>
+    <tr>
+      <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <th>ID</th>
         <th>User ID</th>
-        <th> Name</th>
+      <% end %>
+      <% if can? :read, :proposals, :user_id %>
+        <th>Name</th>
+      <% end %>
+      <% if can? :read, :proposals, :created_at %>
         <th>Created at</th>
+      <% end %>
+      <% if can? :read, :proposals, :description %>
         <th>Description</th>
+      <% end %>
+      <% if can? :read, :proposals, :cost %>
         <th>Cost</th>
+      <% end %>
+      <% if can? :read, :proposals, :website_link %>
         <th>Website Link</th>
+      <% end %>
+      <% if can? :read, :proposals, :status %>
         <th>Status</th>
+      <% end %>
+      <% if can? :read, :proposals, :number_of_votes %>
         <th>Votes</th>
+      <% end %>
+      <% if can? :show, :proposals or
+        can? :approve, :proposals or
+        can? :edit, :proposals or
+        can? :destroy, :proposals %>
         <th colspan="6">Actions</th>
-      </tr>
-    </thead>
+      <% end %>
+    </tr>
+  </thead>
 
-    <% @proposals.each do |proposal| %>
-      <tr>
-        <!-- <td><%= time_ago_in_words(proposal.created_at) %></td> -->
+  <% @proposals.each do |proposal| %>
+    <tr>
+      <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <td><%= proposal.id %></td>
         <td><%= proposal.user_id.to_i %></td>
-        <td><%= User.find(proposal.user_id.to_i).first_name %>  <%= User.find(proposal.user_id.to_i).last_name  %></td>
+      <% end %>
+      <% if can? :read, proposal, :user_id %>
+        <td><%= User.find(proposal.user_id.to_i).fullname %></td>
+      <% end %>
+      <% if can? :read, proposal, :created_at %>
         <td><%= proposal.created_at.strftime("%B %d") %></td>
+      <% end %>
+      <% if can? :read, proposal, :description %>
         <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. -->
+      <% end %>
+      <% if can? :read, proposal, :cost %>
         <td><%= proposal.cost %></td>
+      <% end %>
+      <% if can? :read, proposal, :website_link %>
         <td><%= proposal.website_link %></td>
+      <% end %>
+      <% if can? :read, proposal, :status %>
         <td><%= proposal.status %></td>
+      <% end %>
+      <% if can? :read, proposal, :number_of_votes %>
         <td><%= proposal.number_of_votes %></td>
+      <% end %>
+      <% if can? :show, proposal %>
         <td><%= link_to 'Show', proposal_path(proposal) %></td>
+      <% end %>
+      <% if can? :approve, proposal %>
         <td><%= link_to 'Approve', proposal_approve_path(proposal),
   	      method: :post,
   	      data: {confirm: 'Are you sure?' } %></td>
+      <% end %>
+      <% if can? :edit, proposal %>
         <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
+      <% end %>
+      <% if can? :destroy, proposal %>
         <td><%= link_to 'Destroy', proposal_path(proposal),
                  method: :delete,
                  data: { confirm: 'Are you sure?' } %></td>
-      </tr>
       <% end %>
+    </tr>
+    <% end %>
 
-  </table>
+</table>
 </div>
 
-
-
-<%= render 'votes/form' %>
+<% if can? :create, :votes %>
+  <%= render 'votes/form' %>
+<% end %>
