@@ -7,5 +7,7 @@ jQuery ->
     count = $(':checked').length
     if count == 3
       $("input:checkbox:not(:checked)").attr "disabled", true
+      $("input:checkbox:not(:checked)").parent().parent().addClass "disabled"
     else
       $(":checkbox").removeAttr "disabled"
+      $("input:checkbox:not(:checked)").parent().parent().removeClass "disabled"

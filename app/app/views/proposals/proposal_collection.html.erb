@@ -20,21 +20,11 @@
 				<!-- <a href="#" class="btn btn-primary pull-right">submit</a> -->
 			</div>
 
-			<img
-			src="https://maps.googleapis.com/maps/api/staticmap?center=<%= "#{idea.lat},#{idea.lng}"%>
-			&size=600x300
-			&zoom=17
-			&scale=2
-			&markers=color:red%7C<%= "#{idea.lat},#{idea.lng}"%>
-			&key=<%= ENV['GOOGLE_API_KEY'] %>"
-			alt="map" class="card-img-middle img-fluid">
-
+			<img src="<%= get_static_map idea %>" alt="map" class="card-img-middle img-fluid">
 			<!-- hidden-md-down -->
 
-			<!-- <%= image_tag 'JFK.jpg', :alt => 'jfk', class: 'card-img-middle img-fluid' %> -->
-
 			<div class="card-block">
-				<h4 class="card-title"></h4>
+				<!-- <h4 class="card-title"></h4> -->
 				<p class="card-text"><%= truncate idea.description, length: 50 %></p>
 
 				<% if can? :like, idea %>
