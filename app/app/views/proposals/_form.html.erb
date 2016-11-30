@@ -1,4 +1,5 @@
 
+
 <%= simple_form_for @proposal do |f| %>
     <!-- %= f.input :description, placeholder: 'your proposal' % -->
     <%= f.label :description, placeholder: 'your proposal' %>
@@ -29,17 +30,16 @@
 <% end %>
 
 <script>
-$('#wysiwyg').froalaEditor({
-    inlinemode: false, //Keep to your css, won't expand?
-    heightMin: '200px',
-    toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertFile' ],
-})
-</script>
-
-<script>
 $('#trumbowyg-wysiwyg').trumbowyg({
-    // svgPath: '<%= image_path("icons.svg")%>' //Doesn't seem to work??
-    svgPath: false //Doesn't seem to work??
-    //svgPath :'/assets/images/icons.svg' This line won't work either
+    svgPath: '<%= image_path("icons.svg") %>',
+    
+    btns: [
+        ['formatting'],
+        ['insertImage'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['horizontalRule'],
+        ['fullscreen']
+    ]
 });
 </script>
