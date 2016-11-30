@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125190504) do
+ActiveRecord::Schema.define(version: 20161128192533) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20161125190504) do
     t.decimal  "volunteer",                               precision: 10
     t.decimal  "insurance",                               precision: 10
     t.decimal  "events",                                  precision: 10
+    t.string   "title",                  limit: 40
     t.index ["user_id"], name: "index_proposals_on_user_id", using: :btree
   end
 

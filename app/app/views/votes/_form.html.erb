@@ -2,7 +2,7 @@
 <h3>Pick your top three! </h3>
 <%= simple_form_for @vote do |f| %>
 
-<%= f.association :proposals, collection: Proposal.where(status: "approved"), as: :check_boxes, label_method: :description %>
+<%= f.association :proposals, collection: Proposal.where(status: "approved"), as: :check_boxes, label_method: :title %>
 
  <div class='form-group'>
       <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>

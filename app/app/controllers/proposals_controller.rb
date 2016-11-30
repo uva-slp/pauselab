@@ -65,6 +65,7 @@ class ProposalsController < ApplicationController
 	private
 	  def proposal_params
 	    params.require(:proposal).permit(
+                :title,
   	        :description,
                 :artist_fees,
                 :project_materials,

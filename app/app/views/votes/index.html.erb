@@ -16,7 +16,7 @@
       <td><%= vote.id %></td>
       <td><%= vote.created_at.strftime("%B %d") %></td>
       <% vote.proposals.each do |proposal| %>
-      <td><%= proposal.description %></td>
+      <td><%= proposal.title %></td>
       <% end %>
     </tr>
     <% end %>
