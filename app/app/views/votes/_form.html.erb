@@ -8,23 +8,39 @@
     margin-right: 10px;
   }
 
+  .form-check-label input {
+    display: none;
+  }
+
 </style>
 
 <%= form_for @vote, :url => { :action => "create" } do |vote| %>
-  <%= vote.collection_check_boxes :proposal_ids, Proposal.all, :id, :description do |b| %>
+
+  <div class="card-columns">
+
+  <%= vote.collection_check_boxes :proposal_ids, Proposal.where(status: :approved), :id, :description do |b| %>
 
     <div class="card">
       <div class="card-block">
         <h4 class="card-title"><%= b.label %></h4>
+        <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
+        <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
         <div class="form-check">
-          <%= b.label(class: "form-check-label") { b.check_box(class: "form-check-input right-10") + b.text} %>
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + 'vote'} %>
           <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
         </div>
+      </div>
+      <div class="card-footer text-muted text-xs-right">
+        <%= b.object.created_at.strftime("%B %d") %>
       </div>
     </div>
 
   <% end %>
-  <%= vote.submit "Submit", class: 'btn btn-primary' %>
+
+  </div>
+
+  <%= vote.submit "Submit Votes", class: 'btn btn-primary pull-right' %>
+
 <% end %>
 
 <!-- <%= simple_form_for @vote do |f| %>

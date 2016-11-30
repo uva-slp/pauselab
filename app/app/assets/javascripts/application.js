@@ -5,6 +5,7 @@
 //= require turbolinks
 
 //= require trumbowyg/trumbowyg
+//asda//= require plugins/upload/trumbowyg.upload.js
 
 //= require init
 //= require admins
