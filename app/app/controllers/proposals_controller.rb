@@ -49,18 +49,19 @@ class ProposalsController < ApplicationController
 
 	def proposal_collection
 		@ideas = Idea.all
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
 	end
 
-         def approve
-          @proposal = Proposal.find(params[:id])
-          @proposal.status = "approved"
-          @proposal.save
-         # end
-           redirect_to proposals_path
-         end
-
-     
-           
+   def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.approved!
+    @proposal.save
+   # end
+     redirect_to proposals_path
+   end
 
 	private
 	  def proposal_params

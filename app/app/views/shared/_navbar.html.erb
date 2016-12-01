@@ -1,108 +1,97 @@
 
 
-<nav class="navbar navbar-default navbar-static-top">
-
+<nav class="navbar navbar-light">
   <div class="container">
 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to root_url, class: 'navbar-brand' do %>
-        <i class="glyphicon glyphicon-home"></i>
-      <% end %>
-    </div>
+    <button class="navbar-toggler hidden-md-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <!-- hidden-sm-down to hide brand -->
+    <%= link_to root_url, class: 'navbar-brand' do %>
+      <i class="fa fa-home"></i>
+    <% end %>
+    <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
+      <ul class="nav navbar-nav float-md-right">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-
-        <!-- Admin Options -->
         <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Admin</a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
             <% if can? :access, :users %>
-              <li><%= link_to 'Users Console', admin_overview_path %></li>
-              <li role="separator" class="divider"></li>
+              <%= link_to 'Users Console', admin_overview_path, class: 'dropdown-item' %>
             <% end %>
+            <div class="dropdown-divider"></div>
             <% if can? :access, :categories %>
-              <li><%= link_to 'Create Category', new_category_path %></li>
-              <li><%= link_to 'Categories Console', categories_path %></li>
-              <li role="separator" class="divider"></li>
+              <%= link_to 'Create Category', new_category_path, class: 'dropdown-item' %>
+              <%= link_to 'Categories Console', categories_path, class: 'dropdown-item' %>
             <% end %>
+            <div class="dropdown-divider"></div>
             <% if can? :access, :mass_emails %>
-              <li><%= link_to 'Create Mass Email', new_mass_email_path %></li>
-              <li><%= link_to 'Mass Emails Console', mass_emails_path %></li>
-              <li role="separator" class="divider"></li>
-              <% end %>
-	      <li><%= link_to 'Votes Console', votes_path %></li>
-            </ul>
+              <%= link_to 'Create Mass Email', new_mass_email_path, class: 'dropdown-item' %>
+              <%= link_to 'Mass Emails Console', mass_emails_path, class: 'dropdown-item' %>
+            <% end %>
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Votes Console', votes_path, class: 'dropdown-item' %>
+          </div>
           </li>
         <% end %>
 
         <% if can? :read, :blogs %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Blog</a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
               <% if can? :create, :blogs %>
-                <li><%= link_to 'Create Blog Post', new_blog_path %></li>
+                <%= link_to 'Create Blog Post', new_blog_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :read, :blogs %>
-                <li><%= link_to 'Blogs Console', blogs_path %></li>
+                <%= link_to 'Blogs Console', blogs_path, class: 'dropdown-item' %>
               <% end %>
-            </ul>
+            </div>
           </li>
         <% end %>
 
         <% if can? :read, :proposals %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Proposals</a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
+              <% if can? :create, :votes %>
+                <%= link_to 'Vote on Proposals', new_vote_path, class: 'dropdown-item' %>
+              <% end %>
               <% if can? :create, :proposals %>
-                <li><%= link_to 'Create Proposal', new_proposal_path %></li>
+                <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :read, :proposals %>
-                <li><%= link_to 'Proposals Console', proposals_path %></li>
+                <%= link_to 'Proposals Console', proposals_path, class: 'dropdown-item' %>
               <% end %>
-            </ul>
+            </div>
           </li>
         <% end %>
 
         <% if can? :read, :ideas %> <%#TODO can? "do anything with" :ideas %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#">Ideas</a>
-            <ul class="dropdown-menu">
+            <div class="dropdown-menu">
               <% if can? :create, :ideas %>
-                <li><%= link_to 'Create Idea',  new_idea_path %></li>
+                <%= link_to 'Create Idea',  new_idea_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :read, :ideas %>
-                <li><%= link_to 'Ideas Console',  ideas_path %></li>
+                <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
               <% end %>
-	     
-            </ul>
+            </div>
           </li>
         <% end %>
 
-        <li><a class="nav-link" href=<%= about_path %> >About</a></li>
-        <li><a class="nav-link" href=<%= root_path %> >Get Involved</a></li> <!-- Or is it supposed to be idea_collection_path???-->
 
-        <li class="navbar-button-item">
+        <li class="nav-item"><%= link_to 'About',  about_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Get Involved', about_path, class: 'nav-link' %></li> <!-- Or is it supposed to be idea_collection_path???-->
+
+        <li class="nav-item">
           <% if user_signed_in? %>
-            <div class="navbar-form">
-              <%= link_to "logout", destroy_user_session_path, :method => :delete, class: 'signup-btn btn btn-default' %>
-            </div>
+            <%= link_to "logout", destroy_user_session_path, :method => :delete, class: 'signup-btn btn btn-outline-primary' %>
           <% else %>
-            <div class="navbar-form">
-              <%= link_to "login", new_user_session_path, class: 'signup-btn btn btn-default' %>
-            </div>
+            <%= link_to "login", new_user_session_path, class: 'signup-btn btn btn-outline-primary' %>
           <% end %>
         </li>
-
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div> <!-- /.navbar-collapse -->
+
   </div><!-- /.container -->
 </nav>

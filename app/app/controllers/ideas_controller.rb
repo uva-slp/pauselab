@@ -25,7 +25,6 @@ class IdeasController < ApplicationController
           if cookies[:likes] != nil
             @likes = JSON.parse(cookies[:likes])
           end
-          # TODO status check?
   end
 
   def new
@@ -58,6 +57,7 @@ class IdeasController < ApplicationController
 		@idea = Idea.find(params[:id])
 	end
 
+  # TODO: make this into an AJAX call
   def like
     @id = @idea.id
     @likes = Array.new
@@ -94,8 +94,7 @@ class IdeasController < ApplicationController
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
-    redirect_to ideas_path
-
+    redirect_to proposal_collection_path
   end
 
   def destroy
