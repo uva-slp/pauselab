@@ -15,6 +15,12 @@
 
 </style>
 
+<% if @vote.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <%= @vote.errors[:proposals][0] if @vote.errors[:proposals].any? %>
+  </div>
+<% end %>
+
 <%= form_for @vote, :url => { :action => "create" } do |vote| %>
 
   <div class="card-columns">
