@@ -10,7 +10,7 @@ class VotesController < ApplicationController
     @proposals = Proposal.where(status: :unchecked)
     if cookies[:voted] != nil
       flash[:notice] = 'You have already voted'
-      redirect_to root_path
+      redirect_to proposals_path  # TODO if in voting phase, going to root results in infinite redirect
     end
   end
 

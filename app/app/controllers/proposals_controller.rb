@@ -4,21 +4,19 @@ class ProposalsController < ApplicationController
   def index
 		@proposals = Proposal.where nil
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
-                @vote = Vote.new
 	end
 
 	def new
 		@proposal = Proposal.new
 	end
 
-
 	def edit
 		@proposal = Proposal.find params[:id]
 	end
 
 	def create
-        @proposal = Proposal.new proposal_params
-        @proposal.user_id = current_user.id
+    @proposal = Proposal.new proposal_params
+    @proposal.user_id = current_user.id
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
 			redirect_to proposals_path
@@ -59,15 +57,14 @@ class ProposalsController < ApplicationController
     @proposal = Proposal.find(params[:id])
     @proposal.approved!
     @proposal.save
-   # end
-     redirect_to proposals_path
+    redirect_to proposals_path
    end
 
 	private
 	  def proposal_params
 	    params.require(:proposal).permit(
                 :title,
-  	        :description,
+                :description,
                 :artist_fees,
                 :project_materials,
                 :printing,
@@ -80,7 +77,6 @@ class ProposalsController < ApplicationController
                 :essay,
                 :website_link,
                 :artist_cv,
-
 	    	)
 	  end
 

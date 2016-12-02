@@ -2,8 +2,6 @@
 
     <h2>Sign up</h2>
 
-    <%= flash_messages %>
-
     <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
         <%= f.input :first_name, placeholder: 'clark' %>
         <%= f.input :last_name, placeholder: 'kent' %>

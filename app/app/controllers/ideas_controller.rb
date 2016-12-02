@@ -94,7 +94,7 @@ class IdeasController < ApplicationController
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
-    redirect_to proposal_collection_path
+    redirect_to ideas_path
   end
 
   def destroy

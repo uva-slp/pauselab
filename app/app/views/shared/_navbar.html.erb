@@ -16,7 +16,7 @@
             <a class="nav-link dropdown-toggle" href="#">Admin</a>
             <div class="dropdown-menu">
             <% if can? :access, :users %>
-              <%= link_to 'Users Console', admin_overview_path, class: 'dropdown-item' %>
+              <%= link_to 'Admin Console', admin_overview_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if can? :access, :categories %>

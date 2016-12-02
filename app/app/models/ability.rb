@@ -31,7 +31,10 @@ class Ability
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     # if user not logged in, create guest user
-    user ||= User.new
+    if user.nil?
+      user ||= User.new
+      user.role = :resident
+    end
 
     # define aliases
     alias_action :idea_collection, :to => :create

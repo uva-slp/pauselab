@@ -12,7 +12,8 @@
   <% if can? :destroy, blog %>
     | <%= link_to 'Destroy', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-  <h4>By <b><%= blog.user.first_name %> <%= blog.user.last_name %></b></h4>
+  <!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
+  <h4>By <b><%= blog.user.fullname %></b></h4>
   Published <%= blog.created_at %>
   <h2><b><%= blog.title %></b></h2>
   <p><%= blog.body %></p>
