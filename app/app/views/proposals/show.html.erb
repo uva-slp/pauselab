@@ -1,6 +1,6 @@
 
-<%= link_to 'Back', proposals_path %> |
-<%= link_to 'Edit', edit_proposal_path(@proposal) %>
+<!-- <%= link_to 'Back', proposals_path %> | -->
+<!-- <%= link_to 'Edit', edit_proposal_path(@proposal) %> -->
 
 <h2>
   By <b><%= User.find(@proposal.user_id.to_i).first_name %> <%= User.find(@proposal.user_id.to_i).last_name %></b>
@@ -8,8 +8,8 @@
 
 <h3>Description:</h3>
 <div class="fr-view">
-  <!-- Sanitize!! But I don't know if I've done that properly.. --> 
-  <%= @proposal.description.html_safe %> 
+  <!-- Sanitize!! But I don't know if I've done that properly.. -->
+  <%= @proposal.description.html_safe %>
 </div>
 
 <h3>Cost:</h3>
@@ -19,7 +19,7 @@
 
 <h3>Essay:</h3>
 <p>
-  <%= @proposal.essay %>
+  <%= @proposal.essay.html_safe %>
 </p>
 
 <h3>Website:</h3>
