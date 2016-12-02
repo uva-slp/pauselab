@@ -14,7 +14,8 @@ class User < ApplicationRecord
 
 	after_initialize :set_default_role, :if => :new_record?
 	def set_default_role
-		self.role ||= :artist		# NOTE when Devise creates new user, it will be artist
+		#self.role ||= :artist		# TODO when new user signs up, it should be artist
+		self.role ||= :resident
 	end
 
   def fullname
