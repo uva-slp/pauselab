@@ -3,6 +3,7 @@
   <%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
 <% end %>
 
+
 <br/>
 
 <h2 class="page-header">proposals</h2>
@@ -24,7 +25,7 @@
       <tr>
         <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <th>ID</th>
-          <th>User ID</th>
+
         <% end %>
         <% if can? :read, :proposals, :user_id %>
           <th>Name</th>
@@ -32,15 +33,17 @@
         <% if can? :read, :proposals, :created_at %>
           <th>Created at</th>
         <% end %>
+        <% if can? :read, :proposals, :title %>
+          <th>Title</th>
+        <% end %>
         <% if can? :read, :proposals, :description %>
           <th>Description</th>
         <% end %>
         <% if can? :read, :proposals, :cost %>
           <th>Cost</th>
         <% end %>
-        <% if can? :read, :proposals, :website_link %>
-          <th>Website Link</th>
-        <% end %>
+
+
         <% if can? :read, :proposals, :status %>
           <th>Status</th>
         <% end %>
@@ -60,7 +63,7 @@
       <tr>
         <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <td><%= proposal.id %></td>
-          <td><%= proposal.user_id.to_i %></td>
+
         <% end %>
         <% if can? :read, proposal, :user_id %>
           <td><%= User.find(proposal.user_id.to_i).fullname %></td>
@@ -68,15 +71,16 @@
         <% if can? :read, proposal, :created_at %>
           <td><%= proposal.created_at.strftime("%B %d") %></td>
         <% end %>
+        <% if can? :read, proposal, :title %>
+	        <td><%= proposal.title %></td>
+        <% end %>
         <% if can? :read, proposal, :description %>
           <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. -->
         <% end %>
         <% if can? :read, proposal, :cost %>
           <td><%= proposal.cost %></td>
         <% end %>
-        <% if can? :read, proposal, :website_link %>
-          <td><%= proposal.website_link %></td>
-        <% end %>
+
         <% if can? :read, proposal, :status %>
           <td><%= proposal.status %></td>
         <% end %>
@@ -104,7 +108,3 @@
 
   </table>
 </div>
-
-<% if can? :create, :votes %>
-  <%= render 'votes/form' %>
-<% end %>

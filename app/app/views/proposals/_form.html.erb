@@ -1,10 +1,12 @@
 
 
 <%= simple_form_for @proposal do |f| %>
-    <!-- %= f.input :description, placeholder: 'your proposal' % -->
-    <%= f.label :description, placeholder: 'your proposal' %>
+
+<!-- %= f.input :description, placeholder: 'your proposal' % -->
+    <%= f.input :title, placeholder: 'Title (max. length 40)' %>
+    <%= f.label :description, placeholder: 'your proposal' %> 
     <%= f.text_area :description, id: "trumbowyg-wysiwyg", placeholder: 'Detail how the plan will be implemented' %> <!-- Checks the script on bottom-->
-    <%= f.input :essay, placeholder: "how would this project help the community" %>
+    <%= f.text_area :essay, id:"trumbowyg-wysiwyg2", placeholder: "how would this project help the community" %>
     <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
     Budget Information
     <pre>
@@ -30,7 +32,24 @@
 <% end %>
 
 <script>
+
 $('#trumbowyg-wysiwyg').trumbowyg({
+    svgPath: '<%= image_path("icons.svg") %>',
+
+    btns: [
+        ['formatting'],
+        ['insertImage'],
+        'btnGrp-justify',
+        'btnGrp-lists',
+        ['horizontalRule'],
+        ['fullscreen']
+    ]
+});
+
+</script>
+
+<script>
+$('#trumbowyg-wysiwyg2').trumbowyg({
     svgPath: '<%= image_path("icons.svg") %>',
 
     btns: [

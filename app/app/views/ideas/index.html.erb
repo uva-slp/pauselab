@@ -1,25 +1,25 @@
 
 <% if can? :create, :ideas %>
-  <%= link_to 'create new idea', new_idea_path, class: 'btn btn-default pull-right top-40' %>
+  <%= link_to 'Create New Idea', new_idea_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
 <% end %>
 
 <h2 class="page-header">ideas</h2>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sort Ideas<b class="caret"></b></a>
-  <ul class="dropdown-menu">
+<div class="dropdown" style="display: inline-block">
+  <a href="#" class="btn btn-outline-primary dropdown-toggle">Sort Ideas</a>
+  <div class="dropdown-menu">
     <!-- We are passing the sort parameter here -->
-    <li><a href="?sort=likes">likes</a></li>
+    <a href="?sort=likes" class="dropdown-item" >likes</a>
     <% if can? :read, :ideas, :first_name %>
-      <li><a href="?sort=author_last_name">author last name</a></li>
+      <a href="?sort=author_last_name" class="dropdown-item">author last name</a>
     <% end %>
     <% if can? :read, :ideas, :last_name %>
-      <li><a href="?sort=author_first_name">author first name</a></li>
+      <a href="?sort=author_first_name" class="dropdown-item">author first name</a>
     <% end %>
-    <li><a href="?sort=date">date</a></li>
-    <li><a href="?sort=id">id</a></li>
-    <li><a href="?sort=category">category</a></li>
-  </ul>
-</li>
+    <a href="?sort=date" class="dropdown-item">date</a>
+    <a href="?sort=id" class="dropdown-item">id</a>
+    <a href="?sort=category" class="dropdown-item">category</a>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-striped">
 

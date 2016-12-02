@@ -64,9 +64,11 @@
 
   <span class="pull-right">
     <button type="button" name="toggle_role_form" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></button>
+    <!-- TODO the delete button deletes the currently logged in user, not the one we are looking at. We need to write that method ourselves.
     <%= link_to registration_path(@user), data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger', method: :delete do   %>
       <i class="fa fa-info"></i>
     <% end %>
+    -->
   </span>
 
 

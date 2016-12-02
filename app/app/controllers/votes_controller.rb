@@ -8,12 +8,17 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
     @proposals = Proposal.where(status: :unchecked)
+    if cookies[:voted] != nil
+      flash[:notice] = 'You have already voted'
+      redirect_to proposals_path  # TODO if in voting phase, going to root results in infinite redirect
+    end
   end
 
   def create
     @vote = Vote.new(vote_params)
     if @vote.save
-      flash[:notice] = 'You just voted'
+      flash[:notice] = 'Your vote has been received!'
+      cookies[:voted] = { :value => "already voted", :expires => Time.now + 2628000 }
       redirect_to root_path
     else
       render 'new'

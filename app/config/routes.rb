@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   get 'cookies' => "pages#cookies_song"
   get 'test_email' => "pages#test_email"
 
-  # makes RESTful routes for articles controller
-  resources :categories, :blogs, :mass_emails
+  # makes RESTful routes for our models
+  resources :categories, :blogs, :mass_emails, :proposals, :votes
 
 
-
+  """
   resources :proposals do
     resources :votes
   end
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :votes do
     resources :proposals
   end
-   
-  
+  """
+
   resources :ideas
   # this will change depending on the current phase of
   # the process
