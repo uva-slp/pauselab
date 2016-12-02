@@ -2,7 +2,11 @@ class ProposalsController < ApplicationController
   load_and_authorize_resource
 
   def index
-		@proposals = Proposal.where nil
+    if params[:sort].present?
+      @proposals = Proposal.order params[:sort]
+    else
+      @proposals = Proposal.all
+    end
 		@proposals = @proposals.status(params[:status]) if params[:status].present?
 	end
 

@@ -31,8 +31,13 @@
           <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
         </div>
       </div>
-      <div class="card-footer text-muted text-xs-right">
-        <%= b.object.created_at.strftime("%B %d") %>
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          <%= number_to_currency b.object.cost %>
+        </span>
+        <span class="pull-right">
+          <%= b.object.created_at.strftime("%B %d") %>
+        </span>
       </div>
     </div>
 
