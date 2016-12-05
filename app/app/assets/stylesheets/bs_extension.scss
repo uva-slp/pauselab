@@ -3,10 +3,14 @@
 
 $muted_red: #e74c3c;
 
-// hover will open submenu
-.dropdown:hover .dropdown-menu {
-    display: block;
- }
+// // hover will open submenu
+// .dropdown:hover .dropdown-menu {
+//     display: block;
+//  }
+
+// .collapse.in {
+//       display: block;
+// }
 
 // remove underline from mandatory asterix
 abbr[title] {
@@ -19,14 +23,6 @@ abbr[title] {
 	color: $muted_red;
 }
 
-// masthead stylings
-.masthead-proposal {
-	// border: 1px solid black;
-}
-
-.text-masthead {
-
-}
 
 // navigation bar
 .navbar {
@@ -54,9 +50,11 @@ abbr[title] {
 	padding: 0 15px;
 	height: 80px;
 	line-height: 80px;
+  display: inline;
 }
 .navbar-toggler {
-	margin-top: 20px;
+	margin-top: 10px;
+  transition: 0.5 all;
 }
 
 .footer {
@@ -82,10 +80,6 @@ abbr[title] {
 .navbar-static-bottom {
 	margin-top: 30px;
 	border-radius: 0px;
-}
-
-.img-responsive {
-	width: 100%;
 }
 
 

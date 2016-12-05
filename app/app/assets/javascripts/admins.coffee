@@ -4,13 +4,13 @@
 
 $(document).ready ->
 
-  role_form = false
-  $(".role_form").hide()
-
-  $("button[name='toggle_role_form']").click ->
-    if !role_form
-      $(".role_form").show()
-      role_form = true
-    else
-      $(".role_form").hide()
-      role_form = false
+  # role_form = false
+  # $(".role_form").hide()
+  #
+  # $("button[name='toggle_role_form']").click ->
+  #   if !role_form
+  #     $(".role_form").show()
+  #     role_form = true
+  #   else
+  #     $(".role_form").hide()
+  #     role_form = false
