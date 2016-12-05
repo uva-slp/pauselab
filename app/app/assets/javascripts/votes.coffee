@@ -6,8 +6,6 @@ $(document).on "turbolinks:load", ->
 
   console.log($(':checked').length)
 
-
-
   addProposal = (title) ->
     $('.selected-proposals').append '<span class="btn btn-primary">' + title + '</span> &nbsp;'
   removeProposal = (title) ->
@@ -16,13 +14,13 @@ $(document).on "turbolinks:load", ->
     ).remove()
 
   $(':checked').each ->
-      label = $(this).closest 'label'
-      card = $(this).closest '.card'
-      title = $(card).find('.card-title label').html()
-      card.css 'border', '1px solid #2ecc71'
-      label.removeClass 'btn-outline-primary'
-      label.addClass 'btn-success'
-      addProposal title
+      # label = $(this).closest 'label'
+      # card = $(this).closest '.card'
+      # title = $(card).find('.card-title a').html()
+      # card.css 'border', '1px solid #2ecc71'
+      # label.removeClass 'btn-outline-primary'
+      # label.addClass 'btn-success'
+      # # addProposal title
 
   $(':checkbox').click (e) ->
     # e.preventDefault();
@@ -32,7 +30,7 @@ $(document).on "turbolinks:load", ->
     status = $(this).prop('checked')
     label = $(this).closest 'label'
     card = $(this).closest '.card'
-    title = $(card).find('.card-title label').html()
+    title = $(card).find('.card-title a').html()
 
     console.log status
 

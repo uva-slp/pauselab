@@ -1,9 +1,10 @@
 
 <% if can? :create, :categories %>
-<!-- <%= link_to 'Create New Category', new_category_path, class: 'btn btn-default pull-right top-40' %> -->
-  <button type="button" class='btn btn-primary pull-right top-40 clearfix' data-toggle="modal" data-target="#cat_form">Create New Category</button>
+  <button type="button" class='btn btn-primary pull-right clearfix' data-toggle="modal" data-target="#cat_form">Create New Category</button>
 <% end %>
-<h2 class="page-header">Categories</h2>
+
+<h2 class="pull-left">categories</h2>
+
 
 <div class="table-responsive">
   <table class="table table-striped">

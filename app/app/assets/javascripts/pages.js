@@ -20,6 +20,8 @@ function initMap() {
         });
 
   var bounds = new google.maps.LatLngBounds(pos);
+  console.log(bounds);
+
   $.get('ideas_json', function(ideas) {
     ideas.forEach(function(idea) {
 
@@ -39,10 +41,12 @@ function initMap() {
         infowindow.open(map, marker);
       });
       m_bounds = new google.maps.LatLngBounds(pos);
+      // console.log(m_bounds);
       bounds.union(m_bounds);
     });
   });
 
+  console.log(bounds);
   map.fitBounds(bounds);
 
 }
