@@ -1,31 +1,32 @@
 
 <%= render :layout => 'dashboard', :locals => { title: 'Users', position: 'users' } do %>
 
-	<div class="table-responsive">
-		<table class="table table-striped">
-			<thead>
+<div class="table-responsive">
+	<table class="table table-striped">
+
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>name</th>
+				<th>email</th>
+				<th>role</th>
+				<th colspan="3">action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @users.each do |user| %>
 				<tr>
-					<th>#</th>
-					<th>name</th>
-					<th>email</th>
-					<th>role</th>
-					<th colspan="3">action</th>
+					<td><%= user.id %></td>
+					<td><%= user.fullname %></td>
+					<td><%= user.email %></td>
+					<td><%= user.role %></td>
+					<td><%= link_to 'manage', show_user_path(user) %></td>
 				</tr>
-			</thead>
-			<tbody>
+			<% end %>
+		</tbody>
 
-				<% @users.each do |user| %>
-					<tr>
-						<td><%= user.id %></td>
-						<td><%= user.fullname %></td>
-						<td><%= user.email %></td>
-						<td><%= user.role %></td>
-						<td><%= link_to 'manage', show_user_path(user) %></td>
-					</tr>
-				<% end %>
-
-			</tbody>
-		</table>
-	</div>
+	</table>
+</div>
 
 <% end %>

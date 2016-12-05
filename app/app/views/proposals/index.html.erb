@@ -36,9 +36,6 @@
         <% if can? :read, :proposals, :title %>
           <th>Title</th>
         <% end %>
-        <% if can? :read, :proposals, :description %>
-          <th>Description</th>
-        <% end %>
         <% if can? :read, :proposals, :cost %>
           <th>Cost</th>
         <% end %>
@@ -73,9 +70,6 @@
         <% end %>
         <% if can? :read, proposal, :title %>
 	        <td><%= proposal.title %></td>
-        <% end %>
-        <% if can? :read, proposal, :description %>
-          <td><%= truncate(proposal.description.html_safe) %></td> <!-- Sanitize. Some bugs.. -->
         <% end %>
         <% if can? :read, proposal, :cost %>
           <td><%= number_to_currency proposal.cost %></td>

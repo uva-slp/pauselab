@@ -52,6 +52,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
             <div class="dropdown-menu">
+              <%= link_to 'Proposals collection', proposal_collection_path, class: 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
               <% if can? :create, :votes %>
                 <%= link_to 'Vote on Proposals', new_vote_path, class: 'dropdown-item' %>
               <% end %>

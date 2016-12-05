@@ -5,7 +5,6 @@
   }
 </style>
 
-
 <%= render :layout => 'dashboard', :locals => { title: @user.fullname, position: 'users' } do %>
 
   <div class="row">
@@ -44,52 +43,38 @@
     </div>
   </div>
 
-  <hr>
+  <br>
 
-  <div class="">
-    <!-- <%= link_to root_path, method: :post, class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?' } do %>
-      <i class="fa fa-check"></i>
-    <% end %> -->
+  <div>
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
       <i class="fa fa-pencil-square-o"></i>
     </button>
-    <!-- <%= link_to root_path, class: "btn btn-sm btn-primary" do %>
-    <% end %> -->
     <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>
 
-<div class="modal fade" id="change_role_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Change user role</h4>
+  <div class="modal fade" id="change_role_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Change user role</h4>
+        </div>
+        <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
+        <%= simple_form_for :change_role do |f| %>
+          <div class="modal-body">
+            <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
+            <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+          </div>
+          <div class="modal-footer">
+            <%= f.button :submit, value: 'change role', class: 'btn btn-primary' %>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+          </div>
+        <% end %>
       </div>
-
-      <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
-
-      <%= simple_form_for :change_role do |f| %>
-        <!-- TODO: auto selected field needs work -->
-
-        <div class="modal-body">
-          <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
-          <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
-        </div>
-
-        <div class="modal-footer">
-          <%= f.button :submit, value: 'change role', class: 'btn btn-primary' %>
-          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
-        </div>
-
-
-      <% end %>
-
     </div>
   </div>
-</div>
 
 
 <% end %>
