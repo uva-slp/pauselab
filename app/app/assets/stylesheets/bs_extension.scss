@@ -91,3 +91,18 @@ abbr[title] {
 .right-10 {
   margin-right: 10px;
 }
+
+
+
+
+.hidden {
+	display: none;
+}
+
+// stuff for bootstrap 4 error fix
+.has-error {
+	@extend .has-danger;
+}
+.help-block {
+	@extend .form-control-feedback;
+}

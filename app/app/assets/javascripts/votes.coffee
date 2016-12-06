@@ -4,7 +4,7 @@
 
 $(document).on "turbolinks:load", ->
 
-  console.log($(':checked').length)
+  # console.log($(':checked').length)
 
   addProposal = (title) ->
     $('.selected-proposals').append '<span class="btn btn-primary">' + title + '</span> &nbsp;'
