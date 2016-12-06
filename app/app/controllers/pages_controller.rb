@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.all
+    ideas = Idea.where(status: :approved)
     render json: ideas
   end
 
