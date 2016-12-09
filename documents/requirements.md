@@ -24,10 +24,10 @@ The system follows the lifecycle of one or more public art projects from its inc
 
 **Idea Collection**: the community submits and views ideas about ways to improve certain areas.
 
-* Residents will submit ideas through a simple form which contains their name, contact information (email and phone), and description of the idea (a choice of moderator-defined categories, some prose, location). Residents need not prove their identity to submit ideas.
+* Residents will submit ideas through a simple form which contains their name, contact information (email and phone), and description of the idea (a choice of moderator-defined categories, some prose, location). _next semester_: to locate ideas, residents may place a pin on a map or write out the location through a text field. Residents need not prove their identity to submit ideas.
 * Moderators can enter ideas if they receive them non-electronically.
 * Moderators can see all submitted ideas through a table. Moderators can approve ideas after verifying their content is appropriate (this "publishes" the idea). Moderators can edit ideas for syntax or content, or delete them from the system.
-* Residents will see published ideas on a map, where the idea's location corresponds with the area it would improve. Ideas will also be displayed in a grid and can be sorted by location, category, newest, most liked. Residents can "like" ideas to indicate interest early on.
+* Residents will see published ideas on a map, where the idea's location corresponds with the area it would improve. Ideas will also be displayed in a card view and can be sorted by location, category, newest, most liked. Residents can "like" ideas to indicate interest early on.
 
 **Proposal Collection**: artists submit proposals for solutions related to the community's ideas.
 
@@ -36,7 +36,7 @@ The system follows the lifecycle of one or more public art projects from its inc
     * Idea(s) being addressed
     * Prose, and possibly images, about proposal
     * Attachments related to credentials (this is also part of artist's account creation)
-    * Budget estimates
+    * Budget estimates. _next semester_: the budget fields will be dynamic (rows can be added and deleted on the fly, and the total will adjust).
     * Checklist of relevant to-dos
 * Moderators can enter proposals if they receive them non-electronically.
 * Steerers can see proposals and make internal-facing comments regarding their feasibility.
@@ -47,10 +47,11 @@ The system follows the lifecycle of one or more public art projects from its inc
 
 * Artists can no longer submit proposals.
 * Residents can see published proposals through a grid. They will have a form to submit votes on their favorite proposals.
+    * The form will collect the voter's name, email, phone, address, and have an honor statement that must be agreed to prior to submission.
     * They will select a finite number of proposals - 2 or 3 as their top choice.
     * They might rank proposals. (_note_: we are leaning toward equally weighted votes now and should discuss this later.)
     * They might allocate votes based on a specified budget.
-    * Unlike "liking," voting needs protection against fraud, possibly through a combination of cookies, IP tracking, CAPTCHA, or "honor pledge."
+    * _next semester_: Unlike "liking," voting needs protection against fraud, possibly through a combination of cookies, IP tracking, CAPTCHA, or "honor pledge."
 * Moderators can enter votes if they receive them non-electronically.
 
 **Project Implementation**: after projects are selected, the system presents feedback on their progress.
@@ -66,4 +67,18 @@ The system follows the lifecycle of one or more public art projects from its inc
 * Website should be responsive on mobile.
 * Website should be designed to be extensible to multiple languages.
 * Residents do not need to create accounts. Artists do, and may do so on their own. Steerers, moderators, and admins need accounts and can only have them created by an admin.
-* Each user role will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates.
+* Some accounts may need to go through a review process (e.g. artists need to be approved before having proposal submission privileges).
+* Only admins have the ability to manage user accounts.
+* Each user role will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.
+* The navbar at the top should adjust depending on the phase of the project. All phases will have "About" and "Get Involved" as static pages that the moderator can edit, as well as the "Blog" page.
+    * Ideas phase: Ideas - Submit Idea, See Ideas
+    * Proposals phase: Proposals - Submit Proposals, See Proposals; Ideas
+    * Voting phase: Vote; Proposals; Ideas
+
+### Deadlines
+
+**Minimum Requirements**: All requirements defined under "Features" _except_ those in "Site-wide requirements" and noted as "next semester."
+
+**Desired Requirements**: All requirements defined under "Features."
+
+**Optional Requirements**: As defined by client.
