@@ -8,6 +8,7 @@ class User < ApplicationRecord
 	validates :email, uniqueness: true
 
   has_many :proposals
+	has_many :proposal_comments
   has_many :blogs
 
 	enum role: [:admin, :steerer, :artist, :moderator, :resident, :super_artist]

@@ -1,6 +1,7 @@
 class Proposal < ApplicationRecord
 
     belongs_to :user
+    has_many :proposal_comments
 
     has_and_belongs_to_many :votes, :dependent => :delete_all
 
