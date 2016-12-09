@@ -29,6 +29,30 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
         follow_redirect!
         assert_response :success
     end
+    test "should create another new idea" do
+        sign_in_as :resident
+        get new_idea_path
+        assert_response :success
+
+        assert_difference('Idea.count', 1) do
+            post ideas_path, params: {
+              idea:{
+                first_name: "Leslie",
+                last_name: "Knope",
+                email: "pnr@gmail.com",
+                phone: "1234567555",
+                address: "Pawnee",
+                lat: 3.00,
+                lng: 5.00,
+                category_id: categories(:one).id,
+                description: "A new park."
+                }
+              }
+        end
+        assert_response :redirect
+        follow_redirect!
+        assert_response :success
+    end
     test "should fail to create new idea" do
         sign_in_as :resident
         get new_idea_path
@@ -46,13 +70,71 @@ class IdeasControllerTest < ActionDispatch::IntegrationTest
               }
         end
     end
-    test "should update an idea" do
+    test "should fail to create another idea" do
+    sign_in_as :resident
+    get new_idea_path
+    assert_response :success
+    assert_no_difference('Idea.count') do
+        post ideas_path, params: {
+            idea: {
+                   last_name: "Johnson",
+                   email: "notanemail",
+                   phone: "0",
+                   category_id: "2",
+                   description: "A failed submission."
+                }
+              }
+        end
+    end
+    test "should update an idea name" do
         sign_in_as :moderator
         idea = ideas(:one)
         assert_no_difference('Idea.count') do
             put idea_path(idea.id), params: {
               idea: {
                 first_name: "James"
+                }
+              }
+        end
+        assert_response :redirect
+        follow_redirect!
+        # assert_response :success
+    end
+    test "should update an idea email" do
+        sign_in_as :moderator
+        idea = ideas(:one)
+        assert_no_difference('Idea.count') do
+            put idea_path(idea.id), params: {
+              idea: {
+                email: "jm@yahoo.com"
+                }
+              }
+        end
+        assert_response :redirect
+        follow_redirect!
+        # assert_response :success
+    end
+    test "should update an idea number" do
+        sign_in_as :moderator
+        idea = ideas(:two)
+        assert_no_difference('Idea.count') do
+            put idea_path(idea.id), params: {
+              idea: {
+                phone: "2735252242"
+                }
+              }
+        end
+        assert_response :redirect
+        follow_redirect!
+        # assert_response :success
+    end
+    test "should update an idea description" do
+        sign_in_as :moderator
+        idea = ideas(:two)
+        assert_no_difference('Idea.count') do
+            put idea_path(idea.id), params: {
+              idea: {
+                description: "A new description"
                 }
               }
         end
