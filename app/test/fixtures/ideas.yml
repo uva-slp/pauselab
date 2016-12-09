@@ -14,6 +14,17 @@ one:
   address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
+  
+two:
+  first_name: Gary
+  last_name: Gavin
+  phone: 3454565678
+  email: gary@gmail.com
+  description: New statue
+  category: one
+  address: 1 Washington Dr
+  lat: -05.000
+  lng: 12.0000
 
 missing_first_name:
   last_name: Doe

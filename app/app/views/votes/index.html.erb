@@ -1,27 +1,31 @@
 
-<% if can? :create, :votes %>
-  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
-<% end %>
-<h2>Votes</h2>
 
-<table class="table">
+<!-- <% if can? :create, :votes %>
+  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-primary pull-right clearfix' %>
+<% end %> -->
 
-  <thead>
-    <tr>
-      <th>Vote ID</th>
-      <th>Sumbmitted</th>
-      <th>Proposals</th>
-    </tr>
-  </thead>
+<h2 class="pull-left">votes</h2>
 
-  <% @votes.each do |vote| %>
-    <tr>
-      <td><%= vote.id %></td>
-      <td><%= vote.created_at.strftime("%B %d") %></td>
-      <% vote.proposals.each do |proposal| %>
-      <td><%= proposal.title %></td>
+<div class="table-responsive">
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>Vote ID</th>
+        <th>Sumbmitted</th>
+        <th colspan="3">Proposals</th>
+      </tr>
+    </thead>
+
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.id %></td>
+        <td><%= vote.created_at.strftime "%D"  %></td>
+        <% vote.proposals.each do |proposal| %>
+          <td><%= proposal.title %></td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
-    <% end %>
 
-</table>
+  </table>
+</div>

@@ -1,19 +1,9 @@
 
 <style media="screen">
-  .cols {
-    /*border: 1px solid black;*/
-  }
-  .prof-pic {
-    padding-top: 20px;
-  }
-  .vert {
-  }
-  .role_form {
-    display: inline;
+  .hidden {
+    display: none;
   }
 </style>
-
-
 
 <%= render :layout => 'dashboard', :locals => { title: @user.fullname, position: 'users' } do %>
 
@@ -55,22 +45,36 @@
 
   <br>
 
-  <%= simple_form_for :change_role, url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} do |f| %>
-    <!-- TODO: auto selected field needs work -->
-    <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
-    <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
-    <%= f.button :submit, value: 'change role' %>
-  <% end %>
-
-  <span class="pull-right">
-    <button type="button" name="toggle_role_form" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i></button>
-    <!-- TODO the delete button deletes the currently logged in user, not the one we are looking at. We need to write that method ourselves.
-    <%= link_to registration_path(@user), data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger', method: :delete do   %>
-      <i class="fa fa-info"></i>
+  <div>
+    <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
+      <i class="fa fa-pencil-square-o"></i>
+    </button>
+    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+      <i class="fa fa-trash"></i>
     <% end %>
-    -->
-  </span>
+  </div>
 
+  <div class="modal fade" id="change_role_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Change user role</h4>
+        </div>
+        <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
+        <%= simple_form_for :change_role do |f| %>
+          <div class="modal-body">
+            <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
+            <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+          </div>
+          <div class="modal-footer">
+            <%= f.button :submit, value: 'change role', class: 'btn btn-primary' %>
+            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
 
 <% end %>

@@ -5,18 +5,18 @@
 
     <button class="navbar-toggler hidden-md-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
     <!-- hidden-sm-down to hide brand -->
-    <%= link_to root_url, class: 'navbar-brand' do %>
-      <i class="fa fa-home"></i>
-    <% end %>
-    <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
-      <ul class="nav navbar-nav float-md-right">
 
+    <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
+      <%= link_to root_url, class: 'navbar-brand' do %>
+        <i class="fa fa-home"></i>
+      <% end %>
+      <ul class="nav navbar-nav float-md-right">
         <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">Admin</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Admin</a>
             <div class="dropdown-menu">
             <% if can? :access, :users %>
-              <%= link_to 'Admin Console', admin_overview_path, class: 'dropdown-item' %>
+              <%= link_to 'Admin Console', list_users_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if can? :access, :categories %>
@@ -36,7 +36,7 @@
 
         <% if can? :read, :blogs %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">Blog</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Blog</a>
             <div class="dropdown-menu">
               <% if can? :create, :blogs %>
                 <%= link_to 'Create Blog Post', new_blog_path, class: 'dropdown-item' %>
@@ -50,8 +50,10 @@
 
         <% if can? :read, :proposals %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">Proposals</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
             <div class="dropdown-menu">
+              <%= link_to 'Proposals collection', proposal_collection_path, class: 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
               <% if can? :create, :votes %>
                 <%= link_to 'Vote on Proposals', new_vote_path, class: 'dropdown-item' %>
               <% end %>
@@ -67,7 +69,7 @@
 
         <% if can? :read, :ideas %> <%#TODO can? "do anything with" :ideas %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#">Ideas</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Ideas</a>
             <div class="dropdown-menu">
               <% if can? :create, :ideas %>
                 <%= link_to 'Create Idea',  new_idea_path, class: 'dropdown-item' %>

@@ -1,7 +1,4 @@
 
-<br>
-<br>
-
 <div class="row">
 
   <div class="col-sm-6">
@@ -22,6 +19,22 @@
         <span><b>status:</b> <%= @idea.status %></span><br>
         <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
       </div>
+
+      <hr>
+
+      <div class="">
+        <%= link_to idea_approve_path(@idea), method: :post, class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-check"></i>
+        <% end %>
+        <%= link_to edit_idea_path(@idea), class: "btn btn-sm btn-primary" do %>
+          <i class="fa fa-pencil-square-o"></i>
+        <% end %>
+        <%= link_to idea_path(@idea), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </div>
+
+
 
     </div>
   </div>

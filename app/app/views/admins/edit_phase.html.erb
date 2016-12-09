@@ -1,16 +1,11 @@
 
 <%= render :layout => 'dashboard', :locals => { title: 'Change Phase', position: 'change_phase' } do %>
 
-  <p>currently on <strong><%= @phase.phase %></strong></p>
-  <span class="text-muted">on this phase for: <%= time_ago_in_words @phase.updated_at %></span>
+  <p>currently on <strong><%= @phase.phase %></strong> (<%= time_ago_in_words @phase.updated_at %>)</p>
 
-  <br/>
-  <br/>
-
-  <%= simple_form_for :change_phase, url: change_phase_path, method: :put, wrapper: :inline_form, html: {class: 'form-inline'} do |f| %>
-    <!-- TODO: auto selected field needs work -->
+  <%= simple_form_for :change_phase, url: change_phase_path, method: :put do |f| %>
     <%= f.input :phase, as: :select, collection: Phase.phases, selected: Phase.phases[@phase.phase], input_html: { name: 'phase' } %>
-    <%= f.button :submit, value: 'change phase' %>
+    <%= f.button :submit, value: 'change phase', class: 'btn btn-primary' %>
   <% end %>
 
 <% end %>
