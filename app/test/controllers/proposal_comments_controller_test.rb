@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProposalCommentControllerTest < ActionDispatch::IntegrationTest
+class ProposalCommentsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

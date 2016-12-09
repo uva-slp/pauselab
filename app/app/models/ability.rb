@@ -46,16 +46,22 @@ class Ability
     if user.admin?
       can :access, :all
     elsif user.moderator?
-      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails, :votes]
+      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails, :votes, :proposal_comments]
     elsif user.steerer?
-      can :read, [:blogs, :categories, :ideas, :proposals, :votes]
+      can :read, [:blogs, :categories, :ideas, :proposals, :votes, :proposal_comments]
       can :access, :proposals
       can [:create, :update], :ideas
+      # can create and edit proposal comments they own
+      can :create, :proposal_comments
+      can :access, :proposal_comments do |comment|
+        comment.try(:user) == user
+      end
     elsif user.super_artist?
       can :create, [:blogs, :proposals, :ideas, :votes]
       can :read, [:blogs, :categories]
       can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes]
+      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
+      cannot :access, :proposal_comments
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
       # can edit blogs and proposals they own
@@ -69,7 +75,8 @@ class Ability
       can :create, [:proposals, :ideas, :votes]
       can :read, [:blogs, :categories]
       can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes]
+      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
+      cannot :access, :proposal_comments
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
       # can edit proposals they own
@@ -80,7 +87,8 @@ class Ability
       can :create, [:ideas, :votes]
       can :read, [:blogs, :categories]
       can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes]
+      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
+      cannot :access, :proposal_comments
       can [:like, :show, :read], :ideas, approved?: true
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     end
