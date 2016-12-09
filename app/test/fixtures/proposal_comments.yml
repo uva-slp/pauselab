@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  body: MyText
+  body: Comment
   proposal: one
-  user: one
+  user: oscar
 
 two:
-  body: MyText
+  body: Another Comment
   proposal: two
-  user: two
+  user: oscar

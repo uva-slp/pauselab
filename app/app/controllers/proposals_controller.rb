@@ -36,6 +36,7 @@ class ProposalsController < ApplicationController
 
 	def destroy
 	  @proposal = Proposal.find(params[:id])
+    @proposal.proposal_comments.destroy_all # remove all associated comments
 	  @proposal.destroy
 	  redirect_to proposals_path
 	end
