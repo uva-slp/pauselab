@@ -93,7 +93,7 @@
           <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
         <% end %>
         <% if can? :destroy, proposal %>
-          <td><%= link_to 'Destroy', proposal_path(proposal),
+          <td><%= link_to 'Remove', proposal_path(proposal),
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %></td>
         <% end %>

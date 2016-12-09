@@ -126,7 +126,7 @@
           <% end %> -->
 
           <% if can? :destroy, idea %>
-            <td><%= link_to 'Destroy', idea_path(idea),
+            <td><%= link_to 'Remove', idea_path(idea),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
           <% end %>

@@ -25,7 +25,7 @@
       <td><%= me.subject %></td>
       <td><%= truncate(me.body) %></td>
       <td><%= link_to 'Show', mass_email_path(me) %></td>
-      <td><%= link_to 'Destroy', mass_email_path(me),
+      <td><%= link_to 'Remove', mass_email_path(me),
             method: :delete,
             data: { confirm: 'Are you sure?' } %></td>
     </tr>
