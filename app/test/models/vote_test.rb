@@ -23,12 +23,12 @@ class VoteTest < ActiveSupport::TestCase
     assert_not vote.save, "Vote saved even with only three proposals"
   end
 
-    test "Shouldn't save vote with invalid proposal " do
+  test "Shouldn't save vote with invalid proposal " do
     vote = Vote.new
     vote.proposal_ids=[@proposal1.id, @proposal2.id, @proposal5.id]
     assert_not vote.save, "Vote saved when one proposal was not valid"
   end
 
-   
-    
+
+
 end
