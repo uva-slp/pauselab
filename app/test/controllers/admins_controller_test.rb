@@ -36,7 +36,7 @@ class AdminsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "index should redirect moderator" do
-    sign_in_as :super_artist
+    sign_in_as :moderator
     assert_response :redirect
     follow_redirect!
     assert_response :redirect
