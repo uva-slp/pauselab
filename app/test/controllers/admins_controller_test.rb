@@ -22,9 +22,9 @@ class AdminsControllerTest < ActionDispatch::IntegrationTest
 
   test "should change phase" do
     sign_in_as :admin
-    put change_phase_path, :params => {:phase => 0}
+    put change_phase_path, :params => {:phase => Phase.phases[:ideas]}
     phase = Phase.new
-    phase.phase = 0
+    phase.phase = Phase.phases[:ideas]
     assert_equal Phase.get_current.phase, phase.phase
   end
 
