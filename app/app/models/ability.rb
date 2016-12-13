@@ -93,5 +93,12 @@ class Ability
       cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
     end
 
+    # adjust permissions based on phase
+    unless user.admin? or user.moderator?
+      unless Phase.get_current.voting?
+        cannot :access, :votes  # voting not allowed unless we are in the phase
+      end
+    end
+
   end
 end
