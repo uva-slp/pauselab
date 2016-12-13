@@ -66,5 +66,5 @@ class UserTest < ActiveSupport::TestCase
       assert_equal("resident",user.role, "User should be resident by default")
     end
 
-
+    
 end
