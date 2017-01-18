@@ -28,8 +28,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 # testing framework
 #gem 'rspec', '~> 3.4.0'
-# captcha
-#gem 'recaptcha', require: 'recaptcha/rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -55,6 +53,7 @@ gem 'paperclip','~> 4.2'
 gem 'trumbowyg_rails' # Trumbowyg editor
 gem 'sanitize' #Sanitize info inside the wysiwig
 gem 'font-awesome-sass'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

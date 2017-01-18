@@ -54,9 +54,27 @@
 
   </div>
 
-  <%= vote.submit "Submit Votes", class: 'btn btn-primary pull-right' %>
+  <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content" style="width: 340px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Vote</h4>
+        </div>
+        <div class="modal-body">
+          <%= recaptcha_tags %>
+        </div>
+        <div class="modal-footer">
+          <%= vote.submit "vote", class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form">Submit vote</button>
 
 <% end %>
+
 
 <!-- <%= simple_form_for @vote do |f| %>
 

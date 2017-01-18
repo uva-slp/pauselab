@@ -16,7 +16,7 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new(vote_params)
-    if @vote.save
+    if verify_recaptcha model: @vote, attribute: :proposals  and @vote.save
       flash[:notice] = 'Your vote has been received!'
       cookies[:voted] = { :value => "already voted", :expires => Time.now + 2628000 }
       redirect_to root_path
