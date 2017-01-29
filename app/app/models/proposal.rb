@@ -12,7 +12,19 @@ class Proposal < ApplicationRecord
 
     enum status: [:unchecked, :approved]
 
+    def self.to_csv
+      self.gen_csv %w{id created_at title description essay cost author_name website_link comment_history_to_s number_of_votes status}
+    end
+
     def number_of_votes
       return self.votes.size
+    end
+
+    def author_name
+      user.fullname
+    end
+
+    def comment_history_to_s
+      proposal_comments.map {|comment| "#{comment.user.fullname}: #{comment.body}"}.join("; ")
     end
 end

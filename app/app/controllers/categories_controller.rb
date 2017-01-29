@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   def index
     @category = Category.new
     @categories = Category.all
+    index_respond_csv @categories, :categories
   end
 
   def show

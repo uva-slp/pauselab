@@ -8,6 +8,9 @@
   <li class="nav-item">
 		<%= link_to 'Change phase', admin_edit_phase_path, :class => (position == 'change_phase' ? 'nav-link active' : 'nav-link') %>
   </li>
+  <li class="nav-item">
+    <%= link_to 'Manage system data', admin_manage_data_path, :class => (position == 'manage_data' ? 'nav-link active' : 'nav-link') %>
+  </li>
 </ul>
 
 <br>

@@ -19,8 +19,11 @@ class User < ApplicationRecord
 		self.role ||= :resident
 	end
 
+	def self.to_csv
+		self.gen_csv %w{id created_at fullname email phone role}
+	end
+
   def fullname
     "#{first_name} #{last_name}"
   end
-
 end
