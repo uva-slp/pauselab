@@ -16,7 +16,14 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.where(status: :approved)
+    ideas = Idea.where(:status => :approved).select(
+      :id,
+      :address,
+      :created_at,
+      :lat,
+      :lng,
+      :category_id,
+      :description)
     render json: ideas
   end
 

@@ -22,10 +22,10 @@
   </div>
   <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %>
 
+  <div id="map-sidebar"></div>
   <div id="map" class="ideas-map-info"></div>
 
 </div>
-
 
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>

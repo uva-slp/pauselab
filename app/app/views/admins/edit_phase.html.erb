@@ -1,11 +1,31 @@
 
-<%= render :layout => 'dashboard', :locals => { title: 'Change Phase', position: 'change_phase' } do %>
+<%= render :layout => 'dashboard', :locals => { title: 'Iterations', position: 'iterations' } do %>
 
-  <p>currently on <strong><%= @phase.phase %></strong> (<%= time_ago_in_words @phase.updated_at %>)</p>
+  <div class="row">
 
-  <%= simple_form_for :change_phase, url: change_phase_path, method: :put do |f| %>
-    <%= f.input :phase, as: :select, collection: Phase.phases, selected: Phase.phases[@phase.phase], input_html: { name: 'phase' } %>
-    <%= f.button :submit, value: 'change phase', class: 'btn btn-primary' %>
-  <% end %>
+    <div class="col-md-3">
+      <% @iterations.each do |i| %>
+        <p><span><%= i.id %> - <%= i.get_interval %></span></p>
+      <% end %>
+    </div>
+
+    <div class="col-md-7">
+      <p>started on: <%= @current.created_at.strftime('%x') %></p>
+      <p><%= @current.get_interval %></p>
+      <p>current status: <%= @current.status %></p>
+      <p>
+        <% if @current.status == 'progress' %>
+          <%= link_to "End iteration", change_phase_path, {class: 'btn btn-primary'} %>
+        <% else %>
+          <%= link_to "Next phase", change_phase_path, {class: 'btn btn-primary'} %>
+        <% end %>
+      </p>
+    </div>
+
+
+  </div>
+
+
+
 
 <% end %>

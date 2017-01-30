@@ -28,8 +28,10 @@ class AdminsController < ApplicationController
 	end
 
 	def edit_phase
-		@phase = Phase.get_current
-		authorize! :edit, @phase
+		@current = Iteration.get_current
+		@iterations = Iteration.where.not :id => @current.id
+		# @phase = Phase.get_current
+		authorize! :edit, @current
 	end
 
 	def change_role
