@@ -100,6 +100,10 @@
           <% if can? :read, idea, :likes %>
             <td><%= idea.likes %></td>
           <% end %>
+          <% if can? :read, idea, :description %>
+            <td><%= social_share_button_tag(idea.description, :popup => "true") %></td>
+          <% end %>          
+          
 
           <!-- <% if can? :like, idea %>
             <td>

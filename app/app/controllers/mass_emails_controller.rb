@@ -4,6 +4,7 @@ class MassEmailsController < ApplicationController
   def index
     @mes = MassEmail.all
     authorize! :read, @mes  # TODO not sure why this doesn't work automatically
+    index_respond_csv @mes, :mass_emails
   end
 
   def new

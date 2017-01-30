@@ -2,33 +2,33 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-          @ideas = Idea.all
-          if params[:sort].present?
-              if params[:sort]=="likes"
-                @ideas = @ideas.sort_by &:likes
-                @ideas = @ideas.reverse!
-              end
-              if params[:sort]=="id"
-                @ideas = @ideas.sort_by &:id
-              end
-              if params[:sort]=="date"
-                @ideas = @ideas.sort_by &:created_at
-              end
-              if params[:sort]=="author_last_name"
-                @ideas = @ideas.sort_by &:last_name
-              end
-              if params[:sort]=="author_first_name"
-                @ideas = @ideas.sort_by &:first_name
-              end
-          end
-          @likes = Array.new
-          if cookies[:likes] != nil
-            @likes = JSON.parse(cookies[:likes])
-          end
+    @ideas = Idea.all
+    if params[:sort].present?
+      if params[:sort]=="likes"
+        @ideas = @ideas.order likes: :desc
+      end
+      if params[:sort]=="id"
+        @ideas = @ideas.order :id
+      end
+      if params[:sort]=="date"
+        @ideas = @ideas.order :created_at
+      end
+      if params[:sort]=="author_last_name"
+        @ideas = @ideas.order :last_name
+      end
+      if params[:sort]=="author_first_name"
+        @ideas = @ideas.order :first_name
+      end
+    end
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+    index_respond_csv @ideas, :ideas
   end
 
   def new
-          @idea = Idea.new
+    @idea = Idea.new
   end
 
   alias_method :idea_collection, :new

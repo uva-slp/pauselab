@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
 	def index_users
 		@users = User.all
 		authorize! :read, @users
+		index_respond_csv @users, :users
 	end
 
 	def show_user
@@ -36,6 +37,12 @@ class AdminsController < ApplicationController
 		authorize! :update, @user
 		@user.update_attribute :role, params[:role].to_i
 		render 'show_user'
+	end
+
+	def export_data
+		# the getter for the webpage with export options
+		# no backend logic, just links on the html
+		render 'export_data'
 	end
 
 end
