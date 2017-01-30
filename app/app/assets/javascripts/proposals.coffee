@@ -4,7 +4,6 @@
 
 $(document).ready ->
 
-	console.log 'here'
 
 	# $('.grid').masonry {
 	# 		itemSelector: '.item',

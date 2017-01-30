@@ -39,6 +39,7 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
+    @idea.iteration_id = Iteration.get_current.id
 		# code for verifying recaptcha - requires SSL, which would need effort
 		#unless verify_recaptcha or user_signed_in?
 		#	flash[:error] = 'Use RECAPTCHA'

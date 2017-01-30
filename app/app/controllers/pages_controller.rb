@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def go_home
-    case Phase.get_current.phase
+    case Iteration.get_current.status
     when 'ideas'
       redirect_to :action => :ideas
     when 'proposals'

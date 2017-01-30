@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
+$ ->
 
   # role_form = false
   # $(".role_form").hide()
@@ -14,3 +14,6 @@ $(document).ready ->
   #   else
   #     $(".role_form").hide()
   #     role_form = false
+
+   $("a[data-remote]").on "ajax:success", (e, data, status, xhr) ->
+     $('.iter-status').html data.status

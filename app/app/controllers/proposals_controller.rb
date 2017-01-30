@@ -22,6 +22,8 @@ class ProposalsController < ApplicationController
 	def create
     @proposal = Proposal.new proposal_params
     @proposal.user_id = current_user.id
+    @proposal.iteration_id = Iteration.get_current.id
+
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
 			redirect_to proposals_path

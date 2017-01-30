@@ -1,5 +1,6 @@
 class Blog < ApplicationRecord
   belongs_to :user
+  belongs_to :iteration
   validates :title, :body, presence: true
 
   def self.to_csv

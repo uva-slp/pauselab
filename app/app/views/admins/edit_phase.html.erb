@@ -3,29 +3,29 @@
 
   <div class="row">
 
-    <div class="col-md-3">
-      <% @iterations.each do |i| %>
-        <p><span><%= i.id %> - <%= i.get_interval %></span></p>
+    <div class="col-sm-3">
+      <% if @iterations.any? %>
+        <% @iterations.each do |i| %>
+          <p><span><%= i.id %>: <%= i.get_interval %></span></p>
+        <% end %>
+      <% else %>
+        <p>First iteration</p>
       <% end %>
     </div>
 
-    <div class="col-md-7">
+    <div class="col-sm-7">
       <p>started on: <%= @current.created_at.strftime('%x') %></p>
       <p><%= @current.get_interval %></p>
-      <p>current status: <%= @current.status %></p>
+      <p>current status: <span class="iter-status"><%= @current.status %></span></p>
       <p>
         <% if @current.status == 'progress' %>
-          <%= link_to "End iteration", change_phase_path, {class: 'btn btn-primary'} %>
+          <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration', remote: true} %>
         <% else %>
-          <%= link_to "Next phase", change_phase_path, {class: 'btn btn-primary'} %>
+          <%= link_to "Next phase", admin_next_phase_path, {class: 'btn btn-primary', remote: true} %>
         <% end %>
       </p>
     </div>
 
-
   </div>
-
-
-
 
 <% end %>

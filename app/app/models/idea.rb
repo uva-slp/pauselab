@@ -1,6 +1,7 @@
 class Idea < ApplicationRecord
 
 	belongs_to :category
+	belongs_to :iteration
 
 	validates :first_name, :last_name, :phone, :email, :description, :address, :lat, :lng, :category_id, presence: true
 

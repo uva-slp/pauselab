@@ -21,6 +21,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    @blog.iteration_id = Iteration.get_current.id
     if @blog.save
       flash[:notice] = 'your blog was saved'
       redirect_to blogs_path

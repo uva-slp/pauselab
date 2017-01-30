@@ -27,8 +27,34 @@ class AdminsController < ApplicationController
 		render 'edit_phase'
 	end
 
+# ran into issues cmoparing strings to symbols
+	def next_phase
+		@current = Iteration.get_current
+		@current.status = case @current.status
+				when "ideas" then "proposals"
+				when "proposals" then "voting"
+				when "voting" then "progress"
+				else "progress"
+			end
+		@current.save
+		render json: {:status => @current.status}
+	end
+
+	def end_phase
+		prev = Iteration.get_current
+		if prev.status == "progress"
+			prev.ended = Time.now
+			prev.status = "ended"
+			prev.save
+			@current = Iteration.new
+			@current.save
+		end
+		render 'edit_phase'
+	end
+
 	def edit_phase
 		@current = Iteration.get_current
+		puts @current.to_yaml
 		@iterations = Iteration.where.not :id => @current.id
 		# @phase = Phase.get_current
 		authorize! :edit, @current
