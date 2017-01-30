@@ -16,7 +16,7 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.where(:status => :approved).select(
+    ideas = Idea.where(:status => :approved, :iteration_id => Iteration.get_current.id).select(
       :id,
       :address,
       :created_at,

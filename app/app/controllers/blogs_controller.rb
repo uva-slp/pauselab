@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @blogs = Blog.all.order(created_at: :desc)
+    @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
     index_respond_csv @blogs, :blogs
   end
 

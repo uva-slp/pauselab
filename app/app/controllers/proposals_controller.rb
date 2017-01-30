@@ -3,9 +3,9 @@ class ProposalsController < ApplicationController
 
   def index
     if params[:sort].present?
-      @proposals = Proposal.order params[:sort]
+      @proposals = Proposal.where(:iteration_id => Iteration.get_current.id).order params[:sort]
     else
-      @proposals = Proposal.all
+      @proposals = Proposal.where(:iteration_id => Iteration.get_current.id)
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
     index_respond_csv @proposals, :proposals

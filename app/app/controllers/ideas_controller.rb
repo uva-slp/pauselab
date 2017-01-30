@@ -2,7 +2,7 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @ideas = Idea.all
+    @ideas = Idea.where(:iteration_id => Iteration.get_current.id)
     if params[:sort].present?
       if params[:sort]=="likes"
         @ideas = @ideas.order likes: :desc
