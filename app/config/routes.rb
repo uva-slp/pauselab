@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'test_email' => "pages#test_email"
 
   # makes RESTful routes for our models
-  resources :categories, :blogs, :mass_emails, :votes
+  resources :categories, :blogs, :mass_emails, :votes, :landingpages
   resources :proposals do
     resources :proposal_comments
   end
