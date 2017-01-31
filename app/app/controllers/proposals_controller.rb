@@ -7,7 +7,8 @@ class ProposalsController < ApplicationController
     else
       @proposals = Proposal.all
     end
-		@proposals = @proposals.status(params[:status]) if params[:status].present?
+		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
+    index_respond_csv @proposals, :proposals
 	end
 
 	def new

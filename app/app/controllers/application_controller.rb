@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
     end
+
+    def index_respond_csv scoped_objs, name
+      respond_to do |format|
+        format.html
+        format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
+      end
+    end
 end

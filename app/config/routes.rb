@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   post '/admin/user/:num', to: 'admins#change_role', as: 'change_role'
   get '/admin/edit_phase', to: 'admins#edit_phase'
   put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
+  get '/admin/manage_data', to: 'admins#manage_data'
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
