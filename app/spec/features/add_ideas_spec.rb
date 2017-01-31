@@ -1,8 +1,8 @@
 require "rails_helper"
 
 feature "adding ideas", :type => :feature do
-  scenario "allow a resident to add a rental" do
-    # create_list :category, 3 # create 3 sample categories
+  scenario "allow a resident to add an idea" do
+    create_list :category, 3 # create 3 sample categories
     # puts Category.all.select(:id, :name).to_yaml
     idea = build :idea, category_id: Category.last.id
     visit new_idea_path
