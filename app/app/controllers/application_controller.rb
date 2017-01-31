@@ -12,11 +12,9 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
 
-  # Catch all CanCan errors and alert the user of the exception
-  rescue_from CanCan::Unauthorized do | exception |
-    redirect_to root_url, alert: exception.message
-    #puts exception.action
-    #puts exception.subject
+  # catch unauthorization exception message
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
   end
 
   protected

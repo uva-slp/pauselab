@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+
   load_and_authorize_resource
 
   def index
@@ -40,16 +41,11 @@ class IdeasController < ApplicationController
 	def create
 		@idea = Idea.new(idea_params)
     @idea.iteration_id = Iteration.get_current.id
-		# code for verifying recaptcha - requires SSL, which would need effort
-		#unless verify_recaptcha or user_signed_in?
-		#	flash[:error] = 'Use RECAPTCHA'
-		#	render :idea_collection
-		#end
-		#
 		if @idea.save
 			flash[:notice] = 'Your idea was sent.'
 			redirect_to ideas_path
 		else
+      puts @idea.errors.full_messages.to_yaml
 			render 'new'
 		end
 	end
