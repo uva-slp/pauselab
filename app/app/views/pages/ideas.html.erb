@@ -1,7 +1,7 @@
 
 <style media="screen">
-  .marker-info {
-    /*border: 1px solid black;*/
+  #new-idea-btn {
+    margin: 12px;
   }
 </style>
 
@@ -10,17 +10,17 @@
     <br/>
 <% end %>
 
-<br/>
+<!-- <br/> -->
 
 <div>
   <h2 class="page-header">Idea Collection</h2>
-  <div>
+  <!-- <div>
     <h3>How would you spend $15,000 to improve your neighborhood?</h3>
     <p>Over the next two months we are inviting everyone in Charlottesville to share ideas for improving their neighborhood.  With our focus on the south side of Charlottesville, we are specifically interested in hearing ideas for the Belmont and Ridge St. neighborhoods.</p>
     <p>No matter how small or large, vague or specific, we want to hear from YOU.  Send us your ideas by filling out the form below and have a say in making your neighborhood better.</p>
     <p>Remember, we have $15000 for you to spend on public art projects and programs.</p>
-  </div>
-  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %>
+  </div> -->
+  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
 
   <div id="map-sidebar"></div>
   <div id="map" class="ideas-map-info"></div>

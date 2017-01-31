@@ -13,8 +13,16 @@ class ApplicationController < ActionController::Base
   end
 
   # catch unauthorization exception message
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to root_url, :alert => exception.message
+  # end
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      # format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.html { redirect_to main_app.root_url, notice: "current user: #{current_user}" }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
   end
 
   protected

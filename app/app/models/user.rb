@@ -15,7 +15,6 @@ class User < ApplicationRecord
 
 	after_initialize :set_default_role, :if => :new_record?
 	def set_default_role
-		#self.role ||= :artist		# TODO when new user signs up, it should be artist
 		self.role ||= :resident
 	end
 
