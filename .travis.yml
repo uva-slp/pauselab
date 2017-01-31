@@ -1,28 +1,53 @@
+# language: ruby
+#
+# rvm:
+#     - 2.3.1
+#
+# services:
+#     - mysql
+#
+# gemfile: app/Gemfile
+#
+# before_script:
+#     - "mysql -u root -e \"create database slp_pauselab_test;\""
+#     - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
+#     - cd app
+#
+# script:
+#     - ls
+#     - bundle exec bin/rails db:migrate RAILS_ENV=test
+#     - bundle exec rake
+#
+# notifications:
+#     email:
+#         on_success: never
+#         on_failure: always
+#     notifications:
+#         slack: slp-pauselab:TaS7lyjK15WmuNh3p44WYvyS
+#
+# sudo: false
+
+
 language: ruby
-
-rvm:
-    - 2.3.1
-
+sudo: true
 services:
-    - mysql
-
+  - mysql
+rvm:
+  - 2.3.1
+script:
+  - echo mysql-apt-config mysql-apt-config/select-server select mysql-5.7 | sudo debconf-set-selections
+  - wget http://dev.mysql.com/get/mysql-apt-config_0.7.3-1_all.deb
+  - sudo dpkg --install mysql-apt-config_0.7.3-1_all.deb
+  - sudo apt-get update -q
+  - sudo apt-get install -q -y -o Dpkg::Options::=--force-confnew mysql-server
+  - sudo mysql_upgrade
+  - cd app
+  - bin/rails db:schema:load RAILS_ENV=test
+  - bundle exec rspec spec
 gemfile: app/Gemfile
-
-before_script:
-    - "mysql -u root -e \"create database slp_pauselab_test;\""
-    - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
-    - cd app
-
-script: 
-    - ls 
-    - bundle exec bin/rails db:migrate RAILS_ENV=test
-    - bundle exec rake
-
 notifications:
-    email:
-        on_success: never
-        on_failure: always
-    notifications:
-        slack: slp-pauselab:TaS7lyjK15WmuNh3p44WYvyS
-
-sudo: false
+  email:
+    on_success: never
+    on_failure: change
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
