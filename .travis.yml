@@ -42,7 +42,7 @@ script:
   # - sudo apt-get install -q -y -o Dpkg::Options::=--force-confnew mysql-server
   # - sudo mysql_upgrade
   - cd app
-  - bin/rails db:schema:load RAILS_ENV=test
+  - bundle exec bin/rails db:migrate RAILS_ENV=test
   - bundle exec rspec spec
 gemfile: app/Gemfile
 notifications:
