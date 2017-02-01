@@ -28,7 +28,27 @@ FactoryGirl.define do
     last_name {Faker::Name.last_name}
     phone {Faker::Number.number(10)}
     password {Faker::Internet.password}
-    role "admin"
+    # role "admin"
+
+    factory :admin do
+        after(:create, :build) {|user| user.change_role(:admin)}
+    end
+    factory :artist do
+        after(:create, :build) {|user| user.change_role(:artist)}
+    end
+    factory :super_artist do
+        after(:create, :build) {|user| user.change_role(:super_artist)}
+    end
+    factory :steerer do
+        after(:create, :build) {|user| user.change_role(:steerer)}
+    end
+    factory :moderator do
+        after(:create, :build) {|user| user.change_role(:moderator)}
+    end
+    factory :resident do
+        after(:create, :build) {|user| user.change_role(:resident)}
+    end
+
   end
 
   factory :proposal do

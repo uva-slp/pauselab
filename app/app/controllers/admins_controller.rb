@@ -49,13 +49,18 @@ class AdminsController < ApplicationController
 			@current = Iteration.new
 			@current.save
 		end
-		render 'edit_phase'
+		render json: {current: @current, prev: prev}
 	end
 
 	def edit_phase
 		@current = Iteration.get_current
-		puts @current.to_yaml
-		@iterations = Iteration.where.not :id => @current.id
+		@iterations = Iteration.where :status => "ended"
+		@info = {
+			:ideas => @current.ideas.count,
+			:votes => @current.votes.count,
+			:blogs => @current.blogs.count,
+			:proposals => @current.proposals.count,
+		}
 		# @phase = Phase.get_current
 		authorize! :edit, @current
 	end

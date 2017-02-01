@@ -1,7 +1,10 @@
 
-<%= render :layout => 'dashboard', :locals => { title: 'Iterations', position: 'iterations' } do %>
+<%= render :layout => 'dashboard', :locals => { title: '', position: 'iterations' } do %>
 
-  <div class="row">
+  <%= react_component 'IterationManager', { data: @iterations, current: @current, info: @info } %>
+
+
+  <!-- <div class="row">
 
     <div class="col-sm-3">
       <% if @iterations.any? %>
@@ -26,6 +29,6 @@
       </p>
     </div>
 
-  </div>
+  </div> -->
 
 <% end %>

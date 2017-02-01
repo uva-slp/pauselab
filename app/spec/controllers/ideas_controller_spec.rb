@@ -3,7 +3,7 @@ require 'rails_helper'
 describe IdeasController, type: :controller do
 
   before :each do
-    user = sign_in (create :user)
+    user = sign_in (create :admin)
   end
 
   describe "when creating an idea" do

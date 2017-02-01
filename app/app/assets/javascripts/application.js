@@ -4,7 +4,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require social-share-button
-//= require_tree .
+//= require react
+//= require react_ujs
+//= require components
 //= require trumbowyg/trumbowyg
 //asda//= require plugins/upload/trumbowyg.upload.js
 
