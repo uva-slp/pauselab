@@ -11,7 +11,7 @@ feature "adding ideas", :type => :feature do
     fill_in 'Email', with: idea.email
     fill_in 'Phone', with: idea.phone
     fill_in 'Description', with: idea.description
-    select idea.category.name, from: ' Category'
+    select idea.category.name, from: ' Category', :match => :first
 
     # a bit of a cop-out but simulating js is rather difficult for now
     first('input#idea_lat', visible: false).set idea.lat
