@@ -12,7 +12,8 @@ class Iteration extends React.Component {
   }
 
   getDateFormatted(date) {
-    return (date.getMonth() + 1) + '/' + date.getDate();
+    // return (date.getMonth() + 1) + '/' + date.getDate();
+    return this.props.date.id + '. ' + date.getFullYear();
   }
 
   getURL() {
