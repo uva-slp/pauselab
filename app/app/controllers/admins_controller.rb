@@ -27,7 +27,7 @@ class AdminsController < ApplicationController
 		render 'edit_phase'
 	end
 
-# ran into issues cmoparing strings to symbols
+# ran into issues comparing strings to symbols
 	def next_phase
 		@current = Iteration.get_current
 		@current.status = case @current.status
@@ -76,6 +76,51 @@ class AdminsController < ApplicationController
 		# the getter for the webpage with export options
 		# no backend logic, just links on the html
 		render 'export_data'
+	end
+
+	require 'tempfile'
+	require 'zip'
+
+	def export_zip
+
+		@iteration = Iteration.find params[:num]
+
+		ideas_file = Tempfile.new(['ideas', '.txt'])
+		proposals_file = Tempfile.new(['proposals', '.txt'])
+		blogs_file = Tempfile.new(['blogs', '.txt'])
+
+		zip = Tempfile.new(["export", ".zip"])
+
+		begin
+
+			ideas_file.write @iteration.ideas.to_csv
+			ideas_file.flush
+
+			proposals_file.write @iteration.proposals.to_csv
+			proposals_file.flush
+
+			blogs_file.write @iteration.blogs.to_csv
+			blogs_file.flush
+
+			Zip::OutputStream.open(zip) { |zos| }
+			Zip::File.open(zip.path, Zip::File::CREATE) do |zip|
+				#Put files in here
+				zip.add("ideas.csv", ideas_file.path)
+				zip.add("proposals.csv", proposals_file.path)
+				zip.add("blogs.csv", blogs_file.path)
+			end
+
+			zip_data = File.read(zip.path)
+			send_data(zip_data, :type => 'application/zip', :filename => "iter_export_#{@iteration.ended}.zip")
+
+		ensure
+			ideas_file.close
+			ideas_file.unlink
+
+			zip.close
+			zip.unlink
+		end
+
 	end
 
 end

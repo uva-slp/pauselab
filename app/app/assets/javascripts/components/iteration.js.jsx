@@ -4,6 +4,7 @@ class Iteration extends React.Component {
 
   constructor(props) {
     super(props);
+    this.getURL = this.getURL.bind(this);
   }
 
   getInterval(created_at, ended) {
@@ -14,10 +15,17 @@ class Iteration extends React.Component {
     return (date.getMonth() + 1) + '/' + date.getDate();
   }
 
+  getURL() {
+    return "/admin/export_zip/" + this.props.data.id;
+    // $.get("/admin/export_zip/" + this.props.data.id, data => {
+    //   console.log(data);
+    // });
+  }
+
   render() {
     return (
       <div className="iteration">
-        <span>{this.getInterval(this.props.data.created_at, this.props.data.ended)}</span>
+        <a className="btn btn-outline-primary" href={this.getURL()}>{this.getInterval(this.props.data.created_at, this.props.data.ended)}</a>
       </div>
     )
   }

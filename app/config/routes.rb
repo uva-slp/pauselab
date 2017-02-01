@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get '/admin/manage_data', to: 'admins#manage_data'
   get '/admin/next_phase', to: 'admins#next_phase'
   get '/admin/end_phase', to: 'admins#end_phase'
+  get '/admin/export_zip/:num', to: 'admins#export_zip'
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'

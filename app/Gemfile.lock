@@ -208,6 +208,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    rubyzip (1.2.0)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -292,6 +293,7 @@ DEPENDENCIES
   react-rails
   recaptcha
   rspec-rails
+  rubyzip
   sanitize
   sass-rails (~> 5.0)
   simple_form

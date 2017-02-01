@@ -10,7 +10,6 @@ class IterationControl extends React.Component {
       updated_at: this.props.data.updated_at,
       info: this.props.info
     };
-    console.log(this.props.info)
     this.nextPhase = this.nextPhase.bind(this);
     this.endPhase = this.endPhase.bind(this);
   }
@@ -39,7 +38,7 @@ class IterationControl extends React.Component {
           updated_at: data.current.updated_at
         });
         self.props.onEnd(data.prev);
-        self.setState({ideas: 0, votes: 0, blogs: 0, proposals: 0});
+        self.setState({info: {ideas: 0, votes: 0, blogs: 0, proposals: 0}});
       });
     }
   }
@@ -50,12 +49,14 @@ class IterationControl extends React.Component {
     if (this.state.current != "progress") {
       phase_btn = <button
         className="btn btn-primary phase-btn"
+        data-toggle="tooltip"
+        title="toggle next phase"
         onClick={this.nextPhase}>next phase</button>
     } else {
       phase_btn = <button
         className="btn btn-primary phase-btn"
         data-toggle="tooltip"
-        title='this will start a new iteration'
+        title='start a new iteration'
         onClick={this.endPhase}>end iteration</button>
     }
 
