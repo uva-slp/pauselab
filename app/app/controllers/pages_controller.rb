@@ -16,8 +16,19 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.where(status: :approved)
+    # filter for approved ideas and select public facing data
+    ideas = Idea.where(status: :approved).select(
+      "id", "category_id", "description", "likes", "created_at", "updated_at", "lat", "lng", "address"
+    )
     render json: ideas
+  end
+
+  def get_categories
+    ret_cat = {}
+    categories = Category.all.each do |cat|
+      ret_cat[cat.id] = if cat.icon.present? then cat.icon.url else "" end
+    end
+    render json: ret_cat
   end
 
   def ideas
