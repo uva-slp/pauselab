@@ -53,18 +53,18 @@ FactoryGirl.define do
 
   factory :proposal do
     association :iteration
-    cost {Faker::Name.number(4)}
+    cost {Faker::Number.number(4)}
     description {Faker::Hipster.paragraph}
     essay {Faker::Hipster.paragraph}
     website_link "http://aaronbloomfield.github.io/slp/docs/index.html"
-    artist_fees {Faker::Name.number(3)}
-    project_materials {Faker::Name.between(10, 200)}
-    printing {Faker::Name.between(10, 200)}
-    marketing {Faker::Name.between(10, 200)}
-    documentation {Faker::Name.between(10, 200)}
-    volunteer {Faker::Name.between(10, 200)}
-    insurance {Faker::Name.between(10, 200)}
-    events {Faker::Name.between(10, 200)}
+    artist_fees {Faker::Number.number(3)}
+    project_materials {Faker::Number.between(10, 200)}
+    printing {Faker::Number.between(10, 200)}
+    marketing {Faker::Number.between(10, 200)}
+    documentation {Faker::Number.between(10, 200)}
+    volunteer {Faker::Number.between(10, 200)}
+    insurance {Faker::Number.between(10, 200)}
+    events {Faker::Number.between(10, 200)}
     title {Faker::Hipster.sentence}
   end
 
@@ -72,7 +72,7 @@ FactoryGirl.define do
     association :iteration
     association :user
     title {Faker::Hipster.sentence}
-    body {Faker::Hispter.paragraph}
+    body {Faker::Hipster.paragraph}
   end
 
   factory :vote do
