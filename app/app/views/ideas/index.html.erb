@@ -100,6 +100,11 @@
           <% if can? :read, idea, :likes %>
             <td><%= idea.likes %></td>
           <% end %>
+          <% if can? :read, idea, :description %>
+            <td><%= social_share_button_tag(idea.description)%></td>
+
+          <% end %>          
+          
 
           <!-- <% if can? :like, idea %>
             <td>
@@ -109,6 +114,8 @@
                 <a href=<%= idea_like_path(idea) %> ><i class="fa fa-thumbs-o-down"></i></a>
               <% end %>
             </td>
+            
+
           <% end %> -->
 
           <% if can? :show, idea %>
