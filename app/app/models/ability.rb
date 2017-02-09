@@ -20,9 +20,7 @@ class Ability
       can :manage, Proposal
       can [:create, :update], Idea
       can :create, ProposalComment
-      can :manage, ProposalComment do |comment|
-        comment.try :user == user   # comments owned by user
-      end
+      can :manage, ProposalComment, user: user
 
     elsif user.super_artist?
       can :create, [Blog, Proposal, Idea, Vote]
@@ -32,12 +30,8 @@ class Ability
 
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
-      can :manage, Blog do |blog|
-        blog.try(:user) == user   # blogs owned by user
-      end
-      can :manage, Proposal do |proposal|
-        proposal.try(:user) == user   # proposals owned by user
-      end
+      can :manage, Blog, user: user
+      can :manage, Proposal, user: user
 
     elsif user.artist?
       can :create, [Proposal, Idea, Vote]
@@ -46,15 +40,12 @@ class Ability
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: :approved
-      can :manage, Proposal do |proposal|
-        proposal.try :user == user  # proposals owned by user
-      end
+      can :manage, Proposal, user: user
 
     else
       can :create, [Idea, Vote]
       can :read, [Blog, Category]
       can :read, Proposal, status: :approved
-      cannot :read, Proposal
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: :approved

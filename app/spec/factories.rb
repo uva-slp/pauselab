@@ -53,6 +53,7 @@ FactoryGirl.define do
 
   factory :proposal do
     association :iteration
+    association :user
     cost {Faker::Number.number(4)}
     description {Faker::Hipster.paragraph}
     essay {Faker::Hipster.paragraph}
@@ -65,7 +66,7 @@ FactoryGirl.define do
     volunteer {Faker::Number.between(10, 200)}
     insurance {Faker::Number.between(10, 200)}
     events {Faker::Number.between(10, 200)}
-    title {Faker::Hipster.sentence}
+    title {Faker::Hipster.word} # title has a length limit
   end
 
   factory :blog do
