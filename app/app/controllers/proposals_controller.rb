@@ -8,7 +8,7 @@ class ProposalsController < ApplicationController
       @proposals = Proposal.where(:iteration_id => Iteration.get_current.id)
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
-    index_respond_csv @proposals, :proposals
+    index_respond @proposals, :proposals
 	end
 
 	def new

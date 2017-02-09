@@ -56,8 +56,4 @@ RSpec.describe Idea, type: :model do
     idea = build(:idea, :description => '')
     expect(idea).to_not be_valid
   end
-
-
-
-
 end

@@ -4,6 +4,7 @@ describe IdeasController, type: :controller do
 
   before :each do
     user = sign_in (create :admin)
+    @iteration = create :iteration
   end
 
   describe "when getting idea index" do
@@ -17,9 +18,16 @@ describe IdeasController, type: :controller do
       expect(response).to render_template('index')
     end
     it "loads all ideas into @ideas" do
-      idea = create :idea # TODO for some reason create_list does not pass test
+      idea = create_list(:idea, 10, iteration: @iteration)
       get :index
-      expect(assigns(:ideas)).to match_array([idea])
+      expect(assigns(:ideas)).to match_array(idea)
+    end
+    it "does not show unapproved ideas to residents" do
+      user = sign_in (create :resident)
+      idea1 = create_list(:idea, 3, iteration: @iteration, status: :approved)
+      idea2 = create_list(:idea, 3, iteration: @iteration, status: :unchecked)
+      get :index
+      expect(assigns(:ideas)).to match_array(idea1)
     end
   end
 
