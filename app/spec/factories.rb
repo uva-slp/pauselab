@@ -78,14 +78,7 @@ FactoryGirl.define do
 
   factory :vote do
     association :iteration
-    factory :vote_with_proposals do
-      transient do
-        languages_count 5
-      end
-      after(:create) do |profile, evaluator|
-        create_list(:proposal, evaluator.languages_count, votes: [vote])
-      end
-    end
+    proposals {create_list(:proposal, 3, iteration: iteration)}
   end
 
 end

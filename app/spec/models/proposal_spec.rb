@@ -13,4 +13,8 @@ RSpec.describe Proposal, type: :model do
     proposal = build :proposal, :description => ''
     expect(proposal).to_not be_valid
   end
+  it "is invalid without title" do
+    proposal = build :proposal, :title => ''
+    expect(proposal).to_not be_valid
+  end
 end
