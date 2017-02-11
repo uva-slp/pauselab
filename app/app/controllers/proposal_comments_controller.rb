@@ -1,6 +1,6 @@
 class ProposalCommentsController < ApplicationController
   load_and_authorize_resource
-  before_filter :locate_proposal
+  before_action :locate_proposal
 
   def index
     @comments = @proposal.proposal_comments

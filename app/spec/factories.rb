@@ -67,6 +67,21 @@ FactoryGirl.define do
     insurance {Faker::Number.between(10, 200)}
     events {Faker::Number.between(10, 200)}
     title {Faker::Hipster.word} # title has a length limit
+
+    factory :proposal_with_comments do
+      transient do
+        comments_count 5
+      end
+      after(:create) do |proposal, evaluator|
+        create_list(:proposal_comment, evaluator.comments_count, proposal: proposal)
+      end
+    end
+  end
+
+  factory :proposal_comment do
+    association :proposal
+    association :user
+    body {Faker::Hipster.sentence}
   end
 
   factory :blog do
