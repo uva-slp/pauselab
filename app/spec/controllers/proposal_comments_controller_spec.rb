@@ -14,7 +14,7 @@ describe ProposalCommentsController, type: :controller do
     end
     it "loads comments into @comments" do
       get :index, params: {proposal_id: @proposal.id}
-      expect(assigns(:comments)).to match_array(@proposal.proposal_comments)
+      expect(assigns(:proposal_comments)).to match_array(@proposal.proposal_comments)
     end
     it "does not show for residents" do
       user = sign_in(create :resident)
