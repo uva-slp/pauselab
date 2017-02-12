@@ -2,10 +2,7 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @ideas = @ideas.where(:iteration_id => Iteration.get_current.id)
-    unless user_has_admin_access
-      @ideas = @ideas.select(:id,:address,:created_at,:lat,:lng,:category_id,:description)
-    end
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"
         @ideas = @ideas.order likes: :desc
@@ -55,7 +52,7 @@ class IdeasController < ApplicationController
 	end
 
 	def show
-		@idea = Idea.find(params[:id])
+		@idea = filter_idea_columns(Idea.where(:id => params[:id])).first
 	end
 
   # TODO: make this into an AJAX call
@@ -137,4 +134,10 @@ class IdeasController < ApplicationController
 	    	)
 	  end
 
+    def filter_idea_columns ideas
+      unless user_has_admin_access
+        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
+      end
+      return ideas
+    end
 end

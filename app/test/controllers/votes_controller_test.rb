@@ -10,6 +10,10 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
+    # TODO fix with new iteration stuff
+    sign_in_as :admin
+    put change_phase_path, :params => {:phase => Phase.phases[:voting]} # switch to voting phase
+
     sign_in_as :resident
     get votes_url
     assert_response :success

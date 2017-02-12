@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
-      # format.html { redirect_to main_app.root_url, notice: exception.message }
-      format.html { redirect_to main_app.root_url, notice: "current user: #{current_user}" }
+      format.html { redirect_to main_app.root_url, notice: exception.message }
       format.js   { head :forbidden, content_type: 'text/html' }
+      puts exception.backtrace
     end
   end
 
@@ -38,4 +38,5 @@ class ApplicationController < ActionController::Base
     def user_has_admin_access
       return ((not current_user.nil?) and (current_user.admin? or current_user.moderator?))
     end
+    helper_method :user_has_admin_access
 end

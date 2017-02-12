@@ -25,8 +25,8 @@ class Ability
     elsif user.super_artist?
       can :create, [Blog, Proposal, Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: :approved
-      can [:like, :show, :read], Idea, status: :approved
+      can :read, Proposal, status: Proposal.statuses[:approved]
+      can [:like, :show, :read], Idea, Idea.statuses[:approved]
 
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
@@ -36,19 +36,19 @@ class Ability
     elsif user.artist?
       can :create, [Proposal, Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: :approved
+      can :read, Proposal, status: Proposal.statuses[:approved]
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
-      can [:like, :show, :read], Idea, status: :approved
+      can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
       can :manage, Proposal, user: user
 
     else
       can :create, [Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: :approved
+      can :read, Proposal, status: Proposal.statuses[:approved]
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
-      can [:like, :show, :read], Idea, status: :approved
+      can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
     end
 
     # adjust permissions based on phase

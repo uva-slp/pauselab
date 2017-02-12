@@ -3,18 +3,16 @@ class ProposalCommentsController < ApplicationController
   before_action :locate_proposal
 
   def index
-    @comments = @proposal.proposal_comments
-    authorize! :read, :proposal_comments # TODO handle index automatically
+    @proposal_comments = @proposal.proposal_comments
   end
 
   def new
-    @comment = ProposalComment.new
   end
 
   def create
-    @comment = @proposal.proposal_comments.create(proposal_comment_params)
-    @comment.user_id = current_user.id if current_user
-    if @comment.save
+    @proposal_comment = @proposal.proposal_comments.create(proposal_comment_params)
+    @proposal_comment.user_id = current_user.id if current_user
+    if @proposal_comment.save
       flash[:notice] = 'Your comment was posted.'
     else
       flash[:error] = 'There was an error posting your comment.'
@@ -32,7 +30,7 @@ class ProposalCommentsController < ApplicationController
 
   def update
     locate_comment
-    if @comment.update proposal_comment_params
+    if @proposal_comment.update proposal_comment_params
       flash[:notice] = 'Comment updated.'
     else
       flash[:error] = 'Comment failed to update.'
@@ -42,7 +40,7 @@ class ProposalCommentsController < ApplicationController
 
   def destroy
     locate_comment
-    if @comment.destroy
+    if @proposal_comment.destroy
       flash[:notice] = 'Comment removed.'
     else
       flash[:error] = 'Comment failed to remove.'
@@ -60,6 +58,6 @@ class ProposalCommentsController < ApplicationController
   end
 
   def locate_comment
-    @comment = @proposal.proposal_comments.find(params[:id])
+    @proposal_comment = @proposal.proposal_comments.find(params[:id])
   end
 end

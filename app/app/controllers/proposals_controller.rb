@@ -87,4 +87,10 @@ class ProposalsController < ApplicationController
 	    	)
 	  end
 
+    #def filter_proposal_columns proposals
+    #  unless user_has_admin_access
+    #    return proposals.select(:id,:cost,:description,:essay,:created_at,:updated_at,:website_link,:title)
+    #  end
+    #  return proposals
+    #end
 end
