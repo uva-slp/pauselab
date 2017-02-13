@@ -15,7 +15,7 @@
       <% if can? :read, @idea, :description %>
         <p><%= @idea.description %></p>
       <% end %>
-      <% if can? :read, idea, :description %>
+      <% if can? :read, @idea, :description %>
         <td><%= social_share_button_tag("Pauselab - BeCville: " + idea.description, :popup => "true")%></td>
       <% end %>      
 
