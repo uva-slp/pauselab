@@ -19,6 +19,19 @@ class ApplicationController < ActionController::Base
     #puts exception.subject
   end
 
+  def after_sign_in_path_for(resource)
+  stored_location_for(resource) ||
+    if resource.is_a?(User) && resource.role == "admin"
+       "/admin"
+    elsif  resource.is_a?(User) && resource.role == "artist"
+      "/artist"
+    elsif  resource.is_a?(User) && resource.role == "steerer"
+      "/steering"
+    else
+      super
+    end
+end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])

@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   # static pages routes
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
   get '/about', to: 'pages#about_page', as: 'about'
+  get '/artist', to: 'pages#artist_home', as: 'artist_home'
+  get '/steering', to: 'pages#steering_landing', as: 'steering_landing'
   get '/pages/ideas_json', to: 'pages#get_ideas'
 
 
