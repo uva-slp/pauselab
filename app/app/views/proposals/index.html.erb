@@ -98,7 +98,7 @@
                    data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         <% if can? :read, proposal, :title %>
-	        <td><%= social_share_button_tag(proposal.title) %></td>
+	        <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
         <% end %>        
       </tr>
       <% end %>

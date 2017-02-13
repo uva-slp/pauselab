@@ -1,7 +1,12 @@
 
 window.initMap = ->
 
-  $.get 'ideas_json', (ideas) ->
+  g = {}
+  $.when(($.get 'ideas_json', (ideas) -> g.ideas = ideas),
+  ($.get 'categories_json', (categories) -> g.categories = categories)).then ->
+
+    ideas = g.ideas   # hash of publically visible fields of each idea
+    categories = g.categories # maps category_id -> icon url (empty string if not present)
 
     pos =
       lat: 38.0293
@@ -28,6 +33,15 @@ window.initMap = ->
       pos =
         lat: parseFloat(idea.lat)
         lng: parseFloat(idea.lng)
+
+      defaultUrl = "https://maxcdn.icons8.com/Color/PNG/512/Maps/marker-512.png"
+      img =
+        url: categories[idea.category_id] || defaultUrl
+        # size: new (google.maps.Size)(100, 100)
+        # origin: new (google.maps.Point)(10, 15)
+        # anchor: new (google.maps.Point)(0, 32)
+        scaledSize: new (google.maps.Size)(50, 50)
+
       marker = new (google.maps.Marker)(
           position: pos
           # icon: img

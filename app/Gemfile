@@ -55,6 +55,7 @@ gem 'sanitize' #Sanitize info inside the wysiwig
 gem 'font-awesome-sass'
 gem 'social-share-button', '~> 0.1.6'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'responders' #AJAX respond_to
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

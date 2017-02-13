@@ -241,6 +241,7 @@ DEPENDENCIES
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-assets-tether (>= 1.1.0)!
   recaptcha
+  responders
   sanitize
   sass-rails (~> 5.0)
   simple_form
