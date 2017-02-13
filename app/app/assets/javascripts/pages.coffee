@@ -19,6 +19,7 @@ window.initMap = ->
         streetViewControl: false
       )
     map.controls[google.maps.ControlPosition.LEFT_TOP].push document.getElementById 'map-sidebar'
+    map.controls[google.maps.ControlPosition.RIGHT_TOP].push document.getElementById 'new-idea-btn'
     $('#map-sidebar').hide()
     map.addListener 'click', ->
       $('#map-sidebar').fadeOut 200

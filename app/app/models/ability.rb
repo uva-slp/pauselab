@@ -2,103 +2,60 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # NOTE using CanCan 2.0, some of the below comments are deprecated
-    # Define abilities for the passed in user here. For example:
-    #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
-    #
-    # The first argument to `can` is the action you are giving the user
-    # permission to do.
-    # If you pass :manage it will apply to every action. Other common actions
-    # here are :read, :create, :update and :destroy.
-    #
-    # The second argument is the resource the user can perform the action on.
-    # If you pass :all it will apply to every resource. Otherwise pass a Ruby
-    # class of the resource.
-    #
-    # The third argument is an optional hash of conditions to further filter the
-    # objects.
-    # For example, here the user can only update published articles.
-    #
-    #   can :update, Article, :published => true
-    #
-    # See the wiki for details:
-    # https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
-    # if user not logged in, create guest user
     user ||= User.new
-    #if user.nil?
-      #user = User.new
-      #user.role = :resident
-    #end
+    can :manage, :pages
 
     # define aliases
-    alias_action :idea_collection, :to => :create
-
-    # globally accessible actions
-    can :access, :pages
+    # alias_action :idea_collection, :to => :create
 
     if user.admin?
-      can :access, :all
+      can :manage, :all
+
     elsif user.moderator?
-      can :access, [:blogs, :categories, :ideas, :proposals, :mass_emails, :votes, :proposal_comments]
+      can :manage, [Blog, Category, Idea, Proposal, MassEmail, Vote, ProposalComment]
+
     elsif user.steerer?
-      can :read, [:blogs, :categories, :ideas, :proposals, :votes, :proposal_comments]
-      can :access, :proposals
-      can [:create, :update], :ideas
-      # can create and edit proposal comments they own
-      can :create, :proposal_comments
-      can :access, :proposal_comments do |comment|
-        comment.try(:user) == user
-      end
+      can :read, [Blog, Category, Idea, Proposal, Vote, ProposalComment]
+      can :manage, Proposal
+      can [:create, :update], Idea
+      can :create, ProposalComment
+      can :manage, ProposalComment, user: user
+
     elsif user.super_artist?
-      can :create, [:blogs, :proposals, :ideas, :votes]
-      can :read, [:blogs, :categories]
-      can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
-      cannot :access, :proposal_comments
-      can [:like, :show, :read], :ideas, approved?: true
-      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
-      # can edit blogs and proposals they own
-      can :access, :blogs do |blog|
-        blog.try(:user) == user
-      end
-      can :access, :proposals do |proposal|
-        proposal.try(:user) == user
-      end
+      can :create, [Blog, Proposal, Idea, Vote]
+      can :read, [Blog, Category]
+      can :read, Proposal, status: Proposal.statuses[:approved]
+      can [:like, :show, :read], Idea, Idea.statuses[:approved]
+
+      # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
+      cannot :manage, ProposalComment
+      can :manage, Blog, user: user
+      can :manage, Proposal, user: user
+
     elsif user.artist?
-      can :create, [:proposals, :ideas, :votes]
-      can :read, [:blogs, :categories]
-      can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
-      cannot :access, :proposal_comments
-      can [:like, :show, :read], :ideas, approved?: true
-      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
-      # can edit proposals they own
-      can :access, :proposals do |proposal|
-        proposal.try(:user) == user
-      end
-    else  # resident, lowest permissions
-      can :create, [:ideas, :votes]
-      can :read, [:blogs, :categories]
-      can :read, :proposals, approved?: true
-      cannot :read, :proposals, [:status, :number_of_votes, :proposal_comments]
-      cannot :access, :proposal_comments
-      can [:like, :show, :read], :ideas, approved?: true
-      cannot :read, :ideas, [:first_name, :last_name, :phone, :email, :status]
+      can :create, [Proposal, Idea, Vote]
+      can :read, [Blog, Category]
+      can :read, Proposal, status: Proposal.statuses[:approved]
+      # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
+      cannot :manage, ProposalComment
+      can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
+      can :manage, Proposal, user: user
+
+    else
+      can :create, [Idea, Vote]
+      can :read, [Blog, Category]
+      can :read, Proposal, status: Proposal.statuses[:approved]
+      # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
+      cannot :manage, ProposalComment
+      can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
     end
 
     # adjust permissions based on phase
     unless user.admin? or user.moderator?
-      unless Phase.get_current.voting?
-        cannot :access, :votes  # voting not allowed unless we are in the phase
+      unless Iteration.get_current.voting?
+        cannot :manage, Vote  # voting not allowed unless we are in the phase
       end
     end
-
   end
 end

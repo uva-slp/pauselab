@@ -1,6 +1,6 @@
 
 
-<% if can? :create, :proposals %>
+<% if can? :create, Proposal %>
   <%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 
@@ -23,34 +23,30 @@
 
     <thead>
       <tr>
-        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <% if user_has_admin_access %>
           <th>ID</th>
-
-        <% end %>
-        <% if can? :read, :proposals, :user_id %>
-          <th>Name</th>
-        <% end %>
-        <% if can? :read, :proposals, :created_at %>
-          <th>Created at</th>
-        <% end %>
-        <% if can? :read, :proposals, :title %>
-          <th>Title</th>
-        <% end %>
-        <% if can? :read, :proposals, :cost %>
-          <th>Cost</th>
         <% end %>
 
+        <th>Name</th>
 
-        <% if can? :read, :proposals, :status %>
+        <th>Created at</th>
+
+        <th>Title</th>
+
+        <th>Cost</th>
+
+        <% if user_has_admin_access %>
           <th>Status</th>
         <% end %>
-        <% if can? :read, :proposals, :number_of_votes %>
+
+        <% if user_has_admin_access %>
           <th>Votes</th>
         <% end %>
-        <% if can? :show, :proposals or
-          can? :approve, :proposals or
-          can? :edit, :proposals or
-          can? :destroy, :proposals %>
+
+        <% if can? :show, Proposal or
+          can? :approve, Proposal or
+          can? :edit, Proposal or
+          can? :destroy, Proposal %>
           <th colspan="6">Actions</th>
         <% end %>
       </tr>
@@ -58,27 +54,27 @@
 
     <% @proposals.each do |proposal| %>
       <tr>
-        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <% if user_has_admin_access %>
           <td><%= proposal.id %></td>
+        <% end %>
 
+        <% if proposal.respond_to? :user %>
+          <td><%= proposal.user.fullname %></td>
         <% end %>
-        <% if can? :read, proposal, :user_id %>
-          <td><%= User.find(proposal.user_id.to_i).fullname %></td>
-        <% end %>
-        <% if can? :read, proposal, :created_at %>
+        <% if proposal.respond_to? :created_at %>
           <td><%= proposal.created_at.strftime "%D" %></td>
         <% end %>
-        <% if can? :read, proposal, :title %>
+        <% if proposal.respond_to? :title %>
 	        <td><%= proposal.title %></td>
         <% end %>
-        <% if can? :read, proposal, :cost %>
+        <% if proposal.respond_to? :cost %>
           <td><%= number_to_currency proposal.cost %></td>
         <% end %>
 
-        <% if can? :read, proposal, :status %>
+        <% if user_has_admin_access %>
           <td><%= proposal.status %></td>
         <% end %>
-        <% if can? :read, proposal, :number_of_votes %>
+        <% if user_has_admin_access %>
           <td><%= proposal.number_of_votes %></td>
         <% end %>
         <% if can? :show, proposal %>
@@ -86,8 +82,7 @@
         <% end %>
         <% if can? :approve, proposal %>
           <td><%= link_to 'Approve', proposal_approve_path(proposal),
-    	      method: :post,
-    	      data: {confirm: 'Are you sure?' } %></td>
+    	      method: :post %></td>
         <% end %>
         <% if can? :edit, proposal %>
           <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
@@ -97,9 +92,15 @@
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %></td>
         <% end %>
+<<<<<<< HEAD
+        <% if can? :read, proposal %>
+	        <td><%= social_share_button_tag(proposal.title) %></td>
+        <% end %>
+=======
         <% if can? :read, proposal, :title %>
 	        <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
         <% end %>        
+>>>>>>> e1fdb7cf4ce72189c063f8ad6a76683c59a87d28
       </tr>
       <% end %>
 

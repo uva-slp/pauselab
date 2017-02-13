@@ -3,7 +3,7 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
-    index_respond_csv @blogs, :blogs
+    index_respond @blogs, :blogs
   end
 
   def admin_console

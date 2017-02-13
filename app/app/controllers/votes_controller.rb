@@ -2,7 +2,7 @@ class VotesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @votes = Vote.where(:iteration_id => Iteration.get_current.id)
+    @votes = @votes.where(:iteration_id => Iteration.get_current.id)
   end
 
   def new
@@ -28,11 +28,8 @@ class VotesController < ApplicationController
     # render :plain => params.to_yaml
   end
 
-
-
   private
   def vote_params
-
     params.require(:vote).permit(:proposal_ids => [])
   end
 

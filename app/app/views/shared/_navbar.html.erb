@@ -17,16 +17,16 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Admin</a>
             <div class="dropdown-menu">
-            <% if can? :access, :users %>
+            <% if can? :manage, User %>
               <%= link_to 'Admin Console', list_users_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
-            <% if can? :access, :categories %>
+            <% if can? :manage, Category %>
               <%= link_to 'Create Category', new_category_path, class: 'dropdown-item' %>
               <%= link_to 'Categories Console', categories_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
-            <% if can? :access, :mass_emails %>
+            <% if can? :manage, MassEmail %>
               <%= link_to 'Create Mass Email', new_mass_email_path, class: 'dropdown-item' %>
               <%= link_to 'Mass Emails Console', mass_emails_path, class: 'dropdown-item' %>
             <% end %>
@@ -36,22 +36,22 @@
           </li>
         <% end %>
 
-        <% if can? :create, :votes %>
+        <% if can? :create, Vote %>
           <li class="nav-item"><%= link_to 'Vote', new_vote_path, class: 'nav-link' %></li>
         <% end %>
 
         <%# Proposals menu %>
-        <% if can? :read, :proposals %>
+        <% if can? :read, Proposal %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
             <div class="dropdown-menu">
-              <% if can? :read, :ideas %>
+              <% if can? :read, Idea %>
                 <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>
               <% end %>
-              <% if can? :create, :proposals %>
+              <% if can? :create, Proposal %>
                 <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>
               <% end %>
-              <% if can? :read, :proposals %>
+              <% if can? :read, Proposal %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'Proposals Console', proposals_path, class: 'dropdown-item' %>
               <% end %>
@@ -60,14 +60,14 @@
         <% end %>
 
         <%# Ideas menu %>
-        <% if can? :read, :ideas %> <%#TODO can? "do anything with" :ideas %>
+        <% if can? :read, Idea %> <%#TODO can? "do anything with" :ideas %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Ideas</a>
             <div class="dropdown-menu">
-              <% if can? :create, :ideas %>
+              <% if can? :create, Idea %>
                 <%= link_to 'Create Idea',  new_idea_path, class: 'dropdown-item' %>
               <% end %>
-              <% if can? :read, :ideas %>
+              <% if can? :read, Idea %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
               <% end %>
@@ -76,7 +76,7 @@
         <% end %>
 
         <%# Blogs, About, Get Involved %>
-        <% if can? :read, :blogs %>
+        <% if can? :read, Blog %>
           <li class="nav-item"><%= link_to 'Blog', blogs_path, class: 'nav-link' %></li>
         <% end %>
         <li class="nav-item"><%= link_to 'About',  about_path, class: 'nav-link' %></li>

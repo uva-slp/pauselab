@@ -4,9 +4,13 @@
 | <%= link_to 'Edit', edit_proposal_path(@proposal) %>
 <% end %>
 
-<h2>
+<h1>
+  <%= @proposal.title %>
+</h1>
+
+<h3>
   By <b><%= @proposal.user.fullname %> </b>
-</h2>
+</h3>
 
 <h3>Description:</h3>
 <div class="fr-view">
@@ -38,7 +42,7 @@
   </p>
 <% end %>
 
-<% if can? :read, @proposal, :status %>
+<% if user_has_admin_access %>
   <p>
     <strong>Status:</strong>
     <%= @proposal.status %>
@@ -46,7 +50,7 @@
 <% end %>
 
 <%# TODO avoid code duplication with this and proposal_comment views. %>
-<% if can? :read, @proposal, :proposal_comments %>
+<% if can? :read, ProposalComment %>
   <h3>Comments</h3>
   <% @proposal.proposal_comments.each do |comment| %>
     <p>
@@ -60,7 +64,7 @@
       <% end %>
     </p>
   <% end %>
-  <% if can? :create, :proposal_comments %>
+  <% if can? :create, ProposalComment %>
     <%= simple_form_for([@proposal, @proposal.proposal_comments.build]) do |f| %>
       <p> Add comment: </p>
       <p> <%= f.input :body, label: false %> </p>

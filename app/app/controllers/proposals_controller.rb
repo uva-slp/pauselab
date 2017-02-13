@@ -2,13 +2,12 @@ class ProposalsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @proposals = @proposals.where(:iteration_id => Iteration.get_current.id)
     if params[:sort].present?
-      @proposals = Proposal.where(:iteration_id => Iteration.get_current.id).order params[:sort]
-    else
-      @proposals = Proposal.where(:iteration_id => Iteration.get_current.id)
+      @proposals = @proposals.order params[:sort]
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
-    index_respond_csv @proposals, :proposals
+    index_respond @proposals, :proposals
 	end
 
 	def new
@@ -88,4 +87,10 @@ class ProposalsController < ApplicationController
 	    	)
 	  end
 
+    #def filter_proposal_columns proposals
+    #  unless user_has_admin_access
+    #    return proposals.select(:id,:cost,:description,:essay,:created_at,:updated_at,:website_link,:title)
+    #  end
+    #  return proposals
+    #end
 end
