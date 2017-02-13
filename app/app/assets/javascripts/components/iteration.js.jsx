@@ -4,6 +4,7 @@ class Iteration extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log (props);
     this.getURL = this.getURL.bind(this);
   }
 
@@ -13,7 +14,7 @@ class Iteration extends React.Component {
 
   getDateFormatted(date) {
     // return (date.getMonth() + 1) + '/' + date.getDate();
-    return this.props.date.id + '. ' + date.getFullYear();
+    return this.props.data.id + '. ' + date.getFullYear();
   }
 
   getURL() {
