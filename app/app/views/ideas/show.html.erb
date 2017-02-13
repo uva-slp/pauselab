@@ -1,4 +1,3 @@
-
 <div class="row">
 
   <div class="col-sm-6">
@@ -9,27 +8,27 @@
   <div class="col-sm-6">
     <div class="center-block">
 
-      <% if can? :read, @idea, :first_name and can? :read, @idea, :last_name %>
+      <% if @idea.respond_to? :first_name %>
         <h4><%= @idea.author %></h4>
       <% end %>
-      <% if can? :read, @idea, :description %>
+      <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
       <% end %>
 
-      <div class="">
-        <% if can? :read, @idea, :email %>
+      <div>
+        <% if @idea.respond_to? :email %>
           <span><b>email: </b> <%= @idea.email%></span><br>
         <% end %>
-        <% if can? :read, @idea, :likes %>
+        <% if @idea.respond_to? :likes %>
           <span><b>likes:</b> <%= @idea.likes %> </span><br>
         <% end %>
-        <% if can? :read, @idea, :phone %>
+        <% if @idea.respond_to? :phone %>
           <span><b>phone:</b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
         <% end %>
-        <% if can? :read, @idea, :status %>
+        <% if @idea.respond_to? :status %>
           <span><b>status:</b> <%= @idea.status %></span><br>
         <% end %>
-        <% if can? :read, @idea, :created_at %>
+        <% if @idea.respond_to? :created_at %>
           <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
         <% end %>
       </div>

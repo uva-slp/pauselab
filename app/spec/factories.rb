@@ -53,38 +53,47 @@ FactoryGirl.define do
 
   factory :proposal do
     association :iteration
-    cost {Faker::Name.number(4)}
+    association :user
+    cost {Faker::Number.number(4)}
     description {Faker::Hipster.paragraph}
     essay {Faker::Hipster.paragraph}
     website_link "http://aaronbloomfield.github.io/slp/docs/index.html"
-    artist_fees {Faker::Name.number(3)}
-    project_materials {Faker::Name.between(10, 200)}
-    printing {Faker::Name.between(10, 200)}
-    marketing {Faker::Name.between(10, 200)}
-    documentation {Faker::Name.between(10, 200)}
-    volunteer {Faker::Name.between(10, 200)}
-    insurance {Faker::Name.between(10, 200)}
-    events {Faker::Name.between(10, 200)}
-    title {Faker::Hipster.sentence}
+    artist_fees {Faker::Number.number(3)}
+    project_materials {Faker::Number.between(10, 200)}
+    printing {Faker::Number.between(10, 200)}
+    marketing {Faker::Number.between(10, 200)}
+    documentation {Faker::Number.between(10, 200)}
+    volunteer {Faker::Number.between(10, 200)}
+    insurance {Faker::Number.between(10, 200)}
+    events {Faker::Number.between(10, 200)}
+    title {Faker::Hipster.word} # title has a length limit
+
+    factory :proposal_with_comments do
+      transient do
+        comments_count 5
+      end
+      after(:create) do |proposal, evaluator|
+        create_list(:proposal_comment, evaluator.comments_count, proposal: proposal)
+      end
+    end
+  end
+
+  factory :proposal_comment do
+    association :proposal
+    association :user
+    body {Faker::Hipster.sentence}
   end
 
   factory :blog do
     association :iteration
     association :user
     title {Faker::Hipster.sentence}
-    body {Faker::Hispter.paragraph}
+    body {Faker::Hipster.paragraph}
   end
 
   factory :vote do
     association :iteration
-    factory :vote_with_proposals do
-      transient do
-        languages_count 5
-      end
-      after(:create) do |profile, evaluator|
-        create_list(:proposal, evaluator.languages_count, votes: [vote])
-      end
-    end
+    proposals {create_list(:proposal, 3, iteration: iteration)}
   end
 
 end

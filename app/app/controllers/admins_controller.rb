@@ -10,7 +10,7 @@ class AdminsController < ApplicationController
 	def index_users
 		@users = User.all
 		authorize! :read, @users
-		index_respond_csv @users, :users
+		index_respond @users, :users
 	end
 
 	def show_user

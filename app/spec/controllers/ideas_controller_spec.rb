@@ -4,6 +4,31 @@ describe IdeasController, type: :controller do
 
   before :each do
     user = sign_in (create :admin)
+    @iteration = create :iteration
+  end
+
+  describe "when getting idea index" do
+    it "responds with success" do
+      get :index
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+    it "renders the index template" do
+      get :index
+      expect(response).to render_template('index')
+    end
+    it "loads all ideas into @ideas" do
+      idea = create_list(:idea, 10, iteration: @iteration)
+      get :index
+      expect(assigns(:ideas)).to match_array(idea)
+    end
+    it "does not show unapproved ideas to residents" do
+      user = sign_in (create :resident)
+      idea1 = create_list(:idea, 3, iteration: @iteration, status: :approved)
+      idea2 = create_list(:idea, 3, iteration: @iteration, status: :unchecked)
+      get :index
+      expect(assigns(:ideas)).to match_array(idea1)
+    end
   end
 
   describe "when creating an idea" do
@@ -20,6 +45,11 @@ describe IdeasController, type: :controller do
       idea = Idea.last
       expect(idea.iteration_id).to eq iter.id
     end
+    it "responds with redirect" do
+      i = build :idea
+      post :create, params: {idea: i.attributes}
+      expect(response).to be_redirect
+    end
   end
 
   describe "when deleting an idea" do
@@ -29,6 +59,11 @@ describe IdeasController, type: :controller do
         delete :destroy, params: {id: i.id}
       }.to change {Idea.count}.by -1
     end
+    it "responds with redirect" do
+      i = create :idea
+      delete :destroy, params: {id: i.id}
+      expect(response).to be_redirect
+    end
   end
 
   describe "when updating an idea" do
@@ -37,6 +72,11 @@ describe IdeasController, type: :controller do
       put :update, params: {id: i, idea: {:description => 'Hello, World!'}}
       i.reload
       expect(i.description).to eq 'Hello, World!'
+    end
+    it "responds with redirect" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:description => 'Hello, World!'}}
+      expect(response).to be_redirect
     end
     # TODO: validation checks
   end

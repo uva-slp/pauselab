@@ -1,9 +1,8 @@
 class IdeasController < ApplicationController
-
   load_and_authorize_resource
 
   def index
-    @ideas = Idea.where(:iteration_id => Iteration.get_current.id)
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"
         @ideas = @ideas.order likes: :desc
@@ -14,18 +13,20 @@ class IdeasController < ApplicationController
       if params[:sort]=="date"
         @ideas = @ideas.order :created_at
       end
-      if params[:sort]=="author_last_name"
-        @ideas = @ideas.order :last_name
-      end
-      if params[:sort]=="author_first_name"
-        @ideas = @ideas.order :first_name
+      if user_has_admin_access
+        if params[:sort]=="author_last_name"
+          @ideas = @ideas.order :last_name
+        end
+        if params[:sort]=="author_first_name"
+          @ideas = @ideas.order :first_name
+        end
       end
     end
     @likes = Array.new
     if cookies[:likes] != nil
       @likes = JSON.parse(cookies[:likes])
     end
-    index_respond_csv @ideas, :ideas
+    index_respond @ideas, :ideas
   end
 
   def new
@@ -51,7 +52,7 @@ class IdeasController < ApplicationController
 	end
 
 	def show
-		@idea = Idea.find(params[:id])
+		@idea = filter_idea_columns(Idea.where(:id => params[:id])).first
 	end
 
   # TODO: make this into an AJAX call
@@ -103,7 +104,7 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     if @idea.update idea_params
-          redirect_to @idea
+      redirect_to @idea
     else
       render 'edit'
     end
@@ -133,4 +134,10 @@ class IdeasController < ApplicationController
 	    	)
 	  end
 
+    def filter_idea_columns ideas
+      unless user_has_admin_access
+        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
+      end
+      return ideas
+    end
 end

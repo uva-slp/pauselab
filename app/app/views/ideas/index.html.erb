@@ -1,26 +1,27 @@
 
-
-<% if can? :create, :ideas %>
+<% if can? :create, Idea %>
   <%= link_to 'Create New Idea', new_idea_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 
 <br/>
 <br/>
 
-<h2 class="pull-left">ideas</h2>
+<h2 class="pull-left">Ideas</h2>
 <div class="dropdown pull-right" style="inline-block">
-  <a href="#" class="dropdown-toggle">sort</a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">sort</a>
   <div class="dropdown-menu dropdown-menu-right">
     <!-- We are passing the sort parameter here -->
     <a href="?sort=likes" class="dropdown-item" >likes</a>
-    <% if can? :read, :ideas, :first_name %>
+    <% if user_has_admin_access %>
       <a href="?sort=author_last_name" class="dropdown-item">author last name</a>
     <% end %>
-    <% if can? :read, :ideas, :last_name %>
+    <% if user_has_admin_access %>
       <a href="?sort=author_first_name" class="dropdown-item">author first name</a>
     <% end %>
     <a href="?sort=date" class="dropdown-item">date</a>
-    <a href="?sort=id" class="dropdown-item">id</a>
+    <% if user_has_admin_access %>
+      <a href="?sort=id" class="dropdown-item">id</a>
+    <% end %>
     <a href="?sort=category" class="dropdown-item">category</a>
   </div>
 </div>
@@ -32,81 +33,72 @@
 
     <thead>
       <tr>
-        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <% if user_has_admin_access %>
           <th>ID</th>
         <% end %>
 
-        <% if can? :read, :ideas, :first_name and can? :read, :ideas, :last_name %>
+        <% if user_has_admin_access %>
           <th>Author</th>
         <% end %>
 
-        <% if can? :read, :ideas, :created_at %>
-          <th>Created At</th>
-        <% end %>
+        <th>Created At</th>
 
-        <% if can? :read, :ideas, :category %>
-          <th>Category</th>
-        <% end %>
+        <th>Category</th>
 
-        <% if can? :read, :ideas, :description %>
-          <th>Description</th>
-        <% end %>
+        <th>Description</th>
 
-        <% if can? :read, :ideas, :status %>
+        <% if user_has_admin_access %>
           <th>Status</th>
         <% end %>
 
-        <% if can? :read, :ideas, :likes %>
-          <th>Likes</th>
-        <% end %>
+        <th>Likes</th>
 
-        <% if can? :like, :ideas or
-          can? :show, :ideas or
-          can? :edit, :ideas or
-          can? :approve, :ideas or
-          can? :destroy, :ideas %>
-          <th colspan="3">Actions</th>
+        <% if can? :like, Idea or
+          can? :show, Idea or
+          can? :edit, Idea or
+          can? :approve, Idea or
+          can? :destroy, Idea %>
+          <th colspan="4">Actions</th>
          <% end %>
       </tr>
     </thead>
 
     <% @ideas.each do |idea| %>
-      <% if can? :read, idea %>
         <tr>
-          <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+          <% if idea.respond_to? :id and user_has_admin_access %>
             <td><%= idea.id %></td>
           <% end %>
 
-          <% if can? :read, idea, :first_name and can? :read, idea, :last_name %>
+          <% if idea.respond_to? :first_name %>
             <td><%= idea.author %></td>
           <% end %>
 
-          <% if can? :read, idea, :created_at %>
+          <% if idea.respond_to? :created_at %>
             <td><%= idea.created_at.strftime "%D" %></td>
           <% end %>
 
-          <% if can? :read, idea, :category %>
+          <% if idea.respond_to? :category %>
             <td><%= idea.category.name %></td>
           <% end %>
 
-          <% if can? :read, idea, :description %>
+          <% if idea.respond_to? :description %>
             <td><%= truncate(idea.description) %></td>
           <% end %>
 
-          <% if can? :read, idea, :status %>
+          <% if idea.respond_to? :status %>
             <td><%= idea.status %></td>
           <% end %>
 
-          <% if can? :read, idea, :likes %>
+          <% if idea.respond_to? :likes %>
             <td><%= idea.likes %></td>
           <% end %>
-          <% if can? :read, idea, :description %>
+
+          <% if idea.respond_to? :description %>
             <td><%= social_share_button_tag(idea.description)%></td>
+          <% end %>
 
-          <% end %>          
-          
-
-          <!-- <% if can? :like, idea %>
+          <!--
+          <% if can? :like, Idea %>
             <td>
               <% unless @likes.include?(idea.id) %>
                 <a href=<%= idea_like_path(idea) %> ><i class="fa fa-thumbs-o-up"></i></a>
@@ -114,31 +106,27 @@
                 <a href=<%= idea_like_path(idea) %> ><i class="fa fa-thumbs-o-down"></i></a>
               <% end %>
             </td>
-            
+          <% end %>
+          -->
 
-          <% end %> -->
-
-          <% if can? :show, idea %>
+          <% if can? :show, Idea %>
             <td><%= link_to 'Show', idea_path(idea) %></td>
           <% end %>
 
-          <% if can? :edit, idea %>
+          <% if can? :edit, Idea %>
             <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
           <% end %>
 
-          <!-- <% if can? :approve, idea %>
-            <td><%= link_to 'Approve', idea_approve_path(idea),
-      	      method: :post,
-      	      data: {confirm: 'Are you sure?' } %></td>
-          <% end %> -->
+          <% if can? :approve, Idea %>
+            <td><%= link_to 'Approve', idea_approve_path(idea), method: :post %></td>
+          <% end %>
 
-          <% if can? :destroy, idea %>
+          <% if can? :destroy, Idea %>
             <td><%= link_to 'Remove', idea_path(idea),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
           <% end %>
         </tr>
-      <% end %>
     <% end %>
 
   </table>
