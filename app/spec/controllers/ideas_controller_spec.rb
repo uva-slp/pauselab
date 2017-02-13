@@ -73,6 +73,36 @@ describe IdeasController, type: :controller do
       i.reload
       expect(i.description).to eq 'Hello, World!'
     end
+    it "updates first name" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:first_name => 'Joe'}}
+      i.reload
+      expect(i.first_name).to eq 'Joe'
+    end
+    it "updates last name" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:last_name => 'Schmoe'}}
+      i.reload
+      expect(i.last_name).to eq 'Schmoe'
+    end
+    it "updates email" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:email => 'jschmoe@gmail.com'}}
+      i.reload
+      expect(i.email).to eq 'jschmoe@gmail.com'
+    end
+    it "updates phone" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:phone => '1234567890'}}
+      i.reload
+      expect(i.phone).to eq '1234567890'
+    end
+    it "updates address" do
+      i = create :idea
+      put :update, params: {id: i, idea: {:address => '1 Main St'}}
+      i.reload
+      expect(i.address).to eq '1 Main St'
+    end 
     it "responds with redirect" do
       i = create :idea
       put :update, params: {id: i, idea: {:description => 'Hello, World!'}}
