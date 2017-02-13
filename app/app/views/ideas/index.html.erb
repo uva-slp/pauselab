@@ -96,6 +96,7 @@
 
           <% if can? :read, idea, :description %>
             <td><%= social_share_button_tag("Pauselab - BeCville: " + idea.description, :url => "#{idea_path(idea)}", :popup => "true")%></td>
+          <% end %>
 
           <% if can? :show, idea %>
             <td><%= link_to 'Show', idea_path(idea) %></td>
