@@ -7,11 +7,7 @@ Rails.application.routes.draw do
   get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
 
   # makes RESTful routes for our models
-<<<<<<< HEAD
-  resources :ideas, :categories, :blogs, :mass_emails, :votes
-=======
-  resources :categories, :blogs, :mass_emails, :votes, :landingpages
->>>>>>> e1fdb7cf4ce72189c063f8ad6a76683c59a87d28
+  resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages
   resources :proposals do
     resources :proposal_comments
   end
