@@ -2,6 +2,7 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
+    logger.info("~~~~~~~~~~~~\nbeginning of INDEX");
     @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"
@@ -57,10 +58,12 @@ class IdeasController < ApplicationController
 
   # TODO: make this into an AJAX call
   def like
+    logger.info("~~~~~~~~~~~~beginning of likes");
     @id = @idea.id
     @likes = Array.new
     #Check if cookie already exists
     if cookies[:likes] != nil
+      logger.info("~~~~~~~~~~~~ no likes :( ");
       @likes = JSON.parse(cookies[:likes])
       #Only add new like to cookie if it doesn't already have it
       if @likes.include?(@id)
@@ -83,6 +86,8 @@ class IdeasController < ApplicationController
       end
     #Else make a new cookie!
     else
+      logger.info("~~~~~~~~~~~~current likes @likes");
+      logger.info(@likes);
       #Update database values
       @idea = Idea.find(params[:id])
       @idea.increment!(:likes)
@@ -92,7 +97,14 @@ class IdeasController < ApplicationController
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
-    redirect_to ideas_path
+    logger.info("~~~~~~~~~~~~\n new @likes:");
+    logger.info(@likes);
+    @div_id = '#like_button_'+@idea.id.to_s
+    respond_to do |format|
+        format.html
+        format.js
+    end
+    #redirect_to ideas_path
   end
 
   def destroy

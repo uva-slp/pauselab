@@ -1,13 +1,17 @@
 
-<p>
-In 2015, The PauseLab received a grant that provides funds for community members to
-allocate towards arts projects and programs using a PB inspired process we are calling
-Be-Cville. Starting in the fall of 2016, residents of Charlottesville’s Strategic
-Investment Area (SIA) will be asked to submit ideas for ways to improve their neighborhood(s)
-and then, as a community,review those ideas. Next, local artists will be asked to
-develop proposals based on the resident-submitted ideas. Once finalized, proposals
-will then be presented to the neighborhood in the spring of 2017, and residents will
-vote on which ideas they want to see become reality. After this initial year, our hope
-is to continue Be-Cville on an annual basis, connecting the project with other community 
-and civic development projects to make sure residents have a role deciding the future of their city.
-</p>
+<% if Landingpage.exists?(title: "About Us") %>
+  <% @landingpage = Landingpage.where(title: "About Us").first%>
+  <h2><%= @landingpage.title%> </h2>
+  <p><%=  @landingpage.description.html_safe %> </p>
+   <% if can? :edit, :landingpages %>
+  <p> <%= link_to 'Edit About Us', edit_landingpage_path(@landingpage) %></p>
+  <% end %>
+  <% else %>
+  <p> PauseLab has not created a home post yet </p>
+  <% if can? :edit, :landingpages %>
+   <p> <%= link_to 'Create About Us', new_landingpage_path() %></p>
+ <% end %>
+  
+  <% end %>
+
+

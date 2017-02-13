@@ -41,6 +41,7 @@ gem 'social-share-button', '~> 0.1.6'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'react-rails'
 gem 'rubyzip'
+gem 'responders'
 
 group :development, :test do
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console

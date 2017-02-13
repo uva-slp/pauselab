@@ -14,6 +14,7 @@
 
 <div>
   <h2 class="page-header">Idea Collection</h2>
+<<<<<<< HEAD
   <!-- <div>
     <h3>How would you spend $15,000 to improve your neighborhood?</h3>
     <p>Over the next two months we are inviting everyone in Charlottesville to share ideas for improving their neighborhood.  With our focus on the south side of Charlottesville, we are specifically interested in hearing ideas for the Belmont and Ridge St. neighborhoods.</p>
@@ -21,6 +22,26 @@
     <p>Remember, we have $15000 for you to spend on public art projects and programs.</p>
   </div> -->
   <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
+=======
+  
+<% if Landingpage.exists?(title: "Home") %>
+  <% @landingpage = Landingpage.where(title: "Home").first%>
+  <h2><%= @landingpage.title%> </h2>
+  <p><%=  @landingpage.description.html_safe %> </p>
+   <% if can? :edit, :landingpages %>
+  <p> <%= link_to 'Edit Homepage', edit_landingpage_path(@landingpage) %></p>
+  <% end %>
+  <% else %>
+  <p> PauseLab has not created a home post yet </p>
+  <% if can? :edit, :landingpages %>
+   <p> <%= link_to 'Create Homepage', new_landingpage_path() %></p>
+ <% end %>
+  
+  <% end %>
+
+  
+  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %>
+>>>>>>> e1fdb7cf4ce72189c063f8ad6a76683c59a87d28
 
   <div id="map-sidebar"></div>
   <div id="map" class="ideas-map-info"></div>

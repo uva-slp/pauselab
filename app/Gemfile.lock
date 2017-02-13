@@ -297,6 +297,7 @@ DEPENDENCIES
   rails-controller-testing
   react-rails
   recaptcha
+  responders
   rspec-rails
   rubyzip
   sanitize

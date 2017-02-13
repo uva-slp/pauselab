@@ -1,0 +1,18 @@
+<div id="like_button_<%= idea.id %>">
+  <% if can? :read, idea, :likes %>
+    <%= idea.likes %>
+  <% end %>
+  <script>alert(""+idea)</script>
+  <% if can? :like, idea %>
+    <% unless @likes.include?(idea.id) %>
+      <%= link_to idea_like_path(idea), :remote => true do %>  
+        <i class="fa fa-thumbs-o-up"></i>
+      <% end %>
+    <% else %>
+      <%= link_to idea_like_path(idea), :remote => true do %> 
+        <i class="fa fa-thumbs-o-down"></i>
+      <% end %>
+    <% end %>
+  <% end %> 
+</div>
+

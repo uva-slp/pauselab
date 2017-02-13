@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
 
   # makes RESTful routes for our models
+<<<<<<< HEAD
   resources :ideas, :categories, :blogs, :mass_emails, :votes
+=======
+  resources :categories, :blogs, :mass_emails, :votes, :landingpages
+>>>>>>> e1fdb7cf4ce72189c063f8ad6a76683c59a87d28
   resources :proposals do
     resources :proposal_comments
   end
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
   get '/about', to: 'pages#about_page', as: 'about'
   get '/pages/ideas_json', to: 'pages#get_ideas'
+  get '/pages/categories_json', to: 'pages#get_categories'
 
   # user routes TODO: possibly in the future
   get 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user

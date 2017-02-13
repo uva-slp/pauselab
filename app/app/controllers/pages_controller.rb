@@ -27,6 +27,14 @@ class PagesController < ApplicationController
     render json: ideas
   end
 
+  def get_categories
+    ret_cat = {}
+    categories = Category.all.each do |cat|
+      ret_cat[cat.id] = if cat.icon.present? then cat.icon.url else "" end
+    end
+    render json: ret_cat
+  end
+
   def ideas
   end
 

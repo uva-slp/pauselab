@@ -1,0 +1,59 @@
+<style media="screen">
+  .trumbowyg-box {
+    margin-top: 0px;
+  }
+  label[for='proposal_artist_cv'] {
+    display: block;
+  }
+  input[type='file'] {
+  }
+  /*.btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }*/
+</style>
+
+<%= simple_form_for @landingpage do |f| %>
+<%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us"] %>
+<%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
+
+ <div class='form-group'>
+      <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
+      &nbsp;
+      <%= link_to 'Cancel', ideas_path, class: 'btn btn-secondary' %>
+    </div>
+
+
+<% end %>
+
+
+<script>
+$('textarea').each(function() {
+  $(this).trumbowyg({
+      svgPath: '<%= image_path("icons.svg") %>',
+      btns: [
+          ['formatting'],
+          ['insertImage'],
+          'btnGrp-justify',
+          'btnGrp-lists',
+          ['horizontalRule'],
+          ['fullscreen']
+      ]
+  });
+});
+</script>
