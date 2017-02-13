@@ -102,7 +102,7 @@
           </td>
           
           <% if can? :read, idea, :description %>
-            <td><%= social_share_button_tag("Pauselab - BeCville: ", :desc => idea.description, :popup => "true")%></td>
+            <td><%= social_share_button_tag("Pauselab - BeCville: ", :quote => idea.description, :popup => "true")%></td>
 
           <% end %>          
           
