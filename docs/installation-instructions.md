@@ -74,7 +74,7 @@ If the project is private on GitHub, then credentials of a collaborator will nee
   ```
   cd pauselab/app
   rvm 2.3.1
-  bundle install
+  bundle install --deployment --without development test
   ```
 5. Setup and deploy a MySQL server (adapted from [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04)). The first step will download a package and prompt you to create a password for the root user -- make a secure one and remember it! The second step will disable some unsafe features of MySQL -- enter "yes" for all the options except changing root's password, which you just did.
   ```
@@ -83,9 +83,9 @@ If the project is private on GitHub, then credentials of a collaborator will nee
   ```
 Once that's done, open the MySQL shell as root with the command `mysql -u root -p` -- once in the shell, execute the following commands (in place of `<password>` make an actual password for the Pauselab database. It need not be the same password as MySQL root).
   ```
-  create database slp_pauselab character set utf8 collate utf8_general_ci;
-  grant all on slp_pauselab.* to 'pauselab' identified by '<password>';
-  grant all on slp_pauselab.* to 'pauselab'@'localhost' identified by '<password>';
+  create database pauselab_production character set utf8 collate utf8_general_ci;
+  grant all on pauselab_production.* to 'pauselab' identified by '<password>';
+  grant all on pauselab_production.* to 'pauselab'@'localhost' identified by '<password>';
   exit;
   ```
 6. Setup and deploy the web server (adapted from [GoRails tutorial](https://gorails.com/deploy/ubuntu/16.04)). Install Nginx and start the service with the following commands.
@@ -97,6 +97,23 @@ Once that's done, open the MySQL shell as root with the command `mysql -u root -
   sudo apt-get install -y nginx-extras passenger
   sudo service nginx start
   ```
-Then update some configuration files. TODO finish this up (currently having Rails issues).
-7. Setup Capistrano. TODO finish.
-8. Migrate database changes to update the schema. Create the config/application.yml and fill it with all the secrets, passwords, and 3rd part API keys needed to run the app. Touch tmp/restart.txt and the app should be live.
+Then update some configuration files. TODO finish (currently having issues).
+7. Setup Capistrano? (probably not needed)
+8. Create a file in config/ called application.yml and fill it with all the secrets, passwords, and 3rd party API keys needed to run the app. Below is a how the YAML file should look, where the values in `<angle brackets>` should be replaced with what is described within.
+```
+production:
+  GROUP_PWD: <password made for 'pauselab' MySQL user in step 5>
+  EMAIL_USER: <email address used for mailing from within the app>
+  EMAIL_PASS: <password for EMAIL_USER>
+  DEVISE_SECRET_KEY: <secret generated from `rails secret`>
+  SECRET_KEY_BASE: <another secret generated from `rails secret`>
+  GOOGLE_API_KEY: <provided by Google for Maps API>
+  RECAPTCHA_SITE_KEY: <provided by Google for recaptcha>
+  RECAPTCHA_SECRET_KEY: <provided by Google for recaptcha>
+```
+9. Migrate database changes to update the schema, and compile rails assets. Run the following commands from bash.
+```
+  rails db:migrate RAILS_ENV=production
+  rails assets:precompile RAILS_ENV=production
+```
+10. Touch tmp/restart.txt (i.e. `touch tmp/restart.txt`) and the app should be live.
