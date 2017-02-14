@@ -20,6 +20,11 @@ describe BlogsController, type: :controller do
   end
 
   describe "when creating a blog" do
+    it "accesses the new blog page as superartist" do
+      get :new
+      expect(response).to be_success
+      expect(response).to have_http_status(200)      
+    end
     it "saves the blog" do
       blog = build :blog
       expect {
@@ -45,6 +50,24 @@ describe BlogsController, type: :controller do
         post :create, params: {blog: blog.attributes}
       }.to_not change {Blog.count}
     end
+  end
+
+  describe "when viewing a blog post" do
+    it "render an existing blog" do
+      blog = build :blog
+      post :create, params: {blog: blog.attributes}
+      blog = Blog.last
+      get :show, id: blog.id
+      response.should render_template :show 
+    end
+    ##
+    #it "redirect at nonexistant blogs" do
+    #  expect{ 
+    #    get :show, id: nil
+    #  }.to raise_error
+    #  expect(flash[:error]).to be_present
+    #end
+
   end
 
   describe "when updating a blog" do

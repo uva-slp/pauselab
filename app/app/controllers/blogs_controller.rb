@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   load_and_authorize_resource
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def index
     @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
@@ -50,6 +51,11 @@ class BlogsController < ApplicationController
     end
   end
 
+  def record_not_found
+    flash[:error] = 'Record not found'
+    redirect_to action: :index
+  end
+
   private
     def blog_params
       params.require(:blog).permit(
@@ -57,5 +63,6 @@ class BlogsController < ApplicationController
           :body
           )
     end
+
 
 end
