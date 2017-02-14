@@ -111,40 +111,4 @@ describe IdeasController, type: :controller do
     # TODO: validation checks
   end
 
-  describe "when liking an idea" do
-    it "updates like count" do
-      i = create :idea
-      expect {
-        get :like, params: {id: i}
-      }.to change {Idea.find(i.id).likes}.by 1
-    end
-    it "updates cookie" do
-      i = create :idea
-      get :like, params: {id: i}
-      expect(cookies[:likes]).to eq "[#{i.id}]"
-    end
-    it "likes multiple ideas" do
-      cookies[:likes] = "[12]"
-      i = create :idea
-      get :like, params: {id: i}
-      expect(cookies[:likes]).to eq "[12,#{i.id}]"
-    end
-  end
-
-  describe "when unliking an idea" do
-    it "updates like count" do
-      i = create :idea
-      get :like, params: {id: i}
-      expect {
-        get :like, params: {id: i}
-      }.to change {Idea.find(i.id).likes}.by -1
-    end
-    it "updates cookie" do
-      i = create :idea
-      get :like, params: {id: i}
-      get :like, params: {id: i}
-      expect(cookies[:likes]).to eq "[]"
-    end
-  end
-
 end

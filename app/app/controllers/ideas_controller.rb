@@ -100,11 +100,11 @@ class IdeasController < ApplicationController
     logger.info("~~~~~~~~~~~~\n new @likes:");
     logger.info(@likes);
     @div_id = '#like_button_'+@idea.id.to_s
-    # respond_to do |format|
-    #     format.html
-    #     format.js
-    # end
-    redirect_to ideas_path
+     respond_to do |format|
+         format.html
+         format.js
+     end
+    #redirect_to ideas_path
   end
 
   def destroy
