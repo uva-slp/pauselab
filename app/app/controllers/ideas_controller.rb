@@ -2,7 +2,8 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @ideas = Idea.all
+    logger.info("~~~~~~~~~~~~\nbeginning of INDEX");
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"
         @ideas = @ideas.order likes: :desc
@@ -13,18 +14,20 @@ class IdeasController < ApplicationController
       if params[:sort]=="date"
         @ideas = @ideas.order :created_at
       end
-      if params[:sort]=="author_last_name"
-        @ideas = @ideas.order :last_name
-      end
-      if params[:sort]=="author_first_name"
-        @ideas = @ideas.order :first_name
+      if user_has_admin_access
+        if params[:sort]=="author_last_name"
+          @ideas = @ideas.order :last_name
+        end
+        if params[:sort]=="author_first_name"
+          @ideas = @ideas.order :first_name
+        end
       end
     end
     @likes = Array.new
     if cookies[:likes] != nil
       @likes = JSON.parse(cookies[:likes])
     end
-    index_respond_csv @ideas, :ideas
+    index_respond @ideas, :ideas
   end
 
   def new
@@ -39,30 +42,28 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
-		# code for verifying recaptcha - requires SSL, which would need effort
-		#unless verify_recaptcha or user_signed_in?
-		#	flash[:error] = 'Use RECAPTCHA'
-		#	render :idea_collection
-		#end
-		#
+    @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
 			flash[:notice] = 'Your idea was sent.'
 			redirect_to ideas_path
 		else
+      puts @idea.errors.full_messages.to_yaml
 			render 'new'
 		end
 	end
 
 	def show
-		@idea = Idea.find(params[:id])
+		@idea = filter_idea_columns(Idea.where(:id => params[:id])).first
 	end
 
   # TODO: make this into an AJAX call
   def like
+    logger.info("~~~~~~~~~~~~beginning of likes");
     @id = @idea.id
     @likes = Array.new
     #Check if cookie already exists
     if cookies[:likes] != nil
+      logger.info("~~~~~~~~~~~~ no likes :( ");
       @likes = JSON.parse(cookies[:likes])
       #Only add new like to cookie if it doesn't already have it
       if @likes.include?(@id)
@@ -85,6 +86,8 @@ class IdeasController < ApplicationController
       end
     #Else make a new cookie!
     else
+      logger.info("~~~~~~~~~~~~current likes @likes");
+      logger.info(@likes);
       #Update database values
       @idea = Idea.find(params[:id])
       @idea.increment!(:likes)
@@ -94,7 +97,14 @@ class IdeasController < ApplicationController
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
-    redirect_to ideas_path
+    logger.info("~~~~~~~~~~~~\n new @likes:");
+    logger.info(@likes);
+    @div_id = '#like_button_'+@idea.id.to_s
+     respond_to do |format|
+         format.html
+         format.js
+     end
+    #redirect_to ideas_path
   end
 
   def destroy
@@ -106,7 +116,7 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     if @idea.update idea_params
-          redirect_to @idea
+      redirect_to @idea
     else
       render 'edit'
     end
@@ -136,4 +146,10 @@ class IdeasController < ApplicationController
 	    	)
 	  end
 
+    def filter_idea_columns ideas
+      unless user_has_admin_access
+        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
+      end
+      return ideas
+    end
 end

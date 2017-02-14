@@ -1,8 +1,15 @@
 
 <%= link_to 'Back', categories_path %> |
-<%= link_to 'Edit', edit_category_path(@category) %> 
+<%= link_to 'Edit', edit_category_path(@category) %>
 
 <h2>
   Category: <%= @category.name %>
 </h2>
- 
+<h3>
+  <% if @category.icon.present? %>
+    Icon: <%= @category.icon_file_name %>
+    <%= image_tag @category.icon.url %>
+  <% else %>
+    No icon present.
+  <% end %>
+</h3>

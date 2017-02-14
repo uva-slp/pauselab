@@ -2,8 +2,8 @@ class BlogsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @blogs = Blog.all.order(created_at: :desc)
-    index_respond_csv @blogs, :blogs
+    @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
+    index_respond @blogs, :blogs
   end
 
   def admin_console
@@ -21,6 +21,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    @blog.iteration_id = Iteration.get_current.id
     if @blog.save
       flash[:notice] = 'your blog was saved'
       redirect_to blogs_path

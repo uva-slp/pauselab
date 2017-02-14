@@ -38,7 +38,11 @@
 							<% end %>
 						<% end %>
 				<% end %>
+				
+                            <% if can? :read, idea, :description %>
+                                <td><%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%></td>
 
+                            <% end %> 
 				<!-- <a class="btn btn-sm btn-outline-primary"><i class="fa fa-thumbs-o-up "></i></a> -->
 				<span class="pull-right"><%= idea.likes %></span>
 			</div>

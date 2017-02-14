@@ -15,3 +15,33 @@ Steps for setting up a local dev environment.
     ```
 7. Run `rake db:migrate` to apply schema changes to databases
 8. Configuration complete -- test by running `rails server` and viewing `localhost:3000` in browser
+
+##Creating an AWS account 
+1. Open https://aws.amazon.com/ 
+2. Click "Create an AWS Account" in the top right corner
+3. Type in your email or phone number and choose "I am a new user." 
+   Afterwards, choose "Sign into our secure server"
+4. On the Login Credentials screen, fill out the appropriate information for each box
+   Click "create account" after completing.
+5. On the Contact Information screen, fill out the appropriate information for each box. 
+   Check the AWS Customer Agreement box afterwards and press "continue"
+   (Check either if you're company or personal use)
+**Make sure to choose the appropriate region
+
+
+##Creating an EC2 Instance
+1. Open https://aws.amazon.com/ and choose "Sign in to the Console"
+2. Type in "EC2" under Amazon Services and click the first option
+3. Click "Instances" under the Instances tab 
+4. Click "Launch Instance"
+   Step 1) Select the Ubuntu Server 16.04 option under the Amazon Machine Image (AMI)
+   Step 2) Select the appropriate Instance Type for the application. 
+   In this example, select t2.micro and click "Next: Configure Instance Details"
+   Step 3) Configure Instance Details
+   Leave the default options for "Next: Add Storage"
+   Step 4) Leave the default option and click "Next: Add Tags"
+   Step 5) Leave the default option and click "Next: Configure Security Group"
+   Step 6) Assign the appropriate security group, create a new one if there are none to choose from. Click "Review and Launch" after completion
+   Step 7) Review the information and hit "Launch" once everything is verified
+   Select a keypair for the instance
+

@@ -2,7 +2,7 @@ class VotesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @votes = Vote.all
+    @votes = @votes.where(:iteration_id => Iteration.get_current.id)
   end
 
   def new
@@ -16,6 +16,8 @@ class VotesController < ApplicationController
 
   def create
     @vote = Vote.new(vote_params)
+    @vote.iteration_id = Iteration.get_current.id
+
     if verify_recaptcha model: @vote, attribute: :proposals  and @vote.save
       flash[:notice] = 'Your vote has been received!'
       cookies[:voted] = { :value => "already voted", :expires => Time.now + 2628000 }
@@ -26,11 +28,8 @@ class VotesController < ApplicationController
     # render :plain => params.to_yaml
   end
 
-
-
   private
   def vote_params
-
     params.require(:vote).permit(:proposal_ids => [])
   end
 

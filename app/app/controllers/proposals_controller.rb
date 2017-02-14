@@ -2,13 +2,12 @@ class ProposalsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @proposals = @proposals.where(:iteration_id => Iteration.get_current.id)
     if params[:sort].present?
-      @proposals = Proposal.order params[:sort]
-    else
-      @proposals = Proposal.all
+      @proposals = @proposals.order params[:sort]
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
-    index_respond_csv @proposals, :proposals
+    index_respond @proposals, :proposals
 	end
 
 	def new
@@ -22,6 +21,8 @@ class ProposalsController < ApplicationController
 	def create
     @proposal = Proposal.new proposal_params
     @proposal.user_id = current_user.id
+    @proposal.iteration_id = Iteration.get_current.id
+
 		if @proposal.save
 			flash[:notice] = 'your proposal was sent'
 			redirect_to proposals_path
@@ -86,4 +87,10 @@ class ProposalsController < ApplicationController
 	    	)
 	  end
 
+    #def filter_proposal_columns proposals
+    #  unless user_has_admin_access
+    #    return proposals.select(:id,:cost,:description,:essay,:created_at,:updated_at,:website_link,:title)
+    #  end
+    #  return proposals
+    #end
 end

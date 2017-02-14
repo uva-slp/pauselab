@@ -1,6 +1,6 @@
 
-<% if can? :create, :blogs %>
-  <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-default pull-right' %>
+<% if can? :create, Blog %>
+  <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 <h2>Recent Blogs</h2>
 

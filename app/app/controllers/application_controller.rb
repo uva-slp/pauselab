@@ -12,11 +12,13 @@ class ApplicationController < ActionController::Base
     params[resource] &&= send(method) if respond_to?(method, true)
   end
 
-  # Catch all CanCan errors and alert the user of the exception
-  rescue_from CanCan::Unauthorized do | exception |
-    redirect_to root_url, alert: exception.message
-    #puts exception.action
-    #puts exception.subject
+  # catch unauthorization exception message
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
   end
 
   def after_sign_in_path_for(resource)
@@ -37,10 +39,16 @@ end
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
     end
 
-    def index_respond_csv scoped_objs, name
+    def index_respond scoped_objs, name
       respond_to do |format|
         format.html
+        format.json
         format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
       end
     end
+
+    def user_has_admin_access
+      return ((not current_user.nil?) and (current_user.admin? or current_user.moderator?))
+    end
+    helper_method :user_has_admin_access
 end

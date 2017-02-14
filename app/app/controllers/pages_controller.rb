@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def go_home
-    case Phase.get_current.phase
+    case Iteration.get_current.status
     when 'ideas'
       redirect_to :action => :ideas
     when 'proposals'
@@ -16,8 +16,23 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.where(status: :approved)
+    ideas = Idea.where(:status => :approved, :iteration_id => Iteration.get_current.id).select(
+      :id,
+      :address,
+      :created_at,
+      :lat,
+      :lng,
+      :category_id,
+      :description)
     render json: ideas
+  end
+
+  def get_categories
+    ret_cat = {}
+    categories = Category.all.each do |cat|
+      ret_cat[cat.id] = if cat.icon.present? then cat.icon.url else "" end
+    end
+    render json: ret_cat
   end
 
   def ideas
