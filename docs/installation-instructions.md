@@ -100,3 +100,13 @@ Once that's done, open the MySQL shell as root with the command `mysql -u root -
 Then update some configuration files. TODO finish this up (currently having Rails issues).
 7. Setup Capistrano. TODO finish.
 8. Migrate database changes to update the schema. Create the config/application.yml and fill it with all the secrets, passwords, and 3rd part API keys needed to run the app. Touch tmp/restart.txt and the app should be live.
+
+## Allowing traffic on 0.0.0.0/80
+1. Sign into AWS and go to "Security Groups" under Network and Security
+2. Choose your instance group and select the "inbound" tab
+3. There, press edit to configure settings
+  1. Change 'Type' to 'Custom TCP Rule'
+  2. Change 'Port Range' to '80'
+  3. Change 'Source' from 'Custom' to 'Anywhere'
+  4. Hit save upon completing
+4. This will save as two HTTP rules, which is what you'll want for your inbound traffic
