@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: pauselab_production
-  username: slp_pauselab
+  username: pauselab
   password: <%= ENV['GROUP_PWD'] %>

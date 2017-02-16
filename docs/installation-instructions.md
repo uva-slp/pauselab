@@ -43,6 +43,15 @@ Steps for setting up a server meant for the deployed app.
   5. Leave the default option and click "Next: Configure Security Group"
   6. Assign the appropriate security group, create a new one if there are none to choose from. Click "Review and Launch" after completion
   7. Review the information and hit "Launch" once everything is verified. Select a keypair for the instance. Distribute the private key to admin accounts that will be doing the next steps.
+5. Allow traffic on 0.0.0.0/80 to your newly created instance
+  1. Go to "Security Groups" under Network and Security
+  2. Choose your instance group and select the "inbound" tab
+  3. There, press edit to configure settings
+    1. Change 'Type' to 'Custom TCP Rule'
+    2. Change 'Port Range' to '80'
+    3. Change 'Source' from 'Custom' to 'Anywhere'
+    4. Hit save upon completing
+  4. This will save as two HTTP rules, which is what you'll want for your inbound traffic
 
 ## Setting up the Rails App
 
@@ -161,4 +170,4 @@ Then execute `quit` to exit that shell. Now when you open the deployed site you 
 
 ## Extra stuff
 
-At this point the website should be functional; however, a couple things can be updated. First, the domain name can be updated. The process depends on the DNS service being used, but one change you will need to make is an update to the `server_name` in `/etc/nginx/sites-enabled/default`. Second, the site can be configured to use HTTPS/SSL so it is more secure against attackers who are sniffing web traffic. Again this will require some updates to the Passenger configuration files, but this is a common process that can be learned about through web searching.
+At this point the website should be functional; however, a couple things can be updated. First, the domain name can be updated. The process depends on the DNS service being used, but one change you will need to make is an update to the `server_name` in `/etc/nginx/sites-enabled/default`. Second, the site can be configured to use HTTPS/SSL so it is more secure against attackers who are sniffing web traffic. Again this will likely require some updates to the Passenger configuration files, but this is a common process, so the web is your friend.
