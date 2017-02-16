@@ -16,8 +16,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-# testing framework
-#gem 'rspec', '~> 3.4.0'
 
 #### gems we are adding ####
 gem 'figaro' # easy way to add environment variables
