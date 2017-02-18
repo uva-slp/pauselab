@@ -1,19 +1,25 @@
 
 <h1 class="admin-title">Admin Console</h1>
+
 <br>
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
 		<%= link_to 'Users', list_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
   </li>
   <li class="nav-item">
-		<%= link_to 'Iterations', admin_edit_phase_path, :class => (position == 'iterations' ? 'nav-link active' : 'nav-link') %>
+		<%= link_to 'Current Iteration', admin_edit_phase_path, :class => (position == 'current' ? 'nav-link active' : 'nav-link') %>
   </li>
   <li class="nav-item">
-    <%= link_to 'Manage system data', admin_manage_data_path, :class => (position == 'manage_data' ? 'nav-link active' : 'nav-link') %>
+    <%= link_to 'Iterations', admin_export_iterations_path, :class => (position == 'iterations' ? 'nav-link active' : 'nav-link') %>
   </li>
+  <!-- <li class="nav-item">
+    <%= link_to 'Manage system data', admin_manage_data_path, :class => (position == 'manage_data' ? 'nav-link active' : 'nav-link') %>
+  </li> -->
 </ul>
 
 <br>
+
 <% if defined? title %>
 	<h2 class="sub-header"><%= title %></h2>
 <% end %>
