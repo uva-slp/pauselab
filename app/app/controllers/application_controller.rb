@@ -24,11 +24,11 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
   stored_location_for(resource) ||
     if resource.is_a?(User) && resource.role == "admin"
-       "/admin"
-    elsif  resource.is_a?(User) && resource.role == "artist"
-      "/artist"
+       admin_overview_url
+    elsif  resource.is_a?(User) && resource.role == "artist" ||  resource.is_a?(User) && resource.role == "super artist" 
+      artist_home_url
     elsif  resource.is_a?(User) && resource.role == "steerer"
-      "/steering"
+      steering_home_url
     else
       super
     end
