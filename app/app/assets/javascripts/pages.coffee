@@ -73,7 +73,12 @@ buildInfo = (idea) ->
   idea.description +
   "</p><p class='idea-date text-muted'>" +
   date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() +
-  "</p>" +
+  "</p>"
+  +
+
+  "<a>like</a>"
+
+  +
   "</div>"
   # toReturn =
   # return '<div class="marker-info"><span>' + 'sd' +'</span>' + idea.description + '<br><span class="text-muted">' + date.toDateString() + '</span></div>'

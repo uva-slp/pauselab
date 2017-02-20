@@ -1,34 +1,22 @@
 
-<%= render :layout => 'dashboard', :locals => { title: '', position: 'iterations' } do %>
+<%= render :layout => 'dashboard', :locals => { title: '', position: 'current' } do %>
 
-  <%= react_component 'IterationManager', { data: @iterations, current: @current, info: @info } %>
+  <!-- <%= react_component 'IterationManager', { data: @iterations, current: @current, info: @info } %> -->
 
+  <p>started on: <%= @current.created_at.strftime('%x') %></p>
+  <p>current status: <span class="iter-status"><%= @current.status %></span></p>
+  <!-- <p>
+    <% if @current.status == 'progress' %>
+      <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration', remote: true} %>
+    <% else %>
+      <%= link_to "Next phase", admin_next_phase_path, {class: 'btn btn-primary', remote: true} %>
+    <% end %>
+  </p> -->
 
-  <!-- <div class="row">
-
-    <div class="col-sm-3">
-      <% if @iterations.any? %>
-        <% @iterations.each do |i| %>
-          <p><span><%= i.id %>: <%= i.get_interval %></span></p>
-        <% end %>
-      <% else %>
-        <p>First iteration</p>
-      <% end %>
-    </div>
-
-    <div class="col-sm-7">
-      <p>started on: <%= @current.created_at.strftime('%x') %></p>
-      <p><%= @current.get_interval %></p>
-      <p>current status: <span class="iter-status"><%= @current.status %></span></p>
-      <p>
-        <% if @current.status == 'progress' %>
-          <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration', remote: true} %>
-        <% else %>
-          <%= link_to "Next phase", admin_next_phase_path, {class: 'btn btn-primary', remote: true} %>
-        <% end %>
-      </p>
-    </div>
-
-  </div> -->
+  <%= simple_form_for :change_phase, url: change_phase_path, method: :put, wrapper: :inline_form, html: {class: 'form-inline'} do |f| %>
+    <%= f.input :phase, as: :select, collection: Iteration.statuses.first(3), :selected => Iteration.statuses[@current.status], input_html: { name: 'phase' } %>
+    <%= f.button :submit, value: 'change phase', class: 'btn-primary', data: {toggle: 'tooltip'}, title: 'change phase accordingly' %>
+    <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration'} %>
+  <% end %>
 
 <% end %>

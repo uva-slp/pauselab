@@ -1,8 +1,7 @@
 class LandingpagesController < ApplicationController
 
-load_and_authorize_resource
+  load_and_authorize_resource
 
-  
   def new
     @landingpage = Landingpage.new
   end
@@ -10,30 +9,30 @@ load_and_authorize_resource
   def create
     @landingpage = Landingpage.new(landingpage_params)
     if @landingpage.save
-	flash[:notice] = 'Your post was sent.'
-	redirect_to root_path
+    	flash[:notice] = 'Your post was sent.'
+    	redirect_to root_path
     end
   end
 
-   def edit
+  def edit
     @landingpage = Landingpage.find params[:id]
-   end
+  end
 
-    def update
+  def update
     @landingpage = Landingpage.find(params[:id])
     if @landingpage.update landingpage_params
           redirect_to root_path
     else
       render 'edit'
     end
-    end
+  end
 
-    	private
-	  def landingpage_params
-	    params.require(:landingpage).permit(
-                :title,
-	    	:description
-	    	)
-	  end
+  private
+  def landingpage_params
+    params.require(:landingpage).permit(
+              :title,
+    	:description
+    	)
+  end
 
 end

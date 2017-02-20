@@ -8,8 +8,8 @@ class PagesController < ApplicationController
       redirect_to :action => :proposal_collection, :controller => :proposals
     when 'voting'
       redirect_to :action => :new, :controller => :votes
-    when 'progress'
-      redirect_to :action => :index, :controller => :blogs
+    # when 'progress'
+    #   redirect_to :action => :index, :controller => :blogs
     else
       render :text => 'not in ideas'
     end

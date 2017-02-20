@@ -60,6 +60,12 @@ class IterationControl extends React.Component {
         onClick={this.endPhase}>end iteration</button>
     }
 
+    phase_btn = <button
+      className="btn btn-primary phase-btn"
+      data-toggle="tooltip"
+      title='start a new iteration'
+      onClick={this.endPhase}>end iteration</button>
+
     return (
       <div className="iteration-control">
         <div className="iteration-progress">
@@ -74,6 +80,13 @@ class IterationControl extends React.Component {
           </ul>
         </div>
         <div>
+          <select className="form-control">
+            <option defaultValue>ideas</option>
+            <option value="1">proposals</option>
+            <option value="2">voting</option>
+            <option value="3">progress</option>
+          </select>
+          {phase_btn}
           {phase_btn}
         </div>
       </div>
