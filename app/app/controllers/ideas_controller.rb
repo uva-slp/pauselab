@@ -30,6 +30,14 @@ class IdeasController < ApplicationController
     index_respond @ideas, :ideas
   end
 
+  def proposal_collection
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+  end
+
   def new
     @idea = Idea.new
   end

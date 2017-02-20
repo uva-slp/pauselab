@@ -8,6 +8,7 @@ class Ability
 
     # define aliases
     # alias_action :idea_collection, :to => :create
+    alias_action :proposal_collection, :to => :read
 
     if user.admin?
       can :manage, :all
@@ -45,7 +46,7 @@ class Ability
     else
       can :create, [Idea, Vote]
       can :read, [Blog, Category]
-      can [:manage], Proposal, status: Proposal.statuses[:approved]
+      can [:read], Proposal, status: Proposal.statuses[:approved]
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: Idea.statuses[:approved]

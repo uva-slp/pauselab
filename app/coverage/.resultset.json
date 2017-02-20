@@ -1,10 +1,10 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/student/pauselab/app/spec/controllers/admins_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/admins_controller_spec.rb": [
 
       ],
-      "/home/student/pauselab/app/spec/controllers/blogs_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/blogs_controller_spec.rb": [
         1,
         null,
         1,
@@ -136,7 +136,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/rails_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -170,7 +170,7 @@
         null,
         1,
         1,
-        122,
+        124,
         null,
         null,
         null,
@@ -208,14 +208,14 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/environment.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/home/student/pauselab/app/config/application.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/application.rb": [
         1,
         null,
         1,
@@ -237,12 +237,12 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/boot.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/home/student/pauselab/app/config/environments/test.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/environments/test.rb": [
         1,
         null,
         null,
@@ -286,7 +286,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/application_controller_renderer.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/application_controller_renderer.rb": [
         null,
         null,
         null,
@@ -294,20 +294,11 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/assets.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/assets.rb": [
         null,
         null,
         null,
         1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/home/student/pauselab/app/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -316,281 +307,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/cookies_serializer.rb": [
-        null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "/home/student/pauselab/app/config/initializers/devise.rb": [
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -599,13 +316,272 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/filter_parameter_logging.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/cookies_serializer.rb": [
+        null,
         null,
         null,
         null,
         1
       ],
-      "/home/student/pauselab/app/config/initializers/inflections.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/devise.rb": [
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -623,13 +599,37 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/mime_types.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/inflections.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/new_framework_defaults.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/mime_types.rb": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/new_framework_defaults.rb": [
         null,
         null,
         null,
@@ -655,12 +655,12 @@
         null,
         1
       ],
-      "/home/student/pauselab/app/config/initializers/session_store.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/home/student/pauselab/app/config/initializers/simple_form.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/simple_form.rb": [
         null,
         1,
         null,
@@ -827,7 +827,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/simple_form_bootstrap.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/simple_form_bootstrap.rb": [
         null,
         1,
         1,
@@ -978,12 +978,12 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/social_share_button.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/social_share_button.rb": [
         1,
         1,
         null
       ],
-      "/home/student/pauselab/app/config/initializers/wrap_parameters.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -999,11 +999,11 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/admins_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/admins_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/application_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/application_helper.rb": [
         1,
         null,
         1,
@@ -1030,35 +1030,35 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/blogs_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/blogs_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/categories_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/categories_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/ideas_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/ideas_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/landingpages_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/landingpages_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/mass_emails_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/mass_emails_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/pages_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/pages_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/proposal_comments_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/proposal_comments_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/proposals_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/proposals_helper.rb": [
         1,
         1,
         0,
@@ -1071,11 +1071,11 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/helpers/votes_helper.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/helpers/votes_helper.rb": [
         1,
         null
       ],
-      "/home/student/pauselab/app/spec/factories.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/factories.rb": [
         1,
         null,
         1,
@@ -1181,7 +1181,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/config/routes.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/config/routes.rb": [
         1,
         1,
         null,
@@ -1205,6 +1205,7 @@
         1,
         null,
         null,
+        1,
         1,
         1,
         1,
@@ -1234,7 +1235,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/user.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/user.rb": [
         1,
         null,
         null,
@@ -1268,7 +1269,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/application_record.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/application_record.rb": [
         1,
         1,
         null,
@@ -1285,7 +1286,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/blogs_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/blogs_controller.rb": [
         1,
         1,
         1,
@@ -1355,7 +1356,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/application_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/application_controller.rb": [
         1,
         1,
         1,
@@ -1411,7 +1412,7 @@
         1,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/categories_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/categories_controller_spec.rb": [
         1,
         null,
         1,
@@ -1500,7 +1501,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/categories_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/categories_controller.rb": [
         1,
         1,
         null,
@@ -1557,7 +1558,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/ideas_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/ideas_controller_spec.rb": [
         1,
         null,
         1,
@@ -1730,7 +1731,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/ideas_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/ideas_controller.rb": [
         1,
         1,
         null,
@@ -1761,6 +1762,14 @@
         0,
         null,
         5,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
         null,
         null,
         1,
@@ -1881,7 +1890,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/landingpages_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/landingpages_controller_spec.rb": [
         1,
         null,
         1,
@@ -1932,11 +1941,10 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/landingpages_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/landingpages_controller.rb": [
         1,
         null,
         1,
-        null,
         null,
         1,
         0,
@@ -1973,7 +1981,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/proposal_comments_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/proposal_comments_controller_spec.rb": [
         1,
         null,
         1,
@@ -2084,7 +2092,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/proposal_comments_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/proposal_comments_controller.rb": [
         1,
         1,
         1,
@@ -2149,7 +2157,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/proposals_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/proposals_controller_spec.rb": [
         1,
         null,
         1,
@@ -2255,7 +2263,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/proposals_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/proposals_controller.rb": [
         1,
         1,
         null,
@@ -2312,6 +2320,7 @@
         null,
         1,
         0,
+        null,
         0,
         0,
         0,
@@ -2353,7 +2362,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/controllers/votes_controller_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/controllers/votes_controller_spec.rb": [
         1,
         null,
         1,
@@ -2403,7 +2412,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/controllers/votes_controller.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/controllers/votes_controller.rb": [
         1,
         1,
         null,
@@ -2441,7 +2450,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/features/add_ideas_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/features/add_ideas_spec.rb": [
         1,
         null,
         1,
@@ -2467,7 +2476,24 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/models/blog_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/features/dynamic_homepage_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/blog_spec.rb": [
         1,
         null,
         1,
@@ -2485,7 +2511,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/blog.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/blog.rb": [
         1,
         1,
         1,
@@ -2500,7 +2526,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/models/category_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/category_spec.rb": [
         1,
         null,
         1,
@@ -2514,7 +2540,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/category.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/category.rb": [
         1,
         1,
         1,
@@ -2527,7 +2553,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/models/idea_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/idea_spec.rb": [
         1,
         null,
         1,
@@ -2588,7 +2614,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/idea.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/idea.rb": [
         1,
         null,
         1,
@@ -2597,80 +2623,6 @@
         1,
         null,
         1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        0,
-        null,
-        null
-      ],
-      "/home/student/pauselab/app/spec/models/proposal_comment_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/home/student/pauselab/app/app/models/proposal_comment.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/home/student/pauselab/app/spec/models/proposal_spec.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/home/student/pauselab/app/app/models/proposal.rb": [
-        1,
-        null,
-        1,
-        1,
-        1,
-        null,
-        1,
-        null,
-        1,
-        1,
-        null,
         1,
         null,
         1,
@@ -2686,13 +2638,87 @@
         1,
         0,
         null,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/proposal_comment_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/proposal_comment.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/proposal_spec.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/proposal.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
         null,
         1,
         0,
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/models/user_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -2727,7 +2753,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/spec/models/vote_spec.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/spec/models/vote_spec.rb": [
         1,
         null,
         1,
@@ -2741,7 +2767,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/vote.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/vote.rb": [
         1,
         1,
         1,
@@ -2753,7 +2779,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/iteration.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/iteration.rb": [
         1,
         null,
         1,
@@ -2765,11 +2791,11 @@
         null,
         1,
         54,
-        54,
+        50,
         null,
-        0,
-        0,
-        0,
+        4,
+        4,
+        4,
         null,
         null,
         null,
@@ -2784,7 +2810,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/ability.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/ability.rb": [
         1,
         1,
         null,
@@ -2795,6 +2821,7 @@
         null,
         null,
         null,
+        94,
         null,
         94,
         70,
@@ -2847,7 +2874,7 @@
         null,
         null
       ],
-      "/home/student/pauselab/app/app/models/landingpage.rb": [
+      "/Users/sugat/Documents/uva/4_fourth/CS_4970/pauselab/app/app/models/landingpage.rb": [
         1,
         1,
         1,
@@ -2858,6 +2885,6 @@
         null
       ]
     },
-    "timestamp": 1487088900
+    "timestamp": 1487607460
   }
 }

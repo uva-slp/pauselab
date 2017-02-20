@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   get '/admin/export_iterations', to: 'admins#export_iterations'
 
   # proposal routes
-  get '/proposal_collection', to: 'proposals#proposal_collection'
+  get '/proposal_collection', to: 'ideas#proposal_collection'
   post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
 
   # static pages routes

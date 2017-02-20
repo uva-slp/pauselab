@@ -33,4 +33,7 @@ Makefile
 # ignore temporaries
 *~
 *.un
+*.swp
 
+# coverage
+coverage/
