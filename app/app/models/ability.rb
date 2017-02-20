@@ -45,7 +45,7 @@ class Ability
     else
       can :create, [Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: Proposal.statuses[:approved]
+      can [:manage], Proposal, status: Proposal.statuses[:approved]
       # cannot :read, Proposal, [:status, :number_of_votes, ProposalComment]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
