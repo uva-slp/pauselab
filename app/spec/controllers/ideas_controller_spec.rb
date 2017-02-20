@@ -111,40 +111,61 @@ describe IdeasController, type: :controller do
     # TODO: validation checks
   end
 
+  describe "when creating an idea" do
+    it "saves the idea" do
+      i = build :idea
+      expect {
+        post :create, params: {idea: i.attributes}
+      }.to change { Idea.count }.by 1
+    end
+    it "associates new idea with current iteration" do
+      iter = create :iteration
+      idea = build :idea, :iteration => nil
+      post :create, params: {idea: idea.attributes}
+      idea = Idea.last
+      expect(idea.iteration_id).to eq iter.id
+    end
+    it "responds with redirect" do
+      i = build :idea
+      post :create, params: {idea: i.attributes}
+      expect(response).to be_redirect
+    end
+  end
+
   describe "when liking an idea" do
-    it "updates like count" do
+    it "updates like count of idea" do
       i = create :idea
       expect {
-        get :like, params: {id: i}
+        get :like, params: {id: i.id}, xhr: true
       }.to change {Idea.find(i.id).likes}.by 1
     end
-    it "updates cookie" do
+    it "creates likes cookie if nil" do
       i = create :idea
-      get :like, params: {id: i}
+      get :like, params: {id: i.id}, xhr: true
       expect(cookies[:likes]).to eq "[#{i.id}]"
     end
-    it "likes multiple ideas" do
+    it "updates likes cookie if not nil" do
       cookies[:likes] = "[12]"
       i = create :idea
-      get :like, params: {id: i}
+      get :like, params: {id: i.id}, xhr: true
       expect(cookies[:likes]).to eq "[12,#{i.id}]"
-    end
+    end		     
   end
 
   describe "when unliking an idea" do
     it "updates like count" do
       i = create :idea
-      get :like, params: {id: i}
+      cookies[:likes] = "[#{i.id}]"
       expect {
-        get :like, params: {id: i}
+        get :like, params: {id: i.id}, xhr: true
       }.to change {Idea.find(i.id).likes}.by -1
     end
     it "updates cookie" do
       i = create :idea
-      get :like, params: {id: i}
-      get :like, params: {id: i}
+      cookies[:likes] = "[#{i.id}]"
+      get :like, params: {id: i.id}, xhr: true
       expect(cookies[:likes]).to eq "[]"
     end
-  end
+  end		    
 
 end

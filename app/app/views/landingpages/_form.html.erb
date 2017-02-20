@@ -29,7 +29,7 @@
 </style>
 
 <%= simple_form_for @landingpage do |f| %>
-<%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us"] %>
+<%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us", "Artist Home", "Steering Committee Home"] %>
 <%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
 
  <div class='form-group'>
@@ -49,6 +49,8 @@ $('textarea').each(function() {
       btns: [
           ['formatting'],
           ['insertImage'],
+          'btnGrp-semantic',
+          ['link'],
           'btnGrp-justify',
           'btnGrp-lists',
           ['horizontalRule'],

@@ -20,10 +20,10 @@ class AdminsController < ApplicationController
 
 	def change_phase
 		new_phase = params[:phase]
-		@phase = Phase.get_current
-		@phase.phase = new_phase.to_i
-		authorize! :update, @phase
-		@phase.save
+		@current = Iteration.get_current
+		@current.status = new_phase.to_i
+		authorize! :update, @current
+		@current.save
 		render 'edit_phase'
 	end
 
@@ -42,25 +42,26 @@ class AdminsController < ApplicationController
 
 	def end_phase
 		prev = Iteration.get_current
-		if prev.status == "progress"
-			prev.ended = Time.now
-			prev.status = "ended"
-			prev.save
-			@current = Iteration.new
-			@current.save
-		end
-		render json: {current: @current, prev: prev}
+		# if prev.status == "progress"
+		prev.ended = Time.now
+		prev.status = "ended"
+		prev.save
+		@current = Iteration.new
+		@current.save
+		# end
+		# render json: {current: @current, prev: prev}
+		render 'edit_phase'
 	end
 
 	def edit_phase
 		@current = Iteration.get_current
-		@iterations = Iteration.where :status => "ended"
-		@info = {
-			:ideas => @current.ideas.count,
-			:votes => @current.votes.count,
-			:blogs => @current.blogs.count,
-			:proposals => @current.proposals.count,
-		}
+		# @iterations = Iteration.where :status => "ended"
+		# @info = {
+		# 	:ideas => @current.ideas.count,
+		# 	:votes => @current.votes.count,
+		# 	:blogs => @current.blogs.count,
+		# 	:proposals => @current.proposals.count,
+		# }
 		# @phase = Phase.get_current
 		authorize! :edit, @current
 	end
@@ -76,6 +77,10 @@ class AdminsController < ApplicationController
 		# the getter for the webpage with export options
 		# no backend logic, just links on the html
 		render 'export_data'
+	end
+
+	def export_iterations
+		@iterations = Iteration.where :status => "ended"
 	end
 
 	require 'tempfile'

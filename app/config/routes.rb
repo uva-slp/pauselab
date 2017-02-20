@@ -30,7 +30,8 @@ Rails.application.routes.draw do
   get '/admin/manage_data', to: 'admins#manage_data'
   get '/admin/next_phase', to: 'admins#next_phase'
   get '/admin/end_phase', to: 'admins#end_phase'
-  get '/admin/export_zip/:num', to: 'admins#export_zip'
+  get '/admin/export_zip/:num', to: 'admins#export_zip', as: 'export_zip'
+  get '/admin/export_iterations', to: 'admins#export_iterations'
 
   # proposal routes
   get '/proposal_collection', to: 'proposals#proposal_collection'
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
   # static pages routes
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
   get '/about', to: 'pages#about_page', as: 'about'
+  get '/artist', to: 'pages#artist_home', as: 'artist_home'
+  get '/steering', to: 'pages#steering_landing', as: 'steering_landing'
   get '/pages/ideas_json', to: 'pages#get_ideas'
   get '/pages/categories_json', to: 'pages#get_categories'
 

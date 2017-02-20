@@ -1,4 +1,3 @@
-
 <% content_for :masthead do %>
     <!-- <%= image_tag 'masthead/artist-med.jpg', :alt => 'beCville', class: 'img-responsive' %> -->
 <% end %>
@@ -40,7 +39,7 @@
 				<% end %>
 				
                             <% if can? :read, idea, :description %>
-                                <td><%= social_share_button_tag(idea.description,  :popup => "true")%></td>
+                                <td><%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%></td>
 
                             <% end %> 
 				<!-- <a class="btn btn-sm btn-outline-primary"><i class="fa fa-thumbs-o-up "></i></a> -->

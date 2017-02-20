@@ -96,4 +96,9 @@ FactoryGirl.define do
     proposals {create_list(:proposal, 3, iteration: iteration)}
   end
 
+  factory :landingpage do
+    title {Faker::Hipster.sentence}
+    description {Faker::Hipster.paragraph}
+  end
+
 end
