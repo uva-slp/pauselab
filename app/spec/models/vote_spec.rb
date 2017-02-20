@@ -9,4 +9,5 @@ RSpec.describe Vote, type: :model do
     vote = build :vote, :proposal_ids => []
     expect(vote).to_not be_valid
   end
+
 end
