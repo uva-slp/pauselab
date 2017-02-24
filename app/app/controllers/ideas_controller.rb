@@ -109,6 +109,15 @@ class IdeasController < ApplicationController
     #redirect_to ideas_path
   end
 
+	def proposal_collection
+    @ideas = Idea.where :iteration_id => Iteration.get_current.id
+		# @ideas = Idea.all
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+	end
+
   def destroy
     @idea = Idea.find(params[:id])
     @idea.destroy
