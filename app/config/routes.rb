@@ -2,22 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  #This is really cheesy, but I'm declaring this URL before resouce :blogs so the 'show' function stops declaring admin_console as an unknown id
-  get 'blogs/admin_console' => "blogs#admin_console"
-  get 'ideas/like/:id' => "ideas#like", as: 'idea_like'
-
-  # makes RESTful routes for our models
-  resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages
-  resources :proposals do
-    resources :proposal_comments
-  end
-
   # this will change depending on the current phase of the process
   # root to: 'pages#index'
   root 'pages#go_home'
 
   get '/ideas', to: 'ideas#idea_collection'
   get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
+  get '/ideas/like/:id' => "ideas#like", as: 'idea_like'
   post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
   # admins routes
@@ -41,12 +32,21 @@ Rails.application.routes.draw do
   get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
   get '/about', to: 'pages#about_page', as: 'about'
   get '/artist', to: 'pages#artist_home', as: 'artist_home'
-  get '/steering', to: 'pages#steering_landing', as: 'steering_landing'
+  get '/steering', to: 'pages#steering_home', as: 'steering_home'
   get '/pages/ideas_json', to: 'pages#get_ideas'
   get '/pages/categories_json', to: 'pages#get_categories'
+
+  # blogs routes
+  get 'blogs/admin_console', to: "blogs#admin_console", as: 'admin_console'
 
   # user routes TODO: possibly in the future
   get 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   # devise_for :users, :controllers => { :registrations => 'users/registrations' }
+
+  # makes RESTful routes for our models
+  resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages
+  resources :proposals do
+    resources :proposal_comments
+  end
 
 end

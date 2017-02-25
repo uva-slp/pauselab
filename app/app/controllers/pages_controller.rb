@@ -41,6 +41,12 @@ class PagesController < ApplicationController
   def about
   end
 
+  def steering_home
+  end
+
+  def artist_home
+  end
+
   def test_email
     #SlpMailer.email_self.deliver_later
     #SlpMailer.email_self.deliver
