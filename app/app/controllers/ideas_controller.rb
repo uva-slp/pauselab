@@ -2,7 +2,6 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    logger.info("~~~~~~~~~~~~\nbeginning of INDEX");
     @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"

@@ -92,15 +92,9 @@
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %></td>
         <% end %>
-<<<<<<< HEAD
-        <% if can? :read, proposal %>
-	        <td><%= social_share_button_tag(proposal.title) %></td>
-        <% end %>
-=======
         <% if can? :read, proposal, :title %>
 	        <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
-        <% end %>        
->>>>>>> e1fdb7cf4ce72189c063f8ad6a76683c59a87d28
+        <% end %>
       </tr>
       <% end %>
 
