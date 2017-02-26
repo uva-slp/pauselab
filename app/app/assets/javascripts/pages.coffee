@@ -35,7 +35,7 @@ window.initMap = ->
         lat: parseFloat(idea.lat)
         lng: parseFloat(idea.lng)
 
-      defaultUrl = "https://maxcdn.icons8.com/Color/PNG/512/Maps/marker-512.png"
+      defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
       img =
         url: categories[idea.category_id] || defaultUrl
         # size: new (google.maps.Size)(100, 100)
@@ -45,7 +45,7 @@ window.initMap = ->
 
       marker = new (google.maps.Marker)(
           position: pos
-          # icon: img
+          icon: img
           map: map
           title: idea.created_at
         )
