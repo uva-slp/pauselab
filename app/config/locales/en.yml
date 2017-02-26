@@ -20,4 +20,27 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  common:
+    number_symbol: "#"
+    actions: Actions
+    user_name: Name
+    user_email: Email
+    user_role: Role
+    user_phone: Phone
+    confirm_message: "Are you sure?"
+  admins:
+    admin_console: Admin Console
+    users: Users
+    current_iteration: Current Iteration
+    iterations: Iterations
+    started_on: Started on
+    current_status: Current Status
+    change_phase: Change Phase
+    change_phase_hint: Change phase accordingly
+    end_iteration: End Iteration
+    end_iteration_hint: This will start a new iteration
+    no_past_iterations: No past iterations
+    iteration_started: Started
+    iteration_ended: Ended
+    last_signed_in: Time since last sign-in
+    change_user_role: Change user role

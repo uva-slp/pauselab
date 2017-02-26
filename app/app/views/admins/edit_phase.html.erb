@@ -3,8 +3,8 @@
 
   <!-- <%= react_component 'IterationManager', { data: @iterations, current: @current, info: @info } %> -->
 
-  <p>started on: <%= @current.created_at.strftime('%x') %></p>
-  <p>current status: <span class="iter-status"><%= @current.status %></span></p>
+  <p><%=t 'admins.started_on'%>: <%= @current.created_at.strftime('%x') %></p>
+  <p><%=t 'admins.current_status'%>: <span class="iter-status"><%= @current.status %></span></p>
   <!-- <p>
     <% if @current.status == 'progress' %>
       <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration', remote: true} %>
@@ -15,8 +15,8 @@
 
   <%= simple_form_for :change_phase, url: change_phase_path, method: :put, wrapper: :inline_form, html: {class: 'form-inline'} do |f| %>
     <%= f.input :phase, as: :select, collection: Iteration.statuses.first(3), :selected => Iteration.statuses[@current.status], input_html: { name: 'phase' } %>
-    <%= f.button :submit, value: 'change phase', class: 'btn-primary', data: {toggle: 'tooltip'}, title: 'change phase accordingly' %>
-    <%= link_to "End iteration", admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: 'this will start a new iteration'} %>
+    <%= f.button :submit, value: (t 'admins.change_phase'), class: 'btn-primary', data: {toggle: 'tooltip'}, title: (t 'admins.change_phase_hint') %>
+    <%= link_to (t "admins.end_iteration"), admin_end_phase_path, {class: 'btn btn-primary', "data-toggle": "tooltip", title: (t 'admins.end_iteration_hint')} %>
   <% end %>
 
 <% end %>
