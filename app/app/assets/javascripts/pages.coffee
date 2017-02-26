@@ -22,7 +22,7 @@ window.initMap = ->
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push document.getElementById 'new-idea-btn'
     $('#map-sidebar').hide()
     map.addListener 'click', ->
-      $('#map-sidebar').fadeOut 200
+      $('#map-sidebar') .fadeOut 200
 
     bounds = new (google.maps.LatLngBounds)(pos)
     infowindow = new (google.maps.InfoWindow)(
@@ -67,7 +67,9 @@ window.initMap = ->
 buildInfo = (idea) ->
   date = new (Date)(idea.created_at)
   address = idea.address
-  return "<div class='marker-info'><img class='idea-img' src='https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/graphics/missionhills.jpg'><br><br><p class='idea-address'>" +
+  return "<div class='marker-info'><img class='idea-img'
+  src='https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/graphics/missionhills.jpg'>
+  <br><br><p class='idea-address'>" +
   address +
   "</p><p class='idea-description'>" +
   idea.description +
