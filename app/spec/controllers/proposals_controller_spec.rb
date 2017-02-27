@@ -95,24 +95,6 @@ describe ProposalsController, type: :controller do
       proposal.reload
       expect(proposal.description).to eq 'Hello, World!'
     end
-    it "can update title" do
-      proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
-      proposal.reload
-      expect(proposal.description).to eq 'New Title'
-    end
-    it "can update essay" do
-      proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:essay => 'Essay updated.'}}
-      proposal.reload
-      expect(proposal.description).to eq 'Essay updated.'
-    end
-    it "can update website link" do
-      proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:website_link => 'www.test.com'}}
-      proposal.reload
-      expect(proposal.description).to eq 'www.test.com'
-    end
     it "responds with redirect" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
