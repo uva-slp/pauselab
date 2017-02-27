@@ -19,12 +19,11 @@
 		</div>
 		<div class="card-footer" align="left">
 			<% if can? :read, idea, :description %>
-                                <%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%>
-                              <% end %>
-                              <span style="float:right;"><%= render :partial => 'like_button', locals: {idea: idea}  %></span>
+        <%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%>
+      <% end %>
+      <span style="float:right;"><%= render :partial => 'like_button', locals: {idea: idea}  %></span>
 		</div>
 
 	</div>
  <% end %>
 </div>
-

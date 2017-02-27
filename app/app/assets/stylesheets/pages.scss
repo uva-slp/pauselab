@@ -31,6 +31,32 @@
   height: auto;
 }
 
+// info window
+.infobox {
+  // border: 1px solid black;
+}
+
+.no-outline {
+  outline: none;
+  &:active {
+    outline: none;
+  }
+  &:visited {
+    outline: none;
+  }
+}
+
+// .gm-style-iw + div {display: none;}
+
+.gm-style-iw {
+  width: 300px;
+  // min-height: 150px;
+}
+
+.share-btn {
+  color: white;
+}
+
 // social share button
 
 .social-share-button {
