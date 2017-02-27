@@ -5,45 +5,7 @@
   }
 </style>
 
-<%= render :layout => 'dashboard', :locals => { title: @user.fullname, position: 'users' } do %>
-
-  <div class="row">
-    <div class="col-md-3 cols">
-      <strong>role</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @user.role %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>email</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @user.email %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>phone</strong>
-    </div>
-    <div class="col-md-4">
-      <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>last signed in</strong>
-    </div>
-    <div class="col-md-4">
-      <%= time_ago_in_words @user.last_sign_in_at %> ago
-    </div>
-  </div>
-
-  <br>
+<%= render :layout => 'dashboard', :locals => {position: 'users' } do %>
 
   <div>
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
@@ -59,16 +21,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Change user role</h4>
+          <h4 class="modal-title" id="myModalLabel">Edit User</h4>
         </div>
         <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
         <%= simple_form_for :change_role do |f| %>
           <div class="modal-body">
             <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
-            <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+            <%= f.input :role, label: 'Role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+            <%= f.input :email, label: 'Email', :input_html => { value: @user.email, name: 'email' } %>
+            <%= f.input :phone, label: 'Phone', :input_html => { value: @user.phone, name: 'phone' } %>
           </div>
           <div class="modal-footer">
-            <%= f.button :submit, value: 'change role', class: 'btn btn-primary' %>
+            <%= f.button :submit, 'Update User', class: 'btn btn-primary' %>
             <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
           </div>
         <% end %>
@@ -76,5 +40,44 @@
     </div>
   </div>
 
+  <h2 class="sub-header"><%= @user.fullname %></h2>
+
+  <div class="row">
+    <div class="col-md-3 cols">
+      <strong>Role:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.role %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Email:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.email %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Phone:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong>Last Signed In:</strong>
+    </div>
+    <div class="col-md-4">
+      <%= time_ago_in_words @user.last_sign_in_at %> ago
+    </div>
+  </div>
+
+  <br>
 
 <% end %>
