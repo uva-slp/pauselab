@@ -31,7 +31,7 @@ gem 'devise' # authentication gem
 gem 'cancancan'
 # gem 'cancan', github: 'ryanb/cancan', branch: '2.0' # authorization gem
 gem 'simple_form' # easier forms
-gem 'paperclip','~> 4.2'
+gem 'paperclip','~> 4.2'  # file attachments
 gem 'trumbowyg_rails' # Trumbowyg editor
 gem 'sanitize' #Sanitize info inside the wysiwig
 gem 'font-awesome-sass'
@@ -41,6 +41,7 @@ gem 'react-rails'
 gem 'rubyzip'
 gem 'responders'
 gem 'chartkick'
+gem 'rails-i18n', '~> 5.0.0'  # internationalization
 
 group :development, :test do
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console
