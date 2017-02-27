@@ -1,0 +1,30 @@
+# Espanol
+
+es:
+  common:
+    number_symbol: "#"
+    actions: Acciónes
+    user_name: Nombre
+    user_email: Email
+    user_role: Parte
+    user_phone: Teléfono
+    confirm_message: "¿Estás seguro?"
+  admins:
+    admin_console: La consola de administración
+    users: Los Usarios
+    current_iteration: Iteración actual
+    iterations: Iteraciones
+    started_on: Comenzó en
+    current_status: Estado actual
+    change_phase: Cambia la fase
+    change_phase_hint: Cambia la fase como corresponde
+    end_iteration: Termina la iteración
+    end_iteration_hint: Comenza una nueva iteración
+    no_past_iterations: Sin iteraciones pasadas
+    iteration_started: Comenzó
+    iteration_ended: Terminó
+    last_signed_in: Tiempo transcurrido desde el último registro
+    change_user_role: Cambia de parte
+    edit_user: Edita el usario
+    update_user: Actualiza el usario
+    manage: Administrar
