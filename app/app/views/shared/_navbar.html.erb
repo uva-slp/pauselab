@@ -69,7 +69,7 @@
               <% end %>
               <% if can? :read, Idea %>
                 <div class="dropdown-divider"></div>
-                <% if current_user.resident? || current_user.artist? || current_user.super_artist? %>
+                <% if user_signed_in? && !current_user.artist? %>
                   <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
                 <% else %>
                   <%= link_to 'Ideas',  proposal_collection_path, class: 'dropdown-item' %>

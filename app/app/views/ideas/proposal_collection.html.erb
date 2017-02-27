@@ -10,7 +10,7 @@
 	}
 </style>
 
-<% if !current_user.resident? && Iteration.get_current.proposals? %>
+<% if Iteration.get_current.proposals? %>
 	<h1 class="page-header text-lg-center">Calling all artists</h1>
 	<div class="text-lg-center" style="margin-top: 20px;">
 		<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>

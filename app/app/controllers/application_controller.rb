@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   enable_authorization unless :devise_controller?
 
   # adding below for mass assignment of user fields
-  # NOTE DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead.
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   # strong params config to work with cancan
