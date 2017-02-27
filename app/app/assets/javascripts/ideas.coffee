@@ -1,3 +1,19 @@
+
+$(document).on "turbolinks:load", ->
+  $('.fb-btns').click ->
+      window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
+  $('.twtr-btns').click ->
+    desc = $(this).data 'desc'
+    id = $(this).data 'id'
+    desc = encodeURIComponent format desc, id
+    window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
+
+
+format = (desc, id) ->
+  if desc.length > 50
+    desc = desc.substring(0, 50) + "..."
+  return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + id
+
 window.initAutocomplete = ->
   pos =
     lat: 38.0293
@@ -85,7 +101,6 @@ geocodePosition = (pos) ->
       $('.address').html addr
     return
   return
-
 
 window.showMap = ->
   pos =

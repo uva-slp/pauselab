@@ -1,9 +1,3 @@
-window.fb = (idea) ->
-  console.log 'facebook'
-
-window.twtr = (idea) ->
-  console.log 'twitter'
-
 window.initMap = ->
 
   g = {}
@@ -93,7 +87,7 @@ buildInfo = (idea) ->
 
   format = ->
     desc = idea.description
-    if desc > 50
+    if desc.length > 50
       desc = desc.substring(0, 50) + "..."
     return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + idea.id
 

@@ -88,34 +88,55 @@ describe ProposalsController, type: :controller do
     end
   end
 
-  describe "when updating a proposal" do
+  describe "when updating a proposal description" do
     it "can update description" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
       proposal.reload
       expect(proposal.description).to eq 'Hello, World!'
     end
+    it "responds with redirect" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
+      expect(response).to be_redirect
+    end
+  end
+  describe "when updating a proposal title" do
     it "can update title" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
       proposal.reload
-      expect(proposal.description).to eq 'New Title'
-    end
-    it "can update essay" do
-      proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:essay => 'Essay updated.'}}
-      proposal.reload
-      expect(proposal.description).to eq 'Essay updated.'
-    end
-    it "can update website link" do
-      proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:website_link => 'www.test.com'}}
-      proposal.reload
-      expect(proposal.description).to eq 'www.test.com'
+      expect(proposal.title).to eq 'New Title'
     end
     it "responds with redirect" do
       proposal = create :proposal
-      put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
+      put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
+      expect(response).to be_redirect
+    end
+  end
+  describe "when updating a proposal essay" do
+    it "can update essay" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:essay => 'New essay'}}
+      proposal.reload
+      expect(proposal.essay).to eq 'New essay'
+    end
+    it "responds with redirect" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:essay => 'New essay'}}
+      expect(response).to be_redirect
+    end
+  end
+  describe "when updating a proposal website link" do
+    it "can update essay" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:website_link => 'www.test.com'}}
+      proposal.reload
+      expect(proposal.website_link).to eq 'www.test.com'
+    end
+    it "responds with redirect" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:website_link => 'www.test.com'}}
       expect(response).to be_redirect
     end
   end

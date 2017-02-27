@@ -21,4 +21,5 @@ class Idea < ApplicationRecord
 	def category_name
 		category.name
 	end
+
 end

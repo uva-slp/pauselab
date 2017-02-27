@@ -39,4 +39,4 @@ Makefile~
 *.swp
 
 # coverage
-coverage/
+coverage/*
