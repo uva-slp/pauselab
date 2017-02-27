@@ -102,11 +102,11 @@ describe ProposalsController, type: :controller do
     end
   end
   describe "when updating a proposal title" do
-    it "can update description" do
+    it "can update title" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
       proposal.reload
-      expect(proposal.description).to eq 'New Title'
+      expect(proposal.title).to eq 'New Title'
     end
     it "responds with redirect" do
       proposal = create :proposal
