@@ -1,27 +1,36 @@
 
-<%= link_to 'Create New Category', new_category_path, class: 'btn btn-default pull-right' %>
-<h2>Categories</h2>
+<% if can? :create, Category %>
+  <button type="button" class='btn btn-primary pull-right clearfix' data-toggle="modal" data-target="#cat_form">Create New Category</button>
+<% end %>
 
-<table class="table">
+<h2 class="pull-left">categories</h2>
 
-  <thead>
-    <tr>
-      <th>Category ID</th>
-      <th>Name</th>
-      <th colspan="6">Actions</th>
-    </tr>
-  </thead>
-  
-   <% @categories.each do |category| %>
-    <tr>
-      <td><%= category.id %></td>
-      <td><%= category.name %></td>
-      <td><%= link_to 'Show', category_path(category) %></td>
-      <td><%= link_to 'Edit', edit_category_path(category) %></td>
-      <td><%= link_to 'Destroy', category_path(category),
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
 
-</table>
+<div class="table-responsive">
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>Category ID</th>
+        <th>Name</th>
+        <th colspan="6">Actions</th>
+      </tr>
+    </thead>
+
+    <% @categories.each do |category| %>
+     <tr>
+       <td><%= category.id %></td>
+       <td><%= category.name %></td>
+       <td><%= link_to 'Show', category_path(category) %></td>
+       <td><%= link_to 'Edit', edit_category_path(category) %></td>
+       <td><%= link_to 'Remove', category_path(category),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %></td>
+     </tr>
+   <% end %>
+
+  </table>
+</div>
+
+<!-- Modal -->
+<%= render partial: 'modal_form', locals: {category: @category} %>

@@ -2,7 +2,8 @@ class CategoriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @categories = Category.all
+    @category = Category.new
+    index_respond @categories, :categories
   end
 
   def show
@@ -39,14 +40,15 @@ class CategoriesController < ApplicationController
     if @category.update category_params
       redirect_to @category
     else
-      render edit_category_path
+      render edit_category_path @category
     end
   end
 
   private
     def category_params
       params.require(:category).permit(
-          :name
+          :name,
+          :icon
           )
     end
 

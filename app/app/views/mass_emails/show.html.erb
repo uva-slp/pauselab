@@ -1,0 +1,11 @@
+
+<%= link_to 'Back', mass_emails_path %>
+
+<h4><b>  Date Sent: </b></h4>
+<p><%= @mass_email.created_at.strftime("%B %d, %Y") %></p>
+<h4><b>  To: </b></h4>
+<p><%= @mass_email.to %></p>
+<h4><b>  Subject: </b></h4>
+<p><%= @mass_email.subject %></p>
+<h4><b>  Body: </b></h4>
+<p><%= @mass_email.body %></p>

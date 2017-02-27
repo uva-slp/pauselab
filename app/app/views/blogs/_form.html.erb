@@ -7,3 +7,20 @@
       <%= link_to 'Cancel', blogs_path %>
     </div>
 <% end %>
+
+<!-- Haven't tested it out yet but it should work --> 
+<script>
+$('textarea').each(function() {
+  $(this).trumbowyg({
+      svgPath: '<%= image_path("icons.svg") %>',
+      btns: [
+          ['formatting'],
+          ['insertImage'],
+          'btnGrp-justify',
+          'btnGrp-lists',
+          ['horizontalRule'],
+          ['fullscreen']
+      ]
+  });
+});
+</script>

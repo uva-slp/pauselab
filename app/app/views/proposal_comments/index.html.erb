@@ -1,0 +1,6 @@
+<h1>Comments</h1>
+<% @proposal_comments.each do |comment| %>
+  <p>
+    <strong><%= comment.user.fullname %></strong>: <%= comment.body %>
+  <p>
+<% end %>

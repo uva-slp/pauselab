@@ -10,7 +10,7 @@
   <%= f.input :remember_me, as: 'boolean' %>
 
   <div class="form-group">
-    <%= f.button :submit, value: 'sign in' %>
+    <%= f.button :submit, "Sign In" %>
   </div>
 
   <div class="form-group">
@@ -18,12 +18,3 @@
   </div>
 
 <% end %>
-
-<% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-<% end %> 
-
-
-
-
-

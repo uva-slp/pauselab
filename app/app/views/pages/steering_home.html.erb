@@ -1,0 +1,15 @@
+
+<% if Landingpage.exists?(title: "Steering Committee Home") %>
+  <% @landingpage = Landingpage.where(title: "Steering Committee Home").first%>
+  <h2><%= @landingpage.title%> </h2>
+  <p><%=  @landingpage.description.html_safe %> </p>
+   <% if can? :edit, Landingpage %>
+  <p> <%= link_to 'Edit Steering Committee Home', edit_landingpage_path(@landingpage) %></p>
+  <% end %>
+  <% else %>
+  <p> PauseLab has not created a streering committee home post yet </p>
+  <% if can? :create, Landingpage %>
+   <p> <%= link_to 'Create Steering Committee Home', new_landingpage_path %></p>
+ <% end %>
+
+  <% end %>

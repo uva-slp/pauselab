@@ -1,0 +1,26 @@
+
+<div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  <div class="modal-dialog modal-sm" role="document">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create a new category</h4>
+      </div>
+
+      <%= simple_form_for @category do |f| %>
+        <div class="modal-body">
+          <%= f.input :name, placeholder: 'Nature' %>
+          <%= f.input :icon, as: :file, hint: 'Used for the Maps icon displaying an idea. Must be an image file.' %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

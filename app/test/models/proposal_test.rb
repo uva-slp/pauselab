@@ -15,6 +15,7 @@ class ProposalTest < ActiveSupport::TestCase
     proposal.description = "colorful bench"
     proposal.essay = "this will help everyone"
     proposal.status = "unchecked"
+    proposal.user = users(:valid_human)
     assert proposal.save, "could not save proposal"
   end
 
@@ -82,4 +83,27 @@ class ProposalTest < ActiveSupport::TestCase
      assert_not proposal.save, "proposal saved without documentation"
    end
 
+   test "Tests the pressence of volunteer" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.volunteer = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without volunteer"
+   end
+
+   test "Tests the pressence of insurance" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.insurance = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without insurance"
+   end
+
+   test "Tests the pressence of events" do
+     proposal = Proposal.new
+     proposal.description = "new thing"
+     proposal.events = 100
+     proposal.status = "unchecked"
+     assert_not proposal.save, "proposal saved without events"
+   end
 end

@@ -1,16 +1,8 @@
 
-<%= flash_messages %>
-
-
 <style media="screen">
+
   .controls {
       margin-top: 10px;
-      /*border: 1px solid transparent;
-      border-radius: 2px 0 0 2px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      height: 32px;
-      outline: none;*/
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     }
 
@@ -21,32 +13,8 @@
       padding: 0 11px 0 13px;
       text-overflow: ellipsis;
       width: 75%;
+      padding: 0.5rem 0.75rem;
     }
-
-    /*
-
-    #pac-input:focus {
-      border-color: #4d90fe;
-    }*/
-
-    /*.pac-container {
-      font-family: Roboto;
-    }*/
-
-    /*#type-selector {
-      color: #fff;
-      background-color: #4d90fe;
-      padding: 5px 11px 0px 11px;
-    }
-
-    #type-selector label {
-      font-family: Roboto;
-      font-size: 13px;
-      font-weight: 300;
-    }
-    #target {
-      width: 345px;
-    }*/
 
     .address {
       font-style: italic;
@@ -59,7 +27,7 @@
 <div class="row">
 
   <div class="col-sm-6 <%= 'has-error' if @idea.errors.key?(:lat) %>">
-    <input id="pac-input" class="controls form-control" type="text" placeholder="lee park etc.">
+    <input  id="pac-input" class="controls form-control" type="text" placeholder="lee park etc.">
     <div id="map" class="idea-map-pick"></div>
     <% if @idea.errors.key?(:lat) %>
       <span class="help-block">no location specified</span>

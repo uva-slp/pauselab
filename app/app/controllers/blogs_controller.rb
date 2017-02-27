@@ -1,8 +1,10 @@
 class BlogsController < ApplicationController
   load_and_authorize_resource
-  
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+
   def index
-    @blogs = Blog.all.sort_by(&:created_at).reverse!
+    @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
+    index_respond @blogs, :blogs
   end
 
   def admin_console
@@ -20,6 +22,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+    @blog.iteration_id = Iteration.get_current.id
     if @blog.save
       flash[:notice] = 'your blog was saved'
       redirect_to blogs_path
@@ -48,6 +51,11 @@ class BlogsController < ApplicationController
     end
   end
 
+  def record_not_found
+    flash[:error] = 'Record not found'
+    redirect_to action: :index
+  end
+
   private
     def blog_params
       params.require(:blog).permit(
@@ -55,5 +63,6 @@ class BlogsController < ApplicationController
           :body
           )
     end
+
 
 end

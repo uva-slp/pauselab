@@ -13,11 +13,14 @@
 !/log/.keep
 !/tmp/.keep
 
+#Code coverage
+coverage/*
 # Ignore Byebug command history file.
 .byebug_history
 
 # Ignore application configuration
 /config/application.yml
+db/schema.rb
 
 # MAC files
 .DS_Store
@@ -25,7 +28,15 @@
 # where gems are installed in server
 vendor/bundle
 
+
+# ignore build file
 Makefile
 Makefile~
 
+# ignore temporaries
+*~
+*.un
+*.swp
+
+# coverage
 coverage/

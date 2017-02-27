@@ -1,0 +1,31 @@
+
+
+<!-- <% if can? :create, Vote %>
+  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-primary pull-right clearfix' %>
+<% end %> -->
+
+<h2 class="pull-left">votes</h2>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>Vote ID</th>
+        <th>Sumbmitted</th>
+        <th colspan="3">Proposals</th>
+      </tr>
+    </thead>
+
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.id %></td>
+        <td><%= vote.created_at.strftime "%D"  %></td>
+        <% vote.proposals.each do |proposal| %>
+          <td><%= proposal.title %></td>
+        <% end %>
+      </tr>
+      <% end %>
+
+  </table>
+</div>

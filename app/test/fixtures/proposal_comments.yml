@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: Comment
+  proposal: one
+  user: oscar
+
+two:
+  body: Another Comment
+  proposal: two
+  user: valid_human

@@ -1,0 +1,92 @@
+<style media="screen">
+  .checkbox {
+    display: block;
+  }
+  .check_boxes {
+    margin-right: 10px;
+  }
+  .form-check-label input {
+    display: none;
+  }
+  .card-title a {
+    text-decoration: none;
+  }
+
+</style>
+
+<% if @vote.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <%= @vote.errors[:proposals][0] if @vote.errors[:proposals].any? %>
+  </div>
+<% end %>
+
+<%= form_for @vote, :url => { :action => "create" } do |vote| %>
+
+  <div class="card-columns">
+
+  <%= vote.collection_check_boxes :proposal_ids, Proposal.where(status: :approved), :id, :title do |b| %>
+
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">
+          <%= link_to proposal_path(b.object) do %>
+            <%= b.object.title %>
+          <% end %>
+        </h4>
+        <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
+        <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
+        <div class="form-check">
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + 'select' }%>
+          <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
+        </div>
+      </div>
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          <%= number_to_currency b.object.cost %>
+        </span>
+        <span class="pull-right">
+          <%= b.object.created_at.strftime("%B %d") %>
+        </span>
+      </div>
+    </div>
+
+  <% end %>
+
+  </div>
+
+  <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content" style="width: 340px;">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Vote</h4>
+        </div>
+        <div class="modal-body">
+          <%= recaptcha_tags %>
+        </div>
+        <div class="modal-footer">
+          <%= vote.submit "vote", class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form">Submit vote</button>
+
+<% end %>
+
+
+<!-- <%= simple_form_for @vote do |f| %>
+
+  <%=
+    f.association :proposals,
+    as: :check_boxes,
+    # wrapper: false,
+    label_method: :description
+  %>
+
+  <div class='form-group'>
+    <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
+  </div>
+
+<% end %> -->

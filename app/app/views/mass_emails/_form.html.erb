@@ -1,0 +1,19 @@
+
+<%= simple_form_for @mass_email do |f| %>
+  <b>*Please select one or more mailing groups </b> </br>
+  <%= check_box_tag("to[]","admin") %> Administrators </br>
+  <%= check_box_tag("to[]","moderator") %> Moderators</br>
+  <%= check_box_tag("to[]","steerer") %> Steering Committee </br>
+  <%= check_box_tag("to[]","super_artist") %> Super Artists </br>
+  <%= check_box_tag("to[]","artist") %> Artists </br>
+  <%= check_box_tag("to[]","resident") %> Residents </br>
+
+  <%= f.input :subject, placeholder: 'Subject' %>
+  <%= f.input :body, placeholder: 'Message' %>
+
+  <div class='form-group'>
+    <%= f.button :submit, value: 'Send', class: 'btn-primary pull-right' %>
+    <%= link_to 'Cancel', mass_emails_path %>
+  </div>
+
+<% end %>

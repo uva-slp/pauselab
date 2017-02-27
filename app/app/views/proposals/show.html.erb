@@ -1,46 +1,74 @@
 
-<%= link_to 'Back', proposals_path %> |
-<%= link_to 'Edit', edit_proposal_path(@proposal) %>
+<%= link_to 'Back', proposals_path %>
+<% if can? :edit, @proposal %>
+| <%= link_to 'Edit', edit_proposal_path(@proposal) %>
+<% end %>
 
-<h2>
-  By <b><%= User.find(@proposal.user_id.to_i).first_name %> <%= User.find(@proposal.user_id.to_i).last_name %></b>
-</h2>
+<h1>
+  <%= @proposal.title %>
+</h1>
+
+<h3>
+  By <b><%= @proposal.user.fullname %> </b>
+</h3>
 
 <h3>Description:</h3>
 <div class="fr-view">
-  <!-- Sanitize!! But I don't know if I've done that properly.. --> 
-  <%= @proposal.description.html_safe %> 
+  <!-- Sanitize!! But I don't know if I've done that properly.. -->
+  <%= @proposal.description.html_safe %>
 </div>
-
-<h3>Cost:</h3>
-<p>
-  <%= @proposal.cost %>
-</p>
 
 <h3>Essay:</h3>
 <p>
-  <%= @proposal.essay %>
+  <%= @proposal.essay.html_safe %>
 </p>
 
-<h3>Website:</h3>
-<% if @proposal.website_link %>
+<p>
+  <strong>Cost:</strong>
+  <%= number_to_currency @proposal.cost %>
+</p>
+
+<% if not @proposal.website_link.blank? %>
   <p>
+    <strong>Website:</strong>
     <%= link_to @proposal.website_link, @proposal.website_link %>
   </p>
-<% else %>
-  <p>[Empty]</p>
 <% end %>
 
-<h3>CV:</h3>
 <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
   <p>
-    <%= link_to @proposal.artist_cv.original_filename, @proposal.artist_cv.url %>
+    <strong>CV:</strong>
+    <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
   </p>
-<% else %>
-  <p>[Empty]</p>
 <% end %>
 
-<h3>Status:</h3>
-<p>
-  <%= @proposal.status %>
-</p>
+<% if user_has_admin_access %>
+  <p>
+    <strong>Status:</strong>
+    <%= @proposal.status %>
+  </p>
+<% end %>
+
+<%# TODO avoid code duplication with this and proposal_comment views. %>
+<% if can? :read, ProposalComment %>
+  <h3>Comments</h3>
+  <% @proposal.proposal_comments.each do |comment| %>
+    <p>
+      <strong><%= comment.user.fullname %></strong>: <%= comment.body %>
+      <% if can? :edit, comment %>
+        <%= link_to 'Edit', edit_proposal_proposal_comment_path(@proposal, comment) %>
+      <% end %>
+      <% if can? :destroy, comment %>
+        | <%= link_to 'Remove', proposal_proposal_comment_path(@proposal, comment),
+            method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
+  <% end %>
+  <% if can? :create, ProposalComment %>
+    <%= simple_form_for([@proposal, @proposal.proposal_comments.build]) do |f| %>
+      <p> Add comment: </p>
+      <p> <%= f.input :body, label: false %> </p>
+      <p> <%= f.submit %> </p>
+    <% end %>
+  <% end %>
+<% end %>

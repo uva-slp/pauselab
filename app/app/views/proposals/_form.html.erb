@@ -1,38 +1,102 @@
+<style media="screen">
+  .trumbowyg-box {
+    margin-top: 0px;
+  }
+  label[for='proposal_artist_cv'] {
+    display: block;
+  }
+  input[type='file'] {
+  }
+  /*.btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-file input[type=file] {
+      position: absolute;
+      top: 0;
+      right: 0;
+      min-width: 100%;
+      min-height: 100%;
+      font-size: 100px;
+      text-align: right;
+      filter: alpha(opacity=0);
+      opacity: 0;
+      outline: none;
+      background: white;
+      cursor: inherit;
+      display: block;
+  }*/
+</style>
 
 <%= simple_form_for @proposal do |f| %>
-    <!-- %= f.input :description, placeholder: 'your proposal' % -->
-    <%= f.label :description, placeholder: 'your proposal' %> 
-    <%= f.text_area :description, id: "wysiwyg" %> <!-- Checks the script on bottom--> 
 
-
+    <%= f.input :title, placeholder: 'Title (max. length 40)' %>
+    <%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
     <%= f.input :essay, placeholder: "how would this project help the community" %>
     <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
-    Budget Information
-    <pre>
-        <%= f.input :artist_fees, placeholder: 'atrist fees budget' %>
-        <%= f.input :project_materials, placeholder: 'project materials budget' %>
-        <%= f.input :printing, placeholder: 'printing budget' %>
-        <%= f.input :marketing, placeholder: 'marketing budget' %>
-        <%= f.input :documentation, placeholder: 'documentation budget' %>
-        <%= f.input :volunteer, placeholder: 'volunteer budget' %>
-        <%= f.input :insurance, placeholder: 'insurance/legal budget' %>
-        <%= f.input :events, placeholder: 'events budget' %>
-        <%= f.input :cost, placeholder: 'total cost' %>
-    </pre>
-    <div class='form-group'>
-      <b>CV</b>
-      <%= f.file_field :artist_cv %>
+
+    <br/>
+    <h3>Budget Information</h3>
+    <div>
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.input :artist_fees, placeholder: 'atrist fees budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :project_materials, placeholder: 'project materials budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :printing, placeholder: 'printing budget' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.input :marketing, placeholder: 'marketing budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :documentation, placeholder: 'documentation budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :volunteer, placeholder: 'volunteer budget' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.input :insurance, placeholder: 'insurance/legal budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :events, placeholder: 'events budget' %>
+          </div>
+          <div class="col-sm-4">
+            <%= f.input :cost, placeholder: 'total cost' %>
+          </div>
+        </div>
     </div>
+
     <div class='form-group'>
-      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
-      <%= link_to 'Cancel', proposals_path %>
+      <%= f.input :artist_cv, label: "resume: ", wrapper_html: { class: 'btn-file' } %>
     </div>
+
+    <div class='form-group'>
+      <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
+      &nbsp;
+      <%= link_to 'Cancel', proposals_path, class: 'btn btn-secondary' %>
+    </div>
+
 <% end %>
 
 <script>
-$('#wysiwyg').froalaEditor({
-    inlinemode: false, //Keep to your css, won't expand?
-    heightMin: '200px',
-    toolbarButtons: ['bold', 'italic', 'underline', 'insertImage', 'insertFile' ],
-})
+$('textarea').each(function() {
+  $(this).trumbowyg({
+      svgPath: '<%= image_path("icons.svg") %>',
+      btns: [
+          ['formatting'],
+          ['insertImage'],
+          'btnGrp-justify',
+          'btnGrp-lists',
+          ['horizontalRule'],
+          ['fullscreen']
+      ]
+  });
+});
 </script>

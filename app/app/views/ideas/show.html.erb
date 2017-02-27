@@ -1,7 +1,3 @@
-
-<br>
-<br>
-
 <div class="row">
 
   <div class="col-sm-6">
@@ -12,20 +8,53 @@
   <div class="col-sm-6">
     <div class="center-block">
 
-      <h4><%= @idea.author %></h4>
-      <p><%= @idea.description %></p>
+      <% if @idea.respond_to? :first_name %>
+        <h4><%= @idea.author %></h4>
+      <% end %>
+      <% if @idea.respond_to? :description %>
+        <p><%= @idea.description %></p>
+        <td><%= social_share_button_tag(@idea.description, :popup => "true")%></td>
+      <% end %>
 
-      <div class="">
-        <span><b>email: </b> <%= @idea.email%></span><br>
-        <span><b>likes:</b> <%= @idea.likes %> </span><br>
-        <span><b>phone:</b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
-        <span><b>status:</b> <%= @idea.status %></span><br>
-        <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
+      <div>
+        <% if @idea.respond_to? :email %>
+          <span><b>email: </b> <%= @idea.email%></span><br>
+        <% end %>
+        <% if @idea.respond_to? :likes %>
+          <span><b>likes:</b> <%= @idea.likes %> </span><br>
+        <% end %>
+        <% if @idea.respond_to? :phone %>
+          <span><b>phone:</b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
+        <% end %>
+        <% if @idea.respond_to? :status %>
+          <span><b>status:</b> <%= @idea.status %></span><br>
+        <% end %>
+        <% if @idea.respond_to? :created_at %>
+          <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
+        <% end %>
       </div>
 
+      <hr>
+
+      <div class="">
+        <% if can? :approve, @idea %>
+          <%= link_to idea_approve_path(@idea), method: :post, class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-check"></i>
+          <% end %>
+        <% end %>
+        <% if can? :edit, @idea %>
+          <%= link_to edit_idea_path(@idea), class: "btn btn-sm btn-primary" do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+        <% end %>
+        <% if can? :delete, @idea %>
+          <%= link_to idea_path(@idea), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-
 </div>
 
 <!-- async defer  -->

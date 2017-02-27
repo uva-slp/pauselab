@@ -1,12 +1,19 @@
 
-<%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-default pull-right' %>
+<% if can? :create, Blog %>
+  <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
+<% end %>
 <h2>Recent Blogs</h2>
 
 <% @blogs.each do |blog| %>
   <hr>
-  <%= link_to 'Edit', edit_blog_path(blog) %> |
-  <%= link_to 'Destroy', blog_path(blog),method: :delete, data: { confirm: 'Are you sure?' } %>
-  <h4>By <b><%= blog.user.first_name %> <%= blog.user.last_name %></b></h4>
+  <% if can? :edit, blog %>
+    <%= link_to 'Edit', edit_blog_path(blog) %>
+  <% end %>
+  <% if can? :destroy, blog %>
+    | <%= link_to 'Remove', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+  <!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
+  <h4>By <b><%= blog.user.fullname %></b></h4>
   Published <%= blog.created_at %>
   <h2><b><%= blog.title %></b></h2>
   <p><%= blog.body %></p>

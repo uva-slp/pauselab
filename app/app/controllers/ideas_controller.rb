@@ -2,16 +2,43 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-          @ideas = Idea.all
-          @likes = Array.new
-          if cookies[:likes] != nil
-            @likes = JSON.parse(cookies[:likes])
-          end
-          # TODO status check?
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    if params[:sort].present?
+      if params[:sort]=="likes"
+        @ideas = @ideas.order likes: :desc
+      end
+      if params[:sort]=="id"
+        @ideas = @ideas.order :id
+      end
+      if params[:sort]=="date"
+        @ideas = @ideas.order :created_at
+      end
+      if user_has_admin_access
+        if params[:sort]=="author_last_name"
+          @ideas = @ideas.order :last_name
+        end
+        if params[:sort]=="author_first_name"
+          @ideas = @ideas.order :first_name
+        end
+      end
+    end
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+    index_respond @ideas, :ideas
+  end
+
+  def proposal_collection
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
   end
 
   def new
-          @idea = Idea.new
+    @idea = Idea.new
   end
 
   alias_method :idea_collection, :new
@@ -22,24 +49,21 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
-		# code for verifying recaptcha - requires SSL, which would need effort
-		#unless verify_recaptcha or user_signed_in?
-		#	flash[:error] = 'Use RECAPTCHA'
-		#	render :idea_collection
-		#end
-		#
+    @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
 			flash[:notice] = 'Your idea was sent.'
 			redirect_to ideas_path
 		else
+      puts @idea.errors.full_messages.to_yaml
 			render 'new'
 		end
 	end
 
 	def show
-		@idea = Idea.find(params[:id])
+		@idea = filter_idea_columns(Idea.where(:id => params[:id])).first
 	end
 
+  # TODO: make this into an AJAX call
   def like
     @id = @idea.id
     @likes = Array.new
@@ -53,7 +77,7 @@ class IdeasController < ApplicationController
         @idea.decrement!(:likes)
         @idea.save
         #Update likes cookie
-        @likes.delete(@idea.id)
+        @likes.delete(@id)
         @json_likes = JSON.generate(@likes)
         cookies[:likes] = @json_likes
       else
@@ -76,8 +100,22 @@ class IdeasController < ApplicationController
       @json_likes = JSON.generate(@likes)
       cookies[:likes] = { :value => @json_likes, :expires => Time.now + 2628000 }
     end
-    redirect_to ideas_path
+    @div_id = '#like_button_'+@idea.id.to_s
+     respond_to do |format|
+         format.html
+         format.js
+     end
+    #redirect_to ideas_path
   end
+
+	def proposal_collection
+    @ideas = Idea.where :iteration_id => Iteration.get_current.id
+		# @ideas = Idea.all
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+	end
 
   def destroy
     @idea = Idea.find(params[:id])
@@ -88,7 +126,7 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     if @idea.update idea_params
-          redirect_to @idea
+      redirect_to @idea
     else
       render 'edit'
     end
@@ -118,4 +156,10 @@ class IdeasController < ApplicationController
 	    	)
 	  end
 
+    def filter_idea_columns ideas
+      unless user_has_admin_access
+        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
+      end
+      return ideas
+    end
 end

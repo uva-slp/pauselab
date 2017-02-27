@@ -10,28 +10,39 @@ one:
   phone: 123-456-7890
   email: jsmith@gmail.com
   description: Mural
-  address: "1 infinity loop"
+  category: one
+  address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
+  
+two:
+  first_name: Gary
+  last_name: Gavin
+  phone: 3454565678
+  email: gary@gmail.com
+  description: New statue
   category: one
+  address: 1 Washington Dr
+  lat: -05.000
+  lng: 12.0000
 
 missing_first_name:
-  last_name: "Doe"
-  phone: "5555555555"
-  email: "john.doe@example.com"
-  description: "something cool"
-  category: categories(:two)
-  address: "1 infinity loop"
+  last_name: Doe
+  phone: 5555555555
+  email: john.doe@example.com
+  description: something cool
+  category: two
+  address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
 
 missing_last_name:
   first_name: John
-  phone: "5555555555"
-  email: "john.doe@example.com"
-  description: "something cool"
-  category: categories(:two)
-  address: "1 infinity loop"
+  phone: 5555555555
+  email: john.doe@example.com
+  description: something cool
+  category: two
+  address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
 
@@ -41,7 +52,7 @@ missing_phone:
   email: jsmith@gmail.com
   description: Mural
   category: one
-  address: "1 infinity loop"
+  address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
 
@@ -51,12 +62,16 @@ missing_email:
   phone: 123-456-7890
   description: Mural
   category: one
-  address: "1 infinity loop"
+  address: 1 infinity loop
   lat: -10.000
   lng: 10.0000
 
 testing_cookie_12:
   id: 12
+  category: one
+  status: approved
 
 testing_cookie_14:
   id: 14
+  category: one
+  status: approved

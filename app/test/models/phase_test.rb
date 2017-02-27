@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class PhaseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  test "should save" do
+    phase = Phase.new
+    phase.phase = 0
+    assert phase.save, "could not save phase"
+  end
+
 end

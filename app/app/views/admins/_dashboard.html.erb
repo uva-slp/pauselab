@@ -1,26 +1,23 @@
-<h1 class="page-header admin-title">Admin Console</h1>
 
-<div class="container-fluid">
+<h1 class="admin-title"><%= t 'admins.admin_console'%></h1>
 
-	<div class="row">
+<br>
 
-		<div class="col-sm-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="<%= 'active' if position == 'overview' %>" ><%= link_to 'Overview', admin_overview_path %></li>
-        <li class="<%= 'active' if position == 'users' %>" ><%= link_to 'Users', list_users_path %></li>
-        <li class="<%= 'active' if position == 'change_phase' %>" ><%= link_to 'Change phase', admin_edit_phase_path %></li>
-      </ul>
-      <ul class="nav nav-sidebar">
-        <li><a href="">Misc.</a></li>
-      </ul>
-		</div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+		<%= link_to (t 'admins.users'), list_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
+  </li>
+  <li class="nav-item">
+		<%= link_to (t 'admins.current_iteration'), admin_edit_phase_path, :class => (position == 'current' ? 'nav-link active' : 'nav-link') %>
+  </li>
+  <li class="nav-item">
+    <%= link_to (t 'admins.iterations'), admin_export_iterations_path, :class => (position == 'iterations' ? 'nav-link active' : 'nav-link') %>
+  </li>
+  <!-- <li class="nav-item">
+    <%= link_to 'Manage system data', admin_manage_data_path, :class => (position == 'manage_data' ? 'nav-link active' : 'nav-link') %>
+  </li> -->
+</ul>
 
-		<div class="col-sm-10 main">
-			<% if defined? title %>
-				<h2 class="sub-header"><%= title %></h2>
-			<% end %>
-      <%= yield %>
-		</div>
+<br>
 
-	</div>
-</div>
+<%= yield %>
