@@ -30,7 +30,7 @@ class PagesController < ApplicationController
   def get_categories
     ret_cat = {}
     categories = Category.all.each do |cat|
-      ret_cat[cat.id] = if cat.icon.present? then URI.join(request.url, cat.icon.url).to_s else "" end
+      ret_cat[cat.id] = if cat.icon.present? then view_context.image_path(cat.icon.url) else "" end
     end
     render json: ret_cat
   end
