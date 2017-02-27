@@ -27,3 +27,5 @@ vendor/bundle
 
 Makefile
 Makefile~
+
+coverage/
