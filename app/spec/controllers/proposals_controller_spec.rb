@@ -88,7 +88,7 @@ describe ProposalsController, type: :controller do
     end
   end
 
-  describe "when updating a proposal" do
+  describe "when updating a proposal description" do
     it "can update description" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
@@ -98,6 +98,19 @@ describe ProposalsController, type: :controller do
     it "responds with redirect" do
       proposal = create :proposal
       put :update, params: {id: proposal, proposal: {:description => 'Hello, World!'}}
+      expect(response).to be_redirect
+    end
+  end
+  describe "when updating a proposal title" do
+    it "can update description" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
+      proposal.reload
+      expect(proposal.description).to eq 'New Title'
+    end
+    it "responds with redirect" do
+      proposal = create :proposal
+      put :update, params: {id: proposal, proposal: {:title => 'New Title'}}
       expect(response).to be_redirect
     end
   end
