@@ -44,3 +44,6 @@ en:
     iteration_ended: Ended
     last_signed_in: Time since last sign-in
     change_user_role: Change user role
+    edit_user: Edit User
+    update_user: Update User
+    manage: Manage

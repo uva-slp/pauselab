@@ -25,3 +25,6 @@ es:
     iteration_ended: Terminó
     last_signed_in: Tiempo transcurrido desde el último registro
     change_user_role: Cambia de parte
+    edit_user: Edita el usario
+    update_user: Actualiza el usario
+    manage: Administrar

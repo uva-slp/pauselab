@@ -1,5 +1,5 @@
 
-<%= render :layout => 'dashboard', :locals => { title: 'Users', position: 'users' } do %>
+<%= render :layout => 'dashboard', :locals => { title: (t 'admins.users'), position: 'users' } do %>
 
 <div class="table-responsive">
 	<table class="table table-striped">
@@ -21,7 +21,7 @@
 					<td><%= user.fullname %></td>
 					<td><%= user.email %></td>
 					<td><%= user.role %></td>
-					<td><%= link_to 'manage', show_user_path(user) %></td>
+					<td><%= link_to (t 'admins.manage'), show_user_path(user) %></td>
 				</tr>
 			<% end %>
 		</tbody>
