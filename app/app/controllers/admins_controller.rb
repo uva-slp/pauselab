@@ -21,6 +21,7 @@ class AdminsController < ApplicationController
 	def change_phase
 		new_phase = params[:phase]
 		@current = Iteration.get_current
+    #TODO: prevent invalid values from updating status
 		@current.status = new_phase.to_i
 		authorize! :update, @current
 		@current.save
