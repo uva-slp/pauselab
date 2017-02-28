@@ -46,4 +46,21 @@ describe LandingpagesController, type: :controller do
       expect(response).to be_redirect
     end
     end
+
+
+    describe "GET #new" do
+  it "renders the new landingpage template" do
+    get :new
+    response.should render_template :new
+  end
+end
+
+describe "GET #edit" do
+  it "renders a edit template for @landingpage" do
+    lp = create :landingpage
+    get :edit, id: lp.id
+    response.should render_template :edit
+  end
+end
+
 end
