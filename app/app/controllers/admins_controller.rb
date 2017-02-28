@@ -69,8 +69,8 @@ class AdminsController < ApplicationController
 	def change_role
 		@user = User.find(params[:user])
 		authorize! :update, @user
-                @user.update_attribute :role, params[:role].to_i
-                @user.update_attribute :email, params[:email]
+    @user.update_attribute :role, params[:role].to_i
+    @user.update_attribute :email, params[:email]
 		@user.update_attribute :phone, params[:phone]
 		render 'show_user'
 	end

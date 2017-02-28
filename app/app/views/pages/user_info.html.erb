@@ -1,0 +1,48 @@
+<div>
+  <%= link_to user_edit_path do %>
+    <button class='btn btn-sm btn-primary'><i class="fa fa-pencil-square-o"></i></button>
+  <% end %>  
+  <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message') } do %>
+    <i class="fa fa-trash"></i>
+  <% end %>
+</div>
+
+<h2 class="sub-header"><%= @user.fullname %></h2>
+
+<div class="row">
+  <div class="col-md-3 cols">
+    <strong><%= t 'common.user_role' %></strong>
+  </div>
+  <div class="col-md-4">
+    <%= @user.role %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <strong><%= t 'common.user_email' %></strong>
+  </div>
+  <div class="col-md-4">
+    <%= @user.email %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <strong><%= t 'common.user_phone' %></strong>
+  </div>
+  <div class="col-md-4">
+    <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <strong><%= t 'admins.last_signed_in' %></strong>
+  </div>
+  <div class="col-md-4">
+    <%= time_ago_in_words @user.last_sign_in_at %>
+  </div>
+</div>
+
+<br>
