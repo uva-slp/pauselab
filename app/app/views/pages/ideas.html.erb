@@ -13,7 +13,6 @@
 <div>
 
   <h2 class="page-header">Idea Collection</h2>
-  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
   <% if Landingpage.exists?(title: "") %>
     <% @landingpage = Landingpage.where(title: "Home").first %>
     <h2><%= @landingpage.title %></h2>
@@ -28,6 +27,9 @@
     <% end %>
   <% end %>
 
+  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
+
+
   <!-- <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %> -->
   <!-- <div id="map-sidebar"></div> -->
 
@@ -35,5 +37,9 @@
 
 </div>
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
+<script type="text/javascript">
+  initMap();
+</script>
+
+<!-- <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script> -->

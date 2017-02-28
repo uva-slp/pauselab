@@ -1,3 +1,4 @@
+
 window.initMap = ->
 
   g = {}
