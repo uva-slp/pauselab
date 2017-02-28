@@ -46,13 +46,15 @@ class PagesController < ApplicationController
 
   def user_edit
     @user = User.find(current_user.id)
-    if request.post?
-      @user.update_attribute :first_name, params[:first_name]
-		  @user.update_attribute :last_name, params[:last_name]
-      @user.update_attribute :email, params[:email]
-		  @user.update_attribute :phone, params[:phone]
-      redirect_to user_info_path
-    end
+  end
+
+  def user_update
+    @user = User.find(current_user.id)
+    @user.update_attribute :first_name, params[:first_name]
+	  @user.update_attribute :last_name, params[:last_name]
+    @user.update_attribute :email, params[:email]
+	  @user.update_attribute :phone, params[:phone]
+    redirect_to user_info_path
   end
 
   def steering_home
