@@ -3,13 +3,18 @@ class ApplicationController < ActionController::Base
   enable_authorization unless :devise_controller?
 
   # adding below for mass assignment of user fields
-  # NOTE DEPRECATION WARNING: before_filter is deprecated and will be removed in Rails 5.1. Use before_action instead.
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # strong params config to work with cancan
   before_action do
     resource = controller_name.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
+  end
+
+  # setting locale during the lifetime of this request
+  before_action do
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   # catch unauthorization exception message
@@ -21,13 +26,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # apply locale to the url route if it is not the default
+  def default_url_options
+    { locale: I18n.locale != I18n.default_locale ? I18n.locale : nil }
+  end
+
   def after_sign_in_path_for(resource)
-  stored_location_for(resource) ||
-    if resource.is_a?(User) && resource.role == "admin"
-       admin_overview_url
-    elsif  resource.is_a?(User) && resource.role == "artist" ||  resource.is_a?(User) && resource.role == "super artist" 
+    stored_location_for(resource) ||
+    if resource.is_a?(User) && resource.admin?
+      admin_overview_url
+    elsif (resource.is_a?(User) && resource.artist?) || (resource.is_a?(User) && resource.super_artist?)
       artist_home_url
-    elsif  resource.is_a?(User) && resource.role == "steerer"
+    elsif  resource.is_a?(User) && resource.steerer?
       steering_home_url
     else
       super

@@ -1,18 +1,19 @@
 <div id="like_button_<%= idea.id %>">
-  <% if can? :read, idea, :likes %>
-    <%= idea.likes %>
+  <% if idea.respond_to? :likes %>
+    <span class="idea_count"><%= idea.likes %></span>
   <% end %>
-  <script>alert(""+idea)</script>
-  <% if can? :like, idea %>
+  <!-- <script>alert(""+idea)</script> -->
+  <% if can? :like, Idea %>
     <% unless @likes.include?(idea.id) %>
-      <%= link_to idea_like_path(idea), :remote => true do %>  
-        <i class="fa fa-thumbs-o-up"></i>
+      <%= link_to idea_like_path(idea), :remote => true do %>
+        <button class="btn btn-sm btn-outline-primary"><i class="fa fa-thumbs-o-up "></i></button>
+        <!-- <i class="fa fa-thumbs-o-up"></i> -->
       <% end %>
     <% else %>
-      <%= link_to idea_like_path(idea), :remote => true do %> 
-        <i class="fa fa-thumbs-o-down"></i>
+      <%= link_to idea_like_path(idea), :remote => true do %>
+        <button class="btn btn-sm btn-outline-primary"><i class="fa fa-thumbs-o-down "></i></button>
+        <!-- <i class="fa fa-thumbs-o-down"></i> -->
       <% end %>
     <% end %>
-  <% end %> 
+  <% end %>
 </div>
-

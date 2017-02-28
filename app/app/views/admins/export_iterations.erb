@@ -4,9 +4,9 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>#</th>
-          <th>started</th>
-          <th>ended</th>
+          <th><%= t 'common.number_symbol' %></th>
+          <th><%= t 'admins.iteration_started' %></th>
+          <th><%= t 'admins.iteration_ended' %></th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +21,7 @@
       </tbody>
     </table>
   <% else %>
-    <p>no past iterations</p>
+    <p><%= t 'admins.no_past_iterations'%></p>
   <% end %>
 
 <% end %>

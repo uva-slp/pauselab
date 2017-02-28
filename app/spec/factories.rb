@@ -1,7 +1,18 @@
 FactoryGirl.define do
 
   factory :iteration do
-    status 0
+    # status 0
+    factory :ideas_phase do
+      after(:create, :build) {|i| i.change_status :ideas}
+    end
+
+    factory :proposals_phase do
+      after(:create, :build) {|i| i.change_status :proposals}
+    end
+
+    factory :voting_phase do
+      after(:create, :build) {|i| i.change_status :voting}
+    end
   end
 
   factory :category do

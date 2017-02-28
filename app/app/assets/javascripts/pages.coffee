@@ -1,4 +1,3 @@
-
 window.initMap = ->
 
   g = {}
@@ -18,16 +17,27 @@ window.initMap = ->
         mapTypeControl: false
         streetViewControl: false
       )
-    map.controls[google.maps.ControlPosition.LEFT_TOP].push document.getElementById 'map-sidebar'
+
+    # map.controls[google.maps.ControlPosition.LEFT_TOP].push document.getElementById 'map-sidebar'
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push document.getElementById 'new-idea-btn'
-    $('#map-sidebar').hide()
-    map.addListener 'click', ->
-      $('#map-sidebar').fadeOut 200
+
+    # $('#map-sidebar').hide()
+    # map.addListener 'click', ->
+    #   $('#map-sidebar') .fadeOut 200
+
+    $('#fb-btn').click ->
+      console.log 'idea here'
+
+    $('#twtr-btn').click ->
+      console.log 'idea'
 
     bounds = new (google.maps.LatLngBounds)(pos)
     infowindow = new (google.maps.InfoWindow)(
       maxWidth: 200
     )
+
+    map.addListener 'click', ->
+      infowindow.close()
 
     ideas.forEach (idea) ->
       idea_info = buildInfo idea
@@ -35,7 +45,7 @@ window.initMap = ->
         lat: parseFloat(idea.lat)
         lng: parseFloat(idea.lng)
 
-      defaultUrl = "https://maxcdn.icons8.com/Color/PNG/512/Maps/marker-512.png"
+      defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
       img =
         url: categories[idea.category_id] || defaultUrl
         # size: new (google.maps.Size)(100, 100)
@@ -45,16 +55,16 @@ window.initMap = ->
 
       marker = new (google.maps.Marker)(
           position: pos
-          # icon: img
+          icon: img
           map: map
           title: idea.created_at
         )
       marker.addListener 'click', ->
-        $('#map-sidebar').html idea_info
-        $('#map-sidebar').fadeIn 200
-        infowindow.setContent idea_info
-        # infowindow.open map, marker
+        # $('#map-sidebar').html idea_info
+        infowindow.setContent buildInfo idea
+        infowindow.open map, marker
         return
+
       m_bounds = new (google.maps.LatLngBounds)(pos)
       bounds.union m_bounds
       return
@@ -66,19 +76,33 @@ window.initMap = ->
 
 buildInfo = (idea) ->
   date = new (Date)(idea.created_at)
-  address = idea.address
-  return "<div class='marker-info'><img class='idea-img' src='https://www.sandiego.gov/sites/default/files/legacy/park-and-recreation/graphics/missionhills.jpg'><br><br><p class='idea-address'>" +
-  address +
-  "</p><p class='idea-description'>" +
-  idea.description +
-  "</p><p class='idea-date text-muted'>" +
-  date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear() +
-  "</p>"
-  +
+  date_string = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear()
+  elem = $("<div class='infobox'></div>")
+  desc = $("<span></span>")
+  date_elem = $("<p class='idea-date text-muted'></p>")
+  date_elem.append date_string
+  desc.append idea.description
+  fb_btn = $("<button class='btn btn-sm btn-primary no-outline'><i class='fa fa-facebook-square'></i></button>")
+  twtr_btn = $("<button class='btn btn-sm btn-primary no-outline'><i class='fa fa-twitter-square'></i></button>")
 
-  "<a>like</a>"
+  format = ->
+    desc = idea.description
+    if desc.length > 50
+      desc = desc.substring(0, 50) + "..."
+    return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + idea.id
 
-  +
-  "</div>"
-  # toReturn =
-  # return '<div class="marker-info"><span>' + 'sd' +'</span>' + idea.description + '<br><span class="text-muted">' + date.toDateString() + '</span></div>'
+  $(fb_btn).click ->
+    window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + idea.id, 'share to facebook', 'height=350,width=500'
+  $(twtr_btn).click ->
+    desc = encodeURIComponent format idea.description
+    window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
+
+  $(elem).append desc, date_elem, fb_btn, '&nbsp;&nbsp;', twtr_btn
+  return elem[0]
+
+  # address = idea.address
+  # content = "<div class='infobox'><span class='idea-description'>" + idea.description + \
+  # "</span><p class='idea-date text-muted'>" + date.getMonth() + "/" + date.getDate() + "/" + \
+  # date.getFullYear() + "</p>" + "<div class='share-btns'><button onClick='fb(" + ")' class='btn btn-sm btn-primary'><i class='fa fa-facebook-square'></i></button>" + \
+  # "&nbsp;&nbsp;<button onClick='twtr(" + ")' class='btn btn-sm btn-primary'><i class='fa fa-twitter-square'></i></button></div>" + "</div>"
+  # return content

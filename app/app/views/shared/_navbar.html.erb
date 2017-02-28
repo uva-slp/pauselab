@@ -69,7 +69,11 @@
               <% end %>
               <% if can? :read, Idea %>
                 <div class="dropdown-divider"></div>
-                <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
+                <% if user_signed_in? && !current_user.artist? %>
+                  <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
+                <% else %>
+                  <%= link_to 'Ideas',  proposal_collection_path, class: 'dropdown-item' %>
+                <% end %>
               <% end %>
             </div>
           </li>
@@ -80,7 +84,6 @@
           <li class="nav-item"><%= link_to 'Blog', blogs_path, class: 'nav-link' %></li>
         <% end %>
         <li class="nav-item"><%= link_to 'About',  about_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'Get Involved', about_path, class: 'nav-link' %></li> <!-- Or is it supposed to be idea_collection_path???-->
 
         <li class="nav-item">
           <% if user_signed_in? %>

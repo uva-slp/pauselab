@@ -2,7 +2,6 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    logger.info("~~~~~~~~~~~~\nbeginning of INDEX");
     @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
     if params[:sort].present?
       if params[:sort]=="likes"
@@ -28,6 +27,14 @@ class IdeasController < ApplicationController
       @likes = JSON.parse(cookies[:likes])
     end
     index_respond @ideas, :ideas
+  end
+
+  def proposal_collection
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
   end
 
   def new
@@ -100,6 +107,15 @@ class IdeasController < ApplicationController
      end
     #redirect_to ideas_path
   end
+
+	def proposal_collection
+    @ideas = Idea.where :iteration_id => Iteration.get_current.id
+		# @ideas = Idea.all
+    @likes = Array.new
+    if cookies[:likes] != nil
+      @likes = JSON.parse(cookies[:likes])
+    end
+	end
 
   def destroy
     @idea = Idea.find(params[:id])

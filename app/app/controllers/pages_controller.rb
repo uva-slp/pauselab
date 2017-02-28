@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     when 'ideas'
       redirect_to :action => :ideas
     when 'proposals'
-      redirect_to :action => :proposal_collection, :controller => :proposals
+      redirect_to :action => :proposal_collection, :controller => :ideas
     when 'voting'
       redirect_to :action => :new, :controller => :votes
     # when 'progress'
@@ -30,7 +30,7 @@ class PagesController < ApplicationController
   def get_categories
     ret_cat = {}
     categories = Category.all.each do |cat|
-      ret_cat[cat.id] = if cat.icon.present? then cat.icon.url else "" end
+      ret_cat[cat.id] = if cat.icon.present? then view_context.image_path(cat.icon.url) else "" end
     end
     render json: ret_cat
   end
@@ -39,6 +39,12 @@ class PagesController < ApplicationController
   end
 
   def about
+  end
+
+  def steering_home
+  end
+
+  def artist_home
   end
 
   def test_email

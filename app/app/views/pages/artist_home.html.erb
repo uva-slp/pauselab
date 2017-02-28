@@ -3,13 +3,13 @@
   <% @landingpage = Landingpage.where(title: "Artist Home").first%>
   <h2><%= @landingpage.title%> </h2>
   <p><%=  @landingpage.description.html_safe %> </p>
-   <% if can? :edit, :landingpages %>
+   <% if can? :edit, Landingpage %>
   <p> <%= link_to 'Edit Artist Home', edit_landingpage_path(@landingpage) %></p>
   <% end %>
   <% else %>
   <p> PauseLab has not created a artist home post yet </p>
-  <% if can? :edit, :landingpages %>
-   <p> <%= link_to 'Create Artist Home', new_landingpage_path() %></p>
+  <% if can? :create, Landingpage %>
+   <p> <%= link_to 'Create Artist Home', new_landingpage_path %></p>
  <% end %>
-  
+
   <% end %>

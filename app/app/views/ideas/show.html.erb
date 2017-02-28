@@ -13,10 +13,8 @@
       <% end %>
       <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
-      <% end %>
-      <% if can? :read, @idea, :description %>
         <td><%= social_share_button_tag(@idea.description, :popup => "true")%></td>
-      <% end %>      
+      <% end %>
 
       <div>
         <% if @idea.respond_to? :email %>

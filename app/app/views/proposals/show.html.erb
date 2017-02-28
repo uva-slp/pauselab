@@ -38,7 +38,7 @@
 <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
   <p>
     <strong>CV:</strong>
-    <%= link_to @proposal.artist_cv.original_filename, @proposal.artist_cv.url %>
+    <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
   </p>
 <% end %>
 

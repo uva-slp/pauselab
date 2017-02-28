@@ -5,51 +5,13 @@
   }
 </style>
 
-<%= render :layout => 'dashboard', :locals => { title: @user.fullname, position: 'users' } do %>
-
-  <div class="row">
-    <div class="col-md-3 cols">
-      <strong>role</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @user.role %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>email</strong>
-    </div>
-    <div class="col-md-4">
-      <%= @user.email %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>phone</strong>
-    </div>
-    <div class="col-md-4">
-      <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-md-3">
-      <strong>last signed in</strong>
-    </div>
-    <div class="col-md-4">
-      <%= time_ago_in_words @user.last_sign_in_at %> ago
-    </div>
-  </div>
-
-  <br>
+<%= render :layout => 'dashboard', :locals => {position: 'users' } do %>
 
   <div>
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
       <i class="fa fa-pencil-square-o"></i>
     </button>
-    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message') } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>
@@ -59,16 +21,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Change user role</h4>
+          <h4 class="modal-title" id="myModalLabel"><%= t 'admins.edit_user' %></h4>
         </div>
         <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
         <%= simple_form_for :change_role do |f| %>
           <div class="modal-body">
             <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
-            <%= f.input :role, label: 'role', as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+            <%= f.input :role, label: (t 'common.user_role'), as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+            <%= f.input :email, label: (t 'common.user_email'), :input_html => { value: @user.email, name: 'email' } %>
+            <%= f.input :phone, label: (t 'common.user_phone'), :input_html => { value: @user.phone, name: 'phone' } %>
           </div>
           <div class="modal-footer">
-            <%= f.button :submit, value: 'change role', class: 'btn btn-primary' %>
+            <%= f.button :submit, (t 'admins.update_user'), class: 'btn btn-primary' %>
             <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
           </div>
         <% end %>
@@ -76,5 +40,43 @@
     </div>
   </div>
 
+  <h2 class="sub-header"><%= @user.fullname %></h2>
 
+  <div class="row">
+    <div class="col-md-3 cols">
+      <strong><%= t 'common.user_role' %></strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.role %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong><%= t 'common.user_email' %></strong>
+    </div>
+    <div class="col-md-4">
+      <%= @user.email %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong><%= t 'common.user_phone' %></strong>
+    </div>
+    <div class="col-md-4">
+      <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <strong><%= t 'admins.last_signed_in' %></strong>
+    </div>
+    <div class="col-md-4">
+      <%= time_ago_in_words @user.last_sign_in_at %>
+    </div>
+  </div>
+
+  <br>
 <% end %>
