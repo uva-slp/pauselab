@@ -4,6 +4,6 @@
     <%= f.input :icon, as: :file, hint: 'Used for the Maps icon displaying an idea. Must be an image file.' %>
     <div class='form-group'>
       <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
-      <%= link_to 'Cancel', categories_path %>
+      <%= link_to 'Cancel', categories_path, class: 'btn btn-outline-secondary' %>
     </div>
 <% end %>

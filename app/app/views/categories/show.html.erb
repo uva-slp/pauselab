@@ -1,10 +1,5 @@
 
-<%= link_to 'Back', categories_path %> |
-<%= link_to 'Edit', edit_category_path(@category) %>
-
-<h2>
-  Category: <%= @category.name %>
-</h2>
+<h2>Category: <%= @category.name %></h2>
 <h3>
   <% if @category.icon.present? %>
     Icon: <%= @category.icon_file_name %>
@@ -13,3 +8,13 @@
     No icon present.
   <% end %>
 </h3>
+
+<hr>
+
+<%= link_to edit_category_path(@category), title: "edit category", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+  <i class="fa fa-pencil-square-o"></i>
+<% end %>
+
+<%= link_to category_path(@category), method: :delete, title: "delete category", class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?', toggle: 'tooltip' } do %>
+  <i class="fa fa-trash"></i>
+<% end %>
