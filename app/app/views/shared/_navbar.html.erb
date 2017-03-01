@@ -45,9 +45,9 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
             <div class="dropdown-menu">
-              <% if can? :read, Idea %>
+              <!-- <% if can? :read, Idea %>
                 <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>
-              <% end %>
+              <% end %> -->
               <% if can? :create, Proposal %>
                 <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>
               <% end %>

@@ -53,12 +53,12 @@ describe BlogsController, type: :controller do
   end
 
   describe "when viewing a blog post" do
-    it "render an existing blog" do
+    it "renders an existing blog" do
       blog = build :blog
       post :create, params: {blog: blog.attributes}
       blog = Blog.last
-      get :show, id: blog.id
-      response.should render_template :show
+      get :show, params: { id: blog.id }
+      expect(response).to render_template :show
     end
     ##
     #it "redirect at nonexistant blogs" do

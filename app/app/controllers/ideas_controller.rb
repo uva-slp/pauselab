@@ -134,10 +134,14 @@ class IdeasController < ApplicationController
 
   def approve
     @idea = Idea.find(params[:id])
-    @idea.approved!
+    if @idea.approved?
+      @idea.unchecked!
+    else
+      @idea.approved!
+    end
     @idea.save
 		# end
-		redirect_to ideas_path
+		render 'show'
 	end
 
 

@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="col-sm-6">
-    <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>"></div>
+    <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>" data-cat="<%= @idea.category_id %>"></div>
     <span class="text-muted"><i><%= @idea.address %></i></span>
   </div>
 
@@ -13,7 +13,15 @@
       <% end %>
       <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
-        <td><%= social_share_button_tag(@idea.description, :popup => "true")%></td>
+          <div class="share-btns">
+  					<button class="btn btn-sm btn-outline-primary fb-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+  						<i class="fa fa-facebook "></i>
+  					</button>
+  					<button class="btn btn-sm btn-outline-primary twtr-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+  						<i class="fa fa-twitter "></i>
+  					</button>
+  				</div>
+          <!-- <%= social_share_button_tag(@idea.description, :popup => "true")%> -->
       <% end %>
 
       <div>
@@ -38,17 +46,26 @@
 
       <div class="">
         <% if can? :approve, @idea %>
-          <%= link_to idea_approve_path(@idea), method: :post, class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?' } do %>
-            <i class="fa fa-check"></i>
+
+          <% if @idea.unchecked? %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: "approve", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+              <i class="fa fa-check"></i>
+            <% end %>
+          <% else %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: "disapprove", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+              <i class="fa fa-times"></i>
+            <% end %>
           <% end %>
+
+
         <% end %>
         <% if can? :edit, @idea %>
-          <%= link_to edit_idea_path(@idea), class: "btn btn-sm btn-primary" do %>
+          <%= link_to edit_idea_path(@idea), title: "edit idea", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
             <i class="fa fa-pencil-square-o"></i>
           <% end %>
         <% end %>
         <% if can? :delete, @idea %>
-          <%= link_to idea_path(@idea), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?' } do %>
+          <%= link_to idea_path(@idea), method: :delete, title: "delete idea", class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?', toggle: 'tooltip' } do %>
             <i class="fa fa-trash"></i>
           <% end %>
         <% end %>
@@ -57,10 +74,6 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  showMap();
-</script>
-
 <!-- async defer  -->
-<!-- <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback="></script> -->
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=showMap"></script>
