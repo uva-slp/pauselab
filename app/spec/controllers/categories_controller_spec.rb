@@ -81,7 +81,37 @@ describe CategoriesController, :type => :controller do
       expect {
         delete :destroy, params: {id: c.id}
       }.to_not change {Category.count}
+
     end
   end
+
+  describe "GET #show" do
+  it "assigns the requested category to @ccategory" do
+    category = create :category
+    get :show, id: category.id
+    assigns(:category).should eq(category)
+  end
+  
+  it "renders the #show view" do
+    category = create :category
+    get :show, id: category.id
+    response.should render_template :show
+  end
+end
+
+describe "GET #new" do
+  it "renders the new category template" do
+    get :new
+    response.should render_template :new
+  end
+end
+
+describe "GET #edit" do
+  it "renders a edit template for @category" do
+    category = create :category
+    get :edit, id: category.id
+    response.should render_template :edit
+  end
+end
 
 end
