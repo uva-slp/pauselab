@@ -27,8 +27,10 @@ FactoryGirl.define do
     email {Faker::Internet.email}
     phone {Faker::Number.number(10)}
     address {Faker::Address.street_address}
-    lat {Faker::Address.latitude}
-    lng {Faker::Address.longitude}
+    # lat {Faker::Address.latitude}
+    # lng {Faker::Address.longitude}
+    lat {38.026291 + rand() * 0.03}
+    lng {-78.4777657 + rand() * 0.03}
     description {Faker::Hipster.paragraph}
     likes {Faker::Number.number(3)}
   end

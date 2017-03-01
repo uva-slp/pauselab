@@ -29,8 +29,8 @@
 </style>
 
 <%= simple_form_for @landingpage do |f| %>
-<%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us", "Artist Home", "Steering Committee Home"] %>
-<%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
+  <%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us", "Artist Home", "Steering  Committee Home"] %>
+  <%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
 
  <div class='form-group'>
       <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
@@ -43,6 +43,7 @@
 
 
 <script>
+
 $('textarea').each(function() {
   $(this).trumbowyg({
       svgPath: '<%= image_path("icons.svg") %>',
@@ -56,6 +57,7 @@ $('textarea').each(function() {
           ['horizontalRule'],
           ['fullscreen']
       ]
-  });
+  }) ;
 });
+
 </script>

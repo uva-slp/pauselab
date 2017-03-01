@@ -35,7 +35,8 @@
 		<%= link_to (idea_path idea), {class: 'idea-link'} do %>
 			<div class="card-block">
 				<p class="card-text">
-					<%= truncate idea.description, length: 50 %>
+					<!-- <%= truncate idea.description, length: 50 %> -->
+					<%= idea.description %>
 				</p>
 			</div>
 		<% end %>

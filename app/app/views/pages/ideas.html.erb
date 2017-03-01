@@ -12,10 +12,12 @@
 
 <div>
 
-  <h2 class="page-header">Idea Collection</h2>
-  <% if Landingpage.exists?(title: "") %>
+  <h1 class="page-header text-lg-center">Idea Collection</h1>
+  <!-- <h2 class="page-header">Idea Collection</h2> -->
+  
+  <% if Landingpage.exists?(title: "Home") %>
     <% @landingpage = Landingpage.where(title: "Home").first %>
-    <h2><%= @landingpage.title %></h2>
+    <!-- <h2><%= @landingpage.title %></h2> -->
     <p><%=  @landingpage.description.html_safe %></p>
     <% if can? :edit, :landingpages %>
       <p><%= link_to 'Edit Homepage', edit_landingpage_path(@landingpage) %></p>
@@ -28,10 +30,6 @@
   <% end %>
 
   <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
-
-
-  <!-- <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %> -->
-  <!-- <div id="map-sidebar"></div> -->
 
   <div id="map" class="ideas-map-info"></div>
 

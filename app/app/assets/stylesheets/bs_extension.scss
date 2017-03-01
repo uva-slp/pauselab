@@ -23,6 +23,9 @@ abbr[title] {
 	color: $muted_red;
 }
 
+img {
+	@extend .img-fluid;
+}
 
 // navigation bar
 .navbar {

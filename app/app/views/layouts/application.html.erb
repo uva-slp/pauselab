@@ -9,6 +9,12 @@
     <%= javascript_include_tag :application %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag params[:controller] %>
+
+    <% if params[:controller] == "pages" %>
+      <%= javascript_include_tag "instafeed.min" %>
+    <% end %>
+
+
   </head>
 
   <body>

@@ -7,14 +7,14 @@ namespace :populate do
   desc "populate database with Faker data"
   # task :idea, [:count] => [:environment] do |t, args|
   task idea: :environment do
-    puts "generating ideas ..."
+    printf "generating ideas... "
     # require File.expand_path("spec/factories.rb") # linking to defined factories in spec/
     Idea.delete_all
     cur = Iteration.get_current
-    5.times do
-      FactoryGirl.create :idea, :iteration => cur, :status => :approved
+    30.times do
+      i = FactoryGirl.create :idea, :iteration => cur, :status => :approved
     end
-    puts "done"
+    printf "done\n"
   end
 
 
