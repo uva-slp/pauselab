@@ -7,6 +7,7 @@
 
 //= require social-share-button
 //= require trumbowyg/trumbowyg
+//= require disqus_rails
 
 //= require init
 

@@ -44,6 +44,7 @@ gem 'chartkick'
 gem 'rails-i18n', '~> 5.0.0'  # internationalization
 # gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+gem 'disqus_rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console

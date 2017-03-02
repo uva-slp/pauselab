@@ -112,7 +112,18 @@ img {
 	margin: 0 auto ;
 }
 
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto
+}
 
+.custom-file {
+	display: block;
+}
+
+.custom-file-control {
+}
 
 // pagination
 

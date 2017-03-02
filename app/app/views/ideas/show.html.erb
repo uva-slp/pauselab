@@ -1,11 +1,11 @@
 <div class="row">
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>" data-cat="<%= @idea.category_id %>"></div>
     <span class="text-muted"><i><%= @idea.address %></i></span>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div class="center-block">
 
       <% if @idea.respond_to? :first_name %>
@@ -45,6 +45,7 @@
       <hr>
 
       <div class="">
+
         <% if can? :approve, @idea %>
 
           <% if @idea.unchecked? %>
@@ -58,6 +59,7 @@
           <% end %>
 
         <% end %>
+
         <% if can? :edit, @idea %>
           <%= link_to edit_idea_path(@idea), title: "edit idea", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
             <i class="fa fa-pencil-square-o"></i>
@@ -69,9 +71,19 @@
           <% end %>
         <% end %>
       </div>
+
     </div>
   </div>
 </div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-10 col-centered">
+    <%- disqus_thread %>
+  </div>
+</div>
+
 
 <!-- async defer  -->
 <script async defer

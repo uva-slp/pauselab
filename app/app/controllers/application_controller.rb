@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
   enable_authorization unless :devise_controller?
 
@@ -47,6 +48,7 @@ end
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone])
+      devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :email, :password, :avatar])
     end
 
     def index_respond scoped_objs, name

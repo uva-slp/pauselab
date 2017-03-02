@@ -11,41 +11,23 @@
   }
 }
 
-/*** iteration manager ***/
-.iteration {
-  text-align: center;
-  padding: 5px;
-  transition: 0.1s all;
-  &:hover {
-    cursor: pointer;
-    // background-color: #bdc3c7;
-    // color: white;
-  }
-  &:active {
-  }
+
+
+.jumbotron {
+  margin-bottom: 0 ;
 }
 
-.iteration-progress {
-  span {
-    font-weight: bolder;
-  }
+.user-info {
+  // border: 1px solid black ;
+  // margin: 0 auto ;
+  text-align: center ;
+  padding: 0 ;
+  background-color: #ecf0f1 ;
+  padding: 1.5em ;
 }
 
-.iteration-stats {
-  ul {
-    padding-left: 0;
-    list-style: none;
-  }
-}
-
-.iteration-list {
-  margin-bottom: 20px;
-}
-
-.phase-btn {
-  outline: none;
-  &:active {
-    outline: none;
-    border: none;
-  }
+.avatar-img {
+  border: 1px solid black ;
+  border-radius: 100% ;
+  height: 150px ;
 }
