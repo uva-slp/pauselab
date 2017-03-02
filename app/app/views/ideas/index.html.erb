@@ -115,9 +115,15 @@
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
           <% end %> -->
-          
+
         </tr>
     <% end %>
 
   </table>
+
+  <%= will_paginate @ideas,
+        :class => "pagination-wrapper",
+        :previous_label => "previous",
+        :next_label => "next" %>
+
 </div>

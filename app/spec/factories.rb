@@ -27,6 +27,7 @@ FactoryGirl.define do
     email {Faker::Internet.email}
     phone {Faker::Number.number(10)}
     address {Faker::Address.street_address}
+    created_at { Faker::Date.between(1.year.ago, Date.today) }
     # lat {Faker::Address.latitude}
     # lng {Faker::Address.longitude}
     lat {38.026291 + rand() * 0.03}

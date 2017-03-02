@@ -62,3 +62,8 @@
  <% end %>
 
 </div>
+
+<%= will_paginate @ideas,
+		 :class => "pagination-wrapper",
+		 :previous_label => "previous",
+		 :next_label => "next" %>
