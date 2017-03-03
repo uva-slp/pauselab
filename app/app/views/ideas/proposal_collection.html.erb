@@ -42,7 +42,6 @@
 		<% end %>
 
 		<div class="card-footer" align="left">
-			<% if can? :read, idea, :description %>
 				<span class="share-btns">
 					<button class="btn btn-sm btn-outline-primary fb-btns" data-desc="<%= idea.description %>" data-id="<%= idea.id %>">
 						<i class="fa fa-facebook "></i>
@@ -52,7 +51,6 @@
 					</button>
 				</span>
         <!-- <%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%> -->
-      <% end %>
       <span class="pull-right">
 				<%= render :partial => 'like_button', locals: {idea: idea}  %>
 			</span>

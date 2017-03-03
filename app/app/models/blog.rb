@@ -10,4 +10,10 @@ class Blog < ApplicationRecord
   def author_name
     user.fullname
   end
+
+  def preview
+    require 'sanitize'
+    Sanitize.fragment body
+  end
+
 end

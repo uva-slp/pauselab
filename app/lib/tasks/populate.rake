@@ -42,11 +42,13 @@ namespace :populate do
 
   desc "populate database with Faker blogs"
   task blog: :environment do
-    printf "generating users... "
+    printf "generating blogs... "
     Blog.delete_all
+    cur = Iteration.get_current
     10.times do
-      FactoryGirl.create :blog, :iteration => cur
-      # puts "#{f.fullname}"
+      FactoryGirl.create :blog,
+        :iteration => cur,
+        :user => User.where.not(:id => 6).order("RAND()").first
     end
     printf "done\n"
   end

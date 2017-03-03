@@ -103,6 +103,7 @@ FactoryGirl.define do
     association :user
     title {Faker::Hipster.sentence}
     body {Faker::Hipster.paragraph}
+    created_at { Faker::Date.between(6.month.ago, Date.today) }
   end
 
   factory :vote do

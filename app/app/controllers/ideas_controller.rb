@@ -13,7 +13,7 @@ class IdeasController < ApplicationController
     when "id"
       @ideas = @ideas.order :id
     when "date"
-      @ideas = @ideas.order :created_at
+      @ideas = @ideas.order created_at: :desc
     when "author_last_name"
       @ideas = @ideas.order :last_name
     when "author_first_name"
@@ -58,7 +58,7 @@ class IdeasController < ApplicationController
 			redirect_to ideas_path
 		else
       puts @idea.errors.full_messages.to_yaml
-			render 'new'
+			render 'proposal_collection'
 		end
 	end
 
