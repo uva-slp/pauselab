@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name {Faker::Space.galaxy}
+    name {Faker::Space.star}
   end
 
   factory :idea do
@@ -42,7 +42,7 @@ FactoryGirl.define do
     last_name {Faker::Name.last_name}
     phone {Faker::Number.number(10)}
     password {Faker::Internet.password}
-    # role "admin"
+    role {rand(6)}
 
     factory :admin do
         after(:create, :build) {|user| user.change_role(:admin)}

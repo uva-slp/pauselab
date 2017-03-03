@@ -156,7 +156,7 @@ class IdeasController < ApplicationController
 
     def filter_idea_columns ideas
       unless user_has_admin_access
-        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description,:status)
+        return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
       end
       return ideas
     end

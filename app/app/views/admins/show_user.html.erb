@@ -11,18 +11,27 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-7 user-info center-block col-centered jumbotron">
+      <div class="col-lg-7 user-info center-block col-centered jumbotron">
         <%= image_tag Faker::Avatar.image, class: 'avatar-img img-fluid' %>
         <br>
         <br>
         <h2 class="display-4"><%= @user.fullname %></h2>
         <div class="lead"><strong><%= t 'common.user_role' %>&nbsp;&nbsp;</strong><%= @user.role %></div>
-        <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
 
         <hr class="my-1">
 
+        <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
         <div><strong><%= t 'common.user_phone' %>&nbsp;&nbsp;</strong><%= number_to_phone @user.phone, area_code: true, delimiter: " " %></div>
-        <div><strong><%= t 'admins.last_signed_in' %>&nbsp;&nbsp;</strong><%= time_ago_in_words @user.last_sign_in_at %></div>
+
+        <div>
+          <strong><%= t 'admins.last_signed_in' %></strong>&nbsp;
+          <% if @user.last_sign_in_at.nil? %>
+            never signed in
+          <% else %>
+            <%= time_ago_in_words @user.last_sign_in_at %>
+          <% end %>
+        </div>
+
       </div>
     </div>
   </div>
@@ -33,7 +42,8 @@
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
       <i class="fa fa-pencil-square-o"></i>
     </button>
-    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message') } do %>
+    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", title: "deactivate user", data: {
+      confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>

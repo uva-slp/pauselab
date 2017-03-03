@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
 	end
 
 	def index_users
-		@users = User.all
+		@users = User.all.paginate :page => params[:page], :per_page => 25
 		authorize! :read, @users
 		index_respond @users, :users
 	end
