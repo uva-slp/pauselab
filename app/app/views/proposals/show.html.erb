@@ -4,6 +4,12 @@
 | <%= link_to 'Edit', edit_proposal_path(@proposal) %>
 <% end %> -->
 
+<style media="screen">
+  .proposal-cost:hover {
+    cursor: pointer ;
+  }
+</style>
+
 <h1 class="text-sm-right">
   <%= @proposal.title %>
 </h1>
@@ -17,8 +23,10 @@
   <small class="text-muted"> • <%= @proposal.created_at.strftime("%b %e") %></small>
 </h3>
 
-<h5 class="text-muted text-sm-right">
-  <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.cost, :unit => "" %>
+<h5 class="text-muted text-sm-right proposal-cost" data-toggle="modal" data-target="#budget_display">
+  <span title="view breakdown" data-toggle="tooltip">
+    <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
+  </span>
 </h5>
 
 <%# TODO: limit scope %>
@@ -89,3 +97,5 @@
     <% end %>
   <% end %>
 <% end %>
+
+<%= render partial: 'budget_modal' %>

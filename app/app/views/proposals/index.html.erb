@@ -60,8 +60,8 @@
         <% if proposal.respond_to? :title %>
 	        <td><%= proposal.title %></td>
         <% end %>
-        <% if proposal.respond_to? :cost %>
-          <td><%= number_to_currency proposal.cost %></td>
+        <% if proposal.respond_to? :proposal_budget %>
+          <td><%= number_to_currency proposal.proposal_budget.cost %></td>
         <% end %>
 
         <% if user_has_admin_access %>
