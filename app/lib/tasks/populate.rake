@@ -66,9 +66,24 @@ namespace :populate do
     printf "done\n"
   end
 
+  desc "populate database with Faker proposal comments"
+  task comment: :environment do
+    printf "generating proposal comments ... "
+    ProposalComment.delete_all
+    10.times do
+      FactoryGirl.create :proposal_comment,
+        :proposal => Proposal.order("RAND()").first,
+        :user => User.where.not(:id => 6).order("RAND()").first
+    end
+    printf "done\n"
+  end
+
+
   desc "remove Faker data from database"
   task remove: :environment do
     Idea.delete_all
+    Proposal.delete_all
+    Blog.delete_all
   end
 
 end

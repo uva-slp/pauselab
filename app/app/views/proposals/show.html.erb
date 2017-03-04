@@ -36,6 +36,34 @@
   <h5 class="text-sm-right"><span class="badge badge-danger">unchecked</span></h5>
 <% end %>
 
+<span class="proposal-tools">
+
+  <% if can? :approve, @proposal %>
+    <% if @proposal.unchecked? %>
+      <%= link_to proposal_approve_path(@proposal), method: :post, title: "approve", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+        <i class="fa fa-check"></i>
+      <% end %>
+    <% else %>
+      <%= link_to proposal_approve_path(@proposal), method: :post, title: "disapprove", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+        <i class="fa fa-times"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <% if can? :edit, @proposal %>
+    <%= link_to edit_proposal_path(@proposal), title: "edit idea", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+  <% end %>
+
+  <% if can? :delete, @proposal %>
+    <%= link_to proposal_path(@proposal), method: :delete, title: "delete idea", class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?', toggle: 'tooltip' } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  <% end %>
+
+</span>
+<br>
 <br>
 
 <div class="card">
@@ -66,25 +94,45 @@
   </p>
 <% end %> -->
 
+
 <br>
+
 
 <%# TODO avoid code duplication with this and proposal_comment views. %>
 <% if can? :read, ProposalComment %>
   <h3>Comments</h3>
   <% @proposal.proposal_comments.each do |comment| %>
-    <p>
+
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">
+          <%= comment.user.fullname %>
+          <span class="pull-right">
+            <% if can? :edit, comment %>
+              <%= link_to edit_proposal_proposal_comment_path(@proposal, comment), class: "btn btn-sm btn-primary" do %>
+                <i class="fa fa-pencil-square-o"></i>
+              <% end %>
+            <% end %>
+            <% if can? :destroy, comment %>
+              <%= link_to proposal_proposal_comment_path(@proposal, comment), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-times"></i>
+              <% end %>
+            <% end %>
+          </span>
+        </h4>
+        <%= comment.body %>
+      </div>
+    </div>
+
+    <!-- <p>
       <strong><%= comment.user.fullname %></strong>: <%= comment.body %>
-      <% if can? :edit, comment %>
-        <%= link_to 'Edit', edit_proposal_proposal_comment_path(@proposal, comment) %>
-      <% end %>
-      <% if can? :destroy, comment %>
-        | <%= link_to 'Remove', proposal_proposal_comment_path(@proposal, comment),
-            method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </p>
+
+    </p> -->
+
   <% end %>
+
   <% if can? :create, ProposalComment %>
-    <hr>
+    <br>
     <%= simple_form_for([@proposal, @proposal.proposal_comments.build]) do |f| %>
       <!-- <p> Add comment: </p> -->
       <%= f.input :body, label: "Add Comment" %>
@@ -93,9 +141,9 @@
         <%= f.button :submit, value: 'Submit', class: 'btn-primary pull-right' %>
         <%# link_to ' Cancel', ideas_path %>
       </div>
-
-    <% end %>
+      <% end %>
   <% end %>
+
 <% end %>
 
 <%= render partial: 'budget_modal' %>

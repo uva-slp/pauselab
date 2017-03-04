@@ -4,8 +4,9 @@ class ProposalsController < ApplicationController
   def index
     @proposals = @proposals.where(:iteration_id => Iteration.get_current.id)
       .paginate :page => params[:page], :per_page => 25
+
     if params[:sort].present?
-      @proposals = @proposals.order params[:sort]
+        @proposals = @proposals.order params[:sort]
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
     index_respond @proposals, :proposals
@@ -67,10 +68,15 @@ class ProposalsController < ApplicationController
 	end
 
    def approve
-    @proposal = Proposal.find(params[:id])
-    @proposal.approved!
-    @proposal.save
-    redirect_to proposals_path
+     @proposal = Proposal.find(params[:id])
+     if @proposal.approved?
+       @proposal.unchecked!
+     else
+       @proposal.approved!
+     end
+     @proposal.save
+    # end
+    render 'show'
    end
 
 	private
