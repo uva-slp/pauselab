@@ -58,7 +58,7 @@ class IdeasController < ApplicationController
 			redirect_to ideas_path
 		else
       puts @idea.errors.full_messages.to_yaml
-			render 'proposal_collection'
+			render 'new'
 		end
 	end
 

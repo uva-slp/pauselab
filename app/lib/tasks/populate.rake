@@ -53,6 +53,19 @@ namespace :populate do
     printf "done\n"
   end
 
+  desc "populate database with Faker proposals"
+  task proposal: :environment do
+    printf "generating proposals... "
+    Proposal.delete_all
+    cur = Iteration.get_current
+    10.times do
+      FactoryGirl.create :proposal,
+        :iteration => cur,
+        :user => User.where.not(:id => 6).order("RAND()").first
+    end
+    printf "done\n"
+  end
+
   desc "remove Faker data from database"
   task remove: :environment do
     Idea.delete_all

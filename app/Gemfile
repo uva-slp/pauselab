@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.5'
 
 #### gems we are adding ####
 gem 'figaro' # easy way to add environment variables
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '4.0.0.alpha5'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end

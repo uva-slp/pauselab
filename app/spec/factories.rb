@@ -1,5 +1,19 @@
 FactoryGirl.define do
 
+  factory :proposal_budget do
+
+    # TODO: create use
+
+    artist_fees { Faker::Number.decimal 3, 2 }
+    project_materials { Faker::Number.decimal 3, 2 }
+    printing { Faker::Number.decimal 3, 2 }
+    marketing { Faker::Number.decimal 3, 2 }
+    documentation { Faker::Number.decimal 3, 2 }
+    volunteers { Faker::Number.decimal 3, 2 }
+    insurance { Faker::Number.decimal 3, 2 }
+    events { Faker::Number.decimal 3, 2 }
+  end
+
   factory :iteration do
     # status 0
     factory :ideas_phase do
@@ -70,8 +84,8 @@ FactoryGirl.define do
     association :user
     cost {Faker::Number.number(4)}
     description {Faker::Hipster.paragraph}
-    essay {Faker::Hipster.paragraph}
-    website_link "http://aaronbloomfield.github.io/slp/docs/index.html"
+    essay {Faker::Hipster.paragraph 10}
+    website_link {Faker::Internet.url}
     artist_fees {Faker::Number.number(3)}
     project_materials {Faker::Number.between(10, 200)}
     printing {Faker::Number.between(10, 200)}
@@ -80,7 +94,9 @@ FactoryGirl.define do
     volunteer {Faker::Number.between(10, 200)}
     insurance {Faker::Number.between(10, 200)}
     events {Faker::Number.between(10, 200)}
+    # title {Faker::Hipster.sentence}
     title {Faker::Hipster.word} # title has a length limit
+    created_at { Faker::Date.between(1.year.ago, Date.today) }
 
     factory :proposal_with_comments do
       transient do

@@ -26,23 +26,16 @@
         <% if user_has_admin_access %>
           <th>ID</th>
         <% end %>
-
         <th>Name</th>
-
         <th>Created at</th>
-
         <th>Title</th>
-
         <th>Cost</th>
-
         <% if user_has_admin_access %>
           <th>Status</th>
         <% end %>
-
         <% if user_has_admin_access %>
           <th>Votes</th>
         <% end %>
-
         <% if can? :show, Proposal or
           can? :approve, Proposal or
           can? :edit, Proposal or
@@ -80,7 +73,8 @@
         <% if can? :show, proposal %>
           <td><%= link_to 'Show', proposal_path(proposal) %></td>
         <% end %>
-        <% if can? :approve, proposal %>
+
+        <!-- <% if can? :approve, proposal %>
           <td><%= link_to 'Approve', proposal_approve_path(proposal),
     	      method: :post %></td>
         <% end %>
@@ -91,12 +85,18 @@
           <td><%= link_to 'Remove', proposal_path(proposal),
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <% end %> -->
+
         <% if can? :read, proposal, :title %>
-        <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
+        <!-- <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td> -->
         <% end %>
       </tr>
       <% end %>
 
   </table>
 </div>
+
+<%= will_paginate @proposals,
+      :class => "pagination-wrapper",
+      :previous_label => "previous",
+      :next_label => "next" %>

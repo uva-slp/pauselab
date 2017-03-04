@@ -13,4 +13,6 @@
 
 //= require init
 
+//= require autogrow.min 
+
 // disabled for now:  require_tree .

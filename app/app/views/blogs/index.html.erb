@@ -12,7 +12,7 @@
     <div class="card-block">
       <%= image_tag Faker::Avatar.image, class: 'user-img img-fluid pull-left' %>
       <h4 class="card-title"><%= blog.title %></h4>
-      <h6 class="card-subtitle mb-2"><%= blog.user.fullname %> . <span class="text-muted"><%= blog.created_at.strftime("%b %e") %></span></h6>
+      <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
       <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
       <%= link_to 'read more', blog_path(blog), class: 'card-link' %>
 

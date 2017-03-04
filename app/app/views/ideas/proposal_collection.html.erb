@@ -13,7 +13,11 @@
 <% if Iteration.get_current.proposals? %>
 	<h1 class="page-header text-lg-center">Calling all artists</h1>
 	<div class="text-lg-center" style="margin-top: 20px;">
-		<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>
+		<% if user_signed_in? %>
+			<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>
+		<% else %>
+			<%= link_to 'Submit proposal', new_user_session_path, class: 'btn btn-primary'%>
+		<% end %>
 	</div>
 <% else %>
 	<h1 class="page-header text-lg-center">Submitted ideas</h1>

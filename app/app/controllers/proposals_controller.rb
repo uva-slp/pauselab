@@ -3,6 +3,7 @@ class ProposalsController < ApplicationController
 
   def index
     @proposals = @proposals.where(:iteration_id => Iteration.get_current.id)
+      .paginate :page => params[:page], :per_page => 25
     if params[:sort].present?
       @proposals = @proposals.order params[:sort]
     end
