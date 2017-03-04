@@ -11,13 +11,13 @@ module ApplicationHelper
 	  # return key
 	end
 
-	def javascript_exists?(script)
-	  script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
-	  extensions = %w(.coffee .erb .coffee.erb) + [""]
-	  extensions.inject(false) do |truth, extension|
-	    truth || File.exists?("#{script}#{extension}")
-	  end
-	end
+	# def javascript_exists?(script)
+	#   script = "#{Rails.root}/app/assets/javascripts/#{script}.js"
+	#   extensions = %w(.coffee .erb .coffee.erb) + [""]
+	#   extensions.inject(false) do |truth, extension|
+	#     truth || File.exists?("#{script}#{extension}")
+	#   end
+	# end
 
 	def flash_messages(opts = {})
 
