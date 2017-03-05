@@ -2,9 +2,48 @@
 <% if can? :create, Blog %>
   <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
+
 <h2>Recent Blogs</h2>
 
+<br>
+
 <% @blogs.each do |blog| %>
+  <div class="card">
+    <div class="card-block">
+      <%= image_tag Faker::Avatar.image, class: 'user-img img-fluid pull-left' %>
+      <h4 class="card-title"><%= blog.title %></h4>
+      <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
+      <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
+      <%= link_to 'read more', blog_path(blog), class: 'card-link' %>
+
+      <div class="pull-right">
+        <% if can? :edit, blog %>
+          <%= link_to edit_blog_path(blog), class: "btn btn-sm btn-primary" do %>
+            <i class="fa fa-pencil-square-o"></i>
+          <% end %>
+        <% end %>
+        <% if can? :destroy, blog %>
+          <%= link_to blog_path(blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?'} do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+
+
+    </div>
+  </div>
+<% end %>
+
+<%= will_paginate @blogs,
+		 :class => "pagination-wrapper",
+		 :previous_label => "previous",
+		 :next_label => "next" %>
+
+
+<!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
+
+<!-- <% @blogs.each do |blog| %>
   <hr>
   <% if can? :edit, blog %>
     <%= link_to 'Edit', edit_blog_path(blog) %>
@@ -12,9 +51,8 @@
   <% if can? :destroy, blog %>
     | <%= link_to 'Remove', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
-  <!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
   <h4>By <b><%= blog.user.fullname %></b></h4>
   Published <%= blog.created_at %>
   <h2><b><%= blog.title %></b></h2>
   <p><%= blog.body %></p>
-<% end %>
+<% end %> -->

@@ -29,4 +29,9 @@
 	</table>
 </div>
 
+<%= will_paginate @users,
+			:class => "pagination-wrapper",
+			:previous_label => "previous",
+			:next_label => "next" %>
+
 <% end %>

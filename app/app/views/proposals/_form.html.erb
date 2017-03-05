@@ -37,41 +37,39 @@
 
     <br/>
     <h3>Budget Information</h3>
-    <div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= f.input :artist_fees, placeholder: 'atrist fees budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :project_materials, placeholder: 'project materials budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :printing, placeholder: 'printing budget' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= f.input :marketing, placeholder: 'marketing budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :documentation, placeholder: 'documentation budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :volunteer, placeholder: 'volunteer budget' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <%= f.input :insurance, placeholder: 'insurance/legal budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :events, placeholder: 'events budget' %>
-          </div>
-          <div class="col-sm-4">
-            <%= f.input :cost, placeholder: 'total cost' %>
-          </div>
-        </div>
+
+    <%= f.simple_fields_for :proposal_budget do |p| %>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :artist_fees, placeholder: 'artist fees budget' %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :project_materials, placeholder: 'project materials budget' %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :printing, placeholder: 'printing budget' %>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :marketing, placeholder: 'marketing budget' %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :documentation, placeholder: 'documentation budget' %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :volunteers, placeholder: 'volunteer budget' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :insurance, placeholder: 'insurance/legal budget' %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :events, placeholder: 'events budget' %>
+      </div>
+    </div>
+    <% end %>
 
     <div class='form-group'>
       <%= f.input :artist_cv, label: "resume: ", wrapper_html: { class: 'btn-file' } %>
@@ -80,7 +78,7 @@
     <div class='form-group'>
       <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
       &nbsp;
-      <%= link_to 'Cancel', proposals_path, class: 'btn btn-secondary' %>
+      <%= link_to 'Cancel', root_path, class: 'btn btn-secondary' %>
     </div>
 
 <% end %>

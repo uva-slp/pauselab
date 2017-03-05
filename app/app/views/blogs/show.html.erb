@@ -1,13 +1,32 @@
 
-<%= link_to 'Back', blogs_path %> |
-<%= link_to 'Edit', edit_blog_path(@blog) %> 
-  
-<h4>
-  By <b><%= User.find(@blog.user_id.to_i).first_name %> <%= User.find(@blog.user_id.to_i).last_name %></b>
-</h4>
-  
+
+
+<%= image_tag Faker::Avatar.image, class: 'user-img-lg img-fluid pull-left' %>
 <h2><b><%= @blog.title %></b></h2>
- 
-<p>
-  <%= @blog.body %>
-</p>
+<h4 class="text-muted"><%= User.find(@blog.user_id.to_i).first_name %> <%= User.find(@blog.user_id.to_i).last_name %></h4>
+
+<p class="blog-body"><%= raw @blog.body %></p>
+
+<br>
+
+<div class="">
+  <% if can? :edit, @blog %>
+    <%= link_to edit_blog_path(@blog), class: "btn btn-sm btn-primary" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+  <% end %>
+  <% if can? :destroy, @blog %>
+    <%= link_to blog_path(@blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?'} do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  <% end %>
+</div>
+
+<hr>
+
+
+<div class="row">
+  <div class="col-md-10 col-centered">
+    <%- disqus_thread %>
+  </div>
+</div>

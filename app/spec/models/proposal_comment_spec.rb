@@ -10,4 +10,5 @@ RSpec.describe ProposalComment, type: :model do
     proposal_comment = build :proposal_comment, :body => ''
     expect(proposal_comment).to_not be_valid
   end
+  
 end

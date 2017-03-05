@@ -2,35 +2,38 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
-    if params[:sort].present?
-      if params[:sort]=="likes"
-        @ideas = @ideas.order likes: :desc
-      end
-      if params[:sort]=="id"
-        @ideas = @ideas.order :id
-      end
-      if params[:sort]=="date"
-        @ideas = @ideas.order :created_at
-      end
-      if user_has_admin_access
-        if params[:sort]=="author_last_name"
-          @ideas = @ideas.order :last_name
-        end
-        if params[:sort]=="author_first_name"
-          @ideas = @ideas.order :first_name
-        end
-      end
+    # @ideas = Idea.paginate :page => params[:page], :per_page => 25
+    @ideas =
+      filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+          .paginate :page => params[:page], :per_page => 25
+
+    case params[:sort]
+    when "category"
+      @ideas = @ideas.order :category_id
+    when "id"
+      @ideas = @ideas.order :id
+    when "date"
+      @ideas = @ideas.order created_at: :desc
+    when "author_last_name"
+      @ideas = @ideas.order :last_name
+    when "author_first_name"
+      @ideas = @ideas.order :first_name
+    when "likes"
+      @ideas = @ideas.order likes: :desc
     end
+
     @likes = Array.new
     if cookies[:likes] != nil
       @likes = JSON.parse(cookies[:likes])
     end
     index_respond @ideas, :ideas
+
   end
 
   def proposal_collection
-    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    @ideas =
+      filter_idea_columns( @ideas.where :iteration_id => Iteration.get_current.id )
+        .paginate :page => params[:page], :per_page => 25
     @likes = Array.new
     if cookies[:likes] != nil
       @likes = JSON.parse(cookies[:likes])
@@ -108,15 +111,6 @@ class IdeasController < ApplicationController
     #redirect_to ideas_path
   end
 
-	def proposal_collection
-    @ideas = Idea.where :iteration_id => Iteration.get_current.id
-		# @ideas = Idea.all
-    @likes = Array.new
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-    end
-	end
-
   def destroy
     @idea = Idea.find(params[:id])
     @idea.destroy
@@ -134,10 +128,14 @@ class IdeasController < ApplicationController
 
   def approve
     @idea = Idea.find(params[:id])
-    @idea.approved!
+    if @idea.approved?
+      @idea.unchecked!
+    else
+      @idea.approved!
+    end
     @idea.save
 		# end
-		redirect_to ideas_path
+		render 'show'
 	end
 
 

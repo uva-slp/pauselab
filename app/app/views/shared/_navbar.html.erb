@@ -8,7 +8,7 @@
 
     <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
       <%= link_to root_url, class: 'navbar-brand' do %>
-        <i class="fa fa-home"></i>
+        <i class="fa fa-pause" style="color: #F6992F;"></i>
       <% end %>
       <ul class="nav navbar-nav float-md-right">
 
@@ -41,20 +41,21 @@
         <% end %>
 
         <%# Proposals menu %>
+
         <% if can? :read, Proposal %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
             <div class="dropdown-menu">
-              <% if can? :read, Idea %>
-                <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>
+              <% if can? :read, Proposal %>
+                <%= link_to 'Proposals Console', proposals_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :create, Proposal %>
                 <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>
               <% end %>
-              <% if can? :read, Proposal %>
-                <div class="dropdown-divider"></div>
-                <%= link_to 'Proposals Console', proposals_path, class: 'dropdown-item' %>
-              <% end %>
+
+              <!-- <% if can? :read, Idea %>
+                <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>
+              <% end %> -->
             </div>
           </li>
         <% end %>

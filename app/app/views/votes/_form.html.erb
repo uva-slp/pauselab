@@ -42,7 +42,7 @@
       </div>
       <div class="card-footer text-muted ">
         <span class="pull-left">
-          <%= number_to_currency b.object.cost %>
+          <%= number_to_currency b.object.proposal_budget.cost %>
         </span>
         <span class="pull-right">
           <%= b.object.created_at.strftime("%B %d") %>

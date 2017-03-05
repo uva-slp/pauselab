@@ -1,5 +1,20 @@
 FactoryGirl.define do
 
+  factory :proposal_budget do
+
+    # TODO: create association
+
+    artist_fees { Faker::Number.decimal 3, 2 }
+    project_materials { Faker::Number.decimal 3, 2 }
+    printing { Faker::Number.decimal 3, 2 }
+    marketing { Faker::Number.decimal 3, 2 }
+    documentation { Faker::Number.decimal 3, 2 }
+    volunteers { Faker::Number.decimal 3, 2 }
+    insurance { Faker::Number.decimal 3, 2 }
+    events { Faker::Number.decimal 3, 2 }
+
+  end
+
   factory :iteration do
     # status 0
     factory :ideas_phase do
@@ -16,7 +31,7 @@ FactoryGirl.define do
   end
 
   factory :category do
-    name {Faker::Space.galaxy}
+    name {Faker::Space.star}
   end
 
   factory :idea do
@@ -27,8 +42,11 @@ FactoryGirl.define do
     email {Faker::Internet.email}
     phone {Faker::Number.number(10)}
     address {Faker::Address.street_address}
-    lat {Faker::Address.latitude}
-    lng {Faker::Address.longitude}
+    created_at { Faker::Date.between(1.year.ago, Date.today) }
+    # lat {Faker::Address.latitude}
+    # lng {Faker::Address.longitude}
+    lat {38.026291 + rand() * 0.03}
+    lng {-78.4777657 + rand() * 0.03}
     description {Faker::Hipster.paragraph}
     likes {Faker::Number.number(3)}
   end
@@ -39,7 +57,7 @@ FactoryGirl.define do
     last_name {Faker::Name.last_name}
     phone {Faker::Number.number(10)}
     password {Faker::Internet.password}
-    # role "admin"
+    role {rand(6)}
 
     factory :admin do
         after(:create, :build) {|user| user.change_role(:admin)}
@@ -63,21 +81,17 @@ FactoryGirl.define do
   end
 
   factory :proposal do
+
     association :iteration
     association :user
-    cost {Faker::Number.number(4)}
     description {Faker::Hipster.paragraph}
-    essay {Faker::Hipster.paragraph}
-    website_link "http://aaronbloomfield.github.io/slp/docs/index.html"
-    artist_fees {Faker::Number.number(3)}
-    project_materials {Faker::Number.between(10, 200)}
-    printing {Faker::Number.between(10, 200)}
-    marketing {Faker::Number.between(10, 200)}
-    documentation {Faker::Number.between(10, 200)}
-    volunteer {Faker::Number.between(10, 200)}
-    insurance {Faker::Number.between(10, 200)}
-    events {Faker::Number.between(10, 200)}
+    essay {Faker::Hipster.paragraph 10}
+    website_link {Faker::Internet.url}
+    # title {Faker::Hipster.sentence}
     title {Faker::Hipster.word} # title has a length limit
+    created_at { Faker::Date.between(1.year.ago, Date.today) }
+
+    proposal_budget
 
     factory :proposal_with_comments do
       transient do
@@ -87,6 +101,7 @@ FactoryGirl.define do
         create_list(:proposal_comment, evaluator.comments_count, proposal: proposal)
       end
     end
+
   end
 
   factory :proposal_comment do
@@ -100,6 +115,7 @@ FactoryGirl.define do
     association :user
     title {Faker::Hipster.sentence}
     body {Faker::Hipster.paragraph}
+    created_at { Faker::Date.between(6.month.ago, Date.today) }
   end
 
   factory :vote do

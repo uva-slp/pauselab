@@ -5,27 +5,34 @@
 
 <h2 class="pull-left">categories</h2>
 
-
 <div class="table-responsive">
   <table class="table table-striped">
 
     <thead>
       <tr>
         <th>Category ID</th>
+        <th>Icon</th>
         <th>Name</th>
-        <th colspan="6">Actions</th>
+        <th colspan="1">Actions</th>
       </tr>
     </thead>
 
     <% @categories.each do |category| %>
      <tr>
        <td><%= category.id %></td>
+       <td>
+         <% if category.icon.present? %>
+           <%= image_tag category.icon.url, size: "20x20" %>
+         <% else %>
+           N/A
+         <% end %>
+       </td>
        <td><%= category.name %></td>
        <td><%= link_to 'Show', category_path(category) %></td>
-       <td><%= link_to 'Edit', edit_category_path(category) %></td>
+       <!-- <td><%= link_to 'Edit', edit_category_path(category) %></td>
        <td><%= link_to 'Remove', category_path(category),
              method: :delete,
-             data: { confirm: 'Are you sure?' } %></td>
+             data: { confirm: 'Are you sure?' } %></td> -->
      </tr>
    <% end %>
 

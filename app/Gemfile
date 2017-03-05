@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
 gem 'jquery-rails'
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production
@@ -19,7 +19,7 @@ gem 'jbuilder', '~> 2.5'
 
 #### gems we are adding ####
 gem 'figaro' # easy way to add environment variables
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '4.0.0.alpha5'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
@@ -42,6 +42,9 @@ gem 'rubyzip'
 gem 'responders'
 gem 'chartkick'
 gem 'rails-i18n', '~> 5.0.0'  # internationalization
+# gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'disqus_rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console

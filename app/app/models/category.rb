@@ -8,4 +8,9 @@ class Category < ApplicationRecord
   def self.to_csv
     self.gen_csv %w{id created_at name}
   end
+
+  def to_s
+    name
+  end
+
 end
