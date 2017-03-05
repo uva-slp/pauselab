@@ -2,7 +2,7 @@ class ProposalBudget < ApplicationRecord
 
   before_save :find_total
 
-  belongs_to :proposal_budget
+  belongs_to :proposal
 
   validates :artist_fees, :project_materials, :printing, :marketing, :documentation, :volunteers, :insurance, :events, presence: true
 
