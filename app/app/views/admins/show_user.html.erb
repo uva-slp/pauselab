@@ -20,8 +20,20 @@
 
         <hr class="my-1">
 
-        <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
-        <div><strong><%= t 'common.user_phone' %>&nbsp;&nbsp;</strong><%= number_to_phone @user.phone, area_code: true, delimiter: " " %></div>
+        <div>
+          <a class="remove-link-style" target="_top" href="mailto:<%= @user.email %>">
+            <i class="fa fa-envelope"></i>
+          </a>&nbsp;<%= @user.email%>
+        </div>
+
+        <div>
+          <a class="remove-link-style" target="_top" href="mailto:<%= @user.phone %>">
+            <i class="fa fa-phone"></i>
+          </a>&nbsp;<%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+        </div>
+
+        <!-- <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
+        <div><strong><%= t 'common.user_phone' %>&nbsp;&nbsp;</strong><%= number_to_phone @user.phone, area_code: true, delimiter: " " %></div> -->
 
         <div>
           <strong><%= t 'admins.last_signed_in' %></strong>&nbsp;

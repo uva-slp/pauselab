@@ -2,15 +2,59 @@
 
   <div class="col-md-6">
     <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>" data-cat="<%= @idea.category_id %>"></div>
-    <span class="text-muted"><i><%= @idea.address %></i></span>
   </div>
 
   <div class="col-md-6">
     <div class="center-block">
 
-      <% if @idea.respond_to? :first_name %>
-        <h4><%= @idea.author %></h4>
-      <% end %>
+      <div class="idea-info">
+
+        <% if @idea.respond_to? :first_name %>
+          <h4><%= @idea.author %> <small class="text-muted"> • <%= @idea.created_at.strftime("%b %e") %></small></h4>
+        <% end %>
+
+        <span>
+          <a class="remove-link-style" target="_top" href=<%= "http://maps.apple.com/?ll=#{@idea.lat},#{@idea.lng}" %>>
+            <i class="fa fa-map-marker"></i>
+          </a>
+          &nbsp;<%= @idea.address %>
+        </span><br>
+
+        <% if @idea.respond_to? :email %>
+          <span>
+            <a class="remove-link-style" target="_top" href="mailto:<%= @idea.email %>">
+              <i class="fa fa-envelope"></i>
+            </a>&nbsp;<%= @idea.email%></span><br>
+        <% end %>
+
+        <% if @idea.respond_to? :phone %>
+          <span>
+            <a target="_top" class="remove-link-style" href=<%= "tel:#{@idea.phone}" %>>
+              <i class="fa fa-phone"></i>
+            </a>
+            &nbsp;<%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
+        <% end %>
+
+        <% if @idea.respond_to? :likes %>
+          <span class="badge badge-primary">
+            <i class="fa fa-thumbs-up"></i>
+            <%= @idea.likes %>
+          </span>
+        <% end %>
+
+        <% if @idea.respond_to? :status %>
+          <% if @idea.approved? %>
+            <span class="badge badge-success">approved</span>
+          <% else %>
+            <span class="badge badge-danger">unchecked</span>
+          <% end %>
+        <% end %>
+
+        <br>
+        <br>
+
+      </div>
+
       <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
         <div class="share-btns">
@@ -21,26 +65,7 @@
 						<i class="fa fa-twitter "></i>
 					</button>
 				</div>
-          <!-- <%= social_share_button_tag(@idea.description, :popup => "true")%> -->
       <% end %>
-
-      <div>
-        <% if @idea.respond_to? :email %>
-          <span><b>email: </b> <%= @idea.email%></span><br>
-        <% end %>
-        <% if @idea.respond_to? :likes %>
-          <span><b>likes:</b> <%= @idea.likes %> </span><br>
-        <% end %>
-        <% if @idea.respond_to? :phone %>
-          <span><b>phone:</b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
-        <% end %>
-        <% if @idea.respond_to? :status %>
-          <span><b>status:</b> <%= @idea.status %></span><br>
-        <% end %>
-        <% if @idea.respond_to? :created_at %>
-          <span><b>created at:</b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
-        <% end %>
-      </div>
 
       <hr>
 

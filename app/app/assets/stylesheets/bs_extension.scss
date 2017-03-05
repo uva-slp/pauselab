@@ -221,3 +221,9 @@ a.badge:focus, a.badge:hover {
 .badge-danger[href]:focus, .badge-danger[href]:hover {
   background-color: #c9302c;
 }
+
+.remove-link-style {
+	&:hover {
+		text-decoration: none ;
+	}
+}
