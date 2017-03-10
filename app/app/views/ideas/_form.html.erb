@@ -5,21 +5,21 @@
 	<%= f.input :lng, :as => :hidden %>
 	<%= f.input :address, :as => :hidden %>
 
-	<%= f.input :first_name, placeholder: 'first name' %>
-	<%= f.input :last_name, placeholder: 'last name' %>
+	<%= f.input :first_name, placeholder: (t 'ideas.first_name_placeholder') %>
+	<%= f.input :last_name, placeholder: (t 'ideas.last_name_placeholder') %>
 
-	<%= f.input :email, placeholder: 'pparker@dailybugle.com' %>
-	<%= f.input :phone, placeholder: '555-555-5555' %>
+	<%= f.input :email, placeholder: (t 'ideas.email_placeholder') %>
+	<%= f.input :phone, placeholder: (t 'ideas.phone_placeholder') %>
 
 	<%= f.input :category_id, as: "select", collection: Category.all, selected: 1 %>
 
-  <%= f.input :description, placeholder: "what's your idea?" %>
+  <%= f.input :description, placeholder: (t 'ideas.description_placeholder') %>
 
 	<%# Adding a recaptcha to the form %>
 	<%#= recaptcha_tags if not user_signed_in? %>
 
   <div class='form-group'>
-    <%= f.button :submit, value: 'Submit', class: 'btn-primary pull-right' %>
+    <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary pull-right' %>
     <%# link_to ' Cancel', ideas_path %>
   </div>
 

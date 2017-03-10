@@ -22,15 +22,15 @@
 
 </style>
 
-<h1>Submit New Idea</h1>
+<h1><%= t 'ideas.creating_idea' %></h1>
 
 <div class="row">
 
   <div class="col-sm-6 <%= 'has-error' if @idea.errors.key?(:lat) %>">
-    <input  id="pac-input" class="controls form-control" type="text" placeholder="lee park etc.">
+    <input id="pac-input" class="controls form-control" type="text" placeholder="<%= ideas.location_placeholder %>">
     <div id="map" class="idea-map-pick"></div>
     <% if @idea.errors.key?(:lat) %>
-      <span class="help-block">no location specified</span>
+      <span class="help-block"><%= t 'ideas.no_location_message' %></span>
     <% else %>
       <div class="address text-muted"></div>
     <% end %>

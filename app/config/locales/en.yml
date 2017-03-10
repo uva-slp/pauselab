@@ -36,6 +36,8 @@ en:
     edit: Edit
     remove: Remove
     back: Back
+    sort: Sort
+    date: Date
   admins:
     admin_console: Admin Console
     users: Users
@@ -79,3 +81,47 @@ en:
     name: Name
     icon: Icon
     no_icon_message: No icon present.
+  ideas:
+    first_name_placeholder: Peter
+    last_name_placeholder: Parker
+    email_placeholder: "pparker@dailybugle.com"
+    phone_placeholder: "555-555-5555"
+    description_placeholder: "What's your idea?"
+    location_placeholder: "Lee Park, etc."
+    creating_idea: Creating Idea
+    editing_idea: Editing Idea
+    create_new: Create New Idea
+    ideas: Ideas
+    likes: Likes
+    author: Author
+    author_first_name: Author First Name
+    author_last_name: Author Last Name
+    category: Category
+    description: Description
+    status: Status
+    approve: Approve
+    no_location_message: No location specified.
+    calliing_artists: Calling all artists
+    submit_proposal: Submit Proposal
+  landingpages:
+    description_placeholder: "Detail how the plan will be implemented."
+    editing_landingpage: Editing Landing Page Post
+    creating_landingpage: Creating Landing Page Post
+  mass_emails:
+    select_groups_message: "Please select one or more mailing groups."
+    administrators: Administrators
+    moderators: Moderators
+    steerers: Steering Committee
+    super_artists: Super Artists
+    artists: Artists
+    residents: Residents
+    subject_placeholder: Subject
+    body_placeholder: Message
+    send: Send
+    create_new: Create New Email
+    mass_emails: Mass Emails
+    sent_at: Sent At
+    date_sent: Date Sent
+    to: To
+    subject: Subject
+    body: Body
