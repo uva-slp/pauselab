@@ -11,6 +11,10 @@
 	<%= f.input :email, placeholder: 'pparker@dailybugle.com' %>
 	<%= f.input :phone, placeholder: '555-555-5555' %>
 
+	<% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+		<%= f.input :medium, as: :select, collection: Idea.media, selected: Idea.media[@idea.medium] %>
+	<% end %>
+
 	<%= f.input :category_id, as: "select", collection: Category.all, selected: 1 %>
 
   <%= f.input :description, placeholder: "what's your idea?" %>

@@ -27,8 +27,6 @@
   </div>
 </div>
 
-
-
 <div class="table-responsive">
   <table class="table table-striped">
 
@@ -49,23 +47,26 @@
         <th>Description</th>
 
         <% if user_has_admin_access %>
-          <th>Status</th>
+          <th colspan="1">Status</th>
         <% end %>
+
+        <th>Medium</th>
 
         <th>Likes</th>
 
-        <% if can? :like, Idea or
+        <!-- <% if can? :like, Idea or
           can? :show, Idea or
           can? :edit, Idea or
           can? :approve, Idea or
           can? :destroy, Idea %>
           <th colspan="1">Actions</th>
-         <% end %>
+         <% end %> -->
       </tr>
     </thead>
 
     <% @ideas.each do |idea| %>
-        <tr>
+
+        <tr class="row-link" data-href="<%= idea_path(idea) %>">
           <% if idea.respond_to? :id and user_has_admin_access %>
             <td><%= idea.id %></td>
           <% end %>
@@ -87,7 +88,15 @@
           <% end %>
 
           <% if idea.respond_to? :status %>
-            <td><%= idea.status %></td>
+            <% if idea.approved? %>
+              <td><span class="badge badge-success">approved</span></td>
+            <% else %>
+              <td><span class="badge badge-danger">unchecked</span></td>
+            <% end %>
+          <% end %>
+
+          <% if idea.respond_to? :medium %>
+            <td><span class="badge badge-info"><%= idea.medium %></span></td>
           <% end %>
 
           <td>
@@ -98,9 +107,9 @@
             <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>
           <% end %> -->
 
-          <% if can? :show, Idea %>
+          <!-- <% if can? :show, Idea %>
             <td><%= link_to 'Show', idea_path(idea) %></td>
-          <% end %>
+          <% end %> -->
 
           <!-- <% if can? :edit, Idea %>
             <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
