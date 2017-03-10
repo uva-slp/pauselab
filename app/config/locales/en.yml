@@ -22,12 +22,20 @@
 en:
   common:
     number_symbol: "#"
+    id: ID
     actions: Actions
     user_name: Name
     user_email: Email
     user_role: Role
     user_phone: Phone
     confirm_message: "Are you sure?"
+    submit: Submit
+    cancel: Cancel
+    created_at: Created at
+    show: Show
+    edit: Edit
+    remove: Remove
+    back: Back
   admins:
     admin_console: Admin Console
     users: Users
@@ -47,3 +55,27 @@ en:
     edit_user: Edit User
     update_user: Update User
     manage: Manage
+  blogs:
+    placeholder_title: "This month's update"
+    placeholder_body: "After a month's hard work..."
+    admin_console_title: Admin Console (Blogs)
+    back_link: Back to Blogs
+    create_new: Create New Blog
+    editing_blog: Editing Blog
+    creating_blog: Creating Blog
+    recent_blogs: Recent Blogs
+    post_by: By
+    post_published: Published
+    title: Title
+    body: Body
+  categories:
+    placeholder_name: Nature
+    icon_hint: Used for Maps icon displaying an idea. Must be image format.
+    create_new: Create New Category
+    creating_category: Creating Category
+    editing_category: Editing Category
+    categories: Categories
+    category_name: Category Name
+    name: Name
+    icon: Icon
+    no_icon_message: No icon present.

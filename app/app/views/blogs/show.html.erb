@@ -1,13 +1,10 @@
+<% if can? :read, Blog %>
+<%= link_to (t 'common.back'), blogs_path %>
+<% end %>
+<% if can? :edit, @blog %>
+| <%= link_to (t 'common.edit'), edit_blog_path(@blog) %>
+<% end %>
 
-<%= link_to 'Back', blogs_path %> |
-<%= link_to 'Edit', edit_blog_path(@blog) %> 
-  
-<h4>
-  By <b><%= User.find(@blog.user_id.to_i).first_name %> <%= User.find(@blog.user_id.to_i).last_name %></b>
-</h4>
-  
+<h4>By <b><%= @blog.user.fullname %></b></h4>
 <h2><b><%= @blog.title %></b></h2>
- 
-<p>
-  <%= @blog.body %>
-</p>
+<p><%= @blog.body %></p>

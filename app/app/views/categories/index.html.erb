@@ -1,19 +1,17 @@
 
 <% if can? :create, Category %>
-  <button type="button" class='btn btn-primary pull-right clearfix' data-toggle="modal" data-target="#cat_form">Create New Category</button>
+  <button type="button" class='btn btn-primary pull-right clearfix' data-toggle="modal" data-target="#cat_form"><%= t 'categories.create_new' %></button>
 <% end %>
 
-<h2 class="pull-left">categories</h2>
-
+<h2 class="pull-left"><%= t 'categories.categories' %></h2>
 
 <div class="table-responsive">
   <table class="table table-striped">
-
     <thead>
       <tr>
-        <th>Category ID</th>
-        <th>Name</th>
-        <th colspan="6">Actions</th>
+        <th><%= t 'common.id' %></th>
+        <th><%= t 'categories.name' %></th>
+        <th colspan="6"><%= t 'common.actions' %></th>
       </tr>
     </thead>
 
@@ -21,14 +19,13 @@
      <tr>
        <td><%= category.id %></td>
        <td><%= category.name %></td>
-       <td><%= link_to 'Show', category_path(category) %></td>
-       <td><%= link_to 'Edit', edit_category_path(category) %></td>
-       <td><%= link_to 'Remove', category_path(category),
+       <td><%= link_to (t 'common.show'), category_path(category) %></td>
+       <td><%= link_to (t 'common.edit'), edit_category_path(category) %></td>
+       <td><%= link_to (t 'common.remove'), category_path(category),
              method: :delete,
-             data: { confirm: 'Are you sure?' } %></td>
+             data: { confirm: (t 'common.confirm_message') } %></td>
      </tr>
    <% end %>
-
   </table>
 </div>
 

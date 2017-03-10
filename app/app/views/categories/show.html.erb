@@ -1,15 +1,18 @@
-
-<%= link_to 'Back', categories_path %> |
-<%= link_to 'Edit', edit_category_path(@category) %>
+<% if can? :read, Category %>
+<%= link_to (t 'common.back'), categories_path %>
+<% end %>
+<% if can? :edit, @category %>
+| <%= link_to (t 'common.edit'), edit_category_path(@category) %>
+<% end %>
 
 <h2>
-  Category: <%= @category.name %>
+  <%= t 'categories.category_name' %>: <%= @category.name %>
 </h2>
 <h3>
   <% if @category.icon.present? %>
-    Icon: <%= @category.icon_file_name %>
+    <%= t 'categories.icon' %>: <%= @category.icon_file_name %>
     <%= image_tag @category.icon.url %>
   <% else %>
-    No icon present.
+    <%= t 'categories.no_icon_message' %>
   <% end %>
 </h3>

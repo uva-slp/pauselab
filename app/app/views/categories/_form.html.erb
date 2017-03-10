@@ -1,9 +1,9 @@
 
 <%= simple_form_for @category do |f| %>
-    <%= f.input :name, placeholder: 'Nature' %>
-    <%= f.input :icon, as: :file, hint: 'Used for the Maps icon displaying an idea. Must be an image file.' %>
+    <%= f.input :name, placeholder: (t 'categories.placeholder_name') %>
+    <%= f.input :icon, as: :file, hint: (t 'categories.icon_hint') %>
     <div class='form-group'>
-      <%= f.button :submit, value: 'Submit', class: 'btn-primary' %>
-      <%= link_to 'Cancel', categories_path %>
+      <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary' %>
+      <%= link_to (t 'common.cancel'), categories_path %>
     </div>
 <% end %>

@@ -1,34 +1,32 @@
-<%= link_to 'Back to Blogs', blogs_path%>
-<%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-default pull-right' %>
-<h2>Admin Console (Blogs)</h2>
+<%= link_to (t 'blogs.back_link'), blogs_path%>
+<%= link_to (t 'blogs.create_new'), new_blog_path, class: 'btn btn-default pull-right' %>
+<h2><%= t 'blogs.admin_console_title' %></h2>
 
 <table class="table">
 
   <thead>
     <tr>
-      <th>Blog ID</th>
-      <th>Created At</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Title </th>
-      <th>Body </th>
-      <th colspan="3">Actions</th>
+      <th><%= t 'common.id' %></th>
+      <th><%= t 'common.created_at' %></th>
+      <th><%= t 'common.user_name' %></th>
+      <th><%= t 'blogs.title' %></th>
+      <th><%= t 'blogs.body' %></th>
+      <th colspan="3"><%= t 'common.actions' %></th>
     </tr>
   </thead>
-  
+
    <% @blogs.each do |blog| %>
     <tr>
       <td><%= blog.id %></td>
       <td><%= blog.created_at %></td>
-      <td><%= User.find(blog.user_id.to_i).first_name %></td>
-      <td><%= User.find(blog.user_id.to_i).last_name  %></td>
+      <td><%= blog.user.fullname %></td>
       <td><%= blog.title %></td>
       <td><%= truncate(blog.body) %></td>
-      <td><%= link_to 'Show', blog_path(blog) %></td>
-      <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-      <td><%= link_to 'Remove', blog_path(blog),
+      <td><%= link_to (t 'common.show'), blog_path(blog) %></td>
+      <td><%= link_to (t 'common.edit'), edit_blog_path(blog) %></td>
+      <td><%= link_to (t 'common.remove'), blog_path(blog),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: (t 'common.confirm_message') } %></td>
     </tr>
   <% end %>
 
