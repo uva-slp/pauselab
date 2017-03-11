@@ -197,6 +197,25 @@ en:
     cv: CV
     add_comment: Add Comment
     save_success: Your proposal was sent.
+  shared:
+    admin: Admin
+    admin_console: Admin Console
+    create_category: Create Category
+    categories_console: Categories Console
+    create_mass_email: Create Mass Email
+    mass_emails_console: Mass Emails Console
+    votes_console: Votes Console
+    vote: Vote  # navbar header
+    proposals: Proposals
+    create_proposal: Create Proposal
+    proposals_console: Proposals Console
+    ideas: Ideas
+    create_idea: Create Idea
+    ideas_console: Ideas Console
+    blog: Blog
+    about: About
+    logout: Logout
+    login: Login
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun
