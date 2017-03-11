@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
 	end
 
 	def index_users
-		@users = User.all
+		@users = User.all.paginate :page => params[:page], :per_page => 25
 		authorize! :read, @users
 		index_respond @users, :users
 	end
@@ -21,6 +21,7 @@ class AdminsController < ApplicationController
 	def change_phase
 		new_phase = params[:phase]
 		@current = Iteration.get_current
+    #TODO: prevent invalid values from updating status
 		@current.status = new_phase.to_i
 		authorize! :update, @current
 		@current.save
@@ -69,8 +70,10 @@ class AdminsController < ApplicationController
 	def change_role
 		@user = User.find(params[:user])
 		authorize! :update, @user
-                @user.update_attribute :role, params[:role].to_i
-                @user.update_attribute :email, params[:email]
+    @user.update_attribute :first_name, params[:first_name]
+	  @user.update_attribute :last_name, params[:last_name]
+    @user.update_attribute :role, params[:role].to_i
+    @user.update_attribute :email, params[:email]
 		@user.update_attribute :phone, params[:phone]
 		render 'show_user'
 	end

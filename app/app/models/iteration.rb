@@ -17,6 +17,10 @@ class Iteration < ApplicationRecord
     end
   end
 
+  def change_status(new_status)
+    self.status = new_status
+  end
+
   def get_interval
     if ended.nil?
       "#{created_at.strftime('%x')} -- ..."

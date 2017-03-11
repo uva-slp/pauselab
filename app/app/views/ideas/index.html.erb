@@ -59,7 +59,7 @@
           can? :edit, Idea or
           can? :approve, Idea or
           can? :destroy, Idea %>
-          <th colspan="4"><%= t 'common.actions' %></th>
+          <th colspan="1"><%= t 'common.actions' %></th>
          <% end %>
       </tr>
     </thead>
@@ -91,19 +91,19 @@
           <% end %>
 
           <td>
-          <%= render :partial => 'like_button', locals: {idea: idea}  %>
+            <%= idea.likes  %>
           </td>
 
-          <% if can? :read, Idea, :description %>
+          <!-- <% if can? :read, Idea, :description %>
             <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>
-          <% end %>
+          <% end %> -->
 
           <% if can? :show, Idea %>
             <td><%= link_to (t 'common.show'), idea_path(idea) %></td>
           <% end %>
 
-          <% if can? :edit, Idea %>
-            <td><%= link_to (t 'common.edit'), edit_idea_path(idea) %></td>
+          <!-- <% if can? :edit, Idea %>
+            <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
           <% end %>
 
           <% if can? :approve, Idea %>
@@ -113,10 +113,17 @@
           <% if can? :destroy, Idea %>
             <td><%= link_to (t 'common.remove'), idea_path(idea),
               method: :delete,
-              data: { confirm: (t 'common.confirm_message') } %></td>
-          <% end %>
+              data: { confirm: 'Are you sure?' } %></td>
+          <% end %> -->
+
         </tr>
     <% end %>
 
   </table>
+
+  <%= will_paginate @ideas,
+        :class => "pagination-wrapper",
+        :previous_label => (t 'common.previous'),
+        :next_label => (t 'common.next') %>
+
 </div>

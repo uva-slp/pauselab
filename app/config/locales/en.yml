@@ -38,6 +38,9 @@ en:
     back: Back
     sort: Sort
     date: Date
+    previous: Previous
+    next: Next
+    na: "N/A"
   admins:
     admin_console: Admin Console
     users: Users
@@ -100,9 +103,11 @@ en:
     description: Description
     status: Status
     approve: Approve
+    disapprove: Disapprove
     no_location_message: No location specified.
     calliing_artists: Calling all artists
     submit_proposal: Submit Proposal
+    submitted_ideas: Submitted Ideas
   landingpages:
     description_placeholder: "Detail how the plan will be implemented."
     editing_landingpage: Editing Landing Page Post

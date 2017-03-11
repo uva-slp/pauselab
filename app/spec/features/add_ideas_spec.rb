@@ -1,6 +1,11 @@
 require "rails_helper"
 
 feature "adding ideas", :type => :feature do
+
+  before :each do
+    user = login_as create :resident
+  end
+
   scenario "allow a resident to add an idea" do
     create_list :category, 3 # create 3 sample categories
     # puts Category.all.select(:id, :name).to_yaml

@@ -1,8 +1,3 @@
-window.fb = (idea) ->
-  console.log 'facebook'
-
-window.twtr = (idea) ->
-  console.log 'twitter'
 
 window.initMap = ->
 
@@ -57,7 +52,7 @@ window.initMap = ->
         # size: new (google.maps.Size)(100, 100)
         # origin: new (google.maps.Point)(10, 15)
         # anchor: new (google.maps.Point)(0, 32)
-        scaledSize: new (google.maps.Size)(50, 50)
+        scaledSize: new (google.maps.Size)(40, 40)
 
       marker = new (google.maps.Marker)(
           position: pos
@@ -93,7 +88,7 @@ buildInfo = (idea) ->
 
   format = ->
     desc = idea.description
-    if desc > 50
+    if desc.length > 50
       desc = desc.substring(0, 50) + "..."
     return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + idea.id
 

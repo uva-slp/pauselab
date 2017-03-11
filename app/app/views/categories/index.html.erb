@@ -10,20 +10,28 @@
     <thead>
       <tr>
         <th><%= t 'common.id' %></th>
+        <th><%= t 'categories.icon' %></th>
         <th><%= t 'categories.name' %></th>
-        <th colspan="6"><%= t 'common.actions' %></th>
+        <th colspan="1"><%= t 'common.actions' %></th>
       </tr>
     </thead>
 
     <% @categories.each do |category| %>
      <tr>
        <td><%= category.id %></td>
+       <td>
+         <% if category.icon.present? %>
+           <%= image_tag category.icon.url, size: "20x20" %>
+         <% else %>
+           <%= t 'common.na' %>
+         <% end %>
+       </td>
        <td><%= category.name %></td>
        <td><%= link_to (t 'common.show'), category_path(category) %></td>
-       <td><%= link_to (t 'common.edit'), edit_category_path(category) %></td>
-       <td><%= link_to (t 'common.remove'), category_path(category),
+       <!-- <td><%= link_to 'Edit', edit_category_path(category) %></td>
+       <td><%= link_to 'Remove', category_path(category),
              method: :delete,
-             data: { confirm: (t 'common.confirm_message') } %></td>
+             data: { confirm: 'Are you sure?' } %></td> -->
      </tr>
    <% end %>
   </table>

@@ -1,59 +1,105 @@
 <div class="row">
 
-  <div class="col-sm-6">
-    <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>"></div>
-    <span class="text-muted"><i><%= @idea.address %></i></span>
+  <div class="col-md-6">
+    <div id="map" class="idea-map-pick" data-lat="<%= @idea.lat %>" data-lng="<%= @idea.lng %>" data-cat="<%= @idea.category_id %>"></div>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div class="center-block">
 
-      <% if @idea.respond_to? :first_name %>
-        <h4><%= @idea.author %></h4>
-      <% end %>
+      <div class="idea-info">
+
+        <% if @idea.respond_to? :first_name %>
+          <h4><%= @idea.author %> <small class="text-muted"> • <%= @idea.created_at.strftime("%b %e") %></small></h4>
+        <% end %>
+
+        <span>
+          <a class="remove-link-style" target="_top" href=<%= "http://maps.apple.com/?ll=#{@idea.lat},#{@idea.lng}" %>>
+            <i class="fa fa-map-marker"></i>
+          </a>
+          &nbsp;<%= @idea.address %>
+        </span><br>
+
+        <% if @idea.respond_to? :email %>
+          <span>
+            <a class="remove-link-style" target="_top" href="mailto:<%= @idea.email %>">
+              <i class="fa fa-envelope"></i>
+            </a>&nbsp;<%= @idea.email%></span><br>
+        <% end %>
+
+        <% if @idea.respond_to? :phone %>
+          <span>
+            <a target="_top" class="remove-link-style" href=<%= "tel:#{@idea.phone}" %>>
+              <i class="fa fa-phone"></i>
+            </a>
+            &nbsp;<%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
+        <% end %>
+
+        <% if @idea.respond_to? :likes %>
+          <span class="badge badge-primary">
+            <i class="fa fa-thumbs-up"></i>
+            <%= @idea.likes %>
+          </span>
+        <% end %>
+
+        <% if @idea.respond_to? :status %>
+          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" %>"><%= @idea.status %></span>
+        <% end %>
+
+        <br>
+        <br>
+
+      </div>
+
       <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
-        <td><%= social_share_button_tag(@idea.description, :popup => "true")%></td>
+        <div class="share-btns">
+					<button class="btn btn-sm btn-outline-primary fb-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+						<i class="fa fa-facebook "></i>
+					</button>
+					<button class="btn btn-sm btn-outline-primary twtr-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+						<i class="fa fa-twitter "></i>
+					</button>
+				</div>
       <% end %>
-
-      <div>
-        <% if @idea.respond_to? :email %>
-          <span><b><%= t 'common.user_email' %>: </b> <%= @idea.email%></span><br>
-        <% end %>
-        <% if @idea.respond_to? :likes %>
-          <span><b><%= t 'ideas.likes' %>: </b> <%= @idea.likes %> </span><br>
-        <% end %>
-        <% if @idea.respond_to? :phone %>
-          <span><b><%= t 'common.user_phone' %>: </b> <%= number_to_phone @idea.phone, area_code: true, delimiter: " " %></span><br>
-        <% end %>
-        <% if @idea.respond_to? :status %>
-          <span><b><%= t 'ideas.status' %>: </b> <%= @idea.status %></span><br>
-        <% end %>
-        <% if @idea.respond_to? :created_at %>
-          <span><b><%= t 'common.created_at' %>: </b> <%= @idea.created_at.strftime("%B %d, %Y")%></span><br/>
-        <% end %>
-      </div>
 
       <hr>
 
-      <div class="">
+      <div>
+
         <% if can? :approve, @idea %>
-          <%= link_to idea_approve_path(@idea), method: :post, class: "btn btn-sm btn-primary" do %>
-            <i class="fa fa-check"></i>
+          <% if @idea.unchecked? %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'ideas.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+              <i class="fa fa-check"></i>
+            <% end %>
+          <% else %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'ideas.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+              <i class="fa fa-times"></i>
+            <% end %>
           <% end %>
         <% end %>
+
         <% if can? :edit, @idea %>
-          <%= link_to edit_idea_path(@idea), class: "btn btn-sm btn-primary" do %>
+          <%= link_to edit_idea_path(@idea), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
             <i class="fa fa-pencil-square-o"></i>
           <% end %>
         <% end %>
         <% if can? :delete, @idea %>
-          <%= link_to idea_path(@idea), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message') } do %>
+          <%= link_to idea_path(@idea), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
             <i class="fa fa-trash"></i>
           <% end %>
         <% end %>
       </div>
+
     </div>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-10 col-centered">
+    <%- disqus_thread %>
   </div>
 </div>
 

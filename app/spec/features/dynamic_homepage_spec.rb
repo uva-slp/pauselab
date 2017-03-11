@@ -2,14 +2,26 @@ require 'rails_helper'
 
 feature "redirection to the right homepage based on phase", :type => :feature do
 
-  scenario "goes to ideas collection during ideas phase" do
+  before :each do
+    user = login_as create :artist
+  end
 
+  scenario "goes to ideas collection during ideas phase" do
+    create :ideas_phase
+    visit root_path
+    expect(page).to have_content 'Idea Collection'
   end
 
   scenario "goes to proposals collection during proposals phase" do
-
+    create :proposals_phase
+    visit root_path
+    expect(page).to have_content 'Submit proposal'
   end
 
-  scenario "goes to "
+  scenario "goes to voting during voting phase" do
+    create :voting_phase
+    visit root_path
+    expect(page).to have_content 'vote'
+  end
 
 end

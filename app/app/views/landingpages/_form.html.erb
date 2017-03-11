@@ -41,6 +41,7 @@
 <% end %>
 
 <script>
+
 $('textarea').each(function() {
   $(this).trumbowyg({
       svgPath: '<%= image_path("icons.svg") %>',
@@ -54,6 +55,7 @@ $('textarea').each(function() {
           ['horizontalRule'],
           ['fullscreen']
       ]
-  });
+  }) ;
 });
+
 </script>

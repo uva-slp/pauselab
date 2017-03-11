@@ -1,0 +1,25 @@
+<div class="modal fade" id="change_role_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t 'admins.edit_user' %></h4>
+      </div>
+      <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
+      <%= simple_form_for :change_role do |f| %>
+        <div class="modal-body">
+          <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
+          <%= f.input :role, label: (t 'common.user_role'), as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
+          <%= f.input :first_name, label: (t 'common.first_name'), :input_html => { value: @user.first_name, name: 'first_name' } %>
+          <%= f.input :last_name, label: (t 'common.last_name'), :input_html => { value: @user.last_name, name: 'last_name' } %>
+          <%= f.input :email, label: (t 'common.user_email'), :input_html => { value: @user.email, name: 'email' } %>
+          <%= f.input :phone, label: (t 'common.user_phone'), :input_html => { value: @user.phone, name: 'phone' } %>
+        </div>
+        <div class="modal-footer">
+          <%= f.button :submit, (t 'admins.update_user'), class: 'btn btn-primary' %>
+          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

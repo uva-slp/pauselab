@@ -31,6 +31,7 @@ vendor/bundle
 
 # ignore build file
 Makefile
+Makefile~
 
 # ignore temporaries
 *~
@@ -38,4 +39,4 @@ Makefile
 *.swp
 
 # coverage
-coverage/
+coverage/*

@@ -2,10 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
+$ ->
 
+  $('#proposal_comment_body').autogrow()
 
-	# $('.grid').masonry {
-	# 		itemSelector: '.item',
-	# 		percentPosition: true,
-	# 	}
+  console.log 'here at proposlas'

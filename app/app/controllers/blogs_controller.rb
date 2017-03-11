@@ -3,7 +3,9 @@ class BlogsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def index
-    @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
+    @blogs = Blog.where(:iteration_id => Iteration.get_current.id)
+      .order(created_at: :desc)
+      .paginate :page => params[:page], :per_page => 10
     index_respond @blogs, :blogs
   end
 

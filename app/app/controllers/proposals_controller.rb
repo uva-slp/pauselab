@@ -3,8 +3,10 @@ class ProposalsController < ApplicationController
 
   def index
     @proposals = @proposals.where(:iteration_id => Iteration.get_current.id)
+      .paginate :page => params[:page], :per_page => 25
+
     if params[:sort].present?
-      @proposals = @proposals.order params[:sort]
+        @proposals = @proposals.order params[:sort]
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
     index_respond @proposals, :proposals
@@ -12,6 +14,7 @@ class ProposalsController < ApplicationController
 
 	def new
 		@proposal = Proposal.new
+    @proposal.build_proposal_budget
 	end
 
 	def edit
@@ -20,6 +23,8 @@ class ProposalsController < ApplicationController
 
 	def create
     @proposal = Proposal.new proposal_params
+    # @proposal.build_proposal_budget
+
     @proposal.user_id = current_user.id
     @proposal.iteration_id = Iteration.get_current.id
 
@@ -28,7 +33,8 @@ class ProposalsController < ApplicationController
 			redirect_to proposals_path
 		else
 			# TODO: need to add logic here
-			redirect_back fallback_location: root_url
+      render 'new'
+			# redirect_back fallback_location: root_url
 		end
 	end
 
@@ -62,10 +68,15 @@ class ProposalsController < ApplicationController
 	end
 
    def approve
-    @proposal = Proposal.find(params[:id])
-    @proposal.approved!
-    @proposal.save
-    redirect_to proposals_path
+     @proposal = Proposal.find(params[:id])
+     if @proposal.approved?
+       @proposal.unchecked!
+     else
+       @proposal.approved!
+     end
+     @proposal.save
+    # end
+    render 'show'
    end
 
 	private
@@ -73,18 +84,19 @@ class ProposalsController < ApplicationController
 	    params.require(:proposal).permit(
                 :title,
                 :description,
-                :artist_fees,
-                :project_materials,
-                :printing,
-                :marketing,
-                :documentation,
-                :volunteer,
-                :insurance,
-                :events,
-                :cost,
                 :essay,
                 :website_link,
                 :artist_cv,
+                {:proposal_budget_attributes => [
+                  :artist_fees,
+                  :project_materials,
+                  :printing,
+                  :marketing,
+                  :documentation,
+                  :volunteers,
+                  :insurance,
+                  :events
+                ]}
 	    	)
 	  end
 
