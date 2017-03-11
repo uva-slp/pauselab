@@ -1,19 +1,21 @@
 
 
 <% if can? :create, Proposal %>
-  <%= link_to 'Create New Proposal', new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
+  <%= link_to (t 'proposals.create_new'), new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 
 <br/>
 <br/>
 
-<h2 class="pull-left">Proposals</h2>
+<h2 class="pull-left"><%= t 'proposals.proposals' %></h2>
 <div class="dropdown pull-right" style="inline-block">
-  <a class="dropdown-toggle" href="#" data-toggle="dropdown">sort proposals</a>
+  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu">
     <!-- <a class="dropdown-item" href="?sort=cost">cost</a> -->
-    <a class="dropdown-item" href="?sort=created_at">date</a>
-    <a class="dropdown-item" href="?sort=id">id</a>
+    <a class="dropdown-item" href="?sort=created_at"><%= t 'common.date' %></a>
+    <% if user_has_admin_access %>
+      <a class="dropdown-item" href="?sort=id"><%= t'common.id' %></a>
+    <% end %>
   </div>
 </div>
 
@@ -24,23 +26,23 @@
     <thead>
       <tr>
         <% if user_has_admin_access %>
-          <th>ID</th>
+          <th><%= t 'common.id'%></th>
         <% end %>
-        <th>Name</th>
-        <th>Created at</th>
-        <th>Title</th>
-        <th>Cost</th>
+        <th><%= t 'proposals.author' %></th>
+        <th><%= t 'common.created_at' %></th>
+        <th><%= t 'proposals.title' %></th>
+        <th><%= t 'proposals.cost' %></th>
         <% if user_has_admin_access %>
-          <th>Status</th>
+          <th><%= t 'proposals.status' %></th>
         <% end %>
         <% if user_has_admin_access %>
-          <th>Votes</th>
+          <th><%= t 'proposals.votes' %></th>
         <% end %>
         <% if can? :show, Proposal or
           can? :approve, Proposal or
           can? :edit, Proposal or
           can? :destroy, Proposal %>
-          <th colspan="6">Actions</th>
+          <th colspan="1"><%= t 'common.actions' %></th>
         <% end %>
       </tr>
     </thead>
@@ -71,7 +73,7 @@
           <td><%= proposal.number_of_votes %></td>
         <% end %>
         <% if can? :show, proposal %>
-          <td><%= link_to 'Show', proposal_path(proposal) %></td>
+          <td><%= link_to (t 'common.show'), proposal_path(proposal) %></td>
         <% end %>
 
         <!-- <% if can? :approve, proposal %>
@@ -85,11 +87,12 @@
           <td><%= link_to 'Remove', proposal_path(proposal),
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %></td>
-        <% end %> -->
+        <% end %>
 
         <% if can? :read, proposal, :title %>
-        <!-- <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td> -->
+          <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
         <% end %>
+        -->
       </tr>
       <% end %>
 
@@ -98,5 +101,5 @@
 
 <%= will_paginate @proposals,
       :class => "pagination-wrapper",
-      :previous_label => "previous",
-      :next_label => "next" %>
+      :previous_label => (t 'common.previous'),
+      :next_label => (t 'common.next') %>

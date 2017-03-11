@@ -24,40 +24,40 @@
 </h3>
 
 <h5 class="text-muted text-sm-right proposal-cost" data-toggle="modal" data-target="#budget_display">
-  <span title="view breakdown" data-toggle="tooltip">
+  <span title="<%= t 'proposals.view_breakdown' %>" data-toggle="tooltip">
     <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
   </span>
 </h5>
 
 <%# TODO: limit scope %>
-<% if @proposal.approved? %>
-  <h5 class="text-sm-right"><span class="badge badge-success">approved</span></h5>
-<% else %>
-  <h5 class="text-sm-right"><span class="badge badge-danger">unchecked</span></h5>
-<% end %>
+<h5 class="text-sm-right">
+  <span class="badge <%= if @proposal.approved? then "badge-success" else "badge-danger" end%>">
+    <%= @proposal.status %>
+  </span>
+</h5>
 
 <span class="proposal-tools">
 
   <% if can? :approve, @proposal %>
     <% if @proposal.unchecked? %>
-      <%= link_to proposal_approve_path(@proposal), method: :post, title: "approve", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+      <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
         <i class="fa fa-check"></i>
       <% end %>
     <% else %>
-      <%= link_to proposal_approve_path(@proposal), method: :post, title: "disapprove", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+      <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
         <i class="fa fa-times"></i>
       <% end %>
     <% end %>
   <% end %>
 
   <% if can? :edit, @proposal %>
-    <%= link_to edit_proposal_path(@proposal), title: "edit idea", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+    <%= link_to edit_proposal_path(@proposal), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
       <i class="fa fa-pencil-square-o"></i>
     <% end %>
   <% end %>
 
   <% if can? :delete, @proposal %>
-    <%= link_to proposal_path(@proposal), method: :delete, title: "delete idea", class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?', toggle: 'tooltip' } do %>
+    <%= link_to proposal_path(@proposal), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   <% end %>
@@ -68,39 +68,30 @@
 
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title">Description</h4>
+    <h4 class="card-title"><%= t 'proposals.description' %></h4>
     <%= @proposal.description.html_safe %>
   </div>
 </div>
 
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title">Essay</h4>
+    <h4 class="card-title"><%= t 'proposals.essay' %></h4>
     <%= @proposal.essay.html_safe %>
   </div>
 </div>
 
 <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
   <p>
-    <strong>CV:</strong>
+    <strong><%= t 'proposals.cv' %>:</strong>
     <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
   </p>
 <% end %>
 
-<!-- <% if user_has_admin_access %>
-  <p>
-    <strong>Status:</strong>
-    <%= @proposal.status %>
-  </p>
-<% end %> -->
-
-
 <br>
-
 
 <%# TODO avoid code duplication with this and proposal_comment views. %>
 <% if can? :read, ProposalComment %>
-  <h3>Comments</h3>
+  <h3><%= t 'proposal_comments.comments' %></h3>
   <% @proposal.proposal_comments.each do |comment| %>
 
     <div class="card">
@@ -109,12 +100,12 @@
           <%= comment.user.fullname %>
           <span class="pull-right">
             <% if can? :edit, comment %>
-              <%= link_to edit_proposal_proposal_comment_path(@proposal, comment), class: "btn btn-sm btn-primary" do %>
+              <%= link_to edit_proposal_proposal_comment_path(@proposal, comment), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: { toggle: "tooltip" } do %>
                 <i class="fa fa-pencil-square-o"></i>
               <% end %>
             <% end %>
             <% if can? :destroy, comment %>
-              <%= link_to proposal_proposal_comment_path(@proposal, comment), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= link_to proposal_proposal_comment_path(@proposal, comment), title: (t 'common.remove'), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
                 <i class="fa fa-times"></i>
               <% end %>
             <% end %>
@@ -123,23 +114,15 @@
         <%= comment.body %>
       </div>
     </div>
-
-    <!-- <p>
-      <strong><%= comment.user.fullname %></strong>: <%= comment.body %>
-
-    </p> -->
-
   <% end %>
 
   <% if can? :create, ProposalComment %>
     <br>
     <%= simple_form_for([@proposal, @proposal.proposal_comments.build]) do |f| %>
-      <!-- <p> Add comment: </p> -->
-      <%= f.input :body, label: "Add Comment" %>
+      <%= f.input :body, label: (t 'proposals.add_comment') %>
 
       <div class='form-group'>
-        <%= f.button :submit, value: 'Submit', class: 'btn-primary pull-right' %>
-        <%# link_to ' Cancel', ideas_path %>
+        <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary pull-right' %>
       </div>
       <% end %>
   <% end %>

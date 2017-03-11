@@ -41,6 +41,8 @@ en:
     previous: Previous
     next: Next
     na: "N/A"
+    approve: Approve
+    disapprove: Disapprove
   admins:
     admin_console: Admin Console
     users: Users
@@ -60,6 +62,8 @@ en:
     edit_user: Edit User
     update_user: Update User
     manage: Manage
+    never_signed_in: Never signed in.
+    deactivate_user: Deactivate user
   blogs:
     placeholder_title: "This month's update"
     placeholder_body: "After a month's hard work..."
@@ -112,6 +116,8 @@ en:
     description_placeholder: "Detail how the plan will be implemented."
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
+  layout:
+    site_title: Pauselab
   mass_emails:
     select_groups_message: "Please select one or more mailing groups."
     administrators: Administrators
@@ -130,3 +136,57 @@ en:
     to: To
     subject: Subject
     body: Body
+  pages:
+    no_post: Pauselab has not created a post yet.
+    idea_collection: Idea Collection
+    submit_idea: Submit an Idea
+    create_about: Create About
+    edit_about: Edit About
+    create_artist_home: Create Artist Home
+    edit_artist_home: Edit Artist Home
+    create_homepage: Create Homepage
+    edit_homepage: Edit Homepage
+    create_steering: Create Steering Committee Home
+    edit_steering: Edit Steering Committee Home
+  proposal_comments:
+    comments: Comments
+    creating_comment: Creating Comment
+    editing_comment: Editing Comment
+    show_comment: Show Comment
+  proposals:
+    cost_breakdown: Cost Breakdown
+    view_breakdown: View Breakdown
+    cost_component: Component
+    cost: Cost
+    artist_fees: Artist Fees
+    project_materials: Project Materials
+    printing: Printing
+    marketing: Marketing
+    documentation: Documentation
+    volunteers: Volunteers
+    insurance: Insurance
+    events: Events
+    title_placeholder: "Title (max length 40)"
+    description_placeholder: "Detail how the plan will be implemented."
+    essay_placeholder: "How would this project help the community?"
+    website_link_placeholder: "Link to online portfolio"
+    budget_information: Budget Information
+    resume: Resume
+    creating_proposal: Creating Proposal
+    editing_proposal: Editing Proposal
+    create_new: Create New Proposal
+    proposals: Proposals
+    author: Author
+    title: Title
+    status: Status
+    votes: Votes
+    description: Description
+    essay: Essay
+    cv: CV
+    add_comment: Add Comment
+  votes:
+    vote: Vote  # verb
+    votes: Votes  # plural noun
+    pick_three: Pick Your Top Three
+    select: Select
+    submitted_on: Submitted on

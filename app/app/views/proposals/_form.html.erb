@@ -30,55 +30,55 @@
 
 <%= simple_form_for @proposal do |f| %>
 
-    <%= f.input :title, placeholder: 'Title (max. length 40)' %>
-    <%= f.input :description, placeholder: 'Detail how the plan will be implemented' %>
-    <%= f.input :essay, placeholder: "how would this project help the community" %>
-    <%= f.input :website_link, placeholder: 'a link to an online portfolio' %>
+    <%= f.input :title, placeholder: (t 'proposals.title_placeholder') %>
+    <%= f.input :description, placeholder: (t 'proposals.description_placeholder') %>
+    <%= f.input :essay, placeholder: (t 'proposals.essay_placeholder') %>
+    <%= f.input :website_link, placeholder: (t 'proposals.website_link_placeholder') %>
 
     <br/>
-    <h3>Budget Information</h3>
+    <h3><%= t 'proposals.budget_information' %></h3>
 
     <%= f.simple_fields_for :proposal_budget do |p| %>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :artist_fees, placeholder: 'artist fees budget' %>
+        <%= p.input :artist_fees, placeholder: (t 'proposals.artist_fees') %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :project_materials, placeholder: 'project materials budget' %>
+        <%= p.input :project_materials, placeholder: (t 'proposals.project_materials') %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :printing, placeholder: 'printing budget' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <%= p.input :marketing, placeholder: 'marketing budget' %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :documentation, placeholder: 'documentation budget' %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :volunteers, placeholder: 'volunteer budget' %>
+        <%= p.input :printing, placeholder: (t 'proposals.printing') %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :insurance, placeholder: 'insurance/legal budget' %>
+        <%= p.input :marketing, placeholder: (t 'proposals.marketing') %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :events, placeholder: 'events budget' %>
+        <%= p.input :documentation, placeholder: (t 'proposals.documentation') %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :volunteers, placeholder: (t 'proposals.volunteers') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :insurance, placeholder: (t 'proposals.insurance') %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :events, placeholder: (t 'proposals.events') %>
       </div>
     </div>
     <% end %>
 
     <div class='form-group'>
-      <%= f.input :artist_cv, label: "resume: ", wrapper_html: { class: 'btn-file' } %>
+      <%= f.input :artist_cv, label: (t 'proposals.resume'), wrapper_html: { class: 'btn-file' } %>
     </div>
 
     <div class='form-group'>
-      <%= f.button :submit, value: 'Submit', class: 'btn btn-primary' %>
+      <%= f.button :submit, value: (t 'common.submit'), class: 'btn btn-primary' %>
       &nbsp;
-      <%= link_to 'Cancel', root_path, class: 'btn btn-secondary' %>
+      <%= link_to (t 'common.cancel'), root_path, class: 'btn btn-secondary' %>
     </div>
 
 <% end %>

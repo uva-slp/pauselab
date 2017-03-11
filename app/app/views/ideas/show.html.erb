@@ -43,7 +43,7 @@
         <% end %>
 
         <% if @idea.respond_to? :status %>
-          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" %>"><%= @idea.status %></span>
+          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>"><%= @idea.status %></span>
         <% end %>
 
         <br>
@@ -69,11 +69,11 @@
 
         <% if can? :approve, @idea %>
           <% if @idea.unchecked? %>
-            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'ideas.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'common.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
               <i class="fa fa-check"></i>
             <% end %>
           <% else %>
-            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'ideas.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'common.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
               <i class="fa fa-times"></i>
             <% end %>
           <% end %>

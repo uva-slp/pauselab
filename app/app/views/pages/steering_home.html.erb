@@ -4,12 +4,12 @@
   <h2><%= @landingpage.title%> </h2>
   <p><%=  @landingpage.description.html_safe %> </p>
    <% if can? :edit, Landingpage %>
-  <p> <%= link_to 'Edit Steering Committee Home', edit_landingpage_path(@landingpage) %></p>
+  <p> <%= link_to (t 'pages.edit_steering'), edit_landingpage_path(@landingpage) %></p>
   <% end %>
   <% else %>
-  <p> PauseLab has not created a streering committee home post yet </p>
+  <p><%= t 'pages.no_post' %></p>
   <% if can? :create, Landingpage %>
-   <p> <%= link_to 'Create Steering Committee Home', new_landingpage_path %></p>
+   <p> <%= link_to (t 'pages.create_steering'), new_landingpage_path %></p>
  <% end %>
 
   <% end %>
