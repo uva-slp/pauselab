@@ -54,7 +54,7 @@ class IdeasController < ApplicationController
 		@idea = Idea.new(idea_params)
     @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
-			flash[:notice] = 'Your idea was sent.'
+			flash[:notice] = (t 'ideas.save_success')
 			redirect_to ideas_path
 		else
       puts @idea.errors.full_messages.to_yaml

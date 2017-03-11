@@ -18,10 +18,10 @@ class CategoriesController < ApplicationController
     @category = Category.new category_params
     respond_to do |format|
       if @category.save
-        format.html { redirect_to categories_path, notice: "your category was saved" }
+        format.html { redirect_to categories_path, notice: (t 'categories.save_success') }
         format.json { render json: @resource }
       else
-        format.html { render new_category_path, notice: "there was an error in creating a category" }
+        format.html { render new_category_path, notice: (t 'categories.save_error') }
         format.json { render json: @resource }
       end
     end

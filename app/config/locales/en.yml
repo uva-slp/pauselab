@@ -43,6 +43,7 @@ en:
     na: "N/A"
     approve: Approve
     disapprove: Disapprove
+    record_not_found: Record Not Found
   admins:
     admin_console: Admin Console
     users: Users
@@ -77,6 +78,7 @@ en:
     post_published: Published
     title: Title
     body: Body
+    save_success: Your blog was saved.
   categories:
     placeholder_name: Nature
     icon_hint: Used for Maps icon displaying an idea. Must be image format.
@@ -88,6 +90,8 @@ en:
     name: Name
     icon: Icon
     no_icon_message: No icon present.
+    save_success: Your category was saved.
+    save_error: There was an error in creating a category.
   ideas:
     first_name_placeholder: Peter
     last_name_placeholder: Parker
@@ -112,10 +116,12 @@ en:
     calliing_artists: Calling all artists
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
+    save_success: Your idea was sent.
   landingpages:
     description_placeholder: "Detail how the plan will be implemented."
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
+    save_success: Your post was saved.
   layout:
     site_title: Pauselab
   mass_emails:
@@ -136,6 +142,8 @@ en:
     to: To
     subject: Subject
     body: Body
+    save_success: Your mass email was sent.
+    save_error: There was an error in sending the email.
   pages:
     no_post: Pauselab has not created a post yet.
     idea_collection: Idea Collection
@@ -153,6 +161,10 @@ en:
     creating_comment: Creating Comment
     editing_comment: Editing Comment
     show_comment: Show Comment
+    save_success: Your comment was posted.
+    save_error: There was an error posting your comment.
+    remove_success: Your comment was removed.
+    remove_error: There was an error removing your comment.
   proposals:
     cost_breakdown: Cost Breakdown
     view_breakdown: View Breakdown
@@ -184,9 +196,12 @@ en:
     essay: Essay
     cv: CV
     add_comment: Add Comment
+    save_success: Your proposal was sent.
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on
+    already_voted: You have already voted.
+    save_success: Your vote has been received!
