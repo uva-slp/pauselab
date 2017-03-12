@@ -1,19 +1,19 @@
 
 <% if can? :create, MassEmail %>
-  <%= link_to 'Create New Email', new_mass_email_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
+  <%= link_to (t 'mass_emails.create_new'), new_mass_email_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
 <% end %>
-<h2>Mass Emails</h2>
+<h2><%= t 'mass_emails.mass_emails' %></h2>
 
 <table class="table">
 
   <thead>
     <tr>
-      <th>Email ID</th>
-      <th>Sent At</th>
-      <th>To</th>
-      <th>Subject</th>
-      <th>Description</th>
-      <th colspan="6">Actions</th>
+      <th><%= t 'common.id' %></th>
+      <th><%= t 'mass_emails.sent_at' %></th>
+      <th><%= t 'mass_emails.to' %></th>
+      <th><%= t 'mass_emails.subject' %></th>
+      <th><%= t 'mass_emails.body' %></th>
+      <th colspan="6"><%= t 'common.actions' %></th>
     </tr>
   </thead>
 
@@ -24,10 +24,10 @@
       <td><%= me.to %></td>
       <td><%= me.subject %></td>
       <td><%= truncate(me.body) %></td>
-      <td><%= link_to 'Show', mass_email_path(me) %></td>
-      <td><%= link_to 'Remove', mass_email_path(me),
+      <td><%= link_to (t 'common.show'), mass_email_path(me) %></td>
+      <td><%= link_to (t 'common.remove'), mass_email_path(me),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %></td>
+            data: { confirm: (t 'common.confirm_message') } %></td>
     </tr>
   <% end %>
 </table>

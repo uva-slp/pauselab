@@ -4,7 +4,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h3 class="modal-title pull-left">cost breakdown</h3>
+        <h3 class="modal-title pull-left"><%= t 'proposals.cost_breakdown' %></h3>
         <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close">
           <i class="fa fa-times"></i>
         </button>
@@ -18,38 +18,42 @@
 
             <thead class="">
               <tr>
-                <td>component</td>
-                <td>cost</td>
+                <td><%= t 'proposals.cost_component' %></td>
+                <td><%= t 'proposals.cost' %></td>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <td>project materials</td>
+                <td><%= t 'proposals.artist_fees' %></td>
+                <td><%= number_to_currency @proposal.proposal_budget.artist_fees, :unit => "$ " %></td>
+              </tr>
+              <tr>
+                <td><%= t 'proposals.project_materials' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.project_materials, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>printing</td>
+                <td><%= t 'proposals.printing' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.printing, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>marketing</td>
+                <td><%= t 'proposals.marketing' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.marketing, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>documentation</td>
+                <td><%= t 'proposals.documentation' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.documentation, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>volunteers</td>
+                <td><%= t 'proposals.volunteers' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.volunteers, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>insurance</td>
+                <td><%= t 'proposals.insurance' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.insurance, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td>events</td>
+                <td><%= t 'proposals.events' %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.events, :unit => "$ " %></td>
               </tr>
             </tbody>

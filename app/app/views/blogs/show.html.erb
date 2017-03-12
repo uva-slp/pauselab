@@ -1,29 +1,32 @@
-
-
+<% if can? :read, Blog %>
+<%= link_to (t 'common.back'), blogs_path %>
+<% end %>
+<% if can? :edit, @blog %>
+| <%= link_to (t 'common.edit'), edit_blog_path(@blog) %>
+<% end %>
 
 <%= image_tag Faker::Avatar.image, class: 'user-img-lg img-fluid pull-left' %>
 <h2><b><%= @blog.title %></b></h2>
-<h4 class="text-muted"><%= User.find(@blog.user_id.to_i).first_name %> <%= User.find(@blog.user_id.to_i).last_name %></h4>
+<h4 class="text-muted"><%= @blog.user.fullname %></h4>
 
 <p class="blog-body"><%= raw @blog.body %></p>
 
 <br>
 
-<div class="">
+<div>
   <% if can? :edit, @blog %>
     <%= link_to edit_blog_path(@blog), class: "btn btn-sm btn-primary" do %>
       <i class="fa fa-pencil-square-o"></i>
     <% end %>
   <% end %>
   <% if can? :destroy, @blog %>
-    <%= link_to blog_path(@blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?'} do %>
+    <%= link_to blog_path(@blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message')} do %>
       <i class="fa fa-trash"></i>
     <% end %>
   <% end %>
 </div>
 
 <hr>
-
 
 <div class="row">
   <div class="col-md-10 col-centered">

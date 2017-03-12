@@ -11,16 +11,16 @@
 </style>
 
 <% if Iteration.get_current.proposals? %>
-	<h1 class="page-header text-lg-center">Calling all artists</h1>
+	<h1 class="page-header text-lg-center"><%= t 'ideas.calling_artists' %></h1>
 	<div class="text-lg-center" style="margin-top: 20px;">
 		<% if user_signed_in? %>
-			<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>
+			<%= link_to (t 'ideas.submit_proposal'), new_proposal_path, class: 'btn btn-primary'%>
 		<% else %>
-			<%= link_to 'Submit proposal', new_user_session_path, class: 'btn btn-primary'%>
+			<%= link_to (t 'ideas.submit_proposal'), new_user_session_path, class: 'btn btn-primary'%>
 		<% end %>
 	</div>
 <% else %>
-	<h1 class="page-header text-lg-center">Submitted ideas</h1>
+	<h1 class="page-header text-lg-center"><%= t 'ideas.submitted_ideas' %></h1>
 <% end %>
 
 <br/>
@@ -65,5 +65,5 @@
 
 <%= will_paginate @ideas,
 		 :class => "pagination-wrapper",
-		 :previous_label => "previous",
-		 :next_label => "next" %>
+		 :previous_label => (t 'common.previous'),
+		 :next_label => (t 'common.next') %>

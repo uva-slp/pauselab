@@ -4,12 +4,12 @@
   <h2><%= @landingpage.title%> </h2>
   <p><%=  @landingpage.description.html_safe %> </p>
    <% if can? :edit, Landingpage %>
-  <p> <%= link_to 'Edit Artist Home', edit_landingpage_path(@landingpage) %></p>
+  <p> <%= link_to (t 'pages.edit_artist_home'), edit_landingpage_path(@landingpage) %></p>
   <% end %>
   <% else %>
-  <p> PauseLab has not created a artist home post yet </p>
+  <p><%= t 'pages.no_post' %></p>
   <% if can? :create, Landingpage %>
-   <p> <%= link_to 'Create Artist Home', new_landingpage_path %></p>
+   <p> <%= link_to (t 'pages.create_artist_home'), new_landingpage_path %></p>
  <% end %>
 
   <% end %>

@@ -43,11 +43,7 @@
         <% end %>
 
         <% if @idea.respond_to? :status %>
-          <% if @idea.approved? %>
-            <span class="badge badge-success">approved</span>
-          <% else %>
-            <span class="badge badge-danger">unchecked</span>
-          <% end %>
+          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>"><%= @idea.status %></span>
         <% end %>
 
         <br>
@@ -69,29 +65,27 @@
 
       <hr>
 
-      <div class="">
+      <div>
 
         <% if can? :approve, @idea %>
-
           <% if @idea.unchecked? %>
-            <%= link_to idea_approve_path(@idea), method: :post, title: "approve", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'common.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
               <i class="fa fa-check"></i>
             <% end %>
           <% else %>
-            <%= link_to idea_approve_path(@idea), method: :post, title: "disapprove", class: "btn btn-sm btn-primary", data: { confirm: 'Are you sure?', toggle: "tooltip" } do %>
+            <%= link_to idea_approve_path(@idea), method: :post, title: (t 'common.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
               <i class="fa fa-times"></i>
             <% end %>
           <% end %>
-
         <% end %>
 
         <% if can? :edit, @idea %>
-          <%= link_to edit_idea_path(@idea), title: "edit idea", class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+          <%= link_to edit_idea_path(@idea), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
             <i class="fa fa-pencil-square-o"></i>
           <% end %>
         <% end %>
         <% if can? :delete, @idea %>
-          <%= link_to idea_path(@idea), method: :delete, title: "delete idea", class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?', toggle: 'tooltip' } do %>
+          <%= link_to idea_path(@idea), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
             <i class="fa fa-trash"></i>
           <% end %>
         <% end %>

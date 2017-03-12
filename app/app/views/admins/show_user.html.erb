@@ -38,7 +38,7 @@
         <div>
           <strong><%= t 'admins.last_signed_in' %></strong>&nbsp;
           <% if @user.last_sign_in_at.nil? %>
-            never signed in
+            <%= t 'admins.never_signed_in' %>
           <% else %>
             <%= time_ago_in_words @user.last_sign_in_at %>
           <% end %>
@@ -54,8 +54,8 @@
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
       <i class="fa fa-pencil-square-o"></i>
     </button>
-    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", title: "deactivate user", data: {
-      confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
+    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", title: (t 'admins.deactivate_user'),
+      data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
       <i class="fa fa-trash"></i>
     <% end %>
   </div>

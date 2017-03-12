@@ -19,7 +19,7 @@ class MassEmailsController < ApplicationController
     end
     @mass_email.to = rl
     if @mass_email.save
-      flash[:notice] = 'Your mass email was sent.'
+      flash[:notice] = (t 'mass_emails.save_success')
       @to = Array.new
       #Get an array of all users, then add desired groups to email list
       @emails_users = User.pluck(:email, :role)
@@ -41,7 +41,7 @@ class MassEmailsController < ApplicationController
       SlpMailer.email_custom_text(@to, @subj, @body).deliver
       redirect_to mass_emails_path
     else
-      flash[:error] = 'There was in error in sending the email.'
+      flash[:error] = (t 'mass_emails.save_error')
       render new_mass_email_path
     end
   end

@@ -10,47 +10,59 @@
       <%= link_to root_url, class: 'navbar-brand' do %>
         <i class="fa fa-pause" style="color: #F6992F;"></i>
       <% end %>
+
+      <%# TODO make link look nicer %>
+      <% if I18n.locale == I18n.default_locale %>
+        <div class="navbar-brand">
+          <%= link_to "Spanish", :locale => :es %>
+        </div>
+      <% else %>
+        <div class="navbar-brand">
+          <%= link_to "English", :locale => :en %>
+        </div>
+      <% end %>
+
       <ul class="nav navbar-nav float-md-right">
 
         <%# Admin dropdown %>
         <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Admin</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.admin' %></a>
             <div class="dropdown-menu">
             <% if can? :manage, User %>
-              <%= link_to 'Admin Console', list_users_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.admin_console'), list_users_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if can? :manage, Category %>
-              <%= link_to 'Create Category', new_category_path, class: 'dropdown-item' %>
-              <%= link_to 'Categories Console', categories_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.create_category'), new_category_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.categories_console'), categories_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if can? :manage, MassEmail %>
-              <%= link_to 'Create Mass Email', new_mass_email_path, class: 'dropdown-item' %>
-              <%= link_to 'Mass Emails Console', mass_emails_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.create_mass_email'), new_mass_email_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.mass_emails_console'), mass_emails_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Votes Console', votes_path, class: 'dropdown-item' %>
+            <%= link_to (t 'shared.votes_console'), votes_path, class: 'dropdown-item' %>
           </div>
           </li>
         <% end %>
 
         <% if can? :create, Vote %>
-          <li class="nav-item"><%= link_to 'Vote', new_vote_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to (t 'shared.vote'), new_vote_path, class: 'nav-link' %></li>
         <% end %>
 
         <%# Proposals menu %>
 
         <% if can? :read, Proposal %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Proposals</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.proposals' %></a>
             <div class="dropdown-menu">
               <% if can? :read, Proposal %>
-                <%= link_to 'Proposals Console', proposals_path, class: 'dropdown-item' %>
+                <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :create, Proposal %>
-                <%= link_to 'Create Proposal', new_proposal_path, class: 'dropdown-item' %>
+                <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
               <% end %>
 
               <!-- <% if can? :read, Idea %>
@@ -63,17 +75,17 @@
         <%# Ideas menu %>
         <% if can? :read, Idea %> <%#TODO can? "do anything with" :ideas %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Ideas</a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.ideas' %></a>
             <div class="dropdown-menu">
               <% if can? :create, Idea %>
-                <%= link_to 'Create Idea',  new_idea_path, class: 'dropdown-item' %>
+                <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :read, Idea %>
                 <div class="dropdown-divider"></div>
                 <% if user_signed_in? && !current_user.artist? %>
-                  <%= link_to 'Ideas Console',  ideas_path, class: 'dropdown-item' %>
+                  <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
                 <% else %>
-                  <%= link_to 'Ideas',  proposal_collection_path, class: 'dropdown-item' %>
+                  <%= link_to (t 'shared.ideas'),  proposal_collection_path, class: 'dropdown-item' %>
                 <% end %>
               <% end %>
             </div>
@@ -82,15 +94,15 @@
 
         <%# Blogs, About, Get Involved %>
         <% if can? :read, Blog %>
-          <li class="nav-item"><%= link_to 'Blog', blogs_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to (t 'shared.blog'), blogs_path, class: 'nav-link' %></li>
         <% end %>
-        <li class="nav-item"><%= link_to 'About',  about_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to (t 'shared.about'),  about_path, class: 'nav-link' %></li>
 
         <li class="nav-item">
           <% if user_signed_in? %>
-            <%= link_to "logout", destroy_user_session_path, :method => :delete, class: 'signup-btn btn btn-outline-primary' %>
+            <%= link_to (t 'shared.logout'), destroy_user_session_path, :method => :delete, class: 'signup-btn btn btn-outline-primary' %>
           <% else %>
-            <%= link_to "login", new_user_session_path, class: 'signup-btn btn btn-outline-primary' %>
+            <%= link_to (t 'shared.login'), new_user_session_path, class: 'signup-btn btn btn-outline-primary' %>
           <% end %>
         </li>
       </ul>

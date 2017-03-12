@@ -22,12 +22,28 @@
 en:
   common:
     number_symbol: "#"
+    id: ID
     actions: Actions
     user_name: Name
     user_email: Email
     user_role: Role
     user_phone: Phone
     confirm_message: "Are you sure?"
+    submit: Submit
+    cancel: Cancel
+    created_at: Created at
+    show: Show
+    edit: Edit
+    remove: Remove
+    back: Back
+    sort: Sort
+    date: Date
+    previous: Previous
+    next: Next
+    na: "N/A"
+    approve: Approve
+    disapprove: Disapprove
+    record_not_found: Record Not Found
   admins:
     admin_console: Admin Console
     users: Users
@@ -47,3 +63,165 @@ en:
     edit_user: Edit User
     update_user: Update User
     manage: Manage
+    never_signed_in: Never signed in.
+    deactivate_user: Deactivate user
+  blogs:
+    placeholder_title: "This month's update"
+    placeholder_body: "After a month's hard work..."
+    admin_console_title: Admin Console (Blogs)
+    back_link: Back to Blogs
+    create_new: Create New Blog
+    editing_blog: Editing Blog
+    creating_blog: Creating Blog
+    recent_blogs: Recent Blogs
+    read_more: Read More
+    post_by: By
+    post_published: Published
+    title: Title
+    body: Body
+    save_success: Your blog was saved.
+  categories:
+    placeholder_name: Nature
+    icon_hint: Used for Maps icon displaying an idea. Must be image format.
+    create_new: Create New Category
+    creating_category: Creating Category
+    editing_category: Editing Category
+    categories: Categories
+    category_name: Category Name
+    name: Name
+    icon: Icon
+    no_icon_message: No icon present.
+    save_success: Your category was saved.
+    save_error: There was an error in creating a category.
+  ideas:
+    first_name_placeholder: Peter
+    last_name_placeholder: Parker
+    email_placeholder: "pparker@dailybugle.com"
+    phone_placeholder: "555-555-5555"
+    description_placeholder: "What's your idea?"
+    location_placeholder: "Lee Park, etc."
+    creating_idea: Creating Idea
+    editing_idea: Editing Idea
+    create_new: Create New Idea
+    ideas: Ideas
+    likes: Likes
+    author: Author
+    author_first_name: Author First Name
+    author_last_name: Author Last Name
+    category: Category
+    description: Description
+    status: Status
+    approve: Approve
+    disapprove: Disapprove
+    no_location_message: No location specified.
+    calliing_artists: Calling all artists
+    submit_proposal: Submit Proposal
+    submitted_ideas: Submitted Ideas
+    save_success: Your idea was sent.
+  landingpages:
+    description_placeholder: "Detail how the plan will be implemented."
+    editing_landingpage: Editing Landing Page Post
+    creating_landingpage: Creating Landing Page Post
+    save_success: Your post was saved.
+  layout:
+    site_title: Pauselab
+  mass_emails:
+    select_groups_message: "Please select one or more mailing groups."
+    administrators: Administrators
+    moderators: Moderators
+    steerers: Steering Committee
+    super_artists: Super Artists
+    artists: Artists
+    residents: Residents
+    subject_placeholder: Subject
+    body_placeholder: Message
+    send: Send
+    create_new: Create New Email
+    mass_emails: Mass Emails
+    sent_at: Sent At
+    date_sent: Date Sent
+    to: To
+    subject: Subject
+    body: Body
+    save_success: Your mass email was sent.
+    save_error: There was an error in sending the email.
+  pages:
+    no_post: Pauselab has not created a post yet.
+    idea_collection: Idea Collection
+    submit_idea: Submit an Idea
+    create_about: Create About
+    edit_about: Edit About
+    create_artist_home: Create Artist Home
+    edit_artist_home: Edit Artist Home
+    create_homepage: Create Homepage
+    edit_homepage: Edit Homepage
+    create_steering: Create Steering Committee Home
+    edit_steering: Edit Steering Committee Home
+  proposal_comments:
+    comments: Comments
+    creating_comment: Creating Comment
+    editing_comment: Editing Comment
+    show_comment: Show Comment
+    save_success: Your comment was posted.
+    save_error: There was an error posting your comment.
+    remove_success: Your comment was removed.
+    remove_error: There was an error removing your comment.
+  proposals:
+    cost_breakdown: Cost Breakdown
+    view_breakdown: View Breakdown
+    cost_component: Component
+    cost: Cost
+    artist_fees: Artist Fees
+    project_materials: Project Materials
+    printing: Printing
+    marketing: Marketing
+    documentation: Documentation
+    volunteers: Volunteers
+    insurance: Insurance
+    events: Events
+    title_placeholder: "Title (max length 40)"
+    description_placeholder: "Detail how the plan will be implemented."
+    essay_placeholder: "How would this project help the community?"
+    website_link_placeholder: "Link to online portfolio"
+    budget_information: Budget Information
+    resume: Resume
+    creating_proposal: Creating Proposal
+    editing_proposal: Editing Proposal
+    create_new: Create New Proposal
+    proposals: Proposals
+    author: Author
+    title: Title
+    status: Status
+    votes: Votes
+    description: Description
+    essay: Essay
+    cv: CV
+    add_comment: Add Comment
+    save_success: Your proposal was sent.
+  shared:
+    admin: Admin
+    admin_console: Admin Console
+    create_category: Create Category
+    categories_console: Categories Console
+    create_mass_email: Create Mass Email
+    mass_emails_console: Mass Emails Console
+    votes_console: Votes Console
+    vote: Vote  # navbar header
+    proposals: Proposals
+    create_proposal: Create Proposal
+    proposals_console: Proposals Console
+    ideas: Ideas
+    create_idea: Create Idea
+    ideas_console: Ideas Console
+    blog: Blog
+    about: About
+    logout: Logout
+    login: Login
+  votes:
+    vote: Vote  # verb
+    votes: Votes  # plural noun
+    pick_three: Pick Your Top Three
+    select: Select
+    submitted_on: Submitted on
+    already_voted: You have already voted.
+    save_success: Your vote has been received!

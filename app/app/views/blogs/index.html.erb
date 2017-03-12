@@ -1,9 +1,8 @@
 
 <% if can? :create, Blog %>
-  <%= link_to 'Create New Blog', new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
+  <%= link_to (t 'blogs.create_new'), new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
-
-<h2>Recent Blogs</h2>
+<h2><%= t 'blogs.recent_blogs' %></h2>
 
 <br>
 
@@ -14,7 +13,7 @@
       <h4 class="card-title"><%= blog.title %></h4>
       <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
       <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
-      <%= link_to 'read more', blog_path(blog), class: 'card-link' %>
+      <%= link_to (t 'blogs.read_more'), blog_path(blog), class: 'card-link' %>
 
       <div class="pull-right">
         <% if can? :edit, blog %>
@@ -23,7 +22,7 @@
           <% end %>
         <% end %>
         <% if can? :destroy, blog %>
-          <%= link_to blog_path(blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: 'Are you sure?'} do %>
+          <%= link_to blog_path(blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message')} do %>
             <i class="fa fa-trash"></i>
           <% end %>
         <% end %>
@@ -37,8 +36,8 @@
 
 <%= will_paginate @blogs,
 		 :class => "pagination-wrapper",
-		 :previous_label => "previous",
-		 :next_label => "next" %>
+		 :previous_label => (t 'common.previous'),
+		 :next_label => (t 'common.next') %>
 
 
 <!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
@@ -46,13 +45,13 @@
 <!-- <% @blogs.each do |blog| %>
   <hr>
   <% if can? :edit, blog %>
-    <%= link_to 'Edit', edit_blog_path(blog) %>
+    <%= link_to (t 'common.edit'), edit_blog_path(blog) %>
   <% end %>
   <% if can? :destroy, blog %>
-    | <%= link_to 'Remove', blog_path(blog), method: :delete, data: { confirm: 'Are you sure?' } %>
+    | <%= link_to (t 'common.remove'), blog_path(blog), method: :delete, data: { confirm: (t 'common.confirm_message') } %>
   <% end %>
-  <h4>By <b><%= blog.user.fullname %></b></h4>
-  Published <%= blog.created_at %>
+  <h4><%= t 'blogs.post_by' %> <b><%= blog.user.fullname %></b></h4>
+  <%= t 'blogs.post_published' %> <%= blog.created_at %>
   <h2><b><%= blog.title %></b></h2>
   <p><%= blog.body %></p>
 <% end %> -->

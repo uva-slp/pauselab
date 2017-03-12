@@ -29,7 +29,7 @@ class ProposalsController < ApplicationController
     @proposal.iteration_id = Iteration.get_current.id
 
 		if @proposal.save
-			flash[:notice] = 'your proposal was sent'
+			flash[:notice] = (t 'proposals.save_success')
 			redirect_to proposals_path
 		else
 			# TODO: need to add logic here

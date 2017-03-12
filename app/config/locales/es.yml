@@ -28,3 +28,5 @@ es:
     edit_user: Edita el usario
     update_user: Actualiza el usario
     manage: Administrar
+  layout:
+    site_title: Pauselab
