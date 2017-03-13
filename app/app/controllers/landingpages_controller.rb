@@ -9,7 +9,7 @@ class LandingpagesController < ApplicationController
   def create
     @landingpage = Landingpage.new(landingpage_params)
     if @landingpage.save
-    	flash[:notice] = 'Your post was sent.'
+    	flash[:notice] = (t 'landingpages.save_success')
     	redirect_to root_path
     end
   end

@@ -1,29 +1,29 @@
 
 <!-- <script>alert('No users!')</script>-->
 <% if can? :create, :ideas %>
-  <%= link_to 'Create New Idea', new_idea_path, class: 'btn btn-primary pull-right clearfix' %>
+  <%= link_to (t 'ideas.create_new'), new_idea_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 
 <br/>
 <br/>
 
-<h2 class="pull-left">Ideas</h2>
+<h2 class="pull-left"><%= t 'ideas.ideas' %></h2>
 <div class="dropdown pull-right" style="inline-block">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">sort</a>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu dropdown-menu-right">
     <!-- We are passing the sort parameter here -->
-    <a href="?sort=likes" class="dropdown-item" >likes</a>
+    <a href="?sort=likes" class="dropdown-item" ><%= t 'ideas.likes' %></a>
     <% if user_has_admin_access %>
-      <a href="?sort=author_last_name" class="dropdown-item">author last name</a>
+      <a href="?sort=author_last_name" class="dropdown-item"><%= t 'ideas.author_first_name' %></a>
     <% end %>
     <% if user_has_admin_access %>
-      <a href="?sort=author_first_name" class="dropdown-item">author first name</a>
+      <a href="?sort=author_first_name" class="dropdown-item"><%= t 'ideas.author_last_name' %></a>
     <% end %>
-    <a href="?sort=date" class="dropdown-item">date</a>
+    <a href="?sort=date" class="dropdown-item"><%= t 'common.date' %></a>
     <% if user_has_admin_access %>
-      <a href="?sort=id" class="dropdown-item">id</a>
+      <a href="?sort=id" class="dropdown-item"><%= t 'common.id' %></a>
     <% end %>
-    <a href="?sort=category" class="dropdown-item">category</a>
+    <a href="?sort=category" class="dropdown-item"><%= t 'ideas.category' %></a>
   </div>
 </div>
 
@@ -35,31 +35,31 @@
     <thead>
       <tr>
         <% if user_has_admin_access %>
-          <th>ID</th>
+          <th><%= t 'common.id' %></th>
         <% end %>
 
         <% if user_has_admin_access %>
-          <th>Author</th>
+          <th><%= t 'ideas.author' %></th>
         <% end %>
 
-        <th>Created At</th>
+        <th><%= t 'common.created_at' %></th>
 
-        <th>Category</th>
+        <th><%= t 'ideas.category' %></th>
 
-        <th>Description</th>
+        <th><%= t 'ideas.description' %></th>
 
         <% if user_has_admin_access %>
-          <th>Status</th>
+          <th><%= t 'ideas.status' %></th>
         <% end %>
 
-        <th>Likes</th>
+        <th><%= t 'ideas.likes' %></th>
 
         <% if can? :like, Idea or
           can? :show, Idea or
           can? :edit, Idea or
           can? :approve, Idea or
           can? :destroy, Idea %>
-          <th colspan="4">Actions</th>
+          <th colspan="1"><%= t 'common.actions' %></th>
          <% end %>
       </tr>
     </thead>
@@ -91,32 +91,39 @@
           <% end %>
 
           <td>
-          <%= render :partial => 'like_button', locals: {idea: idea}  %>
+            <%= idea.likes  %>
           </td>
 
-          <% if can? :read, Idea, :description %>
+          <!-- <% if can? :read, Idea, :description %>
             <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>
-          <% end %>
-          
+          <% end %> -->
+
           <% if can? :show, Idea %>
-            <td><%= link_to 'Show', idea_path(idea) %></td>
+            <td><%= link_to (t 'common.show'), idea_path(idea) %></td>
           <% end %>
 
-          <% if can? :edit, Idea %>
+          <!-- <% if can? :edit, Idea %>
             <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
           <% end %>
 
           <% if can? :approve, Idea %>
-            <td><%= link_to 'Approve', idea_approve_path(idea), method: :post %></td>
+            <td><%= link_to (t 'ideas.approve'), idea_approve_path(idea), method: :post %></td>
           <% end %>
 
           <% if can? :destroy, Idea %>
-            <td><%= link_to 'Remove', idea_path(idea),
+            <td><%= link_to (t 'common.remove'), idea_path(idea),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
+          <% end %> -->
+
         </tr>
     <% end %>
 
   </table>
+
+  <%= will_paginate @ideas,
+        :class => "pagination-wrapper",
+        :previous_label => (t 'common.previous'),
+        :next_label => (t 'common.next') %>
+
 </div>

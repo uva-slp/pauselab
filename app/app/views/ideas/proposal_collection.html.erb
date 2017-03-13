@@ -11,12 +11,16 @@
 </style>
 
 <% if Iteration.get_current.proposals? %>
-	<h1 class="page-header text-lg-center">Calling all artists</h1>
+	<h1 class="page-header text-lg-center"><%= t 'ideas.calling_artists' %></h1>
 	<div class="text-lg-center" style="margin-top: 20px;">
-		<%= link_to 'Submit proposal', new_proposal_path, class: 'btn btn-primary'%>
+		<% if user_signed_in? %>
+			<%= link_to (t 'ideas.submit_proposal'), new_proposal_path, class: 'btn btn-primary'%>
+		<% else %>
+			<%= link_to (t 'ideas.submit_proposal'), new_user_session_path, class: 'btn btn-primary'%>
+		<% end %>
 	</div>
 <% else %>
-	<h1 class="page-header text-lg-center">Submitted ideas</h1>
+	<h1 class="page-header text-lg-center"><%= t 'ideas.submitted_ideas' %></h1>
 <% end %>
 
 <br/>
@@ -30,18 +34,16 @@
 			<%= idea.category.name %>
 		</div>
 
-		<!-- <img src="<%= get_static_map idea %>" alt="map" class="card-img-middle img-fluid"> -->
-
 		<%= link_to (idea_path idea), {class: 'idea-link'} do %>
 			<div class="card-block">
 				<p class="card-text">
-					<%= truncate idea.description, length: 50 %>
+					<!-- <%= truncate idea.description, length: 50 %> -->
+					<%= idea.description %>
 				</p>
 			</div>
 		<% end %>
 
 		<div class="card-footer" align="left">
-			<% if can? :read, idea, :description %>
 				<span class="share-btns">
 					<button class="btn btn-sm btn-outline-primary fb-btns" data-desc="<%= idea.description %>" data-id="<%= idea.id %>">
 						<i class="fa fa-facebook "></i>
@@ -51,7 +53,6 @@
 					</button>
 				</span>
         <!-- <%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%> -->
-      <% end %>
       <span class="pull-right">
 				<%= render :partial => 'like_button', locals: {idea: idea}  %>
 			</span>
@@ -61,3 +62,8 @@
  <% end %>
 
 </div>
+
+<%= will_paginate @ideas,
+		 :class => "pagination-wrapper",
+		 :previous_label => (t 'common.previous'),
+		 :next_label => (t 'common.next') %>

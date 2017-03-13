@@ -36,13 +36,13 @@
         <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
         <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
         <div class="form-check">
-          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + 'select' }%>
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + (t 'votes.select') }%>
           <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
         </div>
       </div>
       <div class="card-footer text-muted ">
         <span class="pull-left">
-          <%= number_to_currency b.object.cost %>
+          <%= number_to_currency b.object.proposal_budget.cost %>
         </span>
         <span class="pull-right">
           <%= b.object.created_at.strftime("%B %d") %>
@@ -59,19 +59,19 @@
       <div class="modal-content" style="width: 340px;">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Vote</h4>
+          <h4 class="modal-title" id="myModalLabel"><%= t 'votes.vote' %></h4>
         </div>
         <div class="modal-body">
           <%= recaptcha_tags %>
         </div>
         <div class="modal-footer">
-          <%= vote.submit "vote", class: 'btn btn-primary pull-right' %>
+          <%= vote.submit (t 'votes.vote'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
     </div>
   </div>
 
-  <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form">Submit vote</button>
+  <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
 
 <% end %>
 

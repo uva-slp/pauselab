@@ -1,3 +1,4 @@
+
 window.initMap = ->
 
   g = {}
@@ -51,7 +52,7 @@ window.initMap = ->
         # size: new (google.maps.Size)(100, 100)
         # origin: new (google.maps.Point)(10, 15)
         # anchor: new (google.maps.Point)(0, 32)
-        scaledSize: new (google.maps.Size)(50, 50)
+        scaledSize: new (google.maps.Size)(40, 40)
 
       marker = new (google.maps.Marker)(
           position: pos

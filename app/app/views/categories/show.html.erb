@@ -1,15 +1,19 @@
-
-<%= link_to 'Back', categories_path %> |
-<%= link_to 'Edit', edit_category_path(@category) %>
-
-<h2>
-  Category: <%= @category.name %>
-</h2>
+<h2><%= t 'categories.category_name' %>: <%= @category.name %></h2>
 <h3>
   <% if @category.icon.present? %>
-    Icon: <%= @category.icon_file_name %>
+    <%= t 'categories.icon' %>: <%= @category.icon_file_name %>
     <%= image_tag @category.icon.url %>
   <% else %>
-    No icon present.
+    <%= t 'categories.no_icon_message' %>
   <% end %>
 </h3>
+
+<hr>
+
+<%= link_to edit_category_path(@category), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+  <i class="fa fa-pencil-square-o"></i>
+<% end %>
+
+<%= link_to category_path(@category), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
+  <i class="fa fa-trash"></i>
+<% end %>

@@ -1,4 +1,4 @@
-<h1>Comments</h1>
+<h1><%= t 'proposal_comments.comments' %></h1>
 <% @proposal_comments.each do |comment| %>
   <p>
     <strong><%= comment.user.fullname %></strong>: <%= comment.body %>

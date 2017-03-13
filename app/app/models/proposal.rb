@@ -2,14 +2,17 @@ class Proposal < ApplicationRecord
 
     belongs_to :user
     belongs_to :iteration
-    has_many :proposal_comments
+
+    has_many :proposal_comments, dependent: :destroy
+    has_one :proposal_budget, dependent: :destroy
 
     has_and_belongs_to_many :votes, :dependent => :delete_all
+    accepts_nested_attributes_for :proposal_budget
 
     has_attached_file :artist_cv
     validates_attachment :artist_cv, content_type: { content_type: ['application/pdf'] }
 
-    validates :cost, :title, :essay, :description, :artist_fees, :project_materials, :printing, :marketing, :documentation, :volunteer, :insurance, :events, presence:true
+    validates :title, :essay, :description, presence:true
 
     enum status: [:unchecked, :approved]
 

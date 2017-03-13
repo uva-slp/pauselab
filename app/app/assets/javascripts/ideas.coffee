@@ -1,5 +1,5 @@
-
-$(document).on "turbolinks:load", ->
+$ ->
+  console.log 'here'
   $('.fb-btns').click ->
       window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
   $('.twtr-btns').click ->
@@ -7,7 +7,7 @@ $(document).on "turbolinks:load", ->
     id = $(this).data 'id'
     desc = encodeURIComponent format desc, id
     window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
-
+  return
 
 format = (desc, id) ->
   if desc.length > 50
@@ -50,7 +50,6 @@ link_search_box = (map) ->
     if places.length == 0
       return
 
-    # TODO: for multiple places, pick the closest one
     place = places[0]
     address = place.formatted_address
     lat = place.geometry.location.lat()
@@ -106,9 +105,19 @@ window.showMap = ->
   pos =
     lat: $('#map').data('lat')
     lng: $('#map').data('lng')
-  # console.log(pos);
-  map = load_map(pos, 18)
-  marker = new (google.maps.Marker)(
-    map: map
-    position: pos)
+  cat_id = $('#map').data('cat')
+
+  defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
+  $.get '/pages/categories_json', (categories) ->
+    img =
+      url: categories[cat_id] || defaultUrl
+      scaledSize: new (google.maps.Size)(50, 50)
+    # console.log(pos);
+    map = load_map(pos, 18)
+    marker = new (google.maps.Marker)(
+      map: map
+      position: pos
+      icon: img
+    )
+
   return

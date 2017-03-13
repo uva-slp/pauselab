@@ -15,14 +15,24 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
-    if @category.save
-      flash[:notice] = 'Your category was saved.'
-      redirect_to categories_path
-    else
-      flash[:error] = 'There was in error in creating a category.'
-      render new_category_path
+    @category = Category.new category_params
+    respond_to do |format|
+      if @category.save
+        format.html { redirect_to categories_path, notice: (t 'categories.save_success') }
+        format.json { render json: @resource }
+      else
+        format.html { render new_category_path, notice: (t 'categories.save_error') }
+        format.json { render json: @resource }
+      end
     end
+    #
+    # if @category.save
+    #   flash[:notice] = 'Your category was saved.'
+    #   redirect_to categories_path
+    # else
+    #   flash[:error] = 'There was in error in creating a category.'
+    #   render new_category_path
+    # end
   end
 
   def edit

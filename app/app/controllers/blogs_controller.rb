@@ -3,7 +3,9 @@ class BlogsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def index
-    @blogs = Blog.where(:iteration_id => Iteration.get_current.id).order(created_at: :desc)
+    @blogs = Blog.where(:iteration_id => Iteration.get_current.id)
+      .order(created_at: :desc)
+      .paginate :page => params[:page], :per_page => 10
     index_respond @blogs, :blogs
   end
 
@@ -24,7 +26,7 @@ class BlogsController < ApplicationController
     @blog.user_id = current_user.id
     @blog.iteration_id = Iteration.get_current.id
     if @blog.save
-      flash[:notice] = 'your blog was saved'
+      flash[:notice] = (t 'blogs.save_success')
       redirect_to blogs_path
     else
       # TODO: need to add logic here
@@ -52,7 +54,7 @@ class BlogsController < ApplicationController
   end
 
   def record_not_found
-    flash[:error] = 'Record not found'
+    flash[:error] = (t 'common.record_not_found')
     redirect_to action: :index
   end
 

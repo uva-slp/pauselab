@@ -12,24 +12,23 @@
 
 <div>
 
-  <h2 class="page-header">Idea Collection</h2>
-  <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
-  <% if Landingpage.exists?(title: "") %>
+  <h1 class="page-header text-lg-center"><%= t 'pages.idea_collection' %></h1>
+
+  <% if Landingpage.exists?(title: "Home") %>
     <% @landingpage = Landingpage.where(title: "Home").first %>
-    <h2><%= @landingpage.title %></h2>
+    <!-- <h2><%= @landingpage.title %></h2> -->
     <p><%=  @landingpage.description.html_safe %></p>
     <% if can? :edit, :landingpages %>
-      <p><%= link_to 'Edit Homepage', edit_landingpage_path(@landingpage) %></p>
+      <p><%= link_to (t 'pages.edit_homepage'), edit_landingpage_path(@landingpage) %></p>
     <% end %>
     <% else %>
-    <p>PauseLab has not created a home post yet</p>
+    <p><%= t 'pages.no_post' %></p>
     <% if can? :edit, :landingpages %>
-     <p> <%= link_to 'Create Homepage', new_landingpage_path() %></p>
+     <p> <%= link_to (t 'pages.create_homepage'), new_landingpage_path() %></p>
     <% end %>
   <% end %>
 
-  <!-- <%= link_to 'submit an idea', new_idea_path, class: 'btn btn-primary' %> -->
-  <!-- <div id="map-sidebar"></div> -->
+  <%= link_to (t 'pages.submit_idea'), new_idea_path, class: 'btn btn-primary', id: 'new-idea-btn' %>
 
   <div id="map" class="ideas-map-info"></div>
 

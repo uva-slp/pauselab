@@ -13,9 +13,9 @@ class ProposalCommentsController < ApplicationController
     @proposal_comment = @proposal.proposal_comments.create(proposal_comment_params)
     @proposal_comment.user_id = current_user.id if current_user
     if @proposal_comment.save
-      flash[:notice] = 'Your comment was posted.'
+      flash[:notice] = (t 'proposal_comments.save_success')
     else
-      flash[:error] = 'There was an error posting your comment.'
+      flash[:error] = (t 'proposal_comments.save_error')
     end
     redirect_to proposal_path(@proposal)
   end
@@ -31,9 +31,9 @@ class ProposalCommentsController < ApplicationController
   def update
     locate_comment
     if @proposal_comment.update proposal_comment_params
-      flash[:notice] = 'Comment updated.'
+      flash[:notice] = (t 'proposal_comments.save_success')
     else
-      flash[:error] = 'Comment failed to update.'
+      flash[:error] = (t 'proposal_comments.save_error')
     end
     redirect_to proposal_path(@proposal)
   end
@@ -41,9 +41,9 @@ class ProposalCommentsController < ApplicationController
   def destroy
     locate_comment
     if @proposal_comment.destroy
-      flash[:notice] = 'Comment removed.'
+      flash[:notice] = (t 'proposal_comments.remove_success')
     else
-      flash[:error] = 'Comment failed to remove.'
+      flash[:error] = (t 'proposal_comments.remove_error')
     end
     redirect_to proposal_path(@proposal)
   end
