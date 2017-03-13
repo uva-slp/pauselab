@@ -2,7 +2,9 @@
 
 Localized strings are in the `config/locales` folder. Those in English are in `en.yml`. If you would like to add another language, create another .yml file whose name is the 2 letter country code (e.g. `es.yml` for Spanish). Then copy all the mappings from the English file into the new language file and replace the values with the appropriate translations. Make sure the top level key contains the right language code (e.g. `es` instead of `en`).
 
-From there, in `config/routes.rb`, on the line that says
+The app uses third party gems which use strings that need to be localized (e.g. `devise` and `simple_form`) -- these are kept in separate files. The appropriate translations will need to be included in the `config/locales` folder as well, but through some searching online you can find others who have already done that work.
+
+Afterwards, in `config/routes.rb`, on the line that says
 ```
 scope "(:locale)", locale: /en/ do
 ```
