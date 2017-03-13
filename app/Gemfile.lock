@@ -121,6 +121,10 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    magic_lamp (1.8.1)
+      method_source
+      rails (>= 4.0.0)
+      rake
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -297,6 +301,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   listen (~> 3.0.5)
+  magic_lamp
   mysql2 (>= 0.3.18, < 0.5)
   paperclip (~> 4.2)
   puma (~> 3.0)

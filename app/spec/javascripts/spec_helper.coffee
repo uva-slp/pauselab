@@ -5,6 +5,8 @@
 # require support/sinon
 # require support/your-support-file
 #
+#= require magic_lamp
+#
 # PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion.
 # Use this polyfill to avoid the confusion.
 #= require support/phantomjs-shims
