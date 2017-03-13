@@ -31,5 +31,23 @@ describe "votes", ->
     $(':checkbox').first().trigger 'click'
     expect(Vote.checkCallback).toHaveBeenCalled()
 
-  it "checks when vote card is clicked", ->
-    
+  it "turns vote card green when checked", ->
+    Vote.addCheckListener()
+    $(':checkbox').first().trigger 'click'
+    expect(
+      $(':checkbox').first().closest('label').hasClass('btn-success')
+    ).toBe(true)
+
+  it "removes green vote card outline if checked twice", ->
+    Vote.addCheckListener()
+    $(':checkbox').first().trigger 'click'
+    $(':checkbox').first().trigger 'click'
+    expect(
+      $(':checkbox').first().closest('label').hasClass('btn-outline-primary')
+    ).toBe(true)
+
+  it "disables checking if 3 vote cards are checked", ->
+    Vote.addCheckListener()
+    $(':checkbox').each ->
+      $(this).trigger 'click'
+    expect($(':checked').length).toEqual(3)
