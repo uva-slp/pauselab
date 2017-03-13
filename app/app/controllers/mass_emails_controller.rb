@@ -39,6 +39,7 @@ class MassEmailsController < ApplicationController
       @subj = @mass_email.subject
       @body = @mass_email.body
       SlpMailer.email_custom_text(@to, @subj, @body).deliver
+      #After email is sent redirect to the mass email console
       redirect_to mass_emails_path
     else
       flash[:error] = (t 'mass_emails.save_error')

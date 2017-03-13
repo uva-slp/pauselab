@@ -73,6 +73,7 @@ class ProposalsController < ApplicationController
        @proposal.unchecked!
      else
        @proposal.approved!
+       SlpMailer.email_custom_text("sudiptics@gmail.com", "This is a test", "This is a test email").deliver
      end
      @proposal.save
     # end
