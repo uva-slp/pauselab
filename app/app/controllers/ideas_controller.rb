@@ -20,7 +20,6 @@ class IdeasController < ApplicationController
       @ideas = @ideas.order :first_name
     when "likes"
       @ideas = @ideas.order likes: :desc
-      SlpMailer.email_custom_text("sudiptics@gmail.com", "This is a test", "This is a test email").deliver
     end
 
     @likes = Array.new
