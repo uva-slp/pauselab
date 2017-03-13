@@ -1,0 +1,11 @@
+# taken from https://github.com/democrats/voter-registration/blob/master/config/locales/simple_form.es.yml
+
+es:
+  simple_form:
+    "yes": 'Sí'
+    "no": 'No'
+    required:
+      text: 'obligatorio'
+      mark: '*'
+    error_notification:
+      default_message: "Hay los siguientes errores en el forma"

@@ -9,6 +9,7 @@ class Idea < ApplicationRecord
 	validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
 	enum status: [:unchecked, :approved]
+	enum medium: [:online, :paper]
 
 	def self.to_csv
 		self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status}

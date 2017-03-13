@@ -73,6 +73,9 @@ class ProposalsController < ApplicationController
        @proposal.unchecked!
      else
        @proposal.approved!
+       @creator = User.find(@proposal.user_id)
+       @to = @creator.email
+       SlpMailer.email_custom_text(@to, "CONGRATULATIONS", "Congrats! Your proposal was approved by Pauselab!").deliver
      end
      @proposal.save
     # end
