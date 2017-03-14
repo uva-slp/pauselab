@@ -44,10 +44,10 @@ notifications:
     on_success: never
     on_failure: never
 before_install:
-  - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  - tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-  - sudo rm -rf /usr/local/phantomjs/bin/phantomjs
-  - sudo mv phantomjs /usr/local/phantomjs/bin/phantomjs
+  # - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  # - tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  # - sudo rm -rf /usr/local/phantomjs/bin/phantomjs
+  # - sudo mv phantomjs /usr/local/phantomjs/bin/phantomjs
   - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
   - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
   - cd app
