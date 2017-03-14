@@ -29,7 +29,7 @@
 
 
 language: ruby
-sudo: true
+sudo: false
 services:
   - mysql
 rvm:
@@ -44,6 +44,10 @@ notifications:
     on_success: never
     on_failure: never
 before_install:
+  - mkdir -p travis-phantomjs2 travis-phantomjs21
+  - if [ ! -f $PWD/travis-phantomjs2/phantomjs ]; then wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs2/phantomjs-2.0.0-ubuntu-12.04.tar.bz2; tar -xvf $PWD/travis-phantomjs2/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs2; fi
+  - if [ ! -f $PWD/travis-phantomjs21/phantomjs ]; then wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/phantomjs-2.1-linux-x86_64.tar.bz2; tar -xvf $PWD/phantomjs-2.1-linux-x86_64.tar.bz2 -C $PWD/travis-phantomjs21 --strip-components 2 phantomjs-2.1.1-linux-x86_64/bin/phantomjs; fi
+  - chmod +x $PWD/travis-phantomjs21/phantomjs
   # - wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
   # - tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
   # - sudo rm -rf /usr/local/phantomjs/bin/phantomjs
