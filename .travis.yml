@@ -37,6 +37,7 @@ rvm:
 script:
   - bin/rails db:migrate RAILS_ENV=test
   - bundle exec rspec spec
+  - bundle exec teaspoon
 gemfile: app/Gemfile
 notifications:
   email:
