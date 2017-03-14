@@ -28,7 +28,6 @@ describe "votes", ->
   it "triggers check listener", ->
     spyOn Vote, 'checkCallback'
     Vote.addCheckListener()
-    console.log $('body').html()
     $(':checkbox').first().trigger 'click'
     expect(Vote.checkCallback).toHaveBeenCalled()
 

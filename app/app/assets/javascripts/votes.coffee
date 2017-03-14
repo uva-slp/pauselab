@@ -14,6 +14,8 @@ class @Vote
 
   @checkCallback: (elem) ->
 
+    console.log "here at checkCallback"
+
     count = $(':checked').length
 
     status = $(elem).prop('checked')
