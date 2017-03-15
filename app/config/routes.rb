@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
     # admins routes
     get '/admin', to: 'admins#index', as: 'admin_overview'
-    get '/admin/create_user', to: 'admins#new_user', as: 'new_user'
-    post '/admin/create_user', to: 'admins#create_user', as: 'create_user'
+    get '/admin/users/create_user', to: 'admins#new_user', as: 'admin_new_user'
+    post '/admin/users/create_user', to: 'admins#create_user', as: 'admin_create_user'
     get '/admin/users', to: 'admins#index_users', as: 'list_users'
     get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
     post '/admin/user/:num', to: 'admins#change_role', as: 'change_role'
