@@ -34,5 +34,18 @@
 
 </div>
 
+<!-- Last 3 blogs: needs to be prettier --> 
+<div> 
+<br>
+  <h4> <%= t 'pages.recent_blogs' %> </h4> 
+  <% @blogs = Blog.order(id: :desc).limit(3) %>
+  <% @blogs.each do |b| %>
+  <h5> <%= link_to (b.title), blog_path(b)%> <br> </h5>
+  <%= b.user.fullname %> <br>
+  <%= b.created_at.strftime("%b %e, %Y") %> <br>
+  <% end %>
+
+</div>
+
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>

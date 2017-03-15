@@ -30,3 +30,6 @@ es:
     manage: Administrar
   layout:
     site_title: Pauselab
+  pages: 
+    recent_blogs: Los blogs recientes
+    idea_collection: Colección de las ideas

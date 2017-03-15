@@ -49,17 +49,6 @@ class @Vote
       Vote.checkCallback this
       return
 
-
-
 $ ->
-
   Vote.addCheckListener()
 
-  # $(':checked').each ->
-      # label = $(this).closest 'label'
-      # card = $(this).closest '.card'
-      # title = $(card).find('.card-title a').html()
-      # card.css 'border', '1px solid #2ecc71'
-      # label.removeClass 'btn-outline-primary'
-      # label.addClass 'btn-success'
-      # # addProposal title
