@@ -7,11 +7,11 @@
 <%= render :layout => 'dashboard', :locals => {position: 'users' } do %>
 
   <h2>Create User</h2>
-  <%= simple_form_for create_user_path do |f| %>
+  <%= simple_form_for @user, url: admin_create_user_path do |f| %>
     <%= f.input :first_name, placeholder: 'clark' %>
     <%= f.input :last_name, placeholder: 'kent' %>
     <%= f.input :email, placeholder: 'ckent@dailyplanet.com' %>
-    <%= f.input :password, placeholder: 'password', hint: "#{@minimum_password_length} characters minimum" %>
+    <%= f.input :password, placeholder: 'password', hint: "6 characters minimum" %>
     <%= f.input :phone, placeholder: '555-555-5555' %>
 
     <div class="form-group">
