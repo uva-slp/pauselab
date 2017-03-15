@@ -17,6 +17,33 @@ class AdminsController < ApplicationController
 		@user = User.find(params[:num])
 		authorize! :read, @user
 	end
+  
+  def new_user
+    @user = User.new    
+  end
+
+  #TODO: Fix this, currently not sending POST params from admins/create_user
+  def create_user
+		@user = User.new
+    puts '--1--'
+    puts params[:first_name]
+    @user.first_name = params[:first_name]
+    puts '--2--'
+    puts params[:first_name]
+    puts '--3--'
+    puts @user.first_name 
+	  @user.last_name = params[:last_name]
+    @user.email = params[:email]
+    @user.password = params[:password]
+		@user.phone = params[:phone]
+		if @user.save
+			flash[:notice] = ("New user created sucessfully")
+			redirect_to list_users_path
+		else
+			flash[:error] = ("Missing fields")
+      render new_user_path
+		end
+  end
 
 	def change_phase
 		new_phase = params[:phase]
@@ -132,5 +159,17 @@ class AdminsController < ApplicationController
 		end
 
 	end
+
+	private
+	  def user_params
+	    params.require(:user).permit(
+	    	:first_name,
+	    	:last_name,
+	    	:email,
+        :password,
+	    	:password_confirmation,
+	    	:phone
+	    	)
+	  end
 
 end
