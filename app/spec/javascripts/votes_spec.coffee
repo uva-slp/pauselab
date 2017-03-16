@@ -27,11 +27,9 @@ describe "votes", ->
 
   it "triggers check listener", ->
     spyOn Vote, 'checkCallback'
-    $(':checkbox').click (e) ->
-      Vote.checkCallback this
-      return
-    # Vote.addCheckListener()
-    $(':checkbox').first().click()
+    Vote.addCheckListener()
+    Vote.checkCallback()
+    # $(':checkbox').first().click()
     expect(Vote.checkCallback).toHaveBeenCalled()
 
   it "turns vote card green when checked", ->
