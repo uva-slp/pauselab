@@ -57,6 +57,7 @@ group :development, :test do
   gem 'launchy'
   gem 'teaspoon-jasmine'
   gem 'magic_lamp'
+  gem 'database_cleaner'
 end
 
 group :development do

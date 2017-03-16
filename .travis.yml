@@ -37,7 +37,7 @@ rvm:
 script:
   - bin/rails db:migrate RAILS_ENV=test
   # - bundle exec rspec spec
-  - bundle exec teaspoon
+  - bundle exec teaspoon RAILS_ENV=test
 gemfile: app/Gemfile
 notifications:
   email:
@@ -51,4 +51,3 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
   - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
   - cd app
-  - phantomjs --version
