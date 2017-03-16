@@ -25,12 +25,17 @@ describe "votes", ->
     c_new = $('.selected-proposals').children().length
     expect(c_new - c_old).toEqual(-1)
 
-  # it "triggers check listener", ->
-  #   spyOn Vote, 'checkCallback'
-  #   Vote.addCheckListener()
-  #   # document.querySelector('input[type="checkbox"]').click()
-  #   $('input[type="checkbox"]').first().click()
-  #   expect(Vote.checkCallback).toHaveBeenCalled()
+  it "triggers check listener", ->
+    spyOn Vote, 'checkCallback'
+
+    $('input[type="checkbox"]').on 'click', ->
+      Vote.checkCallback this
+      return
+
+    # Vote.addCheckListener()
+    # document.querySelector('input[type="checkbox"]').click()
+    $('input[type="checkbox"]').first().click()
+    expect(Vote.checkCallback).toHaveBeenCalled()
 
   it "turns vote card green when checked", ->
     Vote.addCheckListener()
