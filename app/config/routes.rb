@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # wrap routes within locale scope so it appears at top part of url
   scope "(:locale)", locale: /en|es/ do
-    devise_for :users
+    devise_for :users, controllers: { registrations: "users/registrations" }
 
     # this will change depending on the current phase of the process
     root 'pages#go_home'
