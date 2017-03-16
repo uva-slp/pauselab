@@ -55,6 +55,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'launchy'
+  gem 'teaspoon-jasmine'
+  gem 'magic_lamp'
 end
 
 group :development do

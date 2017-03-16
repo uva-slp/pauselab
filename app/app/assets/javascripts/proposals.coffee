@@ -3,7 +3,4 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-
   $('#proposal_comment_body').autogrow()
-
-  console.log 'here at proposlas'

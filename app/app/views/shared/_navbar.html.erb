@@ -64,6 +64,9 @@
               <% if can? :create, Proposal %>
                 <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
               <% end %>
+          <% if can? :create, Proposal %>
+              <%= link_to (t 'shared.artist_home'), artist_home_url, class: 'dropdown-item' %>
+              <% end %>
 
               <!-- <% if can? :read, Idea %>
                 <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>

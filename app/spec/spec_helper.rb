@@ -21,6 +21,10 @@ require 'simplecov'
 SimpleCov.start
 require 'factory_girl_rails'
 
+#CAPYBARA CODE COVERAGE
+#require 'capybara/blanket'
+#require 'capybara/blanket/minitest'
+
 RSpec.configure do |config|
 
   # for factory girl

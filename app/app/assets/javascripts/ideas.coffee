@@ -1,18 +1,17 @@
-$ ->
-  console.log 'here'
-  $('.fb-btns').click ->
-      window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
-  $('.twtr-btns').click ->
-    desc = $(this).data 'desc'
-    id = $(this).data 'id'
-    desc = encodeURIComponent format desc, id
-    window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
-  return
+# $ ->
+#   $('.fb-btns').click ->
+#       window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
+#   $('.twtr-btns').click ->
+#     desc = $(this).data 'desc'
+#     id = $(this).data 'id'
+#     desc = encodeURIComponent format desc, id
+#     window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
+#   return
 
-format = (desc, id) ->
-  if desc.length > 50
-    desc = desc.substring(0, 50) + "..."
-  return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + id
+# format = (desc, id) ->
+#   if desc.length > 50
+#     desc = desc.substring(0, 50) + "..."
+#   return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + id
 
 window.initAutocomplete = ->
   pos =
@@ -108,6 +107,8 @@ window.showMap = ->
   cat_id = $('#map').data('cat')
 
   defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
+
+  # TODO: this URL is not working in the pegasus server
   $.get '/pages/categories_json', (categories) ->
     img =
       url: categories[cat_id] || defaultUrl
