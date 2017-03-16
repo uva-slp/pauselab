@@ -1,6 +1,10 @@
 
 class @Vote
 
+  @initialize: ->
+    $ ->
+      Vote.addCheckListener()
+
   @addProposal: (title) ->
     $('.selected-proposals').append '<span class="btn btn-primary">' + title + '</span> &nbsp;'
     return
@@ -12,8 +16,6 @@ class @Vote
     return
 
   @checkCallback: (elem) ->
-
-    # console.log "\non add check callback"
 
     count = $(':checked').length
 
@@ -51,5 +53,4 @@ class @Vote
       Vote.checkCallback this
       return
 
-$ ->
-  Vote.addCheckListener()
+Vote.initialize()

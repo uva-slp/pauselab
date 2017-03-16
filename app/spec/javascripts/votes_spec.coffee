@@ -12,6 +12,11 @@ describe "votes", ->
   it "loads jquery", ->
     expect($).toBeDefined()
 
+  it "initializes properly", ->
+    spyOn(Vote, 'addCheckListener').and.callThrough()
+    Vote.initialize()
+    expect(Vote.addCheckListener).toHaveBeenCalled()
+
   it "adds proposal", ->
     c_old = $('.selected-proposals').children().length
     Vote.addProposal "proposal title"
@@ -26,21 +31,20 @@ describe "votes", ->
     expect(c_new - c_old).toEqual(-1)
 
   it "triggers check listener", ->
-    spyOn Vote, 'checkCallback'
-    $ ->
-      Vote.addCheckListener()
+    spyOn(Vote, 'checkCallback').and.callThrough()
+    Vote.initialize()
     $(':checkbox').first().click()
     expect(Vote.checkCallback).toHaveBeenCalled()
 
   it "turns vote card green when checked", ->
-    Vote.addCheckListener()
+    Vote.initialize()
     $(':checkbox').first().trigger 'click'
     expect(
       $(':checkbox').first().closest('label').hasClass('btn-success')
     ).toBe(true)
 
   it "removes green vote card outline if checked twice", ->
-    Vote.addCheckListener()
+    Vote.initialize()
     $(':checkbox').first().trigger 'click'
     $(':checkbox').first().trigger 'click'
     expect(
@@ -48,7 +52,7 @@ describe "votes", ->
     ).toBe(true)
 
   it "disables checking if 3 vote cards are checked", ->
-    Vote.addCheckListener()
+    Vote.initialize()
     $(':checkbox').each ->
       $(this).trigger 'click'
     expect($(':checked').length).toEqual(3)
