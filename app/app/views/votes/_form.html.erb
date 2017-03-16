@@ -36,7 +36,7 @@
         <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
         <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
         <div class="form-check">
-          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + (t 'votes.select') }%>
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + (t 'votes.select') } %>
           <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
         </div>
       </div>
