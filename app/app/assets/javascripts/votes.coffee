@@ -13,7 +13,7 @@ class @Vote
 
   @checkCallback: (elem) ->
 
-    console.log "\non add check callback"
+    # console.log "\non add check callback"
 
     count = $(':checked').length
 
@@ -47,7 +47,7 @@ class @Vote
     return
 
   @addCheckListener: ->
-    console.log "\non add check listener"
+    # console.log "\non add check listener"
     $('input[type="checkbox"]').click (e) ->
       Vote.checkCallback this
       return
