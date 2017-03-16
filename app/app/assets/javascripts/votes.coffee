@@ -45,6 +45,7 @@ class @Vote
     return
 
   @addCheckListener: ->
+    console.log "\non add check listener"
     $('input[type="checkbox"]').click (e) ->
       Vote.checkCallback this
       return
