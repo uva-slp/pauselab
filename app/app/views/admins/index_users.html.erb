@@ -1,6 +1,6 @@
 
 <%= render :layout => 'dashboard', :locals => { title: (t 'admins.users'), position: 'users' } do %>
-<%= link_to 'Create User', admin_new_user_path %>
+<%= link_to (t 'admins.create_user'), admin_new_user_path, class: 'btn btn-primary pull-right' %>
 <div class="table-responsive">
 	<table class="table table-striped">
 

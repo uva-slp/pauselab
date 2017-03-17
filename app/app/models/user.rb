@@ -14,9 +14,9 @@ class User < ApplicationRecord
 	validates :first_name, :last_name, :email, :password, presence: true
 	validates :email, uniqueness: true
 
-  has_many :proposals
-	has_many :proposal_comments
-  has_many :blogs
+  has_many :proposals, dependent: :destroy
+	has_many :proposal_comments, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 
 	enum role: [:admin, :steerer, :artist, :moderator, :resident, :super_artist]
 

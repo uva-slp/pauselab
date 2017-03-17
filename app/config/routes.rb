@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # wrap routes within locale scope so it appears at top part of url
   mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
 
+  # wrap routes within locale scope so it appears at top part of url
   scope "(:locale)", locale: /en|es/ do
     devise_for :users, controllers: { registrations: "users/registrations" }
 
@@ -15,12 +15,14 @@ Rails.application.routes.draw do
     post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
     # admins routes
+    # TODO we should just have "resources :user" and a UsersController -- manual routing is too much
     get '/admin', to: 'admins#index', as: 'admin_overview'
     get '/admin/users/create_user', to: 'admins#new_user', as: 'admin_new_user'
     post '/admin/users/create_user', to: 'admins#create_user', as: 'admin_create_user'
     get '/admin/users', to: 'admins#index_users', as: 'list_users'
     get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
-    post '/admin/user/:num', to: 'admins#change_role', as: 'change_role'
+    patch '/admin/user/:num', to: 'admins#update_user', as: 'update_user'
+    delete '/admin/user/:num', to: 'admins#delete_user', as: 'delete_user'
     get '/admin/edit_phase', to: 'admins#edit_phase'
     put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
     get '/admin/manage_data', to: 'admins#manage_data'
@@ -44,13 +46,8 @@ Rails.application.routes.draw do
     get '/pages/ideas_json', to: 'pages#get_ideas', as: 'ideas_json'
     get '/pages/categories_json', to: 'pages#get_categories', as: 'categories_json'
 
-
     # blogs routes
     get 'blogs/admin_console', to: "blogs#admin_console", as: 'admin_console'
-
-    # user routes TODO: possibly in the future
-    get 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
-    # devise_for :users, :controllers => { :registrations => 'users/registrations' }
 
     # makes RESTful routes for our models
     resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages

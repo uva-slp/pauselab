@@ -17,23 +17,44 @@ class AdminsController < ApplicationController
 		@user = User.find(params[:num])
 		authorize! :read, @user
 	end
-  
+
   def new_user
-    @user = User.new    
+    @user = User.new
+		authorize! :create, @user
   end
 
   #TODO: Fix this, currently not sending POST params from admins/create_user
   def create_user
     @user = User.new(user_params)
+		@user.update_attribute :role, params[:role].to_i	# doesn't work like other params
+		authorize! :create, @user
     if @user.save
-	    flash[:notice] = ("New user created sucessfully")
+	    flash[:notice] = (t 'admins.create_user_success')
 	    redirect_to list_users_path
     else
-	    flash[:error] = ("Missing fields")
-       render new_user_path
+	    flash[:error] = (t 'admins.create_user_fail')
+      redirect_to admin_new_user_path
     end
-  
   end
+
+	def update_user
+		@user = User.find(user_params)
+		authorize! :update, @user
+		@user.update_attribute :first_name, params[:first_name]
+		@user.update_attribute :last_name, params[:last_name]
+		@user.update_attribute :role, params[:role].to_i
+		@user.update_attribute :email, params[:email]
+		@user.update_attribute :phone, params[:phone]
+		render 'show_user'
+	end
+
+	def delete_user
+		@user = User.find(params[:num])
+		authorize! :delete, @user
+		if @user.destroy
+			redirect_to list_users_path
+		end
+	end
 
 	def change_phase
 		new_phase = params[:phase]
@@ -82,17 +103,6 @@ class AdminsController < ApplicationController
 		# }
 		# @phase = Phase.get_current
 		authorize! :edit, @current
-	end
-
-	def change_role
-		@user = User.find(params[:user])
-		authorize! :update, @user
-    @user.update_attribute :first_name, params[:first_name]
-	  @user.update_attribute :last_name, params[:last_name]
-    @user.update_attribute :role, params[:role].to_i
-    @user.update_attribute :email, params[:email]
-		@user.update_attribute :phone, params[:phone]
-		render 'show_user'
 	end
 
 	def export_data
@@ -157,7 +167,9 @@ class AdminsController < ApplicationController
 	    	:last_name,
 	    	:email,
         :password,
-	    	:phone
+				:password_confirmation,
+	    	:phone,
+				:role
 	    	)
 	  end
 

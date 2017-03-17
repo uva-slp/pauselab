@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="myModalLabel"><%= t 'admins.edit_user' %></h4>
       </div>
       <!-- url: show_user_path, method: :post, wrapper: :inline_form, html: {class: 'role_form form-inline'} -->
-      <%= simple_form_for :change_role do |f| %>
+      <%= simple_form_for @user, url: update_user_path do |f| %>
         <div class="modal-body">
           <%= f.input :user, :as => :hidden, :input_html => { value: @user.id, name: 'user' } %>
           <%= f.input :role, label: (t 'common.user_role'), as: :select, collection: User.roles, selected: User.roles[@user.role], input_html: { name: 'role' }  %>
