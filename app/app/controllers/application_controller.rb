@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     stored_location_for(resource) ||
     if resource.is_a?(User) && resource.admin?
-      list_users_url
+      admin_users_url
     elsif (resource.is_a?(User) && resource.artist?) || (resource.is_a?(User) && resource.super_artist?)
       artist_home_url
     elsif  resource.is_a?(User) && resource.steerer?

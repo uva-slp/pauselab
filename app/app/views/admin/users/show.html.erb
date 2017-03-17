@@ -1,0 +1,64 @@
+
+<style media="screen">
+  .hidden {
+    display: none;
+  }
+</style>
+
+<%= render :layout => 'admin/dashboard', :locals => {position: 'users' } do %>
+
+  <%= render 'edit_user' %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 user-info center-block col-centered jumbotron">
+        <%= image_tag Faker::Avatar.image, class: 'avatar-img img-fluid' %>
+        <br>
+        <br>
+        <h2 class="display-4"><%= @user.fullname %></h2>
+        <div class="lead"><strong><%= t 'common.user_role' %>&nbsp;&nbsp;</strong><%= @user.role %></div>
+
+        <hr class="my-1">
+
+        <div>
+          <a class="remove-link-style" target="_top" href="mailto:<%= @user.email %>">
+            <i class="fa fa-envelope"></i>
+          </a>&nbsp;<%= @user.email%>
+        </div>
+
+        <div>
+          <a class="remove-link-style" target="_top" href="mailto:<%= @user.phone %>">
+            <i class="fa fa-phone"></i>
+          </a>&nbsp;<%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
+        </div>
+
+        <!-- <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
+        <div><strong><%= t 'common.user_phone' %>&nbsp;&nbsp;</strong><%= number_to_phone @user.phone, area_code: true, delimiter: " " %></div> -->
+
+        <div>
+          <strong><%= t 'admins.last_signed_in' %></strong>&nbsp;
+          <% if @user.last_sign_in_at.nil? %>
+            <%= t 'admins.never_signed_in' %>
+          <% else %>
+            <%= time_ago_in_words @user.last_sign_in_at %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="pull-right">
+    <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
+      <i class="fa fa-pencil-square-o"></i>
+    </button>
+    <%= link_to admin_user_path(@user), method: :delete, class: "btn btn-sm btn-danger", title: (t 'admins.deactivate_user'),
+      data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+  </div>
+
+
+<% end %>

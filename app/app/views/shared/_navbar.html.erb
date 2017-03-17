@@ -30,7 +30,7 @@
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.admin' %></a>
             <div class="dropdown-menu">
             <% if can? :manage, User %>
-              <%= link_to (t 'shared.admin_console'), list_users_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.admin_console'), admin_users_path, class: 'dropdown-item' %>
             <% end %>
             <div class="dropdown-divider"></div>
             <% if can? :manage, Category %>

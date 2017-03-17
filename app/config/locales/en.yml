@@ -63,6 +63,10 @@ en:
     create_user: Create User
     create_user_success: New user created successfully.
     create_user_fail: Failed to create new user.
+    update_user_success: User profile updated successfully.
+    update_user_fail: User profile failed to update.
+    remove_user_success: Removed user successfully. All associated data (e.g. proposals) was removed as well.
+    remove_user_fail: Failed to remove user.
     edit_user: Edit User
     update_user: Update User
     manage: Manage
