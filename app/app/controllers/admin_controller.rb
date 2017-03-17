@@ -1,59 +1,10 @@
-class AdminsController < ApplicationController
+class AdminController < ApplicationController
 
 	load_and_authorize_resource :class => false
 	# layout :no_container
 
 	def index
 		# render :layout => 'no_container'
-	end
-
-	def index_users
-		@users = User.all.paginate :page => params[:page], :per_page => 25
-		authorize! :read, @users
-		index_respond @users, :users
-	end
-
-	def show_user
-		@user = User.find(params[:num])
-		authorize! :read, @user
-	end
-
-  def new_user
-    @user = User.new
-		authorize! :create, @user
-  end
-
-  #TODO: Fix this, currently not sending POST params from admins/create_user
-  def create_user
-    @user = User.new(user_params)
-		@user.update_attribute :role, params[:role].to_i	# doesn't work like other params
-		authorize! :create, @user
-    if @user.save
-	    flash[:notice] = (t 'admins.create_user_success')
-	    redirect_to list_users_path
-    else
-	    flash[:error] = (t 'admins.create_user_fail')
-      redirect_to admin_new_user_path
-    end
-  end
-
-	def update_user
-		@user = User.find(user_params)
-		authorize! :update, @user
-		@user.update_attribute :first_name, params[:first_name]
-		@user.update_attribute :last_name, params[:last_name]
-		@user.update_attribute :role, params[:role].to_i
-		@user.update_attribute :email, params[:email]
-		@user.update_attribute :phone, params[:phone]
-		render 'show_user'
-	end
-
-	def delete_user
-		@user = User.find(params[:num])
-		authorize! :delete, @user
-		if @user.destroy
-			redirect_to list_users_path
-		end
 	end
 
 	def change_phase
@@ -159,18 +110,5 @@ class AdminsController < ApplicationController
 		end
 
 	end
-
-	private
-	  def user_params
-	    params.require(:user).permit(
-	    	:first_name,
-	    	:last_name,
-	    	:email,
-        :password,
-				:password_confirmation,
-	    	:phone,
-				:role
-	    	)
-	  end
 
 end

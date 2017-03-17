@@ -57,7 +57,7 @@ describe LandingpagesController, type: :controller do
   describe "GET #edit" do
     it "renders a edit template for @landingpage" do
       lp = create :landingpage
-      get :edit, id: lp.id
+      get :edit, params: { id: lp.id }
       expect(response).to render_template(:edit)
     end
   end

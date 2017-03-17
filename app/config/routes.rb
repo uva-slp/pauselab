@@ -14,14 +14,17 @@ Rails.application.routes.draw do
     get '/ideas/like/:id' => "ideas#like", as: 'idea_like'
     post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
-    # admins routes
-    get '/admin/edit_phase', to: 'admins#edit_phase'
-    put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
-    get '/admin/manage_data', to: 'admins#manage_data'
-    get '/admin/next_phase', to: 'admins#next_phase'
-    get '/admin/end_phase', to: 'admins#end_phase'
-    get '/admin/export_zip/:num', to: 'admins#export_zip', as: 'export_zip'
-    get '/admin/export_iterations', to: 'admins#export_iterations'
+    # admin routes
+    # NOTE admin routes and controller actions are singular for consistency
+    #  however, it differs with the other RESTful controllers so don't get confused
+    get '/admin', to: 'admin#index', as: 'admin_overview'
+    get '/admin/edit_phase', to: 'admin#edit_phase'
+    put '/admin/edit_phase', to: 'admin#change_phase', as: 'change_phase'
+    get '/admin/manage_data', to: 'admin#manage_data'
+    get '/admin/next_phase', to: 'admin#next_phase'
+    get '/admin/end_phase', to: 'admin#end_phase'
+    get '/admin/export_zip/:num', to: 'admin#export_zip', as: 'export_zip'
+    get '/admin/export_iterations', to: 'admin#export_iterations'
 
     # proposal routes
     get '/proposal_collection', to: 'ideas#proposal_collection'
