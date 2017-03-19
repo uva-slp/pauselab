@@ -21,8 +21,8 @@ class AdminController < ApplicationController
                     @emails_users.each do |eu|
                         @to.push(eu[0])
                     end
-                    @subj = "Pauselab - Voting Period Now Open"
-                    @body = "Dear Pauselab users, the voting period for proposal submissions is now open!"
+                    @subj = "PauseLab - Voting Period Now Open"
+                    @body = "Dear PauseLab users, the voting period for proposal submissions is now open!"
                     SlpMailer.email_custom_text(@to, @subj, @body).deliver
                 end
 		render 'edit_phase'

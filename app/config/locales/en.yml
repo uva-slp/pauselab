@@ -131,7 +131,7 @@ en:
     creating_landingpage: Creating Landing Page Post
     save_success: Your post was saved.
   layout:
-    site_title: Pauselab
+    site_title: PauseLab
   mass_emails:
     select_groups_message: "Please select one or more mailing groups."
     administrators: Administrators
@@ -153,7 +153,7 @@ en:
     save_success: Your mass email was sent.
     save_error: There was an error in sending the email.
   pages:
-    no_post: Pauselab has not created a post yet.
+    no_post: PauseLab has not created a post yet.
     idea_collection: Idea Collection
     submit_idea: Submit an Idea
     create_about: Create About

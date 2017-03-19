@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.save
     @to = resource.email
     @name = resource.first_name
-    SlpMailer.email_custom_text(@to, "Welcome to Pauselab " + @name, "Welcome to Pauselab " + @name + ". Your account was successfully created.").deliver
+    SlpMailer.email_custom_text(@to, "Welcome to PauseLab " + @name, "Welcome to PauseLab " + @name + ". Your account was successfully created.").deliver
   end
 
   private
