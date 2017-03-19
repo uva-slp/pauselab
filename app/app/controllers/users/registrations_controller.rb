@@ -6,6 +6,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # at this point the resource is created, but now we change role to artist
     resource.role = User.roles[:artist]
     resource.save
+    @to = resource.email
+    @name = resource.first_name
+    SlpMailer.email_custom_text(@to, "Welcome to Pauselab " + @name, "Welcome to Pauselab " + @name + ". Your account was successfully created.").deliver
   end
 
   private

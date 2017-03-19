@@ -14,6 +14,17 @@ class AdminController < ApplicationController
 		@current.status = new_phase.to_i
 		authorize! :update, @current
 		@current.save
+                if @current.status == "voting"
+                    @to = Array.new
+                    #Get an array of all users, then add desired groups to email list
+                    @emails_users = User.pluck(:email, :role)
+                    @emails_users.each do |eu|
+                        @to.push(eu[0])
+                    end
+                    @subj = "Pauselab - Voting Period Now Open"
+                    @body = "Dear Pauselab users, the voting period for proposal submissions is now open!"
+                    SlpMailer.email_custom_text(@to, @subj, @body).deliver
+                end
 		render 'edit_phase'
 	end
 
