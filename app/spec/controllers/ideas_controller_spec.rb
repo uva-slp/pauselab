@@ -102,7 +102,7 @@ describe IdeasController, type: :controller do
       put :update, params: {id: i, idea: {:address => '1 Main St'}}
       i.reload
       expect(i.address).to eq '1 Main St'
-    end 
+    end
     it "responds with redirect" do
       i = create :idea
       put :update, params: {id: i, idea: {:description => 'Hello, World!'}}
@@ -149,7 +149,7 @@ describe IdeasController, type: :controller do
       i = create :idea
       get :like, params: {id: i.id}, xhr: true
       expect(cookies[:likes]).to eq "[12,#{i.id}]"
-    end		     
+    end
   end
 
   describe "when unliking an idea" do
@@ -166,6 +166,6 @@ describe IdeasController, type: :controller do
       get :like, params: {id: i.id}, xhr: true
       expect(cookies[:likes]).to eq "[]"
     end
-  end		    
+  end
 
 end

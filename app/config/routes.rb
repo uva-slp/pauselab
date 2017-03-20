@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :proposals do
       resources :proposal_comments
     end
+
     namespace :admin do
       resources :users
     end
