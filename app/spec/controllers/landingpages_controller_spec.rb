@@ -24,6 +24,26 @@ describe LandingpagesController, type: :controller do
       put :update, params: {id: lp, landingpage: {:description => 'Hello, World!'}}
       expect(response).to be_redirect
     end
+    it "for Homepage it redirects to correct place" do
+      lp = create :landingpage
+      put :update, params: {id: lp, landingpage: {:title => 'Home'}}
+      expect(response).to redirect_to(root_path)
+    end
+    it "for Artist Homepage it redirects to correct place" do
+      lp = create :landingpage
+      put :update, params: {id: lp, landingpage: {:title => 'Artist Home'}}
+      expect(response).to redirect_to(artist_home_url)
+    end
+    it "for steering Homepage it redirects to correct place" do
+      lp = create :landingpage
+      put :update, params: {id: lp, landingpage: {:title => 'Steering Committee Home'}}
+      expect(response).to redirect_to(steering_home_url)
+    end
+    it "for About Us it redirects to correct place" do
+      lp = create :landingpage
+      put :update, params: {id: lp, landingpage: {:title => 'About Us'}}
+      expect(response).to redirect_to(about_url)
+    end
   end
 
   describe "when creating a landing page post" do
