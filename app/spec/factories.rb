@@ -34,6 +34,10 @@ FactoryGirl.define do
     name {Faker::Space.star}
   end
 
+  factory :invalid_category, parent: :category do |f|
+  f.name nil
+end
+
   factory :idea do
     association :iteration
     association :category
@@ -110,6 +114,10 @@ FactoryGirl.define do
     body {Faker::Hipster.sentence}
   end
 
+ factory :invalid_proposal_comment, parent: :proposal_comment do |f|
+  f.body nil
+end
+
   factory :blog do
     association :iteration
     association :user
@@ -117,6 +125,10 @@ FactoryGirl.define do
     body {Faker::Hipster.paragraph}
     created_at { Faker::Date.between(6.month.ago, Date.today) }
   end
+
+  factory :invalid_blog, parent: :blog do |f|
+  f.title nil
+end
 
   factory :vote do
     association :iteration

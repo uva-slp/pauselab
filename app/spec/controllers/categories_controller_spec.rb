@@ -39,6 +39,12 @@ describe CategoriesController, :type => :controller do
         post :create, params: {category: c.attributes}
       }.to_not change { Category.count }
     end
+    it "gives an error when a required field isn't present" do
+      user = sign_in (create :admin)
+      c = build :invalid_category
+      post :create, params: {category: c.attributes}
+      response.should render_template(:new)
+    end
   end
 
   describe "when updating a category" do
@@ -60,6 +66,13 @@ describe CategoriesController, :type => :controller do
       c.reload
       expect(c.name).to_not eq 'else'
     end
+    it "should render the edit screen again if the model doesn't save" do
+      user = sign_in (create :admin)
+      c = create :category
+      put :update, params: {id: c, category: {:name=> nil}}
+      response.should render_template :edit
+  end
+
   end
 
 

@@ -43,6 +43,11 @@ describe BlogsController, type: :controller do
       post :create, params: {blog: blog.attributes}
       expect(response).to be_redirect
     end
+    it "it reloads template if blog does not save" do
+      b = build :invalid_blog
+      post :create, params: {blog: b.attributes}
+      response.should render_template(:new)
+    end
     it "does not work for non-superartist" do
       user = sign_in (create :steerer)
       blog = build :blog
@@ -97,6 +102,12 @@ describe BlogsController, type: :controller do
       blog.reload
       expect(blog.title).to_not eq 'Hello, World!'
     end
+    it "should render the edit screen again if the model doesn't save" do
+      user = sign_in (create :admin)
+      b = create :blog
+      put :update, params: {id: b, blog: {:title=> nil}}
+      response.should render_template :edit
+  end
   end
 
   describe "when deleting a blog" do
@@ -127,4 +138,12 @@ describe BlogsController, type: :controller do
       }.to_not change {Blog.count}
     end
   end
+
+  describe "GET #edit" do
+  it "renders a edit template for @blog" do
+    blog = create :blog
+    get :edit, id: blog.id
+    expect(response).to render_template(:edit)
+  end
+end
 end
