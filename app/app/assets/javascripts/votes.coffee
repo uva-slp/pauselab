@@ -1,6 +1,10 @@
 
 class @Vote
 
+  @initialize: ->
+    $ ->
+      Vote.addCheckListener()
+
   @addProposal: (title) ->
     $('.selected-proposals').append '<span class="btn btn-primary">' + title + '</span> &nbsp;'
     return
@@ -45,10 +49,8 @@ class @Vote
     return
 
   @addCheckListener: ->
-    $(':checkbox').click (e) ->
+    $(':checkbox').on 'click', ->
       Vote.checkCallback this
       return
 
-$ ->
-  Vote.addCheckListener()
-
+Vote.initialize()

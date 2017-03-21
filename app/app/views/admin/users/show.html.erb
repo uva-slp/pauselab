@@ -5,7 +5,7 @@
   }
 </style>
 
-<%= render :layout => 'dashboard', :locals => {position: 'users' } do %>
+<%= render :layout => 'admin/dashboard', :locals => {position: 'users' } do %>
 
   <%= render 'edit_user' %>
 
@@ -54,7 +54,7 @@
     <button type="button" class='btn btn-sm btn-primary' data-toggle="modal" data-target="#change_role_form">
       <i class="fa fa-pencil-square-o"></i>
     </button>
-    <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", title: (t 'admins.deactivate_user'),
+    <%= link_to admin_user_path(@user), method: :delete, class: "btn btn-sm btn-danger", title: (t 'admins.deactivate_user'),
       data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
       <i class="fa fa-trash"></i>
     <% end %>

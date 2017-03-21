@@ -29,7 +29,7 @@ es:
     update_user: Actualiza el usario
     manage: Administrar
   layout:
-    site_title: Pauselab
+    site_title: PauseLab
   pages: 
     recent_blogs: Los blogs recientes
     idea_collection: Colección de las ideas

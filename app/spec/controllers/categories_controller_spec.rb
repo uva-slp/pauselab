@@ -101,13 +101,13 @@ describe CategoriesController, :type => :controller do
   describe "GET #show" do
   it "assigns the requested category to @ccategory" do
     category = create :category
-    get :show, id: category.id
+    get :show, params: { id: category.id }
     expect(assigns(:category)).to eq(category)
   end
 
   it "renders the #show view" do
     category = create :category
-    get :show, id: category.id
+    get :show, params: { id: category.id }
     expect(response).to render_template(:show)
   end
 end
@@ -122,7 +122,7 @@ end
 describe "GET #edit" do
   it "renders a edit template for @category" do
     category = create :category
-    get :edit, id: category.id
+    get :edit, params: { id: category.id }
     expect(response).to render_template(:edit)
   end
 end

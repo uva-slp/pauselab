@@ -1,4 +1,4 @@
-class AdminsController < ApplicationController
+class AdminController < ApplicationController
 
 	load_and_authorize_resource :class => false
 	# layout :no_container
@@ -7,34 +7,6 @@ class AdminsController < ApplicationController
 		# render :layout => 'no_container'
 	end
 
-	def index_users
-		@users = User.all.paginate :page => params[:page], :per_page => 25
-		authorize! :read, @users
-		index_respond @users, :users
-	end
-
-	def show_user
-		@user = User.find(params[:num])
-		authorize! :read, @user
-	end
-  
-  def new_user
-    @user = User.new    
-  end
-
-  #TODO: Fix this, currently not sending POST params from admins/create_user
-  def create_user
-    @user = User.new(user_params)
-    if @user.save
-	    flash[:notice] = ("New user created sucessfully")
-	    redirect_to list_users_path
-    else
-	    flash[:error] = ("Missing fields")
-       render new_user_path
-    end
-  
-  end
-
 	def change_phase
 		new_phase = params[:phase]
 		@current = Iteration.get_current
@@ -42,6 +14,17 @@ class AdminsController < ApplicationController
 		@current.status = new_phase.to_i
 		authorize! :update, @current
 		@current.save
+                if @current.status == "voting"
+                    @to = Array.new
+                    #Get an array of all users, then add desired groups to email list
+                    @emails_users = User.pluck(:email, :role)
+                    @emails_users.each do |eu|
+                        @to.push(eu[0])
+                    end
+                    @subj = "PauseLab - Voting Period Now Open"
+                    @body = "Dear PauseLab users, the voting period for proposal submissions is now open!"
+                    SlpMailer.email_custom_text(@to, @subj, @body).deliver
+                end
 		render 'edit_phase'
 	end
 
@@ -82,17 +65,6 @@ class AdminsController < ApplicationController
 		# }
 		# @phase = Phase.get_current
 		authorize! :edit, @current
-	end
-
-	def change_role
-		@user = User.find(params[:user])
-		authorize! :update, @user
-    @user.update_attribute :first_name, params[:first_name]
-	  @user.update_attribute :last_name, params[:last_name]
-    @user.update_attribute :role, params[:role].to_i
-    @user.update_attribute :email, params[:email]
-		@user.update_attribute :phone, params[:phone]
-		render 'show_user'
 	end
 
 	def export_data
@@ -149,16 +121,5 @@ class AdminsController < ApplicationController
 		end
 
 	end
-
-	private
-	  def user_params
-	    params.require(:user).permit(
-	    	:first_name,
-	    	:last_name,
-	    	:email,
-        :password,
-	    	:phone
-	    	)
-	  end
 
 end

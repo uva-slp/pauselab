@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # wrap routes within locale scope so it appears at top part of url
   mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
 
+  # wrap routes within locale scope so it appears at top part of url
   scope "(:locale)", locale: /en|es/ do
-    devise_for :users
+    devise_for :users, controllers: { registrations: "users/registrations" }
 
     # this will change depending on the current phase of the process
     root 'pages#go_home'
@@ -14,20 +14,17 @@ Rails.application.routes.draw do
     get '/ideas/like/:id' => "ideas#like", as: 'idea_like'
     post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
-    # admins routes
-    get '/admin', to: 'admins#index', as: 'admin_overview'
-    get '/admin/users/create_user', to: 'admins#new_user', as: 'admin_new_user'
-    post '/admin/users/create_user', to: 'admins#create_user', as: 'admin_create_user'
-    get '/admin/users', to: 'admins#index_users', as: 'list_users'
-    get '/admin/user/:num', to: 'admins#show_user', as: 'show_user' # :id did not work for some reason
-    post '/admin/user/:num', to: 'admins#change_role', as: 'change_role'
-    get '/admin/edit_phase', to: 'admins#edit_phase'
-    put '/admin/edit_phase', to: 'admins#change_phase', as: 'change_phase'
-    get '/admin/manage_data', to: 'admins#manage_data'
-    get '/admin/next_phase', to: 'admins#next_phase'
-    get '/admin/end_phase', to: 'admins#end_phase'
-    get '/admin/export_zip/:num', to: 'admins#export_zip', as: 'export_zip'
-    get '/admin/export_iterations', to: 'admins#export_iterations'
+    # admin routes
+    # NOTE admin routes and controller actions are singular for consistency
+    #  however, it differs with the other RESTful controllers so don't get confused
+    get '/admin', to: 'admin#index', as: 'admin_overview'
+    get '/admin/edit_phase', to: 'admin#edit_phase'
+    put '/admin/edit_phase', to: 'admin#change_phase', as: 'change_phase'
+    get '/admin/manage_data', to: 'admin#manage_data'
+    get '/admin/next_phase', to: 'admin#next_phase'
+    get '/admin/end_phase', to: 'admin#end_phase'
+    get '/admin/export_zip/:num', to: 'admin#export_zip', as: 'export_zip'
+    get '/admin/export_iterations', to: 'admin#export_iterations'
 
     # proposal routes
     get '/proposal_collection', to: 'ideas#proposal_collection'
@@ -44,18 +41,16 @@ Rails.application.routes.draw do
     get '/pages/ideas_json', to: 'pages#get_ideas', as: 'ideas_json'
     get '/pages/categories_json', to: 'pages#get_categories', as: 'categories_json'
 
-
     # blogs routes
     get 'blogs/admin_console', to: "blogs#admin_console", as: 'admin_console'
-
-    # user routes TODO: possibly in the future
-    get 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
-    # devise_for :users, :controllers => { :registrations => 'users/registrations' }
 
     # makes RESTful routes for our models
     resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages
     resources :proposals do
       resources :proposal_comments
+    end
+    namespace :admin do
+      resources :users
     end
 
   end
