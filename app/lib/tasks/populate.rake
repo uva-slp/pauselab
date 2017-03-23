@@ -1,3 +1,5 @@
+unless Rails.env.production?  # do not load in production, as task not needed
+
 require 'factory_girl'
 
 namespace :populate do
@@ -86,5 +88,7 @@ namespace :populate do
     Proposal.destroy_all
     Blog.destroy_all
   end
+
+end
 
 end
