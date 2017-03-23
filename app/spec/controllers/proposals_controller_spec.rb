@@ -53,7 +53,7 @@ describe ProposalsController, type: :controller do
       it "gives an error when a required field isn't present" do
         proposal = build :invalid_proposal
         post :create, params: {proposal: proposal.attributes}
-        response.should render_template(:new)
+        expect(response).to render_template(:new)
       end
       it "does not work if user is resident" do
         user = sign_in (create :resident)
@@ -147,7 +147,7 @@ describe ProposalsController, type: :controller do
               it "should render the edit screen again if the model doesn't save" do
                 proposal = create :proposal
                 put :update, params: {id: proposal, proposal: {:title=> nil}}
-                response.should render_template :edit
+                expect(response).to render_template(:edit)
               end
             end
 

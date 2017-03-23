@@ -47,7 +47,7 @@ describe VotesController, type: :controller do
     #it "gives an error when a required field isn't present" do
     #  vote = build :invalid_vote
     #  post :create, params: {vote: vote.attributes}
-    #  response.should render_template(:new)
+    #  expect(response).to render_template(:new)
     #end
   end
 end
