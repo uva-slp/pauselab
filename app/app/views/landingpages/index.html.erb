@@ -1,0 +1,24 @@
+<% if can? :create, Landingpage %>
+  <%= link_to (t 'landingpages.create_new'), new_landingpage_path, class: 'btn btn-primary pull-right clearfix' %>
+<% end %>
+
+<h2 class="pull-left"><%= t 'landingpages.landingpages' %></h2>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t 'landingpages.title' %></th>
+        <th><%= t 'landingpages.description' %></th>
+        <th colspan="1"><%= t 'common.actions' %></th>
+      </tr>
+    </thead>
+    <% @landingpages.each do |landingpage| %>
+      <tr>
+        <td><%= landingpage.title %></td>
+        <td><%= truncate(landingpage.description) %></td>
+        <td><%= link_to (t 'common.edit'), edit_landingpage_path(landingpage) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

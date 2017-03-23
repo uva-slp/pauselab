@@ -1,12 +1,3 @@
-<div>
-  <%= link_to user_edit_path do %>
-    <button class='btn btn-sm btn-primary'><i class="fa fa-pencil-square-o"></i></button>
-  <% end %>  
-  <%= link_to root_path, method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message') } do %>
-    <i class="fa fa-trash"></i>
-  <% end %>
-</div>
-
 <h2 class="sub-header"><%= @user.fullname %></h2>
 
 <div class="row">
@@ -36,13 +27,13 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-3">
-    <strong><%= t 'admins.last_signed_in' %></strong>
-  </div>
-  <div class="col-md-4">
-    <%= time_ago_in_words @user.last_sign_in_at %>
-  </div>
-</div>
-
 <br>
+
+<div>
+  <%= link_to edit_user_registration_path, title: (t 'common.edit'), data: {toggle: 'tooltip'} do %>
+    <button class='btn btn-sm btn-primary'><i class="fa fa-pencil-square-o"></i></button>
+  <% end %>
+  <%= link_to user_registration_path, title: (t 'pages.delete_account'), method: :delete, data: { confirm: (t 'pages.delete_confirm_message'), toggle: 'tooltip' } do %>
+    <button class='btn btn-sm btn-danger'><i class="fa fa-trash"></i></button>
+  <% end %>
+</div>
