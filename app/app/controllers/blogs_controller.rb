@@ -49,7 +49,7 @@ class BlogsController < ApplicationController
     if @blog.update blog_params
           redirect_to @blog
     else
-      render edit_blog_path
+      render "edit"
     end
   end
 
