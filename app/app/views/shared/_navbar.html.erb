@@ -24,26 +24,43 @@
 
       <ul class="nav navbar-nav float-md-right">
 
-        <%# Admin dropdown %>
-        <% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+        <%# Dropdown specific to role %>
+        <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.admin' %></a>
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+              <%= if current_user.admin? then t 'shared.admin'
+              elsif current_user.moderator? then t 'shared.moderator'
+              elsif current_user.super_artist? or current_user.artist? then t 'shared.artist'
+              elsif current_user.steerer? then t 'shared.steering'
+              elsif current_user.resident? then t 'shared.resident' end %>
+            </a>
             <div class="dropdown-menu">
             <% if can? :manage, User %>
-              <%= link_to (t 'shared.admin_console'), admin_users_path, class: 'dropdown-item' %>
+              <%= link_to (t 'shared.users_console'), admin_users_path, class: 'dropdown-item' %>
             <% end %>
-            <div class="dropdown-divider"></div>
+            <% if can? :manage, Iteration %>
+              <%= link_to (t 'shared.iteration_console'), admin_edit_phase_path, class: 'dropdown-item' %>
+            <% end %>
             <% if can? :manage, Category %>
-              <%= link_to (t 'shared.create_category'), new_category_path, class: 'dropdown-item' %>
               <%= link_to (t 'shared.categories_console'), categories_path, class: 'dropdown-item' %>
             <% end %>
-            <div class="dropdown-divider"></div>
             <% if can? :manage, MassEmail %>
-              <%= link_to (t 'shared.create_mass_email'), new_mass_email_path, class: 'dropdown-item' %>
               <%= link_to (t 'shared.mass_emails_console'), mass_emails_path, class: 'dropdown-item' %>
             <% end %>
+            <% if can? :manage, Landingpage %>
+              <%= link_to (t 'shared.landingpages_console'), landingpages_path, class: 'dropdown-item' %>
+            <% end %>
+            <% if can? :manage, Vote %>
+              <%= link_to (t 'shared.votes_console'), votes_path, class: 'dropdown-item' %>
+            <% end %>
             <div class="dropdown-divider"></div>
-            <%= link_to (t 'shared.votes_console'), votes_path, class: 'dropdown-item' %>
+            <% if current_user.steerer? %>
+              <%= link_to (t 'shared.steering_home'), steering_home_path, class: 'dropdown-item' %>
+            <% end %>
+            <% if current_user.artist? or current_user.super_artist? %>
+              <%= link_to (t 'shared.artist_home'), artist_home_path, class: 'dropdown-item' %>
+            <% end %>
+            <%= link_to (t 'shared.manage_profile'), user_info_path, class: 'dropdown-item' %>
           </div>
           </li>
         <% end %>
@@ -53,24 +70,16 @@
         <% end %>
 
         <%# Proposals menu %>
-
         <% if can? :read, Proposal %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.proposals' %></a>
             <div class="dropdown-menu">
-              <% if can? :read, Proposal %>
-                <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
-              <% end %>
               <% if can? :create, Proposal %>
                 <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
               <% end %>
-          <% if can? :create, Proposal %>
-              <%= link_to (t 'shared.artist_home'), artist_home_url, class: 'dropdown-item' %>
+              <% if can? :read, Proposal %>
+                <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
               <% end %>
-
-              <!-- <% if can? :read, Idea %>
-                <%= link_to 'Calling artists', proposal_collection_path, class: 'dropdown-item' %>
-              <% end %> -->
             </div>
           </li>
         <% end %>
@@ -84,11 +93,10 @@
                 <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
               <% end %>
               <% if can? :read, Idea %>
-                <div class="dropdown-divider"></div>
-                <% if user_signed_in? && !current_user.artist? %>
+                <% if user_has_admin_access %>
                   <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
                 <% else %>
-                  <%= link_to (t 'shared.ideas'),  proposal_collection_path, class: 'dropdown-item' %>
+                  <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>
                 <% end %>
               <% end %>
             </div>

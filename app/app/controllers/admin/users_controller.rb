@@ -29,11 +29,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     # very difficult to do normal update due to "Blank password" issue
-    # instead we update the parameters individually
-    success = true
-    user_params.each do |k, v|
-      success = success && (@user.update_attribute k, v)
-    end
+    # instead we validate and update the parameters individually
+    success = @user.update_attributes_manual user_params
     if success
 	    flash[:notice] = (t 'admins.update_user_success')
 	    redirect_to admin_users_path

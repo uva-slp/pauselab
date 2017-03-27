@@ -46,7 +46,7 @@ describe BlogsController, type: :controller do
     it "it reloads template if blog does not save" do
       b = build :invalid_blog
       post :create, params: {blog: b.attributes}
-      response.should render_template(:new)
+      expect(response).to render_template(:new)
     end
     it "does not work for non-superartist" do
       user = sign_in (create :steerer)
@@ -106,7 +106,7 @@ describe BlogsController, type: :controller do
       user = sign_in (create :admin)
       b = create :blog
       put :update, params: {id: b, blog: {:title=> nil}}
-      response.should render_template :edit
+      expect(response).to render_template(:edit)
   end
   end
 
@@ -142,7 +142,7 @@ describe BlogsController, type: :controller do
   describe "GET #edit" do
   it "renders a edit template for @blog" do
     blog = create :blog
-    get :edit, id: blog.id
+    get :edit, params: {id: blog.id}
     expect(response).to render_template(:edit)
   end
 end

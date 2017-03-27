@@ -111,7 +111,7 @@ describe IdeasController, type: :controller do
         it "should render the edit screen again if the model doesn't save" do
           idea = create :idea
           put :update, params: {id: idea, idea: {:description=> nil}}
-          response.should render_template :edit
+          expect(response).to render_template(:edit)
         end
     # TODO: validation checks
   end
@@ -138,7 +138,7 @@ describe IdeasController, type: :controller do
       it "if unable to save it rerenders 'new'" do
         idea = build :bad_idea
         post :create, params: {idea: idea.attributes}
-        response.should render_template :new
+        expect(response).to render_template(:new)
       end
     end
 
@@ -176,7 +176,7 @@ describe IdeasController, type: :controller do
             get :like, params: {id: i.id}, xhr: true
             expect(cookies[:likes]).to eq "[]"
           end
-        end		
+        end
 
         describe "GET #edit" do
           it "renders a edit template for ideas" do
@@ -184,7 +184,7 @@ describe IdeasController, type: :controller do
             get :edit, params: { id: idea.id }
             expect(response).to render_template(:edit)
           end
-        end    
+        end
 
         describe "GET #show" do
           it "renders the #show view" do

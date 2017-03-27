@@ -43,7 +43,7 @@ describe CategoriesController, :type => :controller do
       user = sign_in (create :admin)
       c = build :invalid_category
       post :create, params: {category: c.attributes}
-      response.should render_template(:new)
+      expect(response).to render_template(:new)
     end
   end
 
@@ -70,7 +70,7 @@ describe CategoriesController, :type => :controller do
       user = sign_in (create :admin)
       c = create :category
       put :update, params: {id: c, category: {:name=> nil}}
-      response.should render_template :edit
+      expect(response).to render_template :edit
   end
 
   end

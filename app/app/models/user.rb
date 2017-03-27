@@ -11,7 +11,8 @@ class User < ApplicationRecord
 		:default_url => "/images/:style/missing.png"
 	validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-	validates :first_name, :last_name, :email, :password, presence: true
+	validates :first_name, :last_name, :email, presence: true
+	validates :password, presence: true, :if => :password_required?
 	validates :email, uniqueness: true
 
   has_many :proposals, dependent: :destroy
@@ -29,11 +30,45 @@ class User < ApplicationRecord
 		self.role ||= :resident
 	end
 
+	def fullname
+    "#{first_name} #{last_name}"
+  end
+
 	def self.to_csv
 		self.gen_csv %w{id created_at fullname email phone role}
 	end
 
-  def fullname
-    "#{first_name} #{last_name}"
-  end
+	# taken from http://stackoverflow.com/a/7156008
+	def self.valid_attribute?(attr, value)
+	  mock = self.new(attr => value)
+	  if mock.valid?
+			puts 'no errors'
+	    true
+	  else
+			# for some reason has_key fails, so loop manually
+			mock.errors.keys.each do |e|
+				if e.to_s == attr.to_s
+					return false
+				end
+			end
+			true
+	  end
+	end
+
+	def update_attributes_manual(attrs)
+		success = true
+		attrs.each do |k, v|
+			if k.to_s == 'email' && v.to_s == self.email
+				next	# otherwise email fails uniqueness check
+			end
+			success = success && (User.valid_attribute? k, v)
+		end
+		if success
+			attrs.each do |k, v|
+				success = success && (self.update_attribute k, v)
+			end
+		end
+		success
+	end
+
 end
