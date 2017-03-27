@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
     if @category.update category_params
       redirect_to @category
     else
-      render edit_category_path @category
+      render 'edit'
     end
   end
 

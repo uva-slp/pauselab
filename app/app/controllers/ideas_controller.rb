@@ -57,7 +57,6 @@ class IdeasController < ApplicationController
 			flash[:notice] = (t 'ideas.save_success')
 			redirect_to ideas_path
 		else
-      puts @idea.errors.full_messages.to_yaml
 			render 'new'
 		end
 	end

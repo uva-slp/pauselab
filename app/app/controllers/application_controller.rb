@@ -36,12 +36,12 @@ class ApplicationController < ActionController::Base
     stored_location_for(resource) ||
     if resource.is_a?(User) && resource.admin?
       admin_users_url
+    elsif resource.is_a?(User) && resource.moderator?
+      admin_edit_phase_url
     elsif (resource.is_a?(User) && resource.artist?) || (resource.is_a?(User) && resource.super_artist?)
       artist_home_url
     elsif  resource.is_a?(User) && resource.steerer?
       steering_home_url
-    elsif (resource.is_a?(User) && resource.super_artist?) || (resource.is_a?(User) && resource.super_artist?)
-      artist_home_url
     else
       super
     end

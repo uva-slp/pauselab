@@ -34,6 +34,10 @@ FactoryGirl.define do
     name {Faker::Space.star}
   end
 
+  factory :invalid_category, parent: :category do |f|
+  f.name nil
+end
+
   factory :idea do
     association :iteration
     association :category
@@ -50,6 +54,11 @@ FactoryGirl.define do
     description {Faker::Hipster.paragraph}
     likes {Faker::Number.number(3)}
   end
+
+
+  factory :bad_idea, parent: :idea do |f|
+  f.description nil
+end
 
   factory :user do
     email {Faker::Internet.email}
@@ -104,11 +113,20 @@ FactoryGirl.define do
 
   end
 
+
+  factory :invalid_proposal, parent: :proposal do |f|
+  f.title nil
+end
+
   factory :proposal_comment do
     association :proposal
     association :user
     body {Faker::Hipster.sentence}
   end
+
+ factory :invalid_proposal_comment, parent: :proposal_comment do |f|
+  f.body nil
+end
 
   factory :blog do
     association :iteration
@@ -118,14 +136,28 @@ FactoryGirl.define do
     created_at { Faker::Date.between(6.month.ago, Date.today) }
   end
 
+  factory :invalid_blog, parent: :blog do |f|
+  f.title nil
+end
+
   factory :vote do
     association :iteration
     proposals {create_list(:proposal, 3, iteration: iteration)}
   end
 
+  #factory :invalid_vote, parent: :vote do |f|
+  #f.proposals {}
+#end
+
   factory :landingpage do
     title {Faker::Hipster.sentence}
     description {Faker::Hipster.paragraph}
   end
+
+  factory :invaldi_lp, parent: :landingpage do |f|
+  f.title nil
+end
+
+
 
 end
