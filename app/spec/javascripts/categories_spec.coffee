@@ -4,7 +4,6 @@ describe "categories", ->
 
   beforeEach ->
     fixture.load "categories.html"
-    console.log $('body').html()
 
   afterEach ->
     fixture.cleanup()
