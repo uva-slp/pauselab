@@ -89,6 +89,12 @@ end
 
   end
 
+   factory :user_admin, parent: :user do |f|
+  f.first_name 'John'
+  f.last_name 'Smith'
+  f.role 0
+end
+
   factory :proposal do
 
     association :iteration
@@ -114,9 +120,29 @@ end
   end
 
 
+
+   factory :proposal_admin do
+
+    association :iteration
+    association :user_admin
+    description {Faker::Hipster.paragraph}
+    essay {Faker::Hipster.paragraph 10}
+    website_link {Faker::Internet.url}
+    # title {Faker::Hipster.sentence}
+    title {Faker::Hipster.word} # title has a length limit
+    created_at { Faker::Date.between(1.year.ago, Date.today) }
+
+  end
+
+
   factory :invalid_proposal, parent: :proposal do |f|
   f.title nil
 end
+
+factory :proposal_votes, parent: :proposal do |f|
+  f.votes {create_list(:vote, 3, iteration: iteration)}
+end
+
 
   factory :proposal_comment do
     association :proposal

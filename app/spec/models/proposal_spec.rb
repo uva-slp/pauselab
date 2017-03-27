@@ -22,4 +22,14 @@ RSpec.describe Proposal, type: :model do
     expect(proposal).to_not be_valid
   end
 
+  it "can retrieve its number of votes" do
+    proposal = create :proposal_votes
+    proposal.number_of_votes.should == 3
+  end
+
+  #it "can get its artist's name" do
+  #  proposal = create :proposal_admin
+  #  proposal.author_name.should = 'John Smith'
+  #end
+
 end

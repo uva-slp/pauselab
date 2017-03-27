@@ -14,7 +14,7 @@ class Proposal < ApplicationRecord
 
     validates :title, :essay, :description, presence:true
 
-    enum status: [:unchecked, :approved]
+    enum status: [:unchecked, :approved, :funded]
 
     def self.to_csv
       self.gen_csv %w{id created_at title description essay cost author_name website_link comment_history_to_s number_of_votes status}

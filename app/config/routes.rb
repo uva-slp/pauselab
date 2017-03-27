@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     # proposal routes
     get '/proposal_collection', to: 'ideas#proposal_collection'
     post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
+    post '/proposals/fund/:id', to: 'proposals#fund', as: 'proposal_fund'
 
     # static pages routes
     get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
