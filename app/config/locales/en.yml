@@ -213,6 +213,8 @@ en:
     cv: CV
     add_comment: Add Comment
     save_success: Your proposal was sent.
+    fund: Fund
+    unfund: Unfund
   shared:
     admin: Admin
     moderator: Moderator

@@ -73,14 +73,33 @@ class ProposalsController < ApplicationController
        @proposal.unchecked!
      else
        @proposal.approved!
-       @creator = User.find(@proposal.user_id)
+       @creator = @proposal.user
        @to = @creator.email
+
        SlpMailer.email_custom_text(@to, "CONGRATULATIONS " + @creator.first_name, "Congrats " + @creator.first_name + "! Your proposal was approved by PauseLab!").deliver
+
      end
      @proposal.save
     # end
     render 'show'
    end
+
+
+   def fund
+     @proposal = Proposal.find(params[:id])
+     if @proposal.funded?
+       @proposal.approved!
+     else
+       @proposal.funded!
+       @creator = @proposal.user
+       @to = @creator.email
+       SlpMailer.email_custom_text(@to, "CONGRATULATIONS " + @creator.first_name, "Congrats " + @creator.fullname + "! Your proposal was approved by PauseLab!").deliver
+     end
+     @proposal.save
+    # end
+    render 'show'
+   end
+
 
 	private
 	  def proposal_params
