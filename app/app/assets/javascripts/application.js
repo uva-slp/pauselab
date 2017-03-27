@@ -10,6 +10,7 @@
 //= require social-share-button
 //= require trumbowyg/trumbowyg
 //= require disqus_rails
+//= require data-confirm-modal
 
 //= require init
 
