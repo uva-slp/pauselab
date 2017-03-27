@@ -32,10 +32,8 @@ Rails.application.routes.draw do
 
     # static pages routes
     get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'
-    get '/about', to: 'pages#about_page', as: 'about'
     get '/user_info', to: 'pages#user_info', as: 'user_info'
-    get '/user_edit', to: 'pages#user_edit', as: 'user_edit'
-    post '/user_edit', to: 'pages#user_update', as: 'user_update'
+    get '/about', to: 'pages#about_page', as: 'about'
     get '/artist', to: 'pages#artist_home', as: 'artist_home'
     get '/steering', to: 'pages#steering_home', as: 'steering_home'
     get '/pages/ideas_json', to: 'pages#get_ideas', as: 'ideas_json'
@@ -49,6 +47,7 @@ Rails.application.routes.draw do
     resources :proposals do
       resources :proposal_comments
     end
+
     namespace :admin do
       resources :users
     end

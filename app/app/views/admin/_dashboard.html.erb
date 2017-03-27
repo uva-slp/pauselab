@@ -4,9 +4,11 @@
 <br>
 
 <ul class="nav nav-tabs">
-  <li class="nav-item">
-		<%= link_to (t 'admins.users'), admin_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
-  </li>
+  <% if can? :manage, User %>
+    <li class="nav-item">
+  		<%= link_to (t 'admins.users'), admin_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
+    </li>
+  <% end %>
   <li class="nav-item">
 		<%= link_to (t 'admins.current_iteration'), admin_edit_phase_path, :class => (position == 'current' ? 'nav-link active' : 'nav-link') %>
   </li>

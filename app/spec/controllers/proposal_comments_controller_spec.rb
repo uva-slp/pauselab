@@ -45,6 +45,13 @@ describe ProposalCommentsController, type: :controller do
         post :create, params: {proposal_id: proposal.id, proposal_comment: proposal_comment.attributes}
       }.to_not change {ProposalComment.count}
     end
+    it "flashes an error when comment isn't valid" do
+      user = sign_in(create :admin)
+      proposal = create :proposal
+      proposal_comment = build :invalid_proposal_comment, proposal: proposal
+      post :create, params: {proposal_id: proposal.id, proposal_comment: proposal_comment.attributes}
+      expect(flash[:error]).to be_present
+    end
   end
 
   describe "when updating a proposal comment" do
@@ -59,6 +66,7 @@ describe ProposalCommentsController, type: :controller do
       put :update, params: {proposal_id: @proposal.id, id: proposal_comment, proposal_comment: {:body => 'Hello, World!'}}
       expect(response).to be_redirect
     end
+
     it "does not work for residents" do
       user = sign_in (create :resident)
       proposal_comment = @proposal.proposal_comments.first
@@ -96,6 +104,11 @@ describe ProposalCommentsController, type: :controller do
         delete :destroy, params: {proposal_id: @proposal.id, id: proposal_comment.id}
       }.to_not change {ProposalComment.count}
     end
+    #it "it gives an error when unable to delete correctly" do
+    #  proposal_comment = @proposal.proposal_comments.first
+    #  allow(proposal_comment).to receive(:destroy).and_return(false)
+    #  expect(flash[:error]).to be_present
+    #end
     it "works for owner of comment" do
       steerer = create :steerer
       user = sign_in (steerer)
@@ -106,4 +119,5 @@ describe ProposalCommentsController, type: :controller do
       }.to change {ProposalComment.count}.by -1
     end
   end
+
 end

@@ -45,6 +45,7 @@ gem 'rails-i18n', '~> 5.0.0'  # internationalization
 # gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'disqus_rails'
+gem 'faker' # used for now in production to generate avatars
 
 group :development, :test do
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +54,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
-  gem 'faker'
   gem 'launchy'
   gem 'teaspoon-jasmine'
   gem 'magic_lamp'

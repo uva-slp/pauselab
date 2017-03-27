@@ -30,6 +30,7 @@ en:
     user_phone: Phone
     confirm_message: "Are you sure?"
     submit: Submit
+    update: Update
     cancel: Cancel
     created_at: Created at
     show: Show
@@ -126,7 +127,11 @@ en:
     submitted_ideas: Submitted Ideas
     save_success: Your idea was sent.
   landingpages:
-    description_placeholder: "Detail how the plan will be implemented."
+    landingpages: Landing Pages
+    create_new: Create New Landing Page
+    title: Title
+    description: Description
+    description_placeholder: "What content goes into this page?"
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
     save_success: Your post was saved.
@@ -154,6 +159,8 @@ en:
     save_error: There was an error in sending the email.
   pages:
     no_post: PauseLab has not created a post yet.
+    delete_account: Delete my account
+    delete_confirm_message: Are you sure? Deleting your account is an irreversable action.
     idea_collection: Idea Collection
     submit_idea: Submit an Idea
     create_about: Create About
@@ -208,17 +215,26 @@ en:
     save_success: Your proposal was sent.
   shared:
     admin: Admin
-    admin_console: Admin Console
+    moderator: Moderator
+    resident: Resident
+    artist: Artist
+    steering: Steering
+    users_console: Users Console
+    iteration_console: Iteration Console
     create_category: Create Category
     categories_console: Categories Console
     create_mass_email: Create Mass Email
     mass_emails_console: Mass Emails Console
+    landingpages_console: Landing Pages Console
     votes_console: Votes Console
+    steering_home: Steering Home
+    artist_home: Artist Home
     vote: Vote  # navbar header
     proposals: Proposals
     create_proposal: Create Proposal
     proposals_console: Proposals Console
     ideas: Ideas
+    view_ideas: View Ideas
     create_idea: Create Idea
     ideas_console: Ideas Console
     blog: Blog
