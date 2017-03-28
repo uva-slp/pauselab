@@ -79,7 +79,7 @@ es:
     create_new: Crear un Blog Nuevo
     editing_blog: Editar Blog
     creating_blog: Crear Blog
-    recent_blogs: Los Blogs Recientesca
+    recent_blogs: Los Blogs Recientes
     read_more: Leer más
     post_by: De
     post_published: El Blog Hace Público 
@@ -146,7 +146,7 @@ es:
     mass_emails: Correo electrónico grandes
     sent_at: Envió desde
     date_sent: El Dato del Envió
-    to: A
+    to: Para
     subject: 
     body: Body
     save_success: Your mass email was sent.
