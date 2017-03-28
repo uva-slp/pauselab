@@ -38,6 +38,14 @@ FactoryGirl.define do
   f.name nil
 end
 
+factory :category_, parent: :category do |f|
+  f.name nil
+end
+
+factory :category_Edu, parent: :category do |f|
+  f.name 'Edu'
+end
+
   factory :idea do
     association :iteration
     association :category
@@ -171,9 +179,6 @@ end
     proposals {create_list(:proposal, 3, iteration: iteration)}
   end
 
-  #factory :invalid_vote, parent: :vote do |f|
-  #f.proposals {}
-#end
 
   factory :landingpage do
     title {Faker::Hipster.sentence}

@@ -9,4 +9,9 @@ RSpec.describe Category, type: :model do
     category = build :category, :name => ''
     expect(category).to_not be_valid
   end
+
+  it "returns a string of its name" do
+  	category = create :category_Edu
+  	expect(category.to_s).to eq ('Edu')
+  end
 end

@@ -120,4 +120,5 @@ describe ProposalCommentsController, type: :controller do
     end
   end
 
+
 end

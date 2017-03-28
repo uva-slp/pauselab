@@ -59,7 +59,10 @@ RSpec.describe Idea, type: :model do
 
   it "gives the author's first and last name" do
     idea = create :idea, :first_name=>'John', :last_name=>'Smith'
-    idea.author.should == 'John Smith'
+    #idea.author.should == 'John Smith'
+    expect(idea.author).to eq 'John Smith'
   end
+
+
 
 end

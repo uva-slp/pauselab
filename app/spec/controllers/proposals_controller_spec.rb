@@ -172,4 +172,27 @@ describe ProposalsController, type: :controller do
                 expect(response).to render_template(:show)
               end
             end
+
+            describe "GET #new" do
+              it "renders the new proposal template" do
+                get :new
+                expect(response).to render_template(:new)
+              end
+            end
+
+            describe "when approving a proposal" do
+              it "finds the correct proposal" do
+                proposal = create :proposal
+                get :approve, params: { id: proposal.id }
+                expect(assigns(:proposal)).to eq(proposal)
+              end
+            end
+
+            describe "when funding a proposal" do
+              it "finds the correct proposal" do
+                proposal = create :proposal
+                get :fund, params: { id: proposal.id }
+                expect(assigns(:proposal)).to eq(proposal)
+              end
+            end
           end

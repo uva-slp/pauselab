@@ -28,6 +28,37 @@ describe IdeasController, type: :controller do
       idea2 = create_list(:idea, 3, iteration: @iteration, status: :unchecked)
       get :index
       expect(assigns(:ideas)).to match_array(idea1)
+      idea1 = create_list(:idea, 3, iteration: @iteration, status: :approved)
+    end
+    it "notices when to sorts by date" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'date'}
+      expect(controller.params[:sort]).to eql 'date'
+    end
+    it "notices when to sorts by category" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'category'}
+      expect(controller.params[:sort]).to eql 'category'
+    end
+    it "notices when to sorts by id" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'id'}
+      expect(controller.params[:sort]).to eql 'id'
+    end
+    it "notices when to sorts by last name" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'author_last_name'}
+      expect(controller.params[:sort]).to eql 'author_last_name'
+    end
+    it "notices when to sorts by first name" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'author_first_name'}
+      expect(controller.params[:sort]).to eql 'author_first_name'
+    end
+    it "notices when to sorts by likes" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'likes'}
+      expect(controller.params[:sort]).to eql 'likes'
     end
   end
 
@@ -193,4 +224,12 @@ describe IdeasController, type: :controller do
             expect(response).to render_template(:show)
           end
         end
+
+        describe "when approving an idea" do
+              it "finds the correct idea" do
+                idea = create :idea
+                get :approve, params: { id: idea.id }
+                expect(assigns(:idea)).to eq(idea)
+              end
+          end
       end
