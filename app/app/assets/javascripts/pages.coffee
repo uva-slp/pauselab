@@ -8,12 +8,17 @@ window.initMap = ->
     ideas = g.ideas   # hash of publically visible fields of each idea
     categories = g.categories # maps category_id -> icon url (empty string if not present)
 
-    pos =
+    ne =
+      lat: 38.042987
+      lng: -78.480079
+
+    sw =
       lat: 38.0293
       lng: -78.4767
+
     map = new (google.maps.Map)(document.getElementById('map'),
         zoom: 10
-        center: pos
+        center: sw
         clickableIcons: false
         mapTypeControl: false
         streetViewControl: false
@@ -32,7 +37,7 @@ window.initMap = ->
     $('#twtr-btn').click ->
       console.log 'idea'
 
-    bounds = new (google.maps.LatLngBounds)(pos)
+    bounds = new (google.maps.LatLngBounds)(ne, sw)
     infowindow = new (google.maps.InfoWindow)(
       maxWidth: 200
     )

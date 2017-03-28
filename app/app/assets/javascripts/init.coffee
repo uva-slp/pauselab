@@ -6,6 +6,7 @@ class @Init
       Init.init()
       Init.fbShare()
       Init.twtrShare()
+      Init.rowClicker()
 
   @init: ->
     $('[data-toggle="tooltip"]').tooltip()

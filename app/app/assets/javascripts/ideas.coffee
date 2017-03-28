@@ -107,7 +107,7 @@ class @Idea
     defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
 
     # TODO: this URL is not working in the pegasus server
-    $.get 'pages/categories_json', (categories) ->
+    $.get '/pages/categories_json', (categories) ->
       img =
         url: categories[cat_id] || defaultUrl
         scaledSize: new (google.maps.Size)(50, 50)
