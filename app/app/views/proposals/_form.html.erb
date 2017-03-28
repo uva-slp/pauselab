@@ -73,7 +73,7 @@
 
 
     <div class="total-cost">
-      <%= t 'proposals.total_cost' %>: $<span class="total-cost-vals">100</span>
+      <%= t 'proposals.total_cost' %>: $<span class="total-cost-vals">0</span>
     </div>
 
     <hr>
@@ -110,8 +110,12 @@ $('.budget').change(function () {
   var total = 0;
   $('.budget').each(function (index, b) {
     var val = b.value;
-    if (val.trim() !== '') {
+    if (val.trim() !== '' && parseInt(val) > 0) {
       total += parseInt(val);
+      // console.log("hello");
+    }
+    else if (val < 0) {
+      b.value = 0;
     }
   });
   $('.total-cost-vals').html(total);

@@ -206,6 +206,7 @@ es:
     cv: CV
     add_comment: Añadir Comentario
     save_success: Tu enviaste la propuesta.
+    total_cost: Coste Total
   shared:
     admin: Admin
     admin_console: Consola de Admin 

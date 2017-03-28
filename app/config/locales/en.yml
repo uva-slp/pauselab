@@ -215,6 +215,7 @@ en:
     save_success: Your proposal was sent.
     fund: Fund
     unfund: Unfund
+    total_cost: Total Cost
   shared:
     admin: Admin
     moderator: Moderator
