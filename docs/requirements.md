@@ -33,15 +33,14 @@ The system follows the lifecycle of one or more public art projects from its inc
 
 * Residents can no longer submit ideas.
 * Artists will submit proposals through a more involved form which contains:
-    * Idea(s) being addressed
+    * Idea(s) being addressed (through text)
     * Prose, and possibly images, about proposal
-    * Attachments related to credentials (this is also part of artist's account creation)
-    * Budget estimates. _next semester_: the budget fields will be dynamic (rows can be added and deleted on the fly, and the total will adjust).
-    * Checklist of relevant to-dos
+    * Attachments related to credentials
+    * Budget estimates
 * Moderators can enter proposals if they receive them non-electronically.
 * Steerers can see proposals and make internal-facing comments regarding their feasibility.
 * Moderators can see proposals and publish them after ensuring the project is feasible. Moderators can edit proposals for syntax or content, or delete them from the system.
-* Residents will see published proposals through a grid and can sort by category.
+* Residents will see published proposals through a grid and can sort by date.
 
 **Proposal Voting**: the community votes on which projects will receive funding.
 
@@ -49,28 +48,26 @@ The system follows the lifecycle of one or more public art projects from its inc
 * Residents can see published proposals through a grid. They will have a form to submit votes on their favorite proposals.
     * The form will collect the voter's name, email, phone, address, and have an honor statement that must be agreed to prior to submission.
     * They will select a finite number of proposals - 2 or 3 as their top choice.
-    * They might rank proposals. (_note_: we are leaning toward equally weighted votes now and should discuss this later.)
-    * They might allocate votes based on a specified budget.
-    * _next semester_: Unlike "liking," voting needs protection against fraud, possibly through a combination of cookies, IP tracking, CAPTCHA, or "honor pledge."
+    * They might allocate votes based on a specified budget. (not a desired feature)
+    * _next semester_: Unlike "liking," voting needs protection against fraud, through a combination of CAPTCHA and "honor pledge."
 * Moderators can enter votes if they receive them non-electronically.
 
 **Project Implementation**: after projects are selected, the system presents feedback on their progress.
 
 * Super artists and moderators can create blog posts containing prose and images to report progress about the selected projects.
-* Residents can view blog posts in some type of chronological view. They can apply filters to select certain projects or time periods.
+* Residents can view blog posts in some type of chronological view. They can apply filters to select certain time periods.
 * Ideas or proposals that did not receive funding are stored for future reference (e.g. if they can be applied to the next round).
 
 **Site-wide Requirements**
 
-* Integration with social media (Facebook, Twitter, Instagram) during most if not all phases, to increase engagement with residents.
+* Integration with social media (Facebook, Twitter) during most if not all phases, to increase engagement with residents.
 * Email assist capabilities for moderators/steerers to reach out to artists submitting proposals, and possibly residents submitting ideas.
 * Website should be responsive on mobile.
 * Website should be designed to be extensible to multiple languages.
 * Residents do not need to create accounts. Artists do, and may do so on their own. Steerers, moderators, and admins need accounts and can only have them created by an admin.
-* Some accounts may need to go through a review process (e.g. artists need to be approved before having proposal submission privileges).
 * Only admins have the ability to manage user accounts.
 * Each user role will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.
-* The navbar at the top should adjust depending on the phase of the project. All phases will have "About" and "Get Involved" as static pages that the moderator can edit, as well as the "Blog" page.
+* The navbar at the top should adjust depending on the phase of the project. All phases will have "About" as static pages that the moderator can edit, as well as the "Blog" page.
     * Ideas phase: Ideas - Submit Idea, See Ideas
     * Proposals phase: Proposals - Submit Proposals, See Proposals; Ideas
     * Voting phase: Vote; Proposals; Ideas
