@@ -66,7 +66,7 @@ The system follows the lifecycle of one or more public art projects from its inc
 * Website should be designed to be extensible to multiple languages.
 * Residents do not need to create accounts. Artists do, and may do so on their own. Steerers, moderators, and admins need accounts and can only have them created by an admin.
 * Only admins have the ability to manage user accounts.
-* Each user role will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.
+* Some user roles (that is, steerer and artist) will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.
 * The navbar at the top should adjust depending on the phase of the project. All phases will have "About" as static pages that the moderator can edit, as well as the "Blog" page.
     * Ideas phase: Ideas - Submit Idea, See Ideas
     * Proposals phase: Proposals - Submit Proposals, See Proposals; Ideas

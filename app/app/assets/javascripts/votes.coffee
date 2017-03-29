@@ -4,6 +4,10 @@ class @Vote
   @initialize: ->
     $ ->
       Vote.addCheckListener()
+      $('#submit-button').on 'click', ->
+        return Vote.validatePledge()
+      $('#honor-pledge').on 'click', ->
+        Vote.pledgeBoxListener this
 
   @addProposal: (title) ->
     $('.selected-proposals').append '<span class="btn btn-primary">' + title + '</span> &nbsp;'
@@ -17,7 +21,7 @@ class @Vote
 
   @checkCallback: (elem) ->
 
-    count = $(':checked').length
+    count = $('.proposal-checkbox:checked').length
 
     status = $(elem).prop('checked')
     label = $(elem).closest 'label'
@@ -36,21 +40,32 @@ class @Vote
       Vote.removeProposal title
 
     if count == 3
-      $("input:checkbox:not(:checked)").attr "disabled", true
-      $("input:checkbox:not(:checked)").parent().parent().addClass "disabled"
-      $("input:checkbox:not(:checked)").parent().removeClass "btn-outline-primary"
-      $("input:checkbox:not(:checked)").parent().addClass "btn-outline-secondary"
+      $(".proposal-checkbox:not(:checked)").attr "disabled", true
+      $(".proposal-checkbox:not(:checked)").parent().parent().addClass "disabled"
+      $(".proposal-checkbox:not(:checked)").parent().removeClass "btn-outline-primary"
+      $(".proposal-checkbox:not(:checked)").parent().addClass "btn-outline-secondary"
     else
-      $(":checkbox").removeAttr "disabled"
-      $("input:checkbox:not(:checked)").parent().parent().removeClass "disabled"
-      $("input:checkbox:not(:checked)").parent().addClass "btn-outline-primary"
-      $("input:checkbox:not(:checked)").parent().removeClass "btn-outline-secondary"
+      $(".proposal-checkbox").removeAttr "disabled"
+      $(".proposal-checkbox:not(:checked)").parent().parent().removeClass "disabled"
+      $(".proposal-checkbox:not(:checked)").parent().addClass "btn-outline-primary"
+      $(".proposal-checkbox:not(:checked)").parent().removeClass "btn-outline-secondary"
 
     return
 
   @addCheckListener: ->
-    $(':checkbox').on 'click', ->
+    $('.proposal-checkbox').on 'click', ->
       Vote.checkCallback this
       return
+
+  @validatePledge: ->
+    if !($("#honor-pledge").is(":checked"))
+      $("#honor-pledge").parent().addClass "btn-danger"
+      return false
+    return true
+
+  @pledgeBoxListener: (elem) ->
+    if $(elem).is(":checked")
+      $("#honor-pledge").parent().removeClass "btn-danger"
+    return true
 
 Vote.initialize()

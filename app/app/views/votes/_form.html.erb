@@ -42,7 +42,7 @@
         <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
         <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
         <div class="form-check">
-          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10") + (t 'votes.select') } %>
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10 proposal-checkbox") + (t 'votes.select') } %>
           <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
         </div>
       </div>
@@ -79,11 +79,18 @@
     </div>
   <% end %>
 
-  <% if user_has_admin_access %>
-    <%= vote.submit (t 'common.submit'), class: 'btn btn-primary pull-right' %>
-  <% else # otherwise pull up the modal %>
-    <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
-  <% end %>
+  <div>
+    <div class="pull-left">
+      <%= t 'votes.honor_pledge' %>
+      <%= check_box_tag "honor-pledge" %>
+    </div>
+
+    <% if user_has_admin_access %>
+      <%= vote.submit (t 'common.submit'), class: 'btn btn-primary pull-right' %>
+    <% else # otherwise pull up the modal %>
+      <button id="submit-button" type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
+    <% end %>
+  </div>
 
 <% end %>
 
