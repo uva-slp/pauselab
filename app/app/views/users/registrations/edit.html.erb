@@ -4,7 +4,7 @@
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.input :avatar %>
+    <%= f.input :avatar, as: :file %>
     <%= f.input :first_name, label: (t 'common.first_name') %>
     <%= f.input :last_name, label: (t 'common.last_name') %>
     <%= f.input :email, label: (t 'common.user_email') %>

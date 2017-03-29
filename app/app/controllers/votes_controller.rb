@@ -7,16 +7,12 @@ class VotesController < ApplicationController
 
   def new
     @vote = Vote.new
-    @proposals = Proposal.where(status: :unchecked)
   end
 
   def create
     @vote = Vote.new(vote_params)
-    puts "--1"
-    puts @vote.first_name
-    puts "--2"
     @vote.iteration_id = Iteration.get_current.id
-    if verify_recaptcha model: @vote, attribute: :proposals  and @vote.save
+    if (user_has_admin_access or verify_recaptcha model: @vote, attribute: :proposals) and @vote.save
       flash[:notice] = (t 'votes.save_success')
       redirect_to root_path
     else

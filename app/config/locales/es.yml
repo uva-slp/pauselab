@@ -64,7 +64,7 @@ es:
     create_user_fail: El usario no está creado.
     update_user_success: El perfil de usario está actualizado con éxito.
     update_user_fail: El perfil de usario no está actualizado con éxito.
-    remove_user_success: El usario está eliminado con éxito. También, todas las informaciónes de usario está eliminado. 
+    remove_user_success: El usario está eliminado con éxito. También, todas las informaciónes de usario está eliminado.
     remove_user_fail: El usario no está eliminado.
     edit_user: Editar el usario
     update_user: Actualiza el usario
@@ -82,7 +82,7 @@ es:
     recent_blogs: Los Blogs Recientes
     read_more: Leer más
     post_by: De
-    post_published: El Blog Hace Público 
+    post_published: El Blog Hace Público
     title: Título
     body: La masa
     save_success: El blog está guardado.
@@ -136,27 +136,27 @@ es:
     administrators: Administratador
     moderators: Moderador
     steerers: Comité del comunidad
-    super_artists: Súper Artistas 
+    super_artists: Súper Artistas
     artists: Artistas
     residents: Residentes
     subject_placeholder: El Tema
-    body_placeholder: Mensaje 
+    body_placeholder: Mensaje
     send: Enviar
     create_new: Crear un nuevo correo electronico #check
     mass_emails: Correo electrónico grandes
     sent_at: Envió desde
     date_sent: El Dato del Envió
     to: Para
-    subject: 
+    subject:
     body: Body
     save_success: Your mass email was sent.
     save_error: There was an error in sending the email.
-  pages: 
+  pages:
     no_post: PauseLab ya no creó un mensaje.
     idea_collection: Colección de las ideas
     submit_idea: Enviar un idea
-    create_about: Crear la página del sobre 
-    edit_about: Edita la página del sobre 
+    create_about: Crear la página del sobre
+    edit_about: Edita la página del sobre
     create_artist_home: Crear la página del Artista
     edit_artist_home: Editar la página de la Artista
     create_homepage: Crear la página Inicio
@@ -182,7 +182,7 @@ es:
     artist_fees: La tarifa del artista
     project_materials: Materiales del Proyecto
     printing: Costo de impresión
-    marketing: Costo de 
+    marketing: Costo de
     documentation: Documentation
     volunteers: Voluntarios
     insurance: Eguro
@@ -209,23 +209,24 @@ es:
     total_cost: Coste Total
   shared:
     admin: Admin
-    admin_console: Consola de Admin 
+    admin_console: Consola de Admin
     create_category: Crea Category
-    categories_console: Consola de Categorias 
+    categories_console: Consola de Categorias
     create_mass_email: Creata Correos Electronicos Largos
     mass_emails_console: Consola de Correos Electronicos Largos
-    votes_console: Consola de Votas 
+    votes_console: Consola de Votas
     vote: Vota  # navbar header
     proposals: Propuestas
     create_proposal: Crea Propuestas
     proposals_console: Consola de Propuestas
     ideas: Ideas
     create_idea: Crea Idea
-    ideas_console: Consola de Ideas 
+    ideas_console: Consola de Ideas
     blog: Blog
     about: Sobre Nosotros
     logout: Cerrar Sesión
     login: Iniciar Sesión
+    english_pretranslated: English
   votes:
     vote: Vota  # verb
     votes: Votas  # plural noun

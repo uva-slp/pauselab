@@ -244,9 +244,12 @@ en:
     about: About
     logout: Logout
     login: Login
+    spanish_pretranslated: Español
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun
+    proposals: Proposals
+    voter_information: Voter Information
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on
