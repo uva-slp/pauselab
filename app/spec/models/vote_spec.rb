@@ -10,4 +10,6 @@ RSpec.describe Vote, type: :model do
     expect(vote).to_not be_valid
   end
 
+
+
 end

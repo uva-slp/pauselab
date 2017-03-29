@@ -1,14 +1,48 @@
-# Espanol
-
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
 es:
   common:
     number_symbol: "#"
+    id: ID
     actions: Acciónes
     user_name: Nombre
     user_email: Email
     user_role: Parte
     user_phone: Teléfono
     confirm_message: "¿Estás seguro?"
+    submit: Enviar
+    cancel: Cancelar
+    created_at: Creado en
+    show: Monitor
+    edit: Editar
+    remove: Eliminar
+    back: Respaldar
+    sort: Ordenar
+    date: La Fecha
+    previous: Previo
+    next: Siguiente
+    na: "N/A"
+    approve: Aprobar
+    disapprove: Desaprobar
+    record_not_found: No Funda el Registro
   admins:
     admin_console: La consola de administración
     users: Los Usarios
@@ -25,11 +59,178 @@ es:
     iteration_ended: Terminó
     last_signed_in: Tiempo transcurrido desde el último registro
     change_user_role: Cambia de parte
-    edit_user: Edita el usario
+    create_user: Crear el Usario
+    create_user_success: El usario está creado con éxito.
+    create_user_fail: El usario no está creado.
+    update_user_success: El perfil de usario está actualizado con éxito.
+    update_user_fail: El perfil de usario no está actualizado con éxito.
+    remove_user_success: El usario está eliminado con éxito. También, todas las informaciónes de usario está eliminado. 
+    remove_user_fail: El usario no está eliminado.
+    edit_user: Editar el usario
     update_user: Actualiza el usario
     manage: Administrar
+    never_signed_in: Nunca registro #This one's iffy
+    deactivate_user: Desactivar el usario
+  blogs:
+    placeholder_title: "La últimas noticias del mes"
+    placeholder_body: "Después de un mes de trabajo difícil..."
+    admin_console_title: Consola de Administración (Blogs)
+    back_link: Retroceder a Blogs
+    create_new: Crear un Blog Nuevo
+    editing_blog: Editar Blog
+    creating_blog: Crear Blog
+    recent_blogs: Los Blogs Recientes
+    read_more: Leer más
+    post_by: De
+    post_published: El Blog Hace Público 
+    title: Título
+    body: La masa
+    save_success: El blog está guardado.
+  categories:
+    placeholder_name: Naturaleza
+    icon_hint: Por el icono del mapa para ver una idea. Necesita El formato necesita ser imagen (.jpeg, .png).
+    create_new: Crear Una Categoría Nueva
+    creating_category: Creando Categoría
+    editing_category: Editando Categoría
+    categories: Categoría
+    category_name: El Nombre de Categoría
+    name: Nombre
+    icon: Icono
+    no_icon_message: El icono no está presente.
+    save_success: Tu categoría fue guardado.
+    save_error: Hay una problema cuando creando una categoría.
+  ideas:
+    first_name_placeholder: Peter
+    last_name_placeholder: Parker
+    email_placeholder: "pparker@dailybugle.com"
+    phone_placeholder: "555-555-5555"
+    description_placeholder: "Cual es tu idea?"
+    location_placeholder: "Lee Park, etc."
+    creating_idea: Creando Idea
+    editing_idea: Editando Idea
+    create_new: Crear un Idea Nueva
+    ideas: Ideas
+    likes: Me gusta
+    author: Autor
+    author_first_name: Nombre de Pila de Autor
+    author_last_name: Apellido de Autor
+    category: Categoría
+    description: Descripción
+    status: Estado
+    approve: Aprobar
+    disapprove: Desaprobar
+    no_location_message: La ubicación no la especificá.
+    calliing_artists: Llaman todos artistas
+    submit_proposal: Entregar Propuesta
+    submitted_ideas: Entregó Ideas
+    save_success: Tu la envió una idea.
+  landingpages:
+    description_placeholder: "Detalle a cual el plan implementará"
+    editing_landingpage: Editando el Poste de Página Central
+    creating_landingpage: Creando el Poste de Página Central
+    save_success: Archivaste el poste
   layout:
     site_title: PauseLab
+  mass_emails:
+    select_groups_message: "Por favor, escogues uno o más groupos del correo electronico" #CHECK
+    administrators: Administratador
+    moderators: Moderador
+    steerers: Comité del comunidad
+    super_artists: Súper Artistas 
+    artists: Artistas
+    residents: Residentes
+    subject_placeholder: El Tema
+    body_placeholder: Mensaje 
+    send: Enviar
+    create_new: Crear un nuevo correo electronico #check
+    mass_emails: Correo electrónico grandes
+    sent_at: Envió desde
+    date_sent: El Dato del Envió
+    to: Para
+    subject: 
+    body: Body
+    save_success: Your mass email was sent.
+    save_error: There was an error in sending the email.
   pages: 
-    recent_blogs: Los blogs recientes
+    no_post: PauseLab ya no creó un mensaje.
     idea_collection: Colección de las ideas
+    submit_idea: Enviar un idea
+    create_about: Crear la página del sobre 
+    edit_about: Edita la página del sobre 
+    create_artist_home: Crear la página del Artista
+    edit_artist_home: Editar la página de la Artista
+    create_homepage: Crear la página Inicio
+    edit_homepage: Editar la página Inicio
+    idea_collection: Colección de ideas
+    create_steering: Crear la página de comité
+    edit_steering: Editar la página de comité
+    recent_blogs: Los blogs recientes
+  proposal_comments:
+    comments: Commentarios
+    creating_comment: Creando un Comentario
+    editing_comment: Editando un Comentario
+    show_comment: Monitor el Comentario
+    save_success: Tu comentario publicó.
+    save_error: Hay una problema con publicando tu comentario.
+    remove_success: Tu comentario removó.
+    remove_error: Hay una problema con removando tu comentario.
+  proposals:
+    cost_breakdown: Lista del costo
+    view_breakdown: Lista de la vista
+    cost_component: Componente
+    cost: Costo
+    artist_fees: La tarifa del artista
+    project_materials: Materiales del Proyecto
+    printing: Costo de impresión
+    marketing: Costo de 
+    documentation: Documentation
+    volunteers: Voluntarios
+    insurance: Eguro
+    events: Eventos
+    title_placeholder: "título (caracter máximo 40)"
+    description_placeholder: "Describa para implementará"
+    essay_placeholder: "Como el proyecto ayuda la comunidad?" #
+    website_link_placeholder: "Enlace por carpeta en línea " #
+    budget_information: Información del Presupuesto
+    resume: Resumen
+    creating_proposal: Creando Propuesta
+    editing_proposal: Editando Propuesta
+    create_new: Crea un nuevo Propuesta
+    proposals: Propuestas
+    author: Autor
+    title: Título
+    status: Estatus
+    votes: Votos
+    description: Descripción
+    essay: Ensayo
+    cv: CV
+    add_comment: Añadir Comentario
+    save_success: Tu enviaste la propuesta.
+    total_cost: Coste Total
+  shared:
+    admin: Admin
+    admin_console: Consola de Admin 
+    create_category: Crea Category
+    categories_console: Consola de Categorias 
+    create_mass_email: Creata Correos Electronicos Largos
+    mass_emails_console: Consola de Correos Electronicos Largos
+    votes_console: Consola de Votas 
+    vote: Vota  # navbar header
+    proposals: Propuestas
+    create_proposal: Crea Propuestas
+    proposals_console: Consola de Propuestas
+    ideas: Ideas
+    create_idea: Crea Idea
+    ideas_console: Consola de Ideas 
+    blog: Blog
+    about: Sobre Nosotros
+    logout: Cerrar Sesión
+    login: Iniciar Sesión
+  votes:
+    vote: Vota  # verb
+    votes: Votas  # plural noun
+    pick_three: Escoger tres opciónes que prefieres
+    select: Selecto
+    submitted_on: Submitted on
+    already_voted: Tu ya votaste.
+    save_success: Recibió la vota!

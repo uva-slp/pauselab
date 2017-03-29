@@ -56,4 +56,13 @@ RSpec.describe Idea, type: :model do
     idea = build(:idea, :description => '')
     expect(idea).to_not be_valid
   end
+
+  it "gives the author's first and last name" do
+    idea = create :idea, :first_name=>'John', :last_name=>'Smith'
+    #idea.author.should == 'John Smith'
+    expect(idea.author).to eq 'John Smith'
+  end
+
+
+
 end

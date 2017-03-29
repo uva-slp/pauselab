@@ -20,10 +20,16 @@
   </div>
 <% end %>
 
-<%= form_for @vote, :url => { :action => "create" } do |vote| %>
+<%= simple_form_for @vote, :url => { :action => "create" } do |vote| %>
 
+  <h2 class="text-lg-left"><%= t 'votes.voter_information' %></h2>
+  <%= vote.input :first_name, placeholder: 'First Name' %>
+  <%= vote.input :last_name, placeholder: 'Last Name' %>
+  <%= vote.input :phone, placeholder: 'Phone' %>
+  <%= vote.input :email, placeholder: 'Email' %>
+
+  <h1 class="text-lg-center"><%= t 'votes.proposals' %></h1></br>
   <div class="card-columns">
-
   <%= vote.collection_check_boxes :proposal_ids, Proposal.where(status: :approved), :id, :title do |b| %>
 
     <div class="card">

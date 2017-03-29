@@ -41,35 +41,42 @@
     <%= f.simple_fields_for :proposal_budget do |p| %>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :artist_fees, placeholder: (t 'proposals.artist_fees') %>
+        <%= p.input :artist_fees, placeholder: (t 'proposals.artist_fees'), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :project_materials, placeholder: (t 'proposals.project_materials') %>
+        <%= p.input :project_materials, placeholder: (t 'proposals.project_materials'), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :printing, placeholder: (t 'proposals.printing') %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <%= p.input :marketing, placeholder: (t 'proposals.marketing') %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :documentation, placeholder: (t 'proposals.documentation') %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :volunteers, placeholder: (t 'proposals.volunteers') %>
+        <%= p.input :printing, placeholder: (t 'proposals.printing'), input_html: { class: 'budget' } %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :insurance, placeholder: (t 'proposals.insurance') %>
+        <%= p.input :marketing, placeholder: (t 'proposals.marketing'), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :events, placeholder: (t 'proposals.events') %>
+        <%= p.input :documentation, placeholder: (t 'proposals.documentation'), input_html: { class: 'budget' } %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :volunteers, placeholder: (t 'proposals.volunteers'), input_html: { class: 'budget' } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :insurance, placeholder: (t 'proposals.insurance'), input_html: { class: 'budget' } %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :events, placeholder: (t 'proposals.events'), input_html: { class: 'budget' } %>
       </div>
     </div>
     <% end %>
+
+<h5 style="margin-top: 11px;">
+    <div class="total-cost">
+      <%= t 'proposals.total_cost' %>: $<span class="total-cost-vals">0</span>
+    </div>
+</h5>
+    <hr>
 
     <div class='form-group'>
       <%= f.input :artist_cv, label: (t 'proposals.resume'), wrapper_html: { class: 'btn-file' } %>
@@ -84,6 +91,7 @@
 <% end %>
 
 <script>
+
 $('textarea').each(function() {
   $(this).trumbowyg({
       svgPath: '<%= image_path("icons.svg") %>',
@@ -97,4 +105,20 @@ $('textarea').each(function() {
       ]
   });
 });
+
+$('.budget').change(function () {
+  var total = 0;
+  $('.budget').each(function (index, b) {
+    var val = b.value;
+    if (val.trim() !== '' && parseInt(val) > 0) {
+      total += parseInt(val);
+      // console.log("hello");
+    }
+    else if (val < 0) {
+      b.value = 0;
+    }
+  });
+  $('.total-cost-vals').html(total);
+});
+
 </script>

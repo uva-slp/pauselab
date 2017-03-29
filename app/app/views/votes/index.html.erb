@@ -14,6 +14,10 @@
         <th><%= t 'common.id' %></th>
         <th><%= t 'votes.submitted_on' %></th>
         <th colspan="3"><%= t 'proposals.proposals' %></th>
+        <th><%= t 'votes.first_name' %></th>
+        <th><%= t 'votes.last_name' %></th>
+        <th><%= t 'votes.phone' %></th>
+        <th><%= t 'votes.email' %></th>
       </tr>
     </thead>
 
@@ -24,6 +28,10 @@
         <% vote.proposals.each do |proposal| %>
           <td><%= proposal.title %></td>
         <% end %>
+        <td><%= vote.first_name %></td>
+        <td><%= vote.last_name %></td>
+        <td><%= vote.phone %></td>
+        <td><%= vote.email %></td>
       </tr>
       <% end %>
 

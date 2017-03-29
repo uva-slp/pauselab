@@ -213,6 +213,9 @@ en:
     cv: CV
     add_comment: Add Comment
     save_success: Your proposal was sent.
+    fund: Fund
+    unfund: Unfund
+    total_cost: Total Cost
   shared:
     admin: Admin
     moderator: Moderator
@@ -244,6 +247,8 @@ en:
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun
+    proposals: Proposals
+    voter_information: Voter Information
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on
