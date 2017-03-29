@@ -54,24 +54,30 @@
 
   </div>
 
-  <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
-    <div class="modal-dialog modal-sm" role="document">
-      <div class="modal-content" style="width: 340px;">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel"><%= t 'votes.vote' %></h4>
-        </div>
-        <div class="modal-body">
-          <%= recaptcha_tags %>
-        </div>
-        <div class="modal-footer">
-          <%= vote.submit (t 'votes.vote'), class: 'btn btn-primary pull-right' %>
+  <% unless user_has_admin_access # only embed modal if using recaptcha, when user not admin %>
+    <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="width: 340px;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><%= t 'votes.vote' %></h4>
+          </div>
+          <div class="modal-body">
+            <%= recaptcha_tags %>
+          </div>
+          <div class="modal-footer">
+            <%= vote.submit (t 'votes.vote'), class: 'btn btn-primary pull-right' %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 
-  <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
+  <% if user_has_admin_access %>
+    <%= vote.submit (t 'common.submit'), class: 'btn btn-primary pull-right' %>
+  <% else # otherwise pull up the modal %>
+    <button type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
+  <% end %>
 
 <% end %>
 

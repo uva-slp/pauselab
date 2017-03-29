@@ -8,7 +8,7 @@ class VotesController < ApplicationController
   def new
     @vote = Vote.new
     @proposals = Proposal.where(status: :unchecked)
-    if cookies[:voted] != nil
+    if cookies[:voted] != nil and !user_has_admin_access
       flash[:notice] = (t 'votes.already_voted')
       redirect_to proposals_path  # TODO if in voting phase, going to root results in infinite redirect
     end
@@ -18,7 +18,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote_params)
     @vote.iteration_id = Iteration.get_current.id
 
-    if verify_recaptcha model: @vote, attribute: :proposals  and @vote.save
+    if (user_has_admin_access or verify_recaptcha model: @vote, attribute: :proposals) and @vote.save
       flash[:notice] = (t 'votes.save_success')
       cookies[:voted] = { :value => "already voted", :expires => Time.now + 2628000 }
       redirect_to root_path
