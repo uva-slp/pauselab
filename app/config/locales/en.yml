@@ -244,6 +244,7 @@ en:
     about: About
     logout: Logout
     login: Login
+    spanish_pretranslated: Español
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun

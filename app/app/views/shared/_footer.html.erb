@@ -4,10 +4,17 @@
 	<div class="container">
 		<div class="navbar-header" style="margin-top: 10px;">
 			<div class="pull-left">
-				<%= link_to 'http://pauselab.com/', class: '' do %>
+				<%= link_to 'http://pauselab.com/' do %>
 				  <%= image_tag 'masthead/pauselab.png', :alt => 'pauselab', style: "max-width:90px; margin-top: 18px;" %>
 				<% end %>
-				<!-- <p class="text-muted"><small>Pauselab is a fiscally sponsored program of the TJPDC Corporation</small></p> -->
+				<%# TODO make link look nicer %>
+				<div style="margin-top: 10px;">
+					<% if I18n.locale == I18n.default_locale %>
+						<%= link_to (t 'shared.spanish_pretranslated'), :locale => :es %>
+					<% else %>
+						<%= link_to (t 'shared.english_pretranslated'), :locale => :en %>
+					<% end %>
+				</div>
 			</div>
 			<div class="pull-right" style= "line-height: 100%; margin-top: 10px; text-align: right;">
 				<small>
@@ -18,6 +25,5 @@
 				</small>
 			</div>
 		</div>
-		<!-- <br> -->
 	</div>
 </footer>

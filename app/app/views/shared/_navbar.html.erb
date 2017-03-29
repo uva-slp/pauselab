@@ -11,17 +11,6 @@
         <i class="fa fa-pause" style="color: #F6992F;"></i>
       <% end %>
 
-      <%# TODO make link look nicer %>
-      <% if I18n.locale == I18n.default_locale %>
-        <div class="navbar-brand">
-          <%= link_to "Spanish", :locale => :es %>
-        </div>
-      <% else %>
-        <div class="navbar-brand">
-          <%= link_to "English", :locale => :en %>
-        </div>
-      <% end %>
-
       <ul class="nav navbar-nav float-md-right">
 
         <%# Dropdown specific to role %>
