@@ -54,45 +54,54 @@
           </li>
         <% end %>
 
+        <%# Votes link - only appears when admin or in voting phase (see Ability) %>
         <% if can? :create, Vote %>
           <li class="nav-item"><%= link_to (t 'shared.vote'), new_vote_path, class: 'nav-link' %></li>
         <% end %>
 
-        <%# Proposals menu %>
+        <%# Proposals menu - "readonly" when not in proposals phase, otherwise has create option %>
         <% if can? :read, Proposal %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.proposals' %></a>
-            <div class="dropdown-menu">
-              <% if can? :create, Proposal %>
-                <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
-              <% end %>
-              <% if can? :read, Proposal %>
-                <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
-              <% end %>
-            </div>
-          </li>
-        <% end %>
-
-        <%# Ideas menu %>
-        <% if can? :read, Idea %> <%#TODO can? "do anything with" :ideas %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.ideas' %></a>
-            <div class="dropdown-menu">
-              <% if can? :create, Idea %>
-                <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
-              <% end %>
-              <% if can? :read, Idea %>
-                <% if user_has_admin_access %>
-                  <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
-                <% else %>
-                  <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>
+          <% if user_has_admin_access or Iteration.get_current.proposals? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.proposals' %></a>
+              <div class="dropdown-menu">
+                <% if can? :create, Proposal %>
+                  <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
                 <% end %>
-              <% end %>
-            </div>
-          </li>
+                <% if can? :read, Proposal %>
+                  <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
+                <% end %>
+              </div>
+            </li>
+          <% elsif !Iteration.get_current.ideas? %>
+            <li class="nav-item"><%= link_to (t 'shared.proposals'), proposals_path, class: 'nav-link' %></li>
+          <% end %>
         <% end %>
 
-        <%# Blogs, About, Get Involved %>
+        <%# Ideas menu  - "readonly" when not in voting phase, otherwise has create option %>
+        <% if can? :read, Idea %>
+          <% if user_has_admin_access or Iteration.get_current.ideas? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.ideas' %></a>
+              <div class="dropdown-menu">
+                <% if can? :create, Idea %>
+                  <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
+                <% end %>
+                <% if can? :read, Idea %>
+                  <% if user_has_admin_access %>
+                    <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
+                  <% else %>
+                    <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>
+                  <% end %>
+                <% end %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item"><%= link_to (t 'shared.ideas'), proposal_collection_path, class: 'nav-link' %></li>
+          <% end %>
+        <% end %>
+
+        <%# Blog, About always visible %>
         <% if can? :read, Blog %>
           <li class="nav-item"><%= link_to (t 'shared.blog'), blogs_path, class: 'nav-link' %></li>
         <% end %>
