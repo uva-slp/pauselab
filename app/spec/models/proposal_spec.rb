@@ -24,7 +24,7 @@ RSpec.describe Proposal, type: :model do
 
   it "can retrieve its number of votes" do
     proposal = create :proposal_votes
-    proposal.number_of_votes.should == 3
+    expect(proposal.number_of_votes).to eq(3)
   end
 
   #it "can get its artist's name" do

@@ -103,6 +103,7 @@ end
   f.role 0
 end
 
+
   factory :proposal do
 
     association :iteration
