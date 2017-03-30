@@ -1,0 +1,118 @@
+<h1 class="text-lg-center">Pick Your Top Three</h1>
+<br/>
+<div class="selected-proposals">
+</div>
+<br/>
+
+<form novalidate="novalidate" class="simple_form new_vote" id="new_vote" action="/votes" accept-charset="UTF-8" method="post">
+
+  <h2 class="text-lg-left">Voter Information</h2>
+  <div class="form-group string optional vote_first_name"><label class="control-label string optional" for="vote_first_name">First name</label><input class="form-control string optional" placeholder="First Name" type="text" name="vote[first_name]" id="vote_first_name" /></div>
+  <div class="form-group string optional vote_last_name"><label class="control-label string optional" for="vote_last_name">Last name</label><input class="form-control string optional" placeholder="Last Name" type="text" name="vote[last_name]" id="vote_last_name" /></div>
+  <div class="form-group tel optional vote_phone"><label class="control-label tel optional" for="vote_phone">Phone</label><input class="form-control string tel optional" placeholder="Phone" type="tel" name="vote[phone]" id="vote_phone" /></div>
+  <div class="form-group email optional vote_email"><label class="control-label email optional" for="vote_email">Email</label><input class="form-control string email optional" placeholder="Email" type="email" name="vote[email]" id="vote_email" /></div>
+
+  <h1 class="text-lg-center">Proposals</h1></br>
+  <div class="card-columns">
+  <input type="hidden" name="vote[proposal_ids][]" value="" /><span><label for="vote_proposal_ids_11">
+
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">
+          <a href="/proposals/11">
+            New proposal
+</a>        </h4>
+        <h6 class="card-subtitle text-muted">Jay Admin</h6>
+        <p class="card-text">Yep</p>
+        <div class="form-check">
+          <label class="form-check-label btn btn-outline-primary pull-right" for="vote_proposal_ids_11"><input class="form-check-input right-10 proposal-checkbox" type="checkbox" value="11" name="vote[proposal_ids][]" id="vote_proposal_ids_11" />Select</label>
+        </div>
+      </div>
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          $36.00
+        </span>
+        <span class="pull-right">
+          March 27
+        </span>
+      </div>
+    </div>
+
+</label></span><span><label for="vote_proposal_ids_12">
+
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">
+          <a href="/proposals/12">
+            More Rice
+</a>        </h4>
+        <h6 class="card-subtitle text-muted">Jay Admin</h6>
+        <p class="card-text">there</p>
+        <div class="form-check">
+          <label class="form-check-label btn btn-outline-primary pull-right" for="vote_proposal_ids_12"><input class="form-check-input right-10 proposal-checkbox" type="checkbox" value="12" name="vote[proposal_ids][]" id="vote_proposal_ids_12" />Select</label>
+        </div>
+      </div>
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          $37.00
+        </span>
+        <span class="pull-right">
+          March 27
+        </span>
+      </div>
+    </div>
+
+</label></span><span><label for="vote_proposal_ids_13">
+
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">
+          <a href="/proposals/13">
+            Even more rice
+</a>        </h4>
+        <h6 class="card-subtitle text-muted">Jay Admin</h6>
+        <p class="card-text">there</p>
+        <div class="form-check">
+          <label class="form-check-label btn btn-outline-primary pull-right" for="vote_proposal_ids_13"><input class="form-check-input right-10 proposal-checkbox" type="checkbox" value="13" name="vote[proposal_ids][]" id="vote_proposal_ids_13" />Select</label>
+        </div>
+      </div>
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          $260.00
+        </span>
+        <span class="pull-right">
+          March 27
+        </span>
+      </div>
+    </div>
+
+</label></span>
+  </div>
+
+    <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content" style="width: 340px;">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Vote</h4>
+          </div>
+          <div class="modal-body">
+            <!-- recaptcha stuff -->
+          </div>
+          <div class="modal-footer">
+            <input type="submit" name="commit" value="Vote" class="btn btn-primary pull-right" data-disable-with="Vote" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div>
+    <div class="pull-left">
+      I pledge that I live in the district benefiting from these projects, and that I am voting only once.
+      <input type="checkbox" name="honor-pledge" id="honor-pledge" value="1" />
+    </div>
+
+      <button id="submit-button" type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form">Submit</button>
+  </div>
+
+</form>

@@ -4,10 +4,12 @@
 describe "votes", ->
 
   beforeEach ->
-    MagicLamp.load("votes/new")
+    #MagicLamp.load("votes/new")
+    fixture.load "vote.html"
 
   afterEach ->
-    MagicLamp.clean()
+    #MagicLamp.clean()
+    fixture.cleanup()
 
   it "loads jquery", ->
     expect($).toBeDefined()
@@ -33,26 +35,26 @@ describe "votes", ->
   it "triggers check listener", ->
     spyOn(Vote, 'checkCallback').and.callThrough()
     Vote.initialize()
-    $(':checkbox').first().click()
+    $('.proposal-checkbox').first().click()
     expect(Vote.checkCallback).toHaveBeenCalled()
 
   it "turns vote card green when checked", ->
     Vote.initialize()
-    $(':checkbox').first().trigger 'click'
+    $('.proposal-checkbox').first().trigger 'click'
     expect(
-      $(':checkbox').first().closest('label').hasClass('btn-success')
+      $('.proposal-checkbox').first().closest('label').hasClass('btn-success')
     ).toBe(true)
 
   it "removes green vote card outline if checked twice", ->
     Vote.initialize()
-    $(':checkbox').first().trigger 'click'
-    $(':checkbox').first().trigger 'click'
+    $('.proposal-checkbox').first().trigger 'click'
+    $('.proposal-checkbox').first().trigger 'click'
     expect(
-      $(':checkbox').first().closest('label').hasClass('btn-outline-primary')
+      $('.proposal-checkbox').first().closest('label').hasClass('btn-outline-primary')
     ).toBe(true)
 
   it "disables checking if 3 vote cards are checked", ->
     Vote.initialize()
-    $(':checkbox').each ->
+    $('.proposal-checkbox').each ->
       $(this).trigger 'click'
     expect($(':checked').length).toEqual(3)
