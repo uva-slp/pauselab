@@ -10,6 +10,10 @@ RSpec.describe Vote, type: :model do
     expect(vote).to_not be_valid
   end
 
+  it "returns the authors name" do
+    vote = create :vote, :first_name=>'John', :last_name=>'Smith'
+    expect(vote.author).to eq('John Smith')
+  end
 
 
 end
