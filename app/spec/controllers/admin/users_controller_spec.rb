@@ -42,4 +42,35 @@ describe Admin::UsersController, type: :controller do
     end
   end
 
+  describe "when updating a user" do
+    it "updates successfully" do
+      user = create :user
+      put :update, params: {id: user.id, user: {:first_name => 'John Smith'}}
+      expect(assigns(:user)).to match(user)
+    end
+    it "it rerenders when updating fails" do
+      user = create :user
+      put :update, params: {id: user.id, user: {:first_name => nil}}
+      expect(response).to render_template('edit')
+    end
+  end
+
+  #describe "when creating a new user" do
+  #  it "saves the new user" do
+      
+  #    use = build :user_other
+  #    expect {
+  #      post :create, params: {user: use.attributes}
+   #     }.to change {User.count}.by 1
+   #   end
+   # end
+
+   describe "when it deletes a user" do
+    it "deletes successfully" do
+      user = create :user
+      expect{ 
+        delete :destroy, params: {id: user.id}
+     }.to change(User, :count).by(-1)
+   end
+ end
 end

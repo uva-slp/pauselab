@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) ||
+    #stored_location_for(resource) ||
     if resource.is_a?(User) && resource.admin?
       admin_users_url
     elsif resource.is_a?(User) && resource.moderator?
@@ -43,7 +43,7 @@ class ApplicationController < ActionController::Base
     elsif  resource.is_a?(User) && resource.steerer?
       steering_home_url
     else
-      super
+      root_url
     end
 end
 
