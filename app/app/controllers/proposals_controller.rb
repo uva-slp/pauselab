@@ -16,6 +16,8 @@ class ProposalsController < ApplicationController
         @proposals = @proposals.includes(:user).order("users.first_name")
       elsif params[:sort] == "last_name"
         @proposals = @proposals.includes(:user).order("users.last_name")
+      elsif params[:sort] == "date"
+        @proposals = @proposals.order("created_at desc")
       else
         @proposals = @proposals.order params[:sort]
       end

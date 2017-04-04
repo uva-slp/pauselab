@@ -15,15 +15,8 @@ class PagesController < ApplicationController
   end
 
   def get_ideas
-    ideas = Idea.where(:status => :approved, :iteration_id => Iteration.get_current.id).select(
-      :id,
-      :address,
-      :created_at,
-      :lat,
-      :lng,
-      :category_id,
-      :description)
-    render json: ideas
+    # map will show ideas that current user is authorized to see
+    redirect_to ideas_path(:format => :json)
   end
 
   def get_categories

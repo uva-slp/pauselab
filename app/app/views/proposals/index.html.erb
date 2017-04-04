@@ -18,7 +18,7 @@
     <%= link_to (t 'common.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
     <%= link_to (t 'common.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
     <%= link_to (t 'proposals.title'), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
-    <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :created_at), class: 'dropdown-item' %>
+    <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :date), class: 'dropdown-item' %>
     <%= link_to (t 'proposals.cost'), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>
   </div>
 </div>
