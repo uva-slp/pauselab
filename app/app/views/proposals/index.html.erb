@@ -2,23 +2,38 @@
 
 <% if can? :create, Proposal %>
   <%= link_to (t 'proposals.create_new'), new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
+  <br/>
+  <br/>
 <% end %>
 
-<br/>
-<br/>
-
 <h2 class="pull-left"><%= t 'proposals.proposals' %></h2>
-<div class="dropdown pull-right" style="inline-block">
+
+<div class="dropdown pull-right ml-1" style="inline-block">
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
-  <div class="dropdown-menu">
-    <!-- <a class="dropdown-item" href="?sort=cost">cost</a> -->
-    <a class="dropdown-item" href="?sort=created_at"><%= t 'common.date' %></a>
+  <div class="dropdown-menu dropdown-menu-right">
     <% if user_has_admin_access %>
-      <a class="dropdown-item" href="?sort=id"><%= t'common.id' %></a>
+      <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
+      <%= link_to (t 'proposals.votes'), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
     <% end %>
+    <%= link_to (t 'proposals.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
+    <%= link_to (t 'proposals.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
+    <%= link_to (t 'proposals.title'), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
+    <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :created_at), class: 'dropdown-item' %>
+    <%= link_to (t 'proposals.cost'), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>
   </div>
 </div>
 
+<div class="dropdown pull-right" style="inline-block">
+  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.filter' %></a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
+    <% if user_has_admin_access %>
+      <%= link_to (t 'proposals.unchecked'), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
+    <% end %>
+    <%= link_to (t 'proposals.approved'), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
+    <%= link_to (t 'proposals.funded'), request.query_parameters.merge(:status => :funded), class: 'dropdown-item' %>
+  </div>
+</div>
 
 <div class="table-responsive">
   <table class="table table-striped">
