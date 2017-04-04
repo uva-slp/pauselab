@@ -15,8 +15,8 @@
       <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
       <%= link_to (t 'proposals.votes'), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
     <% end %>
-    <%= link_to (t 'proposals.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
+    <%= link_to (t 'common.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
+    <%= link_to (t 'common.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
     <%= link_to (t 'proposals.title'), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
     <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :created_at), class: 'dropdown-item' %>
     <%= link_to (t 'proposals.cost'), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>

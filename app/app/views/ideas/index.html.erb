@@ -14,10 +14,10 @@
     <!-- We are passing the sort parameter here -->
     <a href="?sort=likes" class="dropdown-item" ><%= t 'ideas.likes' %></a>
     <% if user_has_admin_access %>
-      <a href="?sort=author_last_name" class="dropdown-item"><%= t 'ideas.author_first_name' %></a>
+      <a href="?sort=author_last_name" class="dropdown-item"><%= t 'common.author_first_name' %></a>
     <% end %>
     <% if user_has_admin_access %>
-      <a href="?sort=author_first_name" class="dropdown-item"><%= t 'ideas.author_last_name' %></a>
+      <a href="?sort=author_first_name" class="dropdown-item"><%= t 'common.author_last_name' %></a>
     <% end %>
     <a href="?sort=date" class="dropdown-item"><%= t 'common.date' %></a>
     <% if user_has_admin_access %>
@@ -50,7 +50,10 @@
           <th><%= t 'ideas.status' %></th>
         <% end %>
 
-        <th><%= t 'ideas.medium' %></th>
+        <% if user_has_admin_access %>
+          <th><%= t 'ideas.medium' %></th>
+        <% end %>
+        
         <th><%= t 'ideas.likes' %></th>
 
         <!-- <% if can? :like, Idea or

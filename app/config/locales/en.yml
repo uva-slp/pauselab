@@ -25,6 +25,10 @@ en:
     id: ID
     actions: Actions
     user_name: Name
+    author_first_name: Author First Name
+    author_last_name: Author Last Name
+    first_name: First Name
+    last_name: Last Name
     user_email: Email
     user_role: Role
     user_phone: Phone
@@ -116,8 +120,6 @@ en:
     ideas: Ideas
     likes: Likes
     author: Author
-    author_first_name: Author First Name
-    author_last_name: Author Last Name
     category: Category
     description: Description
     status: Status
@@ -207,8 +209,6 @@ en:
     create_new: Create New Proposal
     proposals: Proposals
     author: Author
-    author_first_name: Author First Name
-    author_last_name: Author Last Name
     title: Title
     status: Status
     votes: Votes
@@ -256,7 +256,8 @@ en:
     vote: Vote  # verb
     votes: Votes  # plural noun
     proposals: Proposals
-    voter_information: Voter Information
+    personal_information: Personal Information
+    voter_ballot: Voter Ballot
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on

@@ -56,7 +56,7 @@ end
     def index_respond scoped_objs, name
       respond_to do |format|
         format.html
-        format.json
+        format.json { render json: scoped_objs }
         format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
       end
     end

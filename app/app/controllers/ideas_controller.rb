@@ -2,9 +2,7 @@ class IdeasController < ApplicationController
   load_and_authorize_resource
 
   def index
-    # @ideas = Idea.paginate :page => params[:page], :per_page => 25
-    @ideas =
-      filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
+    @ideas = filter_idea_columns(@ideas.where(:iteration_id => Iteration.get_current.id))
           .paginate :page => params[:page], :per_page => 25
 
     case params[:sort]
@@ -15,9 +13,13 @@ class IdeasController < ApplicationController
     when "date"
       @ideas = @ideas.order created_at: :desc
     when "author_last_name"
-      @ideas = @ideas.order :last_name
+      if user_has_admin_access # prevent non-privileged users from sorting
+        @ideas = @ideas.order :last_name
+      end
     when "author_first_name"
-      @ideas = @ideas.order :first_name
+      if user_has_admin_access # prevent non-privileged users from sorting
+        @ideas = @ideas.order :first_name
+      end
     when "likes"
       @ideas = @ideas.order likes: :desc
     end
@@ -30,15 +32,7 @@ class IdeasController < ApplicationController
 
   end
 
-  def proposal_collection
-    @ideas =
-      filter_idea_columns( @ideas.where :iteration_id => Iteration.get_current.id )
-        .paginate :page => params[:page], :per_page => 25
-    @likes = Array.new
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-    end
-  end
+  alias_method :proposal_collection, :index
 
   def new
     @idea = Idea.new
