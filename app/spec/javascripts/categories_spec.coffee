@@ -3,7 +3,7 @@
 describe "categories", ->
 
   beforeEach ->
-    fixture.load "categories.html"
+    fixture.load "categories.html", append=false
 
   afterEach ->
     fixture.cleanup()

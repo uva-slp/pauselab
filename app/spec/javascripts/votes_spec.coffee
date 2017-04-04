@@ -4,11 +4,9 @@
 describe "votes", ->
 
   beforeEach ->
-    #MagicLamp.load("votes/new")
     fixture.load "vote.html"
 
   afterEach ->
-    #MagicLamp.clean()
     fixture.cleanup()
 
   it "loads jquery", ->
