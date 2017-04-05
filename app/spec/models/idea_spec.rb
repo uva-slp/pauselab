@@ -68,6 +68,10 @@ RSpec.describe Idea, type: :model do
     expect(idea.category_name).to eq('Parks')
   end
 
+    #it "calls gen_csv" do
+    #  idea = create :idea
+    #  expect(idea.to_csv).to receive(:gen_csv)
+    #end
 
 
 end

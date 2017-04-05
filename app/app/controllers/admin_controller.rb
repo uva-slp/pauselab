@@ -66,11 +66,6 @@ class AdminController < ApplicationController
 		authorize! :edit, @current
 	end
 
-	def export_data
-		# the getter for the webpage with export options
-		# no backend logic, just links on the html
-		render 'export_data'
-	end
 
 	def export_iterations
 		@iterations = Iteration.where :status => "ended"

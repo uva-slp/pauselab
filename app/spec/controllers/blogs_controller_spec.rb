@@ -17,6 +17,12 @@ describe BlogsController, type: :controller do
       get :index
       expect(assigns(:blogs)).to match_array(blogs)
     end
+    it "works for admin admin_console method" do
+      blogs = create_list(:blog, 10, iteration: @iteration)
+      get :admin_console
+      expect(response).to be_success
+      expect(assigns(:blogs)).to match_array(blogs)
+    end
   end
 
   describe "when creating a blog" do
@@ -141,9 +147,21 @@ describe BlogsController, type: :controller do
 
   describe "GET #edit" do
   it "renders a edit template for @blog" do
+    user = sign_in (create :moderator)
     blog = create :blog
     get :edit, params: {id: blog.id}
     expect(response).to render_template(:edit)
   end
 end
+
+describe "When a record is not found" do
+  it "it redirects to blog index" do
+    #get :destroy, params: {id: 10}
+    blog = create :blog, :id => 10
+    get :destroy, params: {id: 10}
+    get :edit, params: {id: 10}
+    expect(flash[:error]).to be_present
+  end
+end
+
 end

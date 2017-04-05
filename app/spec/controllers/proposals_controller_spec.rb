@@ -186,6 +186,16 @@ describe ProposalsController, type: :controller do
                 get :approve, params: { id: proposal.id }
                 expect(assigns(:proposal)).to eq(proposal)
               end
+
+          it "if already approved changes to unchecked" do
+              proposal = create :proposal, :status => Proposal.statuses["approved"]
+              #puts idea.status
+              get :approve, params: { id: proposal.id }
+              proposal.reload
+              expect(proposal.status).to eq("unchecked")
+
+        end
+
             end
 
             describe "when funding a proposal" do
@@ -194,5 +204,14 @@ describe ProposalsController, type: :controller do
                 get :fund, params: { id: proposal.id }
                 expect(assigns(:proposal)).to eq(proposal)
               end
+              it "if already funded changes to approved" do
+              proposal = create :proposal, :status => Proposal.statuses["funded"]
+              #puts idea.status
+              get :fund, params: { id: proposal.id }
+              proposal.reload
+              expect(proposal.status).to eq("approved")
+
+        end
             end
+
           end
