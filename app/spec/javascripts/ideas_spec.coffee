@@ -4,8 +4,8 @@ describe "ideas", ->
 
   # done is a special jasmine parameter that allows us to test asynchronous functions
   beforeAll (done) ->
-    fixture.load "idea.html", "keys.json", append=false
-    $.getScript "https://maps.googleapis.com/maps/api/js?key=" + fixture.json[0].GOOGLE_API_KEY + "&callback=Idea.initialize&libraries=places", ->
+    fixture.load "idea.html", append=false
+    $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places", ->
       done()
     # $.when(
     #   $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js",
