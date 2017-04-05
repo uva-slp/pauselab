@@ -6,7 +6,21 @@ class ProposalsController < ApplicationController
       .paginate :page => params[:page], :per_page => 25
 
     if params[:sort].present?
+      if params[:sort] == "cost"
+        @proposals = @proposals.includes(:proposal_budget).order("proposal_budgets.cost")
+      elsif params[:sort] == "votes"
+        if user_has_admin_access # prevent non-privileged members from sorting by votes
+          @proposals = @proposals.left_joins(:votes).group(:id).order("count(votes.id) desc")
+        end
+      elsif params[:sort] == "first_name"
+        @proposals = @proposals.includes(:user).order("users.first_name")
+      elsif params[:sort] == "last_name"
+        @proposals = @proposals.includes(:user).order("users.last_name")
+      elsif params[:sort] == "date"
+        @proposals = @proposals.order("created_at desc")
+      else
         @proposals = @proposals.order params[:sort]
+      end
     end
 		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
     index_respond @proposals, :proposals

@@ -1,0 +1,27 @@
+[
+  {
+    "id":593,
+    "description":"Green juice post-ironic tattooed occupy truffaut letterpress lumbersexual cliche. Poutine organic freegan neutra. Microdosing tilde pbr\u0026b squid before they sold out ethical.",
+    "created_at":"2016-08-01T00:00:00.000-04:00",
+    "category_id":312,"lat":"38.031963",
+    "lng":"-78.468494",
+    "address":"321 Russel Port"
+  },
+  {
+    "id":594,
+    "description":"Selfies fashion axe diy xoxo actually williamsburg typewriter tattooed. Butcher mumblecore vhs try-hard dreamcatcher flannel knausgaard vice. Gastropub scenester pug readymade cliche. Dreamcatcher listicle kogi neutra.",
+    "created_at":"2016-07-06T00:00:00.000-04:00",
+    "category_id":314,"lat":"38.030172",
+    "lng":"-78.458489",
+    "address":"192 Diego Mountain"
+  },
+  {
+    "id":595,
+    "description":"Pitchfork green juice lomo. Synth offal chillwave keytar cornhole. Lumbersexual viral occupy vinyl chambray butcher normcore mustache.",
+    "created_at":"2016-05-22T00:00:00.000-04:00",
+    "category_id":311,
+    "lat":"38.037793",
+    "lng":"-78.462686",
+    "address":"37262 Hyman Ranch"
+  }
+]

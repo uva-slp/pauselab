@@ -44,7 +44,7 @@ class @Idea
     return searchBox
 
   @addressChange: (searchBox, marker, map) ->
-    console.log 'places_changed'
+    # console.log 'places_changed'
     places = searchBox.getPlaces()
     if places.length == 0
       return
@@ -84,18 +84,31 @@ class @Idea
 
     # sets the viewport to the given bounds
     map.fitBounds bounds
-    return
+    return marker
 
   @geocodePosition: (pos) ->
     geocoder = new (google.maps.Geocoder)()
-    geocoder.geocode { latLng: pos }, (responses) ->
-      if responses and responses.length > 0
-        addr =  responses[0].formatted_address
-        $('#idea_lat').val pos.lat
-        $('#idea_lng').val pos.lng
-        $('#idea_address').val addr
-        $('.address').html addr
-      return
+    return new Promise((resolve, reject) ->
+      geocoder.geocode { latLng: pos }, (responses, status) ->
+        if status == 'OK'
+          Idea.populateAddress responses, pos
+          resolve()
+        else
+          reject()
+        return
+    )
+    #
+    # geocoder.geocode { latLng: pos }, (responses, status) ->
+    #   Idea.populateAddress responses, pos
+    # return
+
+  @populateAddress: (responses, pos) ->
+    if responses and responses.length > 0
+      addr =  responses[0].formatted_address
+      $('#idea_lat').val pos.lat
+      $('#idea_lng').val pos.lng
+      $('#idea_address').val addr
+      $('.address').html addr
     return
 
   @showMap = ->
@@ -106,18 +119,31 @@ class @Idea
 
     defaultUrl = "https://maxcdn.icons8.com/office/PNG/80/Maps/marker-80.png"
 
-    # TODO: this URL is not working in the pegasus server
-    $.get '/pages/categories_json', (categories) ->
-      img =
-        url: categories[cat_id] || defaultUrl
-        scaledSize: new (google.maps.Size)(50, 50)
-      # console.log(pos);
-      map = Idea.load_map(pos, 18)
-      marker = new (google.maps.Marker)(
-        map: map
-        position: pos
-        icon: img
-      )
+    return new Promise((resolve, reject) ->
+      $.get '/pages/categories_json', (categories) ->
+        img =
+          url: categories[cat_id] || defaultUrl
+          scaledSize: new (google.maps.Size)(50, 50)
+        map = Idea.load_map(pos, 18)
+        marker = new (google.maps.Marker)(
+          map: map
+          position: pos
+          icon: img
+        )
+        resolve()
+    )
+
+    # $.get '/pages/categories_json', (categories) ->
+    #   img =
+    #     url: categories[cat_id] || defaultUrl
+    #     scaledSize: new (google.maps.Size)(50, 50)
+    #   # console.log(pos);
+    #   map = Idea.load_map(pos, 18)
+    #   marker = new (google.maps.Marker)(
+    #     map: map
+    #     position: pos
+    #     icon: img
+    #   )
 
     return
 

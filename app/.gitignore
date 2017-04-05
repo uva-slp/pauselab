@@ -28,7 +28,6 @@ db/schema.rb
 # where gems are installed in server
 vendor/bundle
 
-
 # ignore build file
 Makefile
 Makefile~
@@ -40,3 +39,5 @@ Makefile~
 
 # coverage
 coverage/*
+
+spec/javascripts/fixtures/keys.json

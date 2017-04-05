@@ -23,9 +23,11 @@
   <small class="text-muted"> • <%= @proposal.created_at.strftime("%b %e") %></small>
 </h3>
 
-<h5 class="text-muted text-sm-right proposal-cost" data-toggle="modal" data-target="#budget_display">
-  <span title="<%= t 'proposals.view_breakdown' %>" data-toggle="tooltip">
-    <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
+<h5 class="text-muted text-sm-right">
+  <span class="proposal-cost" data-toggle="modal" data-target="#budget_display">
+    <span title="<%= t 'proposals.view_breakdown' %>" data-toggle="tooltip">
+      <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
+    </span>
   </span>
 </h5>
 

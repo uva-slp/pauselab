@@ -25,6 +25,10 @@ en:
     id: ID
     actions: Actions
     user_name: Name
+    author_first_name: Author First Name
+    author_last_name: Author Last Name
+    first_name: First Name
+    last_name: Last Name
     user_email: Email
     user_role: Role
     user_phone: Phone
@@ -38,12 +42,14 @@ en:
     remove: Remove
     back: Back
     sort: Sort
+    filter: Filter
     date: Date
     previous: Previous
     next: Next
     na: "N/A"
     approve: Approve
     disapprove: Disapprove
+    all: All
     record_not_found: Record Not Found
   admins:
     admin_console: Admin Console
@@ -114,8 +120,6 @@ en:
     ideas: Ideas
     likes: Likes
     author: Author
-    author_first_name: Author First Name
-    author_last_name: Author Last Name
     category: Category
     description: Description
     status: Status
@@ -209,6 +213,9 @@ en:
     status: Status
     votes: Votes
     description: Description
+    approved: Approved
+    unchecked: Unchecked
+    funded: Funded
     essay: Essay
     cv: CV
     add_comment: Add Comment
@@ -249,10 +256,13 @@ en:
     vote: Vote  # verb
     votes: Votes  # plural noun
     proposals: Proposals
-    voter_information: Voter Information
+    personal_information: Personal Information
+    voter_ballot: Voter Ballot
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on
     already_voted: You have already voted.
     save_success: Your vote has been received!
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
+    top_votes_note: "If you are searching for the top vote-getting proposals, go to the Proposals Console."
+    top_votes_link: "See top proposals"
