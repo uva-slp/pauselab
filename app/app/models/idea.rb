@@ -16,7 +16,11 @@ class Idea < ApplicationRecord
 	end
 
 	def author
-		"#{first_name} #{last_name}"
+		if self.respond_to? :first_name and self.respond_to? :last_name
+			"#{first_name} #{last_name}"
+		else
+			""
+		end
 	end
 
 	def category_name

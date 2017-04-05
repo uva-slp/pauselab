@@ -18,8 +18,10 @@ class Ability
         MassEmail, Vote, ProposalComment, Landingpage, Iteration]
 
     elsif user.steerer?
+      can :create, [Proposal, ProposalBudget, Idea, Vote]
       can :read, [Blog, Category, Idea, Proposal, ProposalBudget, Vote, ProposalComment, Iteration]
-      can :manage, Proposal
+      can [:read, :update], Proposal
+      cannot :read, Proposal, status: Proposal.statuses[:unchecked]
       can [:create, :update], Idea
       can :create, ProposalComment
       can :manage, ProposalComment, user: user
@@ -27,7 +29,8 @@ class Ability
     elsif user.super_artist?
       can :create, [Blog, Proposal, ProposalBudget, Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: Proposal.statuses[:approved]
+      can :read, Proposal
+      cannot :read, Proposal, status: Proposal.statuses[:unchecked]
       can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
       cannot :manage, ProposalComment
       can :manage, Blog, user: user
@@ -36,7 +39,8 @@ class Ability
     elsif user.artist?
       can :create, [Proposal, ProposalBudget, Idea, Vote]
       can :read, [Blog, Category]
-      can :read, Proposal, status: Proposal.statuses[:approved]
+      can :read, Proposal
+      cannot :read, Proposal, status: Proposal.statuses[:unchecked]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
       can :manage, Proposal, user: user
@@ -44,7 +48,8 @@ class Ability
     else
       can :create, [Idea, Vote]
       can :read, [Blog, Category]
-      can [:read], Proposal, status: Proposal.statuses[:approved]
+      can :read, Proposal
+      cannot :read, Proposal, status: Proposal.statuses[:unchecked]
       cannot :manage, ProposalComment
       can [:like, :show, :read], Idea, status: Idea.statuses[:approved]
     end

@@ -24,6 +24,10 @@ es:
     id: ID
     actions: Acciónes
     user_name: Nombre
+    author_first_name: Nombre de Pila de Autor
+    author_last_name: Apellido de Autor
+    first_name: Nombre de Pila
+    last_name: Apellido
     user_email: Email
     user_role: Parte
     user_phone: Teléfono
@@ -112,8 +116,6 @@ es:
     ideas: Ideas
     likes: Me gusta
     author: Autor
-    author_first_name: Nombre de Pila de Autor
-    author_last_name: Apellido de Autor
     category: Categoría
     description: Descripción
     status: Estado
