@@ -29,6 +29,34 @@ describe ProposalsController, type: :controller do
       get :index
       expect(assigns(:proposals)).to match_array(proposal1)
     end
+    it "notices when to sorts by cost" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'cost'}
+      expect(controller.params[:sort]).to eql 'cost'
+    end
+    it "notices when to sorts by votes" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'votes'}
+      expect(controller.params[:sort]).to eql 'votes'
+    end
+    it "notices when to sorts by first name" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'first_name'}
+      expect(controller.params[:sort]).to eql 'first_name'
+    end
+    it "notices when to sorts by last name" do
+      user = sign_in (create :admin)
+      get :index, params: {sort: 'last_name'}
+      expect(controller.params[:sort]).to eql 'last_name'
+    end
+    it "notices when to sorts by date" do
+      get :index, params: {sort: 'date'}
+      expect(controller.params[:sort]).to eql 'date'
+    end
+    it "notices when to sorts by id" do
+      get :index, params: {sort: 'id'}
+      expect(controller.params[:sort]).to eql 'id'
+    end
   end
 
   describe "when creating proposal" do
@@ -187,31 +215,39 @@ describe ProposalsController, type: :controller do
                 expect(assigns(:proposal)).to eq(proposal)
               end
 
-          it "if already approved changes to unchecked" do
-              proposal = create :proposal, :status => Proposal.statuses["approved"]
+              it "if already approved changes to unchecked" do
+                proposal = create :proposal, :status => Proposal.statuses["approved"]
               #puts idea.status
               get :approve, params: { id: proposal.id }
               proposal.reload
               expect(proposal.status).to eq("unchecked")
 
-        end
-
             end
 
-            describe "when funding a proposal" do
-              it "finds the correct proposal" do
-                proposal = create :proposal
-                get :fund, params: { id: proposal.id }
-                expect(assigns(:proposal)).to eq(proposal)
-              end
-              it "if already funded changes to approved" do
+          end
+
+          describe "when funding a proposal" do
+            it "finds the correct proposal" do
+              proposal = create :proposal
+              get :fund, params: { id: proposal.id }
+              expect(assigns(:proposal)).to eq(proposal)
+            end
+            it "if already funded changes to approved" do
               proposal = create :proposal, :status => Proposal.statuses["funded"]
               #puts idea.status
               get :fund, params: { id: proposal.id }
               proposal.reload
               expect(proposal.status).to eq("approved")
 
-        end
             end
-
           end
+
+          #describe "when getting proposal index" do
+          #  it "responds with success" do
+          #    get :proposal_collection
+          #    expect(response).to be_success
+          #    expect(response).to have_http_status(200)
+          #  end
+          #end
+
+        end

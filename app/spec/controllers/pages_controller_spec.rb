@@ -10,7 +10,7 @@ describe PagesController, type: :controller do
     it "it returns with success" do
       idea1 = create_list(:idea, 3, iteration: @iteration, status: :approved)
       get :get_ideas
-      expect(response).to be_success
+      expect(response).to be_redirect
       #expect(response).to render_template(:ideas)
     end
 

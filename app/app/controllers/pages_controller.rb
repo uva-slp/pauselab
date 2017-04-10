@@ -54,27 +54,6 @@ class PagesController < ApplicationController
   #  redirect_to cookies_path
   #end
 
-  def cookies_song
-    if cookies[:likes] != nil
-      @likes = cookies[:likes]
-    else
-      @likes = "oh no im nil"
-    end
 
-    #<%= f.input :to, collection: User.roles, as: :check_boxes %>
-    #SELECT * FROM  users WHERE role=0;
-    #SELECT * FROM  users WHERE role=0 OR role=1;
-    #@emails_users = JSON.generate(User.connection.select_values(User.select("email").where("role"==1).to_sql))
-    @emails_list = Array.new
-    @role_list = ["admin"]
-    @emails_users = User.pluck(:email, :role)
-    @emails_users.each do |eu|
-        if @role_list.include?(eu[1])
-          @emails_list.push(eu[0])
-        end
-    end
-    @emails_ideas = JSON.generate(Idea.pluck(:email))
-    #@emails_ideas.reject!(&:null?)
-  end
 
 end

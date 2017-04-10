@@ -97,4 +97,12 @@ describe "when edit_phase" do
   end
 end
 
+describe "when exporting a zip file" do
+    it "responds with success" do
+      get :export_zip, params: {:num => @iteration.id}
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+    end
+
 end
