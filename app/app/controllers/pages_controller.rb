@@ -9,8 +9,8 @@ class PagesController < ApplicationController
       redirect_to :action => :new, :controller => :votes
     # when 'progress'
     #   redirect_to :action => :index, :controller => :blogs
-    else
-      render :text => 'not in ideas'
+    #else
+    #  render :text => 'not in ideas'
     end
   end
 

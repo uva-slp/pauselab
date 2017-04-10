@@ -44,11 +44,11 @@ describe LandingpagesController, type: :controller do
       put :update, params: {id: lp, landingpage: {:title => 'About Us'}}
       expect(response).to redirect_to(about_url)
     end
-    #it "it re-renders on update failure" do
-    #  lp = create :landingpage
-    #  put :update, params: {id: lp, landingpage: nil}
-    #  expect(response).to render_template(:edit)
-    #end
+    it "it re-renders on update failure" do
+      lp = create :landingpage
+      put :update, params: {id: lp, landingpage: {:title => nil}}
+      expect(response).to render_template(:edit)
+    end
   end
 
   describe "when creating a landing page post" do

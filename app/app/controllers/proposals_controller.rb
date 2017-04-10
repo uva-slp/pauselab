@@ -72,14 +72,14 @@ class ProposalsController < ApplicationController
 	  end
 	end
 
-	def proposal_collection
-    @ideas = Idea.where :iteration_id => Iteration.get_current.id
+	#def proposal_collection
+  #  @ideas = Idea.where :iteration_id => Iteration.get_current.id
 		# @ideas = Idea.all
-    @likes = Array.new
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-    end
-	end
+  #  @likes = Array.new
+  #  if cookies[:likes] != nil
+  #    @likes = JSON.parse(cookies[:likes])
+  #  end
+	#end
 
    def approve
      @proposal = Proposal.find(params[:id])
