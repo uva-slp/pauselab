@@ -68,6 +68,15 @@ RSpec.describe Idea, type: :model do
     expect(idea.category_name).to eq('Parks')
   end
 
+  #it "returns empty string if there is no name" do
+  #  idea = create :idea, :first_name => nil, :last_name => nil
+  #  expect(idea.author).to eq ""
+  #end
+
+    #it "calls gen_csv" do
+    #  idea = create :idea
+    #  expect(idea.to_csv).to receive(:gen_csv)
+    #end
 
 
 end

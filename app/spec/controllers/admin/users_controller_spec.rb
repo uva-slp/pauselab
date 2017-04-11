@@ -57,20 +57,33 @@ describe Admin::UsersController, type: :controller do
 
   #describe "when creating a new user" do
   #  it "saves the new user" do
-      
-  #    use = build :user_other
+  #    use = build :resident
   #    expect {
   #      post :create, params: {user: use.attributes}
-   #     }.to change {User.count}.by 1
-   #   end
-   # end
+  #      }.to change(User, :count).by(1)
+  #    end
+    #  it "responds with redirect" do
+    #    use = build :user
+    #    puts use.first_name
+    #    puts use.last_name
+    #    post :create, params: {user: use.attributes}
 
-   describe "when it deletes a user" do
-    it "deletes successfully" do
-      user = create :user
-      expect{ 
-        delete :destroy, params: {id: user.id}
-     }.to change(User, :count).by(-1)
-   end
- end
-end
+    #    expect(response).to be_redirect
+    #  end
+  #  end
+
+    describe "when it deletes a user" do
+      it "deletes successfully" do
+        user = create :user
+        expect{ 
+          delete :destroy, params: {id: user.id}
+          }.to change(User, :count).by(-1)
+        end
+        #it "flashes an error if there is an error" do
+        #  user = sign_in (create :resident)
+        #  res = create :resident
+        #    delete :destroy, params: {id: res.id}
+        #    expect(flash[:error]).to be_present
+        #  end
+        end
+      end

@@ -60,6 +60,11 @@ describe IdeasController, type: :controller do
       get :index, params: {sort: 'likes'}
       expect(controller.params[:sort]).to eql 'likes'
     end
+    it "knows what ideas you have liked" do
+      cookies[:likes] = "[12]"
+      get :index
+      expect(assigns(:likes)).to eq([12])
+    end
   end
 
   describe "when creating an idea" do
@@ -226,10 +231,26 @@ describe IdeasController, type: :controller do
         end
 
         describe "when approving an idea" do
-              it "finds the correct idea" do
-                idea = create :idea
-                get :approve, params: { id: idea.id }
-                expect(assigns(:idea)).to eq(idea)
-              end
+          it "finds the correct idea" do
+            idea = create :idea
+            get :approve, params: { id: idea.id }
+            expect(assigns(:idea)).to eq(idea)
           end
+        end
+
+        it "if approved, it changes idea to unchecked" do
+          idea = create :idea, :status => Idea.statuses["approved"]
+          #puts idea.status
+          get :approve, params: { id: idea.id }
+          idea.reload
+          expect(idea.status).to eq("unchecked")
+        end
+
+        describe "when in proposal collection" do
+          it "recognizes a cookie for likes" do
+            cookies[:likes] = "[12]"
+            get :proposal_collection
+            expect(assigns(:likes)).to eq([12])
+          end
+        end
       end
