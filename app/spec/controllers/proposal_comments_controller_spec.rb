@@ -83,11 +83,13 @@ describe ProposalCommentsController, type: :controller do
           proposal_comment.reload
           expect(proposal_comment.body).to eq 'Hello, World!'
         end
-         it "can update the body" do
+         it "cannot update to empty body" do
           proposal_comment = @proposal.proposal_comments.first
-          put :update, params: {proposal_id: @proposal.id, id: proposal_comment, proposal_comment: {:body => 'Hello, World!'}}
+          comment_body = proposal_comment.body
+          put :update, params: {proposal_id: @proposal.id, id: proposal_comment, proposal_comment: {:body => ''}}
+          expect(flash[:error]).to be_present
           proposal_comment.reload
-          expect(proposal_comment.body).to eq 'Hello, World!'
+          expect(proposal_comment.body).to eq comment_body
         end
       end
 

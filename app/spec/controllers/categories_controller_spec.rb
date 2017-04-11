@@ -12,6 +12,11 @@ describe CategoriesController, :type => :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
+    it "responds with success for csv" do
+      get :index, :format => :csv
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
     it "loads all categories into @categories" do
       categories_before = Category.all.to_a
       categories = create_list(:category, 3)
@@ -71,10 +76,8 @@ describe CategoriesController, :type => :controller do
       c = create :category
       put :update, params: {id: c, category: {:name=> nil}}
       expect(response).to render_template :edit
+    end
   end
-
-  end
-
 
   describe "when deleting a category" do
     it "removes it" do
@@ -99,32 +102,32 @@ describe CategoriesController, :type => :controller do
   end
 
   describe "GET #show" do
-  it "assigns the requested category to @ccategory" do
-    category = create :category
-    get :show, params: { id: category.id }
-    expect(assigns(:category)).to eq(category)
+    it "assigns the requested category to @ccategory" do
+      category = create :category
+      get :show, params: { id: category.id }
+      expect(assigns(:category)).to eq(category)
+    end
+
+    it "renders the #show view" do
+      category = create :category
+      get :show, params: { id: category.id }
+      expect(response).to render_template(:show)
+    end
   end
 
-  it "renders the #show view" do
-    category = create :category
-    get :show, params: { id: category.id }
-    expect(response).to render_template(:show)
+  describe "GET #new" do
+    it "renders the new category template" do
+      get :new
+      expect(response).to render_template(:new)
+    end
   end
-end
 
-describe "GET #new" do
-  it "renders the new category template" do
-    get :new
-    expect(response).to render_template(:new)
+  describe "GET #edit" do
+    it "renders a edit template for @category" do
+      category = create :category
+      get :edit, params: { id: category.id }
+      expect(response).to render_template(:edit)
+    end
   end
-end
-
-describe "GET #edit" do
-  it "renders a edit template for @category" do
-    category = create :category
-    get :edit, params: { id: category.id }
-    expect(response).to render_template(:edit)
-  end
-end
 
 end

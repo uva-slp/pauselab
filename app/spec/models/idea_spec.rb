@@ -62,7 +62,7 @@ RSpec.describe Idea, type: :model do
     expect(idea.author).to eq 'John Smith'
   end
 
-    it "returns the category name" do
+  it "returns the category name" do
     category = create :category, :name => 'Parks'
     idea = create :idea, :category =>category
     expect(idea.category_name).to eq('Parks')
@@ -72,11 +72,5 @@ RSpec.describe Idea, type: :model do
   #  idea = create :idea, :first_name => nil, :last_name => nil
   #  expect(idea.author).to eq ""
   #end
-
-    #it "calls gen_csv" do
-    #  idea = create :idea
-    #  expect(idea.to_csv).to receive(:gen_csv)
-    #end
-
 
 end

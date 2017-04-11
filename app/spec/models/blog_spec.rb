@@ -18,4 +18,8 @@ RSpec.describe Blog, type: :model do
     blog = create :blog, :user =>user
     expect(blog.author_name).to eq('John Smith')
   end
+  it "returns sanitized body" do
+    blog = create :blog, :body => '<h1>Hello world!</h1>'
+    expect(blog.preview.strip).to eq('Hello world!')
+  end
 end

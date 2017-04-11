@@ -42,10 +42,8 @@ describe AdminController, type: :controller do
     #  expect(Iteration.get_current).to match(@iteration)
     #end
 
-   it "Sends an email when entering voting phase" do
-
-      put :change_phase, params: { :phase => Iteration.statuses[:voting] }
-
+    it "Sends an email when entering voting phase" do
+     put :change_phase, params: { :phase => Iteration.statuses[:voting] }
      expect(assigns(:subj)).to eq("PauseLab - Voting Period Now Open")
     end
 
