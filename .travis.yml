@@ -37,7 +37,7 @@ rvm:
 script:
   - bin/rails db:migrate RAILS_ENV=test
   - bundle exec rspec spec
-  - bundle exec teaspoon USE_COVERAGE=default
+  - bundle exec rake teaspoon USE_COVERAGE=default
 gemfile: app/Gemfile
 notifications:
   email:
