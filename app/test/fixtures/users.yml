@@ -36,13 +36,6 @@ missing_last_name:
   encrypted_password: password
   phone: 1234567890
 
-missing_password:
-  first_name: Tyra
-  last_name: Banks
-  encrypted_password: ""
-  email: messy_witch@life.com
-  phone: 1234567890
-
 missing_email:
   first_name: Penny
   last_name: Tration
@@ -57,7 +50,7 @@ missing_phone:
   encrypted_password: password
   phone: ""
 
-#Seems like rails doesn't like testing this. 
+#Seems like rails doesn't like testing this.
 #Is it because there's already a minimum to password length?
 invalid_password:
   first_name: Thorgy
@@ -87,4 +80,3 @@ valid_resident:
   encrypted_password: password
   phone: 1234567890
   role: resident
-
