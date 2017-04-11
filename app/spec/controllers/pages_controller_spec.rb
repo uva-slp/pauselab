@@ -16,6 +16,16 @@ describe PagesController, type: :controller do
 
 end
 
+#describe "when going home" do
+#    it "it returns with" do
+#      itr = create :iteration {}
+#      get :get_ideas
+#      expect(response).to be_redirect
+      #expect(response).to render_template(:ideas)
+#    end
+
+#end
+
 describe "getting categories" do
     it "it response with usccess" do
       cat1 = create_list(:category, 3)
@@ -28,11 +38,13 @@ end
 
 #describe "when getting user info" do
 #    it "it gets correct user's info" do
-#      user1 = create :user
-#      get :user_info, params: {id: user1.id}
+#      user = sign_in (create :resident)
+      #get :user_info, params: {id: user.id}
+#      get :user_info
 #      expect(response).to be_success
-#      expect(assigns(:user)).to eq(user1)
+#      expect(assigns(:user)).to eq(user)
 #    end
-#end
+#  end
+
 
 end

@@ -20,10 +20,6 @@ feature "redirection to the right homepage based on phase", :type => :feature do
 
   scenario "goes to voting during voting phase" do
     create :voting_phase
-    Proposal.all.each do |proposal|
-      puts proposal.description
-      puts proposal.proposal_budget
-    end
     visit root_path
     expect(page).to have_content 'Vote'
   end
