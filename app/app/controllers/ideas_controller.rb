@@ -46,9 +46,11 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
+                @to = @idea.email
     @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
 			flash[:notice] = (t 'ideas.save_success')
+                        SlpMailer.email_custom_text(@to, "PauseLab BeCville - Your Idea Has Been Received, " + @idea.first_name, "We heard you loud and clear. Thanks " +  @idea.first_name + ", for sharing your idea.  We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville").deliver
 			redirect_to ideas_path
 		else
 			render 'new'
