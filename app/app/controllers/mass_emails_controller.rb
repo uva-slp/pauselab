@@ -13,23 +13,18 @@ class MassEmailsController < ApplicationController
   end
 
   def create
-    rl = params[:to] || []
-    if rl.size == 0
-      rl = nil
-    end
-    @mass_email.to = rl
-    if @mass_email.save
+    if @mass_email.to != '[]' && @mass_email.save
       flash[:notice] = (t 'mass_emails.save_success')
       @to = Array.new
       #Get an array of all users, then add desired groups to email list
       @emails_users = User.pluck(:email, :role)
       @emails_users.each do |eu|
-          if rl.include?(eu[1])
-            @to.push(eu[0])
-          end
+        if @mass_email.to.include?(eu[1])
+          @to.push(eu[0])
+        end
       end
       #Email idea submitters if residents requested
-      if rl.include?('resident')
+      if @mass_email.to.include?('resident')
         @emails_ideas = Idea.pluck(:email)
         @emails_ideas.each do |ei|
             @to.push(ei)

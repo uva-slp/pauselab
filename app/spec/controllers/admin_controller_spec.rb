@@ -7,7 +7,6 @@ describe AdminController, type: :controller do
     @iteration = create :iteration
   end
 
-
   describe "when getting admin index" do
     it "responds with success" do
       get :index
@@ -42,11 +41,9 @@ describe AdminController, type: :controller do
     #  put :change_phase, :phase => @iteration.status
     #  expect(Iteration.get_current).to match(@iteration)
     #end
-  
-   it "Sends an email when entering voting phase" do
 
-      put :change_phase, params: { :phase => Iteration.statuses[:voting] }
-
+    it "Sends an email when entering voting phase" do
+     put :change_phase, params: { :phase => Iteration.statuses[:voting] }
      expect(assigns(:subj)).to eq("PauseLab - Voting Period Now Open")
     end
 
@@ -78,31 +75,31 @@ describe AdminController, type: :controller do
       expect{
       get :end_phase, params: {:phase => @iteration.status}
       }.to change{Iteration.count}.by(1)
+    end
   end
-end
 
 
-describe "when exporting data" do
-  it "renders the export data template" do
-    @iteration = create :iteration, :status => Iteration.statuses[:ended]
-    get :export_iterations
-    expect(response).to be_success
+  describe "when exporting data" do
+    it "renders the export data template" do
+      @iteration = create :iteration, :status => Iteration.statuses[:ended]
+      get :export_iterations
+      expect(response).to be_success
+    end
   end
-end
 
-describe "when edit_phase" do
-  it "finds current iteration" do
-    get :edit_phase 
-    expect(assigns(:current)).to match(Iteration.get_current)
+  describe "when edit_phase" do
+    it "finds current iteration" do
+      get :edit_phase
+      expect(assigns(:current)).to match(Iteration.get_current)
+    end
   end
-end
 
-describe "when exporting a zip file" do
+  describe "when exporting a zip file" do
     it "responds with success" do
       get :export_zip, params: {:num => @iteration.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
-    end
+  end
 
 end

@@ -42,7 +42,6 @@ class User < ApplicationRecord
 	def self.valid_attribute?(attr, value)
 	  mock = self.new(attr => value)
 	  if mock.valid?
-			puts 'no errors'
 	    true
 	  else
 			# for some reason has_key fails, so loop manually

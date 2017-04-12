@@ -8,7 +8,6 @@ class Admin::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    #@user.update_attribute :role, params[:role].to_i	# doesn't work like other params
     if @user.save
       flash[:notice] = (t 'admins.create_user_success')
       redirect_to admin_users_path

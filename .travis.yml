@@ -37,13 +37,14 @@ rvm:
 script:
   - bin/rails db:migrate RAILS_ENV=test
   - bundle exec rspec spec
-  - bundle exec teaspoon
+  - bundle exec rake teaspoon USE_COVERAGE=default
 gemfile: app/Gemfile
 notifications:
   email:
     on_success: never
     on_failure: change
 before_install:
+  - npm install -g istanbul
   - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
   - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
   - cd app

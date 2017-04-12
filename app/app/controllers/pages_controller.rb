@@ -43,17 +43,4 @@ class PagesController < ApplicationController
   def artist_home
   end
 
-  #def test_email
-    #SlpMailer.email_self.deliver_later
-    #SlpMailer.email_self.deliver
-  #  @to   = 'goldjet45@gmail.com'
-  #  @subj = 'subways $5 for 5 deals'
-  #  @body = 'non html body'
-  #  SlpMailer.email_custom_text(@to, @subj, @body).deliver
-  #  flash[:notice] = "Your mail has been sent"
-  #  redirect_to cookies_path
-  #end
-
-
-
 end

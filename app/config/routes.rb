@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  mount MagicLamp::Genie, at: "/magic_lamp" if defined?(MagicLamp)
-
   # wrap routes within locale scope so it appears at top part of url
   scope "(:locale)", locale: /en|es/ do
     devise_for :users, controllers: { registrations: "users/registrations" }
