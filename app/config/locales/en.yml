@@ -130,6 +130,9 @@ en:
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Your idea was sent.
+    email_subject: "PauseLab BeCville - Your Idea Has Been Received, " 
+    email_body1: "We heard you loud and clear. Thanks "
+    email_body2: ", for sharing your idea.  We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
   landingpages:
     landingpages: Landing Pages
     create_new: Create New Landing Page
