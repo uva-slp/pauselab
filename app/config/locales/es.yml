@@ -78,18 +78,18 @@ es:
   blogs:
     placeholder_title: "La últimas noticias del mes"
     placeholder_body: "Después de un mes de trabajo difícil..."
-    admin_console_title: Consola de Administración (Blogs)
-    back_link: Retroceder a Blogs
-    create_new: Crear un Blog Nuevo
-    editing_blog: Editar Blog
-    creating_blog: Crear Blog
-    recent_blogs: Los Blogs Recientes
+    admin_console_title: Consola de Administración (Mensaje)
+    back_link: Retroceder a Mensajes
+    create_new: Crear un Mensaje Nuevo
+    editing_blog: Editar Mensaje
+    creating_blog: Crear Mensaje
+    recent_blogs: Los Mensajes Recientes
     read_more: Leer más
     post_by: De
-    post_published: El Blog Hace Público
+    post_published: El Mensaje Hace Público
     title: Título
     body: La masa
-    save_success: El blog está guardado.
+    save_success: El mensaje está guardado.
   categories:
     placeholder_name: Naturaleza
     icon_hint: Por el icono del mapa para ver una idea. Necesita El formato necesita ser imagen (.jpeg, .png).
@@ -170,7 +170,7 @@ revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Much
     idea_collection: Colección de ideas
     create_steering: Crear la página de comité
     edit_steering: Editar la página de comité
-    recent_blogs: Los blogs recientes
+    recent_blogs: Los mensajes recientes
   proposal_comments:
     comments: Commentarios
     creating_comment: Creando un Comentario
@@ -228,7 +228,7 @@ revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Much
     ideas: Ideas
     create_idea: Crea Idea
     ideas_console: Consola de Ideas
-    blog: Blog
+    blog: Mensaje
     about: Sobre Nosotros
     logout: Cerrar Sesión
     login: Iniciar Sesión

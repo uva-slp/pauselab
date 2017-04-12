@@ -82,18 +82,18 @@ en:
   blogs:
     placeholder_title: "This month's update"
     placeholder_body: "After a month's hard work..."
-    admin_console_title: Admin Console (Blogs)
-    back_link: Back to Blogs
-    create_new: Create New Blog
-    editing_blog: Editing Blog
-    creating_blog: Creating Blog
-    recent_blogs: Recent Blogs
+    admin_console_title: Admin Console (Posts)
+    back_link: Back to Posts
+    create_new: Create New Post
+    editing_blog: Editing Post
+    creating_blog: Creating Post
+    recent_blogs: Recent Posts
     read_more: Read More
     post_by: By
     post_published: Published
     title: Title
     body: Body
-    save_success: Your blog was saved.
+    save_success: Your post was saved.
   categories:
     placeholder_name: Nature
     icon_hint: Used for Maps icon displaying an idea. Must be image format.
@@ -178,7 +178,7 @@ en:
     edit_homepage: Edit Homepage
     create_steering: Create Steering Committee Home
     edit_steering: Edit Steering Committee Home
-    recent_blogs: Recent blog entries
+    recent_blogs: Recent post entries
   proposal_comments:
     comments: Comments
     creating_comment: Creating Comment
@@ -250,7 +250,7 @@ en:
     view_ideas: View Ideas
     create_idea: Create Idea
     ideas_console: Ideas Console
-    blog: Blog
+    blog: Posts
     about: About
     logout: Logout
     login: Login
