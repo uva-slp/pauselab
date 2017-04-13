@@ -30,10 +30,10 @@
 
 <%= simple_form_for @proposal do |f| %>
 
-    <%= f.input :title, placeholder: (t 'proposals.title_placeholder') %>
-    <%= f.input :description, placeholder: (t 'proposals.description_placeholder') %>
-    <%= f.input :essay, placeholder: (t 'proposals.essay_placeholder') %>
-    <%= f.input :website_link, placeholder: (t 'proposals.website_link_placeholder') %>
+    <%= f.input :title, label: (t 'proposals.title'), placeholder: (t 'proposals.title_placeholder') %>
+    <%= f.input :description, label: (t 'proposals.description'), placeholder: (t 'proposals.description_placeholder') %>
+    <%= f.input :essay, label: (t 'proposals.essay'), placeholder: (t 'proposals.essay_placeholder') %>
+    <%= f.input :website_link, label: (t 'proposals.link'), placeholder: (t 'proposals.website_link_placeholder') %>
 
     <br/>
     <h3><%= t 'proposals.budget_information' %></h3>

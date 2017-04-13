@@ -129,7 +129,7 @@ en:
     calliing_artists: Calling all artists
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
-    save_success: Your idea was sent.
+    save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
     email_subject: "PauseLab BeCville - Your Idea Has Been Received, " 
     email_body1: "We heard you loud and clear. Thanks "
     email_body2: ", for sharing your idea.  We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
@@ -202,13 +202,13 @@ en:
     insurance: Insurance
     events: Events
     title_placeholder: "Title (max length 40)"
-    description_placeholder: "Detail how the plan will be implemented."
-    essay_placeholder: "How would this project help the community?"
-    website_link_placeholder: "Link to online portfolio"
+    description_placeholder: Detail the specifics of your project by describing the Who, What, and Where (max length 500 words).
+    essay_placeholder: "How would this project help the community? (max length 500 words)."
+    website_link_placeholder: Share an online link that shows your previous work.
     budget_information: Budget Information
-    resume: Resume
-    creating_proposal: Creating Proposal
-    editing_proposal: Editing Proposal
+    resume: Resume - Share a one page resume that shows your experience.
+    creating_proposal: Create Your Proposal
+    editing_proposal: Edit Your Proposal
     create_new: Create New Proposal
     proposals: Proposals
     author: Author
@@ -219,13 +219,14 @@ en:
     approved: Approved
     unchecked: Unchecked
     funded: Funded
-    essay: Essay
+    essay: Need
     cv: CV
     add_comment: Add Comment
-    save_success: Your proposal was sent.
+    save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
     fund: Fund
     unfund: Unfund
     total_cost: Total Cost
+    link: Portfolio
   shared:
     admin: Admin
     moderator: Moderator
@@ -245,11 +246,11 @@ en:
     vote: Vote  # navbar header
     proposals: Proposals
     create_proposal: Create Proposal
-    proposals_console: Proposals Console
+    proposals_console: Submitted Proposals
     ideas: Ideas
     view_ideas: View Ideas
     create_idea: Create Idea
-    ideas_console: Ideas Console
+    ideas_console: Submitted Ideas
     blog: Posts
     about: About
     logout: Logout
