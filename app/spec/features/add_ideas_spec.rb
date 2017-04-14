@@ -24,6 +24,6 @@ feature "adding ideas", :type => :feature do
     first('input#idea_address', visible: false).set idea.address
 
     click_on 'Submit'
-    expect(page).to have_content 'Your idea was sent'
+    expect(page).to have_content (I18n.t 'ideas.save_success').to_s
   end
 end
