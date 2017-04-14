@@ -213,7 +213,7 @@ revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Much
     add_comment: Añadir Comentario
     save_success: Tu enviaste la propuesta.
     total_cost: Coste Total
-    website_link: Enlace Personal
+    link: Enlace Personal
   shared:
     admin: Admin
     admin_console: Consola de Admin
