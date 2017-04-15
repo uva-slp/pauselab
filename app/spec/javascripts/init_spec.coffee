@@ -18,7 +18,7 @@ describe "init", ->
     desc = "Lorem ipsum dolor sit amet"
     id = 5
     result = Init.format desc, id
-    expected = "\"" + desc + "\" more at: " + window.location.host + '/idea/' + id
+    expected = "\"" + desc + "\" more at: " + window.location.host + '/ideas/' + id
     expect(result).toEqual(expected)
 
   it "formats correctly with more than 50 characters", ->
