@@ -96,10 +96,10 @@ class @Pages
       desc = idea.description
       if desc.length > 50
         desc = desc.substring(0, 50) + "..."
-      return "\"" + desc + "\" more at: " + window.location.host + '/idea/' + idea.id
+      return "\"" + desc + "\" more at: " + window.location.host + '/ideas/' + idea.id
 
     $(fb_btn).click ->
-      window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/idea/' + idea.id, 'share to facebook', 'height=350,width=500'
+      window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/ideas/' + idea.id, 'share to facebook', 'height=350,width=500'
     $(twtr_btn).click ->
       desc = encodeURIComponent format idea.description
       window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
