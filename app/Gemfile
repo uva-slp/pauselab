@@ -31,7 +31,7 @@ gem 'devise' # authentication gem
 gem 'cancancan'
 # gem 'cancan', github: 'ryanb/cancan', branch: '2.0' # authorization gem
 gem 'simple_form' # easier forms
-gem 'paperclip','~> 4.2'  # file attachments
+gem 'paperclip' # file attachments
 gem 'trumbowyg_rails' # Trumbowyg editor
 gem 'sanitize' #Sanitize info inside the wysiwig
 gem 'font-awesome-sass'

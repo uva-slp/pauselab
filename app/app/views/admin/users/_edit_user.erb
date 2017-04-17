@@ -9,6 +9,7 @@
       <%= simple_form_for [:admin, @user] do |f| %>
         <div class="modal-body">
           <%= f.input :role, label: (t 'common.user_role'), as: :select, collection: User.roles.keys.to_a, selected: @user.role %>
+          <%= f.input :avatar, as: :file %>
           <%= f.input :first_name, label: (t 'common.first_name') %>
           <%= f.input :last_name, label: (t 'common.last_name') %>
           <%= f.input :email, label: (t 'common.user_email') %>
