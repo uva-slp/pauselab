@@ -47,6 +47,10 @@ es:
     approve: Aprobar
     disapprove: Desaprobar
     record_not_found: No Funda el Registro
+    first_name_placeholder: Peter
+    last_name_placeholder: Parker
+    email_placeholder: "pparker@dailybugle.com"
+    phone_placeholder: "555-555-5555"
   admins:
     admin_console: La consola de administración
     users: Los Usarios
@@ -104,10 +108,6 @@ es:
     save_success: Tu categoría fue guardado.
     save_error: Hay una problema cuando creando una categoría.
   ideas:
-    first_name_placeholder: Peter
-    last_name_placeholder: Parker
-    email_placeholder: "pparker@dailybugle.com"
-    phone_placeholder: "555-555-5555"
     description_placeholder: "Cual es tu idea?"
     location_placeholder: "Lee Park, etc."
     creating_idea: Creando Idea
@@ -126,10 +126,8 @@ es:
     submit_proposal: Entregar Propuesta
     submitted_ideas: Entregó Ideas
     save_success: Tu la envió una idea.
-    email_subject: "PauseLab BeCville - Tu idea recibió, " 
-    email_body1: "Nosotros escuchamos fuerte y claro. Gracias "
-    email_body2: ", para compartir tu idea. Nosotros aprobaramoslo en el futuro cercano después un 
-revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Muchas gracias por estar involucrado – BeCville"
+    thanks_subject: "PauseLab BeCville - Tu idea recibió, %{name}"
+    thanks_body: "Nosotros escuchamos fuerte y claro. Gracias %{name}, para compartir tu idea. Nosotros aprobaramoslo en el futuro cercano después un revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Muchas gracias por estar involucrado – BeCville"
   landingpages:
     description_placeholder: "Detalle a cual el plan implementará"
     editing_landingpage: Editando el Poste de Página Central

@@ -24,7 +24,7 @@
     <% else %>
     <p><%= t 'pages.no_post' %></p>
     <% if can? :edit, :landingpages %>
-     <p> <%= link_to (t 'pages.create_homepage'), new_landingpage_path() %></p>
+     <p> <%= link_to (t 'pages.create_homepage'), new_landingpage_path %></p>
     <% end %>
   <% end %>
 
@@ -35,10 +35,10 @@
 </div>
 
 <!-- Last 3 blogs: needs to be prettier -->
+<br/>
 <div>
-<br>
   <h4> <%= t 'pages.recent_blogs' %> </h4>
-  <% @blogs = Blog.order(id: :desc).limit(3) %>
+  <% @blogs = Blog.order(created_at: :desc).limit(3) %>
   <% @blogs.each do |b| %>
   <h5> <%= link_to (b.title), blog_path(b)%> <br> </h5>
   <%= b.user.fullname %> <br>

@@ -5,13 +5,13 @@
 	<%= f.input :lng, :as => :hidden %>
 	<%= f.input :address, :as => :hidden %>
 
-	<%= f.input :first_name, placeholder: (t 'ideas.first_name_placeholder') %>
-	<%= f.input :last_name, placeholder: (t 'ideas.last_name_placeholder') %>
+	<%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+	<%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
 
-	<%= f.input :email, placeholder: (t 'ideas.email_placeholder') %>
-	<%= f.input :phone, placeholder: (t 'ideas.phone_placeholder') %>
+	<%= f.input :email, placeholder: (t 'common.email_placeholder') %>
+	<%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
 
-	<% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
+	<% if user_has_admin_access %>
 		<%= f.input :medium, as: :select, collection: Idea.media, selected: Idea.media[@idea.medium] %>
 	<% end %>
 

@@ -1,17 +1,13 @@
 <div class="col-md-6">
 
-	<h2>Forgot your password?</h2>
+	<h2><%= t 'users.passwords.forgot_password' %></h2>
 
-	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 	  <%= devise_error_messages! %>
 
 	  <div class="form-group">
-	      <%= f.label :email %><br />
-	      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'john.smith@domain.com'%>
-	  </div>
-
-	  <div class="form-group">
-	    <%= f.submit "send me password reset instructions", class: 'btn btn-primary' %>
+      <%= f.input :email, autofocus: true, placeholder: (t 'users.passwords.forgot_email_placeholder')%>
+	    <%= f.submit (t 'users.passwords.forgot_submit'), class: 'btn btn-primary' %>
 	  </div>
 
 	  <div class="form-group">
@@ -19,6 +15,5 @@
 	  </div>
 
 	<% end %>
-
 
 </div>

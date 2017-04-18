@@ -46,12 +46,13 @@ class IdeasController < ApplicationController
 
 	def create
 		@idea = Idea.new(idea_params)
-                @to = @idea.email
+    @to = @idea.email
     @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
 			flash[:notice] = (t 'ideas.save_success')
-                        SlpMailer.email_custom_text(@to, (t 'ideas.email_subject') + @idea.first_name, (t 'ideas.email_body1') +  @idea.first_name + (t 'ideas.email_body2')).deliver
-			redirect_to ideas_path
+      SlpMailer.email_custom_text(@to, (t 'ideas.thanks_subject', :name => @idea.first_name),
+        (t 'ideas.thanks_body', :name => @idea.first_name)).deliver
+			redirect_to root_path
 		else
 			render 'new'
 		end

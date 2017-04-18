@@ -82,7 +82,11 @@
         <% end %>
 
         <% if user_has_admin_access %>
-          <td><%= proposal.status %></td>
+        <td>
+          <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
+            <%= proposal.status %>
+          </span>
+        </td>
         <% end %>
         <% if user_has_admin_access %>
           <td><%= proposal.number_of_votes %></td>

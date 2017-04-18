@@ -51,6 +51,10 @@ en:
     disapprove: Disapprove
     all: All
     record_not_found: Record Not Found
+    first_name_placeholder: Peter
+    last_name_placeholder: Parker
+    email_placeholder: "pparker@dailybugle.com"
+    phone_placeholder: "555-555-5555"
   admins:
     admin_console: Admin Console
     users: Users
@@ -108,10 +112,6 @@ en:
     save_success: Your category was saved.
     save_error: There was an error in creating a category.
   ideas:
-    first_name_placeholder: Peter
-    last_name_placeholder: Parker
-    email_placeholder: "pparker@dailybugle.com"
-    phone_placeholder: "555-555-5555"
     description_placeholder: "What's your idea?"
     location_placeholder: "Lee Park, etc."
     creating_idea: Creating Idea
@@ -130,9 +130,8 @@ en:
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
-    email_subject: "PauseLab BeCville - Your Idea Has Been Received, " 
-    email_body1: "We heard you loud and clear. Thanks "
-    email_body2: ", for sharing your idea.  We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
+    thanks_subject: "PauseLab BeCville - Your Idea Has Been Received, %{name}"
+    thanks_body: "We heard you loud and clear. Thanks %{name}, for sharing your idea. We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
   landingpages:
     landingpages: Landing Pages
     create_new: Create New Landing Page
@@ -256,6 +255,39 @@ en:
     logout: Logout
     login: Login
     spanish_pretranslated: Español
+  users:
+    mailer:
+      greeting: "Hello %{name}!"
+      password_change_body: We're contacting you to notify you that your password has been changed.
+      reset_password_body: Someone has requested a link to change your password. You can do this through the link below.
+      reset_password_link: Change my password
+      reset_password_ignore: If you didn't request this, please ignore this email.
+      reset_password_no_change: Your password won't change until you access the link above and create a new one.
+    passwords:
+      change_password: Change your password
+      new_password: New password
+      confirm_password: Confirm new password
+      minimum_length_message: "%{length} characters minimum."
+      forgot_password: Forgot your password?
+      forgot_email_placeholder: your.account@example.com
+      forgot_submit: Send me password reset instructions
+    registrations:
+      edit_user: Edit your profile
+      new_user: Create an account
+      sign_up: Sign up
+      first_name_placeholder: First name
+      last_name_placeholder: Last name
+      new_password: New password
+      new_password_hint: "Leave blank if you don't want to change your password. If changing, %{length} characters minimum."
+      new_password_confirmation: New password confirmation
+      current_password: Current password
+      current_password_hint: We need your current password to confirm your changes.
+      welcome_subject: "Welcome to PauseLab, %{name}"
+      welcome_body: "Welcome to PauseLab, %{name}. Your account was successfully created."
+    sessions:
+      log_in: Log in
+      sign_in: Sign in
+      remember_me: Remember me
   votes:
     vote: Vote  # verb
     votes: Votes  # plural noun

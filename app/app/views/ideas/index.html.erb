@@ -53,7 +53,7 @@
         <% if user_has_admin_access %>
           <th><%= t 'ideas.medium' %></th>
         <% end %>
-        
+
         <th><%= t 'ideas.likes' %></th>
 
         <!-- <% if can? :like, Idea or
@@ -90,20 +90,17 @@
           <% end %>
 
           <% if idea.respond_to? :status %>
-            <% if idea.approved? %>
-              <td><span class="badge badge-success">approved</span></td>
-            <% else %>
-              <td><span class="badge badge-danger">unchecked</span></td>
-            <% end %>
+            <td><span class="badge <%= if idea.approved? then "badge-success" else "badge-danger" end %>">
+              <%= idea.status %></span></td>
           <% end %>
 
           <% if idea.respond_to? :medium %>
             <td><span class="badge badge-info"><%= idea.medium %></span></td>
           <% end %>
 
-          <td>
-            <%= idea.likes  %>
-          </td>
+          <% if idea.respond_to? :likes %>
+            <td><%= idea.likes  %></td>
+          <% end %>
 
           <!-- <% if can? :read, Idea, :description %>
             <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>

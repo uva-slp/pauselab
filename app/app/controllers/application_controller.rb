@@ -62,6 +62,7 @@ end
       end
     end
 
+    # returns whether user is an admin or moderator
     def user_has_admin_access
       return ((not current_user.nil?) and (current_user.admin? or current_user.moderator?))
     end
