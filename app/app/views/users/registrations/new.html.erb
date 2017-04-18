@@ -4,7 +4,7 @@
 
     <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
 
-        <%= f.input :avatar, as: :file %>
+        <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
         <%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
         <%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
         <%= f.input :email, placeholder: (t 'common.email_placeholder') %>

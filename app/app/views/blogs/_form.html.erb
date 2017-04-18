@@ -1,7 +1,7 @@
 
 <%= simple_form_for @blog do |f| %>
-    <%= f.input :title, placeholder: (t 'blogs.placeholder_title') %>
-    <%= f.input :body, placeholder: (t 'blogs.placeholder_body') %>
+    <%= f.input :title, placeholder: (t 'blogs.title_placeholder') %>
+    <%= f.input :body, placeholder: (t 'blogs.body_placeholder') %>
     <div class='form-group'>
       <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary' %>
       <%= link_to (t 'common.cancel'), blogs_path %>

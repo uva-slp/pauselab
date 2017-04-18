@@ -49,12 +49,14 @@ en:
     na: "N/A"
     approve: Approve
     disapprove: Disapprove
+    browse: Browse
     all: All
     record_not_found: Record Not Found
-    first_name_placeholder: Peter
-    last_name_placeholder: Parker
-    email_placeholder: "pparker@dailybugle.com"
-    phone_placeholder: "555-555-5555"
+    first_name_placeholder: First
+    last_name_placeholder: Last
+    email_placeholder: "email@example.com"
+    phone_placeholder: "123-456-7890"
+    avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
   admins:
     admin_console: Admin Console
     users: Users
@@ -84,13 +86,13 @@ en:
     never_signed_in: Never signed in.
     deactivate_user: Deactivate user
   blogs:
-    placeholder_title: "This month's update"
-    placeholder_body: "After a month's hard work..."
+    title_placeholder: "This month's update"
+    body_placeholder: "After a month's hard work..."
     admin_console_title: Admin Console (Posts)
     back_link: Back to Posts
     create_new: Create New Post
     editing_blog: Editing Post
-    creating_blog: Creating Post
+    creating_blog: Create Your Post
     recent_blogs: Recent Posts
     read_more: Read More
     post_by: By
@@ -114,7 +116,7 @@ en:
   ideas:
     description_placeholder: "What's your idea?"
     location_placeholder: "Lee Park, etc."
-    creating_idea: Creating Idea
+    creating_idea: Create Your Idea
     editing_idea: Editing Idea
     create_new: Create New Idea
     ideas: Ideas
@@ -126,6 +128,7 @@ en:
     approve: Approve
     disapprove: Disapprove
     no_location_message: No location specified.
+    map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
     calliing_artists: Calling all artists
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
@@ -180,7 +183,7 @@ en:
     recent_blogs: Recent post entries
   proposal_comments:
     comments: Comments
-    creating_comment: Creating Comment
+    creating_comment: Create Your Comment
     editing_comment: Editing Comment
     show_comment: Show Comment
     save_success: Your comment was posted.
@@ -206,6 +209,7 @@ en:
     website_link_placeholder: Share an online link that shows your previous work.
     budget_information: Budget Information
     resume: Resume - Share a one page resume that shows your experience.
+    resume_button: Click to upload a PDF
     creating_proposal: Create Your Proposal
     editing_proposal: Edit Your Proposal
     create_new: Create New Proposal
@@ -218,7 +222,7 @@ en:
     approved: Approved
     unchecked: Unchecked
     funded: Funded
-    essay: Need
+    essay: Community Need
     cv: CV
     add_comment: Add Comment
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
@@ -231,7 +235,7 @@ en:
     moderator: Moderator
     resident: Resident
     artist: Artist
-    steering: Steering
+    steering: Steering Committee
     users_console: Users Console
     iteration_console: Iteration Console
     create_category: Create Category
@@ -240,7 +244,7 @@ en:
     mass_emails_console: Mass Emails Console
     landingpages_console: Landing Pages Console
     votes_console: Votes Console
-    steering_home: Steering Home
+    steering_home: Steering Committee Home
     artist_home: Artist Home
     vote: Vote  # navbar header
     proposals: Proposals
@@ -275,8 +279,6 @@ en:
       edit_user: Edit your profile
       new_user: Create an account
       sign_up: Sign up
-      first_name_placeholder: First name
-      last_name_placeholder: Last name
       new_password: New password
       new_password_hint: "Leave blank if you don't want to change your password. If changing, %{length} characters minimum."
       new_password_confirmation: New password confirmation
@@ -300,5 +302,5 @@ en:
     already_voted: You have already voted.
     save_success: Your vote has been received!
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
-    top_votes_note: "If you are searching for the top vote-getting proposals, go to the Proposals Console."
+    top_votes_note: "If you are searching for the top vote-getting proposals, go to Submitted Proposals."
     top_votes_link: "See top proposals"

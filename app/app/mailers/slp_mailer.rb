@@ -7,11 +7,10 @@ class SlpMailer < ApplicationMailer
          body: body)
   end
 
-  def email_custom_text_bcc(subj, body, bcc)
-    mail(
+  def email_custom_text_bcc(bcc, subj, body)
+    mail(bcc: bcc,
          subject: subj,
-         body: body,
-         bcc: bcc)
+         body: body)
   end
 
   def email_custom_html(to, subj, body)

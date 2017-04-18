@@ -22,7 +22,7 @@ class AdminController < ApplicationController
         end
         @subj = "PauseLab - Voting Period Now Open"
         @body = "Dear PauseLab users, the voting period for proposal submissions is now open!"
-        SlpMailer.email_custom_text(@to, @subj, @body).deliver
+        SlpMailer.email_custom_text_bcc(@to, @subj, @body).deliver
       end
 		render 'edit_phase'
 	end

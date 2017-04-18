@@ -10,7 +10,7 @@
   <h2><%= t 'admins.create_user' %></h2>
 
   <%= simple_form_for [:admin, @user] do |f| %>
-    <%= f.input :avatar, as: :file %>
+    <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
     <%= f.input :role, as: :select, collection: User.roles.keys.to_a, selected: :resident %>
     <%= f.input :first_name, placeholder: 'clark' %>
     <%= f.input :last_name, placeholder: 'kent' %>

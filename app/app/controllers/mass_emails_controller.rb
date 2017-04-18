@@ -33,7 +33,7 @@ class MassEmailsController < ApplicationController
       #Send e-mail
       @subj = @mass_email.subject
       @body = @mass_email.body
-      SlpMailer.email_custom_text_bcc(@subj, @body, @to).deliver
+      SlpMailer.email_custom_text_bcc(@to, @subj, @body).deliver
       #After email is sent redirect to the mass email console
       redirect_to mass_emails_path
     else

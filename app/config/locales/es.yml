@@ -46,11 +46,12 @@ es:
     na: "N/A"
     approve: Aprobar
     disapprove: Desaprobar
+    browse: Buscar
     record_not_found: No Funda el Registro
-    first_name_placeholder: Peter
-    last_name_placeholder: Parker
-    email_placeholder: "pparker@dailybugle.com"
-    phone_placeholder: "555-555-5555"
+    first_name_placeholder: First
+    last_name_placeholder: Last
+    email_placeholder: "email@example.com"
+    phone_placeholder: "123-456-7890"
   admins:
     admin_console: La consola de administración
     users: Los Usarios
