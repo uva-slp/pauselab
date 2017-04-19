@@ -6,20 +6,20 @@
   <br/>
 <% end %>
 
-<h2 class="pull-left"><%= t 'proposals.proposals' %></h2>
+<h2 class="pull-left"><%= Proposal.model_name.human(count:2) %></h2>
 
 <div class="dropdown pull-right ml-1" style="inline-block">
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu dropdown-menu-right">
     <% if user_has_admin_access %>
       <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
-      <%= link_to (t 'proposals.votes'), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
+      <%= link_to (Vote.model_name.human(count:2)), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
     <% end %>
     <%= link_to (t 'common.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
     <%= link_to (t 'common.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.title'), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
+    <%= link_to (Proposal.human_attribute_name :title), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
     <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :date), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.cost'), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>
+    <%= link_to (ProposalBudget.human_attribute_name :cost), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>
   </div>
 </div>
 
@@ -28,10 +28,10 @@
   <div class="dropdown-menu dropdown-menu-right">
     <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
     <% if user_has_admin_access %>
-      <%= link_to (t 'proposals.unchecked'), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
+      <%= link_to (Proposal.human_enum_name :status, :unchecked), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
     <% end %>
-    <%= link_to (t 'proposals.approved'), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.funded'), request.query_parameters.merge(:status => :funded), class: 'dropdown-item' %>
+    <%= link_to (Proposal.human_enum_name :status, :approved), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
+    <%= link_to (Proposal.human_enum_name :status, :funded), request.query_parameters.merge(:status => :funded), class: 'dropdown-item' %>
   </div>
 </div>
 
@@ -43,15 +43,15 @@
         <% if user_has_admin_access %>
           <th><%= t 'common.id'%></th>
         <% end %>
-        <th><%= t 'proposals.author' %></th>
+        <th><%= t 'common.author' %></th>
         <th><%= t 'common.created_at' %></th>
-        <th><%= t 'proposals.title' %></th>
-        <th><%= t 'proposals.cost' %></th>
+        <th><%= Proposal.human_attribute_name :title %></th>
+        <th><%= ProposalBudget.human_attribute_name :cost %></th>
         <% if user_has_admin_access %>
-          <th><%= t 'proposals.status' %></th>
+          <th><%= Proposal.human_attribute_name :status %></th>
         <% end %>
         <% if user_has_admin_access %>
-          <th><%= t 'proposals.votes' %></th>
+          <th><%= Vote.model_name.human(count:2) %></th>
         <% end %>
         <% if can? :show, Proposal or
           can? :approve, Proposal or
@@ -84,7 +84,7 @@
         <% if user_has_admin_access %>
         <td>
           <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
-            <%= proposal.status %>
+            <%= Proposal.human_enum_name(:status, proposal.status) %>
           </span>
         </td>
         <% end %>

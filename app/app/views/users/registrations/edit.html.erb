@@ -5,10 +5,10 @@
 
   <div class="form-group">
     <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
-    <%= f.input :first_name, label: (t 'common.first_name') %>
-    <%= f.input :last_name, label: (t 'common.last_name') %>
-    <%= f.input :email, label: (t 'common.user_email') %>
-    <%= f.input :phone, label: (t 'common.user_phone') %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

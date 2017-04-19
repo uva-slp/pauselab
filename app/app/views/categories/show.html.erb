@@ -1,7 +1,7 @@
 <h2><%= t 'categories.category_name' %>: <%= @category.name %></h2>
 <h3>
   <% if @category.icon.present? %>
-    <%= t 'categories.icon' %>: <%= @category.icon_file_name %>
+    <%= Category.human_attribute_name :icon %>: <%= @category.icon_file_name %>
     <%= image_tag @category.icon.url %>
   <% else %>
     <%= t 'categories.no_icon_message' %>

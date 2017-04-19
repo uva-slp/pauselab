@@ -3,15 +3,15 @@
   <button type="button" class='btn btn-primary pull-right clearfix' data-toggle="modal" data-target="#cat_form"><%= t 'categories.create_new' %></button>
 <% end %>
 
-<h2 class="pull-left"><%= t 'categories.categories' %></h2>
+<h2 class="pull-left"><%= Category.model_name.human(count:2) %></h2>
 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th><%= t 'common.id' %></th>
-        <th><%= t 'categories.icon' %></th>
-        <th><%= t 'categories.name' %></th>
+        <th><%= Category.human_attribute_name :icon %></th>
+        <th><%= Category.human_attribute_name :name %></th>
         <th colspan="1"><%= t 'common.actions' %></th>
       </tr>
     </thead>

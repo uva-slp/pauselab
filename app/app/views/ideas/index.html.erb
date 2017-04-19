@@ -7,12 +7,12 @@
 <br/>
 <br/>
 
-<h2 class="pull-left"><%= t 'ideas.ideas' %></h2>
+<h2 class="pull-left"><%= t Idea.model_name.human(count:2) %></h2>
 <div class="dropdown pull-right" style="inline-block">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu dropdown-menu-right">
     <!-- We are passing the sort parameter here -->
-    <a href="?sort=likes" class="dropdown-item" ><%= t 'ideas.likes' %></a>
+    <a href="?sort=likes" class="dropdown-item" ><%= Idea.human_attribute_name :likes %></a>
     <% if user_has_admin_access %>
       <a href="?sort=author_last_name" class="dropdown-item"><%= t 'common.author_first_name' %></a>
     <% end %>
@@ -23,7 +23,7 @@
     <% if user_has_admin_access %>
       <a href="?sort=id" class="dropdown-item"><%= t 'common.id' %></a>
     <% end %>
-    <a href="?sort=category" class="dropdown-item"><%= t 'ideas.category' %></a>
+    <a href="?sort=category" class="dropdown-item"><%= Category.model_name.human %></a>
   </div>
 </div>
 
@@ -37,24 +37,24 @@
         <% end %>
 
         <% if user_has_admin_access %>
-          <th><%= t 'ideas.author' %></th>
+          <th><%= t 'common.author' %></th>
         <% end %>
 
         <th><%= t 'common.created_at' %></th>
 
-        <th><%= t 'ideas.category' %></th>
+        <th><%= Category.model_name.human %></th>
 
-        <th><%= t 'ideas.description' %></th>
+        <th><%= Idea.human_attribute_name :description %></th>
 
         <% if user_has_admin_access %>
-          <th><%= t 'ideas.status' %></th>
+          <th><%= Idea.human_attribute_name :status %></th>
         <% end %>
 
         <% if user_has_admin_access %>
-          <th><%= t 'ideas.medium' %></th>
+          <th><%= Idea.human_attribute_name :medium %></th>
         <% end %>
 
-        <th><%= t 'ideas.likes' %></th>
+        <th><%= Idea.human_attribute_name :likes %></th>
 
         <!-- <% if can? :like, Idea or
           can? :show, Idea or
@@ -91,11 +91,11 @@
 
           <% if idea.respond_to? :status %>
             <td><span class="badge <%= if idea.approved? then "badge-success" else "badge-danger" end %>">
-              <%= idea.status %></span></td>
+              <%= Idea.human_enum_name(:status, idea.status) %></span></td>
           <% end %>
 
           <% if idea.respond_to? :medium %>
-            <td><span class="badge badge-info"><%= idea.medium %></span></td>
+            <td><span class="badge badge-info"><%= Idea.human_enum_name(:medium, idea.medium) %></span></td>
           <% end %>
 
           <% if idea.respond_to? :likes %>
@@ -115,7 +115,7 @@
           <% end %>
 
           <% if can? :approve, Idea %>
-            <td><%= link_to (t 'ideas.approve'), idea_approve_path(idea), method: :post %></td>
+            <td><%= link_to (t 'common.approve'), idea_approve_path(idea), method: :post %></td>
           <% end %>
 
           <% if can? :destroy, Idea %>

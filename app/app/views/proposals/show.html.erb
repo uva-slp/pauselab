@@ -34,7 +34,7 @@
 <%# TODO: limit scope %>
 <h5 class="text-sm-right">
   <span class="badge <%= if @proposal.approved? then "badge-primary" elsif @proposal.funded? then "badge-success" else "badge-danger" end%>">
-    <%= @proposal.status %>
+    <%= Proposal.human_enum_name(:status, @proposal.status) %>
   </span>
 </h5>
 
@@ -83,21 +83,21 @@
 
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title"><%= t 'proposals.description' %></h4>
+    <h4 class="card-title"><%= Proposal.human_attribute_name :description %></h4>
     <%= @proposal.description.html_safe %>
   </div>
 </div>
 
 <div class="card">
   <div class="card-block">
-    <h4 class="card-title"><%= t 'proposals.essay' %></h4>
+    <h4 class="card-title"><%= Proposal.human_attribute_name :essay %></h4>
     <%= @proposal.essay.html_safe %>
   </div>
 </div>
 
 <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
   <p>
-    <strong><%= t 'proposals.cv' %>:</strong>
+    <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
     <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
   </p>
 <% end %>
@@ -106,7 +106,7 @@
 
 <%# TODO avoid code duplication with this and proposal_comment views. %>
 <% if can? :read, ProposalComment %>
-  <h3><%= t 'proposal_comments.comments' %></h3>
+  <h3><%= ProposalComment.model_name.human(count:2) %></h3>
   <% @proposal.proposal_comments.each do |comment| %>
 
     <div class="card">

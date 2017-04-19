@@ -2,7 +2,7 @@
 <% if can? :create, MassEmail %>
   <%= link_to (t 'mass_emails.create_new'), new_mass_email_path, class: 'btn btn-primary pull-right top-40 clearfix' %>
 <% end %>
-<h2><%= t 'mass_emails.mass_emails' %></h2>
+<h2><%= MassEmail.model_name.human(count:2) %></h2>
 
 <table class="table">
 
@@ -10,9 +10,9 @@
     <tr>
       <th><%= t 'common.id' %></th>
       <th><%= t 'mass_emails.sent_at' %></th>
-      <th><%= t 'mass_emails.to' %></th>
-      <th><%= t 'mass_emails.subject' %></th>
-      <th><%= t 'mass_emails.body' %></th>
+      <th><%= MassEmail.human_attribute_name :to %></th>
+      <th><%= MassEmail.human_attribute_name :subject %></th>
+      <th><%= MassEmail.human_attribute_name :body %></th>
       <th colspan="6"><%= t 'common.actions' %></th>
     </tr>
   </thead>

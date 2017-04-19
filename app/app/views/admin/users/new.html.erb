@@ -12,15 +12,15 @@
   <%= simple_form_for [:admin, @user] do |f| %>
     <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
     <%= f.input :role, as: :select, collection: User.roles.keys.to_a, selected: :resident %>
-    <%= f.input :first_name, placeholder: 'clark' %>
-    <%= f.input :last_name, placeholder: 'kent' %>
-    <%= f.input :email, placeholder: 'ckent@dailyplanet.com' %>
-    <%= f.input :phone, placeholder: '555-555-5555' %>
-    <%= f.input :password, placeholder: 'password', hint: "6 characters minimum" %>
-    <%= f.input :password_confirmation, placeholder: 'password_confirmation' %>
+    <%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+    <%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
+    <%= f.input :email, placeholder: (t 'common.email_placeholder') %>
+    <%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
+    <%= f.input :password, hint: (t 'users.passwords.minimum_length_message', :length => 6) %>
+    <%= f.input :password_confirmation %>
 
     <div class="form-group">
-      <%= f.button :submit, 'Submit', style: 'margin-top: 10px;' %>
+      <%= f.button :submit, 'Submit', class: 'btn btn-primary', style: 'margin-top: 10px;', %>
     </div>
   <% end %>
 

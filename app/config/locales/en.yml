@@ -20,18 +20,125 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    models:
+      blog:
+        one: Post
+        other: Posts
+      category:
+        one: Category
+        other: Categories
+      idea:
+        one: Idea
+        other: Ideas
+      iteration:
+        one: Iteration
+        other: Iterations
+      landingpage:
+        one: Landing Page
+        other: Landing Pages
+      mass_email:
+        one: Mass Email
+        other: Mass Emails
+      proposal_comment:
+        one: Comment
+        other: Comments
+      proposal:
+        one: Proposal
+        other: Proposals
+      user:
+        one: User
+        other: Users
+      vote:
+        one: Vote
+        other: Votes
+    attributes:
+      blog:
+        title: Title
+        body: Body
+      category:
+        name: Name
+        icon: Icon
+      idea:
+        first_name: First Name
+        last_name: Last Name
+        phone: Phone
+        description: Description
+        likes: Likes
+        email: Email
+        status: Status
+        medium: Medium
+        statuses:
+          unchecked: Unchecked
+          approved: Approved
+        media:
+          online: Online
+          paper: Paper
+      iteration:
+        ended: Ended
+        status: Phase
+        statuses:
+          ideas: Idea Collection
+          proposals: Proposal Collection
+          voting: Voting
+          progress: Offseason
+      landingpage:
+        title: Title
+        description: Body
+      mass_email:
+        to: To
+        subject: Subject
+        body: Body
+      proposal_budget:
+        artist_fees: Artist Fees
+        project_materials: Project Materials
+        printing: Printing
+        marketing: Marketing
+        documentation: Documentation
+        volunteers: Volunteers
+        insurance: Insurance
+        events: Events
+        cost: Cost
+      proposal_comment:
+        body: Body
+      proposal:
+        title: Title
+        description: Description
+        essay: Community Need
+        website_link: Portfolio
+        status: Status
+        artist_cv: Resume
+        statuses:
+          unchecked: Unchecked
+          approved: Approved
+          funded: Funded
+      user:
+        email: Email
+        phone: Phone
+        first_name: First Name
+        last_name: Last Name
+        fullname: Name
+        role: Role
+        avatar: Avatar
+        roles:
+          resident: Resident
+          artist: Artist
+          super_artist: Super Artist
+          steerer: Steering Committee
+          moderator: Moderator
+          admin: Admin
+      vote:
+        first_name: First Name
+        last_name: Last Name
+        phone: Phone
+        email: Email
   common:
     number_symbol: "#"
     id: ID
     actions: Actions
-    user_name: Name
+    author: Author
     author_first_name: Author First Name
     author_last_name: Author Last Name
-    first_name: First Name
-    last_name: Last Name
-    user_email: Email
-    user_role: Role
-    user_phone: Phone
     confirm_message: "Are you sure?"
     submit: Submit
     update: Update
@@ -59,9 +166,7 @@ en:
     avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
   admins:
     admin_console: Admin Console
-    users: Users
     current_iteration: Current Iteration
-    iterations: Iterations
     started_on: Started on
     current_status: Current Status
     change_phase: Change Phase
@@ -101,15 +206,12 @@ en:
     body: Body
     save_success: Your post was saved.
   categories:
-    placeholder_name: Nature
+    name_placeholder: Nature
     icon_hint: Used for Maps icon displaying an idea. Must be image format.
     create_new: Create New Category
     creating_category: Creating Category
     editing_category: Editing Category
-    categories: Categories
     category_name: Category Name
-    name: Name
-    icon: Icon
     no_icon_message: No icon present.
     save_success: Your category was saved.
     save_error: There was an error in creating a category.
@@ -119,14 +221,6 @@ en:
     creating_idea: Create Your Idea
     editing_idea: Editing Idea
     create_new: Create New Idea
-    ideas: Ideas
-    likes: Likes
-    author: Author
-    category: Category
-    description: Description
-    status: Status
-    approve: Approve
-    disapprove: Disapprove
     no_location_message: No location specified.
     map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
     calliing_artists: Calling all artists
@@ -136,10 +230,7 @@ en:
     thanks_subject: "PauseLab BeCville - Your Idea Has Been Received, %{name}"
     thanks_body: "We heard you loud and clear. Thanks %{name}, for sharing your idea. We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
   landingpages:
-    landingpages: Landing Pages
     create_new: Create New Landing Page
-    title: Title
-    description: Description
     description_placeholder: "What content goes into this page?"
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
@@ -158,18 +249,14 @@ en:
     body_placeholder: Message
     send: Send
     create_new: Create New Email
-    mass_emails: Mass Emails
     sent_at: Sent At
     date_sent: Date Sent
-    to: To
-    subject: Subject
-    body: Body
     save_success: Your mass email was sent.
     save_error: There was an error in sending the email.
   pages:
     no_post: PauseLab has not created a post yet.
     delete_account: Delete my account
-    delete_confirm_message: Are you sure? Deleting your account is an irreversable action.
+    delete_confirm_message: Are you sure? Deleting your account is an irreversible action.
     idea_collection: Idea Collection
     submit_idea: Submit an Idea
     create_about: Create About
@@ -182,7 +269,6 @@ en:
     edit_steering: Edit Steering Committee Home
     recent_blogs: Recent post entries
   proposal_comments:
-    comments: Comments
     creating_comment: Create Your Comment
     editing_comment: Editing Comment
     show_comment: Show Comment
@@ -194,67 +280,36 @@ en:
     cost_breakdown: Cost Breakdown
     view_breakdown: View Breakdown
     cost_component: Component
-    cost: Cost
-    artist_fees: Artist Fees
-    project_materials: Project Materials
-    printing: Printing
-    marketing: Marketing
-    documentation: Documentation
-    volunteers: Volunteers
-    insurance: Insurance
-    events: Events
     title_placeholder: "Title (max length 40)"
-    description_placeholder: Detail the specifics of your project by describing the Who, What, and Where (max length 500 words).
+    description_placeholder: "Detail the specifics of your project by describing the Who, What, and Where (max length 500 words)."
     essay_placeholder: "How would this project help the community? (max length 500 words)."
-    website_link_placeholder: Share an online link that shows your previous work.
+    website_link_placeholder: "Share an online link that shows your previous work."
     budget_information: Budget Information
-    resume: Resume - Share a one page resume that shows your experience.
+    resume: "Resume - Share a one page resume that shows your experience."
     resume_button: Click to upload a PDF
     creating_proposal: Create Your Proposal
     editing_proposal: Edit Your Proposal
     create_new: Create New Proposal
-    proposals: Proposals
-    author: Author
-    title: Title
-    status: Status
-    votes: Votes
-    description: Description
-    approved: Approved
-    unchecked: Unchecked
-    funded: Funded
-    essay: Community Need
-    cv: CV
     add_comment: Add Comment
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
     fund: Fund
     unfund: Unfund
     total_cost: Total Cost
-    link: Portfolio
   shared:
-    admin: Admin
-    moderator: Moderator
-    resident: Resident
-    artist: Artist
-    steering: Steering Committee
     users_console: Users Console
     iteration_console: Iteration Console
-    create_category: Create Category
     categories_console: Categories Console
-    create_mass_email: Create Mass Email
     mass_emails_console: Mass Emails Console
     landingpages_console: Landing Pages Console
     votes_console: Votes Console
     steering_home: Steering Committee Home
     artist_home: Artist Home
-    vote: Vote  # navbar header
-    proposals: Proposals
+    vote: Vote  # navbar header, verb
     create_proposal: Create Proposal
     proposals_console: Submitted Proposals
-    ideas: Ideas
     view_ideas: View Ideas
     create_idea: Create Idea
     ideas_console: Submitted Ideas
-    blog: Posts
     about: About
     logout: Logout
     login: Login
@@ -292,14 +347,11 @@ en:
       remember_me: Remember me
   votes:
     vote: Vote  # verb
-    votes: Votes  # plural noun
-    proposals: Proposals
-    personal_information: Personal Information
     voter_ballot: Voter Ballot
+    personal_information: Personal Information
     pick_three: Pick Your Top Three
     select: Select
     submitted_on: Submitted on
-    already_voted: You have already voted.
     save_success: Your vote has been received!
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
     top_votes_note: "If you are searching for the top vote-getting proposals, go to Submitted Proposals."

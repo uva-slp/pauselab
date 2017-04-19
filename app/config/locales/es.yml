@@ -19,6 +19,17 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 es:
+  activerecord:
+    attributes:
+      proposal_budget:
+        artist_fees: La tarifa del artista
+        project_materials: Materiales del Proyecto
+        printing: Costo de impresión
+        marketing: Costo de
+        documentation: Documentation
+        volunteers: Voluntarios
+        insurance: Eguro
+        events: Eventos
   common:
     number_symbol: "#"
     id: ID
@@ -81,8 +92,8 @@ es:
     never_signed_in: Nunca registro #This one's iffy
     deactivate_user: Desactivar el usario
   blogs:
-    placeholder_title: "La últimas noticias del mes"
-    placeholder_body: "Después de un mes de trabajo difícil..."
+    title_placeholder: "La últimas noticias del mes"
+    body_placeholder: "Después de un mes de trabajo difícil..."
     admin_console_title: Consola de Administración (Mensaje)
     back_link: Retroceder a Mensajes
     create_new: Crear un Mensaje Nuevo
@@ -96,7 +107,7 @@ es:
     body: La masa
     save_success: El mensaje está guardado.
   categories:
-    placeholder_name: Naturaleza
+    name_placeholder: Naturaleza
     icon_hint: Por el icono del mapa para ver una idea. Necesita El formato necesita ser imagen (.jpeg, .png).
     create_new: Crear Una Categoría Nueva
     creating_category: Creando Categoría

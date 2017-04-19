@@ -2,14 +2,14 @@
   <%= link_to (t 'landingpages.create_new'), new_landingpage_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
 
-<h2 class="pull-left"><%= t 'landingpages.landingpages' %></h2>
+<h2 class="pull-left"><%= Landingpage.model_name.human(count:2) %></h2>
 
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= t 'landingpages.title' %></th>
-        <th><%= t 'landingpages.description' %></th>
+        <th><%= Landingpage.human_attribute_name :title %></th>
+        <th><%= Landingpage.human_attribute_name :description %></th>
         <th colspan="1"><%= t 'common.actions' %></th>
       </tr>
     </thead>

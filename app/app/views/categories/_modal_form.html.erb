@@ -12,7 +12,7 @@
 
       <%= simple_form_for @category do |f| %>
         <div class="modal-body">
-          <%= f.input :name, placeholder: (t 'categories.placeholder_name') %>
+          <%= f.input :name, placeholder: (t 'categories.name_placeholder') %>
           <%= f.input :icon, as: :file, hint: (t 'categories.icon_hint') %>
         </div>
         <div class="modal-footer">

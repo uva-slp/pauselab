@@ -3,9 +3,9 @@
 
 <h4><b><%= t 'mass_emails.date_sent' %>: </b></h4>
 <p><%= @mass_email.created_at.strftime("%B %d, %Y") %></p>
-<h4><b><%= t 'mass_emails.to' %>: </b></h4>
+<h4><b><%= MassEmail.human_attribute_name :to %>: </b></h4>
 <p><%= @mass_email.to %></p>
-<h4><b><%= t 'mass_emails.subject' %>: </b></h4>
+<h4><b><%= MassEmail.human_attribute_name :subject %>: </b></h4>
 <p><%= @mass_email.subject %></p>
-<h4><b><%= t 'mass_emails.body' %>: </b></h4>
+<h4><b><%= MassEmail.human_attribute_name :body %>: </b></h4>
 <p><%= @mass_email.body %></p>

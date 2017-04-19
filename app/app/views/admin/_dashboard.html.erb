@@ -6,14 +6,14 @@
 <ul class="nav nav-tabs">
   <% if can? :manage, User %>
     <li class="nav-item">
-  		<%= link_to (t 'admins.users'), admin_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
+  		<%= link_to (User.model_name.human(count:2)), admin_users_path, :class => (position == 'users' ? 'nav-link active' : 'nav-link') %>
     </li>
   <% end %>
   <li class="nav-item">
 		<%= link_to (t 'admins.current_iteration'), admin_edit_phase_path, :class => (position == 'current' ? 'nav-link active' : 'nav-link') %>
   </li>
   <li class="nav-item">
-    <%= link_to (t 'admins.iterations'), admin_export_iterations_path, :class => (position == 'iterations' ? 'nav-link active' : 'nav-link') %>
+    <%= link_to (Iteration.model_name.human(count:2)), admin_export_iterations_path, :class => (position == 'iterations' ? 'nav-link active' : 'nav-link') %>
   </li>
   <!-- <li class="nav-item">
     <%= link_to 'Manage system data', admin_manage_data_path, :class => (position == 'manage_data' ? 'nav-link active' : 'nav-link') %>

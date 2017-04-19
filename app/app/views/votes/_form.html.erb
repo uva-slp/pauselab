@@ -20,10 +20,10 @@
 <%= simple_form_for @vote, :url => { :action => "create" } do |vote| %>
 
   <h2 class="text-lg-left"><%= t 'votes.personal_information' %></h2>
-  <%= vote.input :first_name, placeholder: (t 'common.first_name') %>
-  <%= vote.input :last_name, placeholder: (t 'common.last_name') %>
-  <%= vote.input :phone, placeholder: (t 'common.user_phone') %>
-  <%= vote.input :email, placeholder: (t 'common.user_email') %>
+  <%= vote.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+  <%= vote.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
+  <%= vote.input :phone, placeholder: (t 'common.phone_placeholder') %>
+  <%= vote.input :email, placeholder: (t 'common.email_placeholder') %>
 
   <h1 class="text-lg-center"><%= t 'votes.pick_three' %></h1></br>
   <div class="selected-proposals"></div>

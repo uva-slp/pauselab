@@ -43,7 +43,8 @@
         <% end %>
 
         <% if @idea.respond_to? :status %>
-          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>"><%= @idea.status %></span>
+          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>">
+            <%= Idea.human_enum_name(:status, @idea.status) %></span>
         <% end %>
 
         <br>

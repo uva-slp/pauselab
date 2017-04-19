@@ -31,10 +31,10 @@
 <%= simple_form_for @proposal do |f| %>
 
 
-    <%= f.input :title, label: (t 'proposals.title'), placeholder: (t 'proposals.title_placeholder') %>
-    <%= f.input :description, label: (t 'proposals.description'), placeholder: (t 'proposals.description_placeholder') %>
-    <%= f.input :essay, label: (t 'proposals.essay'), placeholder: (t 'proposals.essay_placeholder') %>
-    <%= f.input :website_link, label: (t 'proposals.link'), placeholder: (t 'proposals.website_link_placeholder') %>
+    <%= f.input :title, placeholder: (t 'proposals.title_placeholder') %>
+    <%= f.input :description, placeholder: (t 'proposals.description_placeholder') %>
+    <%= f.input :essay, placeholder: (t 'proposals.essay_placeholder') %>
+    <%= f.input :website_link, placeholder: (t 'proposals.website_link_placeholder') %>
 
     <br/>
     <h3><%= t 'proposals.budget_information' %></h3>
@@ -42,32 +42,32 @@
     <%= f.simple_fields_for :proposal_budget do |p| %>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :artist_fees, placeholder: (t 'proposals.artist_fees'), input_html: { class: 'budget' } %>
+        <%= p.input :artist_fees, placeholder: (ProposalBudget.human_attribute_name :artist_fees), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :project_materials, placeholder: (t 'proposals.project_materials'), input_html: { class: 'budget' } %>
+        <%= p.input :project_materials, placeholder: (ProposalBudget.human_attribute_name :project_materials), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :printing, placeholder: (t 'proposals.printing'), input_html: { class: 'budget' } %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <%= p.input :marketing, placeholder: (t 'proposals.marketing'), input_html: { class: 'budget' } %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :documentation, placeholder: (t 'proposals.documentation'), input_html: { class: 'budget' } %>
-      </div>
-      <div class="col-sm-4">
-        <%= p.input :volunteers, placeholder: (t 'proposals.volunteers'), input_html: { class: 'budget' } %>
+        <%= p.input :printing, placeholder: (ProposalBudget.human_attribute_name :printing), input_html: { class: 'budget' } %>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
-        <%= p.input :insurance, placeholder: (t 'proposals.insurance'), input_html: { class: 'budget' } %>
+        <%= p.input :marketing, placeholder: (ProposalBudget.human_attribute_name :marketing), input_html: { class: 'budget' } %>
       </div>
       <div class="col-sm-4">
-        <%= p.input :events, placeholder: (t 'proposals.events'), input_html: { class: 'budget' } %>
+        <%= p.input :documentation, placeholder: (ProposalBudget.human_attribute_name :documentation), input_html: { class: 'budget' } %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :volunteers, placeholder: (ProposalBudget.human_attribute_name :volunteers), input_html: { class: 'budget' } %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= p.input :insurance, placeholder: (ProposalBudget.human_attribute_name :insurance), input_html: { class: 'budget' } %>
+      </div>
+      <div class="col-sm-4">
+        <%= p.input :events, placeholder: (ProposalBudget.human_attribute_name :events), input_html: { class: 'budget' } %>
       </div>
     </div>
     <% end %>
@@ -80,7 +80,7 @@
     <hr>
 
     <div class='form-group'>
-      <%= f.input :artist_cv, label: (t 'proposals.resume'), wrapper_html: { class: 'btn-file' },
+      <%= f.input :artist_cv, wrapper_html: { class: 'btn-file' },
         button_text: (t 'proposals.resume_button') %>
     </div>
 
