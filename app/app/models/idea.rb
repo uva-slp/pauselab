@@ -5,7 +5,7 @@ class Idea < ApplicationRecord
 
 	validates :first_name, :last_name, :phone, :email, :description, :address, :lat, :lng, :category_id, presence: true
 
-	validates :phone, length: { is: 10, wrong_length: 'phone numbers can only be 10 characters long' }
+	validates :phone, length: { is: 10 }
 	validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 
 	enum status: [:unchecked, :approved]
@@ -18,6 +18,12 @@ class Idea < ApplicationRecord
 	after_initialize :set_default_medium, :if => :new_record?
 	def set_default_medium
 		self.medium ||= :online
+	end
+
+	# only keep numbers in phone before validation. credit http://stackoverflow.com/a/28621417
+	before_validation :format_phone_number
+	def format_phone_number
+		self.phone.gsub!(/[^0-9]/, '')
 	end
 
 	def author

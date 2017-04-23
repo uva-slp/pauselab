@@ -11,12 +11,6 @@
 
 </style>
 
-<% if @vote.errors.full_messages.any? %>
-  <div class="alert alert-danger">
-    <%= @vote.errors[:proposals][0] if @vote.errors[:proposals].any? %>
-  </div>
-<% end %>
-
 <%= simple_form_for @vote, :url => { :action => "create" } do |vote| %>
 
   <h2 class="text-lg-left"><%= t 'votes.personal_information' %></h2>
@@ -26,6 +20,11 @@
   <%= vote.input :email, placeholder: (t 'common.email_placeholder') %>
 
   <h1 class="text-lg-center"><%= t 'votes.pick_three' %></h1></br>
+  <% if @vote.errors[:proposals].any? %>
+    <div class="alert alert-danger">
+      <%= @vote.errors[:proposals][0] %>
+    </div>
+  <% end %>
   <div class="selected-proposals"></div>
   <br/>
   <div class="card-columns">

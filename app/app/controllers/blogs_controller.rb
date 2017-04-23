@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
       flash[:notice] = (t 'blogs.save_success')
       redirect_to blogs_path
     else
-      flash[:notice] = (t 'blogs.save_fail')
+      flash[:error] = (t 'blogs.save_error')
       render new_blog_path
     end
   end

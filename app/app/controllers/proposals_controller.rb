@@ -44,7 +44,7 @@ class ProposalsController < ApplicationController
 			flash[:notice] = (t 'proposals.save_success')
 			redirect_to proposals_path
 		else
-      flash[:notice] = (t 'proposals.save_fail')
+      flash[:error] = (t 'proposals.save_error')
       render 'new'
 		end
 	end

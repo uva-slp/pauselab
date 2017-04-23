@@ -132,6 +132,10 @@ en:
         last_name: Last Name
         phone: Phone
         email: Email
+    errors:
+      models:
+        vote:
+          proposal_count: Need to select three proposals.
   common:
     number_symbol: "#"
     id: ID
@@ -208,7 +212,7 @@ en:
     title: Title
     body: Body
     save_success: Your post was saved.
-    save_fail: There was an error saving your post.
+    save_error: There was an error saving your post.
   categories:
     name_placeholder: Nature
     icon_hint: Used for Maps icon displaying an idea. Must be image format.
@@ -227,11 +231,11 @@ en:
     create_new: Create New Idea
     no_location_message: No location specified.
     map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
-    calliing_artists: Calling all artists
+    calling_artists: Calling all artists
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
-    save_fail: There was an error in creating an idea. Please fill out all fields.
+    save_error: There was an error in creating an idea. Please fill out all fields.
     thanks_subject: "PauseLab BeCville - Your Idea Has Been Received, %{name}"
     thanks_body: "We heard you loud and clear. Thanks %{name}, for sharing your idea. We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
   landingpages:
@@ -297,7 +301,7 @@ en:
     create_new: Create New Proposal
     add_comment: Add Comment
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
-    save_fail: There was an error in creating your proposal.
+    save_error: There was an error in creating your proposal.
     fund: Fund
     unfund: Unfund
     total_cost: Total Cost
@@ -359,6 +363,7 @@ en:
     select: Select
     submitted_on: Submitted on
     save_success: Your vote has been received!
+    save_error: There was an error in creating your vote.
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
     top_votes_note: "If you are searching for the top vote-getting proposals, go to Submitted Proposals."
     top_votes_link: "See top proposals"

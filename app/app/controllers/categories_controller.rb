@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
         format.html { redirect_to categories_path, notice: (t 'categories.save_success') }
         format.json { render json: @resource }
       else
-        format.html { render new_category_path, notice: (t 'categories.save_error') }
+        format.html { render new_category_path, error: (t 'categories.save_error') }
         format.json { render json: @resource }
       end
     end

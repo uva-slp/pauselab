@@ -15,6 +15,7 @@ class VotesController < ApplicationController
       flash[:notice] = (t 'votes.save_success')
       redirect_to root_path
     else
+      flash[:error] = (t 'votes.save_error')
       render 'new'
     end
   end

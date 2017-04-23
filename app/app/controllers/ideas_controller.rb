@@ -50,7 +50,7 @@ class IdeasController < ApplicationController
         (t 'ideas.thanks_body', :name => @idea.first_name)).deliver
 			redirect_to root_path
 		else
-      flash[:notice] = (t 'ideas.save_fail')
+      flash[:error] = (t 'ideas.save_error')
 			render 'new'
 		end
 	end
