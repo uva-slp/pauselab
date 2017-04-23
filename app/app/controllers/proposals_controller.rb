@@ -18,11 +18,15 @@ class ProposalsController < ApplicationController
         @proposals = @proposals.includes(:user).order("users.last_name")
       elsif params[:sort] == "date"
         @proposals = @proposals.order("created_at desc")
-      else
+      elsif ["title", "id"].include? params[:sort]
         @proposals = @proposals.order params[:sort]
       end
     end
-		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
+
+    if params[:status].present?
+      @proposals = @proposals.where(status: Proposal.statuses[params[:status]])
+    end
+
     index_respond @proposals, :proposals
 	end
 

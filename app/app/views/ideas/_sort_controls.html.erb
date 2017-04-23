@@ -1,0 +1,29 @@
+<div class="dropdown pull-right ml-1" style="inline-block">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t 'common.sort' %></a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- We are passing the sort parameter here -->
+    <%= link_to (Idea.human_attribute_name :likes), request.query_parameters.merge(:sort => :likes), class: 'dropdown-item' %>
+    <% if user_has_steering_access %>
+      <%= link_to (t 'common.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
+    <% end %>
+    <% if user_has_steering_access %>
+      <%= link_to (t 'common.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
+    <% end %>
+    <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :date), class: 'dropdown-item' %>
+    <%= link_to (Category.model_name.human), request.query_parameters.merge(:sort => :category), class: 'dropdown-item' %>
+    <% if user_has_steering_access %>
+      <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
+    <% end %>
+  </div>
+</div>
+
+<% if user_has_steering_access %>
+<div class="dropdown pull-right" style="inline-block">
+  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.filter' %></a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
+    <%= link_to (Idea.human_enum_name :status, :unchecked), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
+    <%= link_to (Idea.human_enum_name :status, :approved), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
+  </div>
+</div>
+<% end %>

@@ -12,16 +12,20 @@ class IdeasController < ApplicationController
       @ideas = @ideas.order :id
     when "date"
       @ideas = @ideas.order created_at: :desc
-    when "author_last_name"
+    when "last_name"
       if user_has_admin_access # prevent non-privileged users from sorting
         @ideas = @ideas.order :last_name
       end
-    when "author_first_name"
+    when "first_name"
       if user_has_admin_access # prevent non-privileged users from sorting
         @ideas = @ideas.order :first_name
       end
     when "likes"
       @ideas = @ideas.order likes: :desc
+    end
+
+    if params[:status].present?
+      @ideas = @ideas.where(status: Idea.statuses[params[:status]])
     end
 
     @likes = Array.new
