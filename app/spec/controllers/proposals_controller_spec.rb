@@ -62,6 +62,10 @@ describe ProposalsController, type: :controller do
       get :index, params: {sort: 'id'}
       expect(controller.params[:sort]).to eql 'id'
     end
+    it "notices when to filter by status" do
+      get :index, params: {status: 'unchecked'}
+      expect(controller.params[:status]).to eql 'unchecked'
+    end
   end
 
   describe "when creating proposal" do

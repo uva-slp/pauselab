@@ -55,7 +55,7 @@ describe BlogsController, type: :controller do
       expect(response).to render_template(:new)
     end
     it "does not work for non-superartist" do
-      user = sign_in (create :steerer)
+      user = sign_in (create :artist)
       blog = build :blog
       expect {
         post :create, params: {blog: blog.attributes}
