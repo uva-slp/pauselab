@@ -15,6 +15,11 @@ class Idea < ApplicationRecord
 		self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status medium}
 	end
 
+	after_initialize :set_default_medium, :if => :new_record?
+	def set_default_medium
+		self.medium ||= :online
+	end
+
 	def author
 		if self.respond_to? :first_name and self.respond_to? :last_name
 			"#{first_name} #{last_name}"

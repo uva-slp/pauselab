@@ -138,6 +138,7 @@ class IdeasController < ApplicationController
 	    	:email,
 	    	:phone,
 	    	:description,
+        :medium,
         :address,
         :lat,
         :lng
