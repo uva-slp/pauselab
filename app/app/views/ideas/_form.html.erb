@@ -12,7 +12,8 @@
 	<%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
 
 	<% if user_has_admin_access %>
-		<%= f.input :medium, as: :select, collection: Idea.media.keys.to_a, selected: :online %>
+		<%= f.input :medium, as: :select, collection: Idea.media.keys.to_a,
+			label_method: lambda {|m| Idea.human_enum_name :media, m }, selected: :online %>
 	<% end %>
 
 	<%= f.input :category_id, as: :select, collection: Category.all, selected: 1 %>
