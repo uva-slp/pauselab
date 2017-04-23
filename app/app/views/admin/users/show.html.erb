@@ -7,13 +7,12 @@
 
 <%= render :layout => 'admin/dashboard', :locals => {position: 'users' } do %>
 
-  <%= render 'edit_user' %>
+  <%= render :partial => 'edit_user' %>
 
   <div class="container">
     <div class="row">
       <div class="col-lg-7 user-info center-block col-centered jumbotron">
         <%= image_tag @user.avatar.url, class: 'avatar-img img-fluid' %>
-        <!-- <%= image_tag Faker::Avatar.image, class: 'avatar-img img-fluid' %> -->
         <br>
         <br>
         <h2 class="display-4"><%= @user.fullname %></h2>
@@ -57,6 +56,5 @@
       <i class="fa fa-trash"></i>
     <% end %>
   </div>
-
 
 <% end %>

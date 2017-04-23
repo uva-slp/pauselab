@@ -1,15 +1,5 @@
-<!--
-<% if can? :read, Blog %>
-<%= link_to (t 'common.back'), blogs_path %>
-<% end %>
-<% if can? :edit, @blog %>
-| <%= link_to (t 'common.edit'), edit_blog_path(@blog) %>
-<% end %>
-
--->
 
 <%= image_tag @blog.user.avatar.url, class: 'user-img img-fluid pull-left' %>
-<!-- <%= image_tag Faker::Avatar.image, class: 'user-img-lg img-fluid pull-left' %> -->
 <h2><b><%= @blog.title %></b></h2>
 <h4 class="text-muted"><%= @blog.user.fullname %></h4>
 

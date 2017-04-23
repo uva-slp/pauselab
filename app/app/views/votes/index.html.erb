@@ -1,9 +1,4 @@
 
-
-<!-- <% if can? :create, Vote %>
-  <%= link_to 'Create New Vote', new_vote_path, class: 'btn btn-primary pull-right clearfix' %>
-<% end %> -->
-
 <div>
   <%= t 'votes.top_votes_note' %>
   <%= link_to (t 'votes.top_votes_link'), proposals_path(:sort => :votes) %>

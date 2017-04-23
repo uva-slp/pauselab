@@ -190,6 +190,9 @@ en:
     manage: Manage
     never_signed_in: Never signed in.
     deactivate_user: Deactivate user
+    line_chart_title: Ideas Submitted
+    line_chart_y_axis: Number of Ideas
+    pie_chart_title: Ideas by Category
   blogs:
     title_placeholder: "This month's update"
     body_placeholder: "After a month's hard work..."
@@ -205,6 +208,7 @@ en:
     title: Title
     body: Body
     save_success: Your post was saved.
+    save_fail: There was an error saving your post.
   categories:
     name_placeholder: Nature
     icon_hint: Used for Maps icon displaying an idea. Must be image format.
@@ -227,6 +231,7 @@ en:
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
+    save_fail: There was an error in creating an idea. Please fill out all fields.
     thanks_subject: "PauseLab BeCville - Your Idea Has Been Received, %{name}"
     thanks_body: "We heard you loud and clear. Thanks %{name}, for sharing your idea. We will approve it shortly after a quick review. Expect to see it on our idea map in the next few days. Thanks ever so much for being involved – BeCville"
   landingpages:
@@ -292,6 +297,7 @@ en:
     create_new: Create New Proposal
     add_comment: Add Comment
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
+    save_fail: There was an error in creating your proposal.
     fund: Fund
     unfund: Unfund
     total_cost: Total Cost

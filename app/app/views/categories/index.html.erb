@@ -12,7 +12,7 @@
         <th><%= t 'common.id' %></th>
         <th><%= Category.human_attribute_name :icon %></th>
         <th><%= Category.human_attribute_name :name %></th>
-        <th colspan="1"><%= t 'common.actions' %></th>
+        <th><%= t 'common.actions' %></th>
       </tr>
     </thead>
 
@@ -28,10 +28,6 @@
        </td>
        <td><%= category.name %></td>
        <td><%= link_to (t 'common.show'), category_path(category) %></td>
-       <!-- <td><%= link_to 'Edit', edit_category_path(category) %></td>
-       <td><%= link_to 'Remove', category_path(category),
-             method: :delete,
-             data: { confirm: 'Are you sure?' } %></td> -->
      </tr>
    <% end %>
   </table>

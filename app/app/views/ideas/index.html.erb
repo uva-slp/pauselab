@@ -1,11 +1,9 @@
 
-<!-- <script>alert('No users!')</script>-->
 <% if can? :create, :ideas %>
   <%= link_to (t 'ideas.create_new'), new_idea_path, class: 'btn btn-primary pull-right clearfix' %>
+  <br/>
+  <br/>
 <% end %>
-
-<br/>
-<br/>
 
 <h2 class="pull-left"><%= t Idea.model_name.human(count:2) %></h2>
 <div class="dropdown pull-right" style="inline-block">
@@ -56,13 +54,6 @@
 
         <th><%= Idea.human_attribute_name :likes %></th>
 
-        <!-- <% if can? :like, Idea or
-          can? :show, Idea or
-          can? :edit, Idea or
-          can? :approve, Idea or
-          can? :destroy, Idea %>
-          <th colspan="1"><%= t 'common.actions' %></th>
-         <% end %> -->
       </tr>
     </thead>
 
@@ -101,28 +92,6 @@
           <% if idea.respond_to? :likes %>
             <td><%= idea.likes  %></td>
           <% end %>
-
-          <!-- <% if can? :read, Idea, :description %>
-            <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>
-          <% end %> -->
-
-          <!-- <% if can? :show, Idea %>
-            <td><%= link_to (t 'common.show'), idea_path(idea) %></td>
-          <% end %> -->
-
-          <!-- <% if can? :edit, Idea %>
-            <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-          <% end %>
-
-          <% if can? :approve, Idea %>
-            <td><%= link_to (t 'common.approve'), idea_approve_path(idea), method: :post %></td>
-          <% end %>
-
-          <% if can? :destroy, Idea %>
-            <td><%= link_to (t 'common.remove'), idea_path(idea),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-          <% end %> -->
 
         </tr>
     <% end %>

@@ -19,12 +19,8 @@
 
   <%= f.input :description, placeholder: (t 'ideas.description_placeholder') %>
 
-	<%# Adding a recaptcha to the form %>
-	<%#= recaptcha_tags if not user_signed_in? %>
-
   <div class='form-group'>
     <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary pull-right' %>
-    <%# link_to ' Cancel', ideas_path %>
   </div>
 
 <% end %>

@@ -3,7 +3,7 @@
     <%= f.input :name, placeholder: (t 'categories.name_placeholder') %>
     <%= f.input :icon, as: :file, hint: (t 'categories.icon_hint') %>
     <div class='form-group'>
-      <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary' %>
-      <%= link_to (t 'common.cancel'), categories_path, class: 'btn btn-outline-secondary' %>
+      <%= f.button :submit, value: (t 'common.submit'), class: 'btn btn-primary' %>
+      <%= link_to (t 'common.cancel'), categories_path, class: 'btn btn-secondary' %>
     </div>
 <% end %>

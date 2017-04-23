@@ -1,9 +1,7 @@
 class AdminController < ApplicationController
 	load_and_authorize_resource :class => "Iteration"
-	# layout :no_container
 
 	def index
-		# render :layout => 'no_container'
 	end
 
 	def change_phase
@@ -14,12 +12,8 @@ class AdminController < ApplicationController
 		authorize! :update, @current
 		@current.save
       if @current.status == "voting"
-        @to = Array.new
         #Get an array of all users, then add desired groups to email list
-        @emails_users = User.pluck(:email, :role)
-        @emails_users.each do |eu|
-            @to.push(eu[0])
-        end
+        @to = User.pluck(:email)
         @subj = "PauseLab - Voting Period Now Open"
         @body = "Dear PauseLab users, the voting period for proposal submissions is now open!"
         SlpMailer.email_custom_text_bcc(@to, @subj, @body).deliver
@@ -27,7 +21,7 @@ class AdminController < ApplicationController
 		render 'edit_phase'
 	end
 
-# ran into issues comparing strings to symbols
+	# ran into issues comparing strings to symbols
 	def next_phase
 		@current = Iteration.get_current
 		@current.status = case @current.status
@@ -42,27 +36,16 @@ class AdminController < ApplicationController
 
 	def end_phase
 		prev = Iteration.get_current
-		# if prev.status == "progress"
 		prev.ended = Time.now
 		prev.status = "ended"
 		prev.save
 		@current = Iteration.new
 		@current.save
-		# end
-		# render json: {current: @current, prev: prev}
 		render 'edit_phase'
 	end
 
 	def edit_phase
 		@current = Iteration.get_current
-		# @iterations = Iteration.where :status => "ended"
-		# @info = {
-		# 	:ideas => @current.ideas.count,
-		# 	:votes => @current.votes.count,
-		# 	:blogs => @current.blogs.count,
-		# 	:proposals => @current.proposals.count,
-		# }
-		# @phase = Phase.get_current
 		authorize! :edit, @current
 	end
 

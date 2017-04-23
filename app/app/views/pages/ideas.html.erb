@@ -16,7 +16,6 @@
 
   <% if Landingpage.exists?(title: "Home") %>
     <% @landingpage = Landingpage.where(title: "Home").first %>
-    <!-- <h2><%= @landingpage.title %></h2> -->
     <p><%=  @landingpage.description.html_safe %></p>
     <% if can? :edit, :landingpages %>
       <p><%= link_to (t 'pages.edit_homepage'), edit_landingpage_path(@landingpage) %></p>

@@ -6,7 +6,6 @@ class VotesController < ApplicationController
   end
 
   def new
-    @vote = Vote.new
   end
 
   def create
@@ -18,7 +17,6 @@ class VotesController < ApplicationController
     else
       render 'new'
     end
-    # render :plain => params.to_yaml
   end
 
   private
@@ -29,7 +27,7 @@ class VotesController < ApplicationController
     :phone,
     :email,
     :proposal_ids => []
-    )
+  )
   end
 
 end

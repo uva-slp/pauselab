@@ -47,6 +47,10 @@
             <%= Idea.human_enum_name(:status, @idea.status) %></span>
         <% end %>
 
+        <% if @idea.respond_to? :medium %>
+          <span class="badge badge-info"><%= Idea.human_enum_name(:medium, @idea.medium) %></span>
+        <% end %>
+
         <br>
         <br>
 

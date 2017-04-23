@@ -91,6 +91,9 @@ es:
     manage: Administrar
     never_signed_in: Nunca registro #This one's iffy
     deactivate_user: Desactivar el usario
+    line_chart_title: Entregó Ideas
+    line_chart_y_axis: Cantidad de Ideas
+    pie_chart_title: Ideas por Categoría
   blogs:
     title_placeholder: "La últimas noticias del mes"
     body_placeholder: "Después de un mes de trabajo difícil..."

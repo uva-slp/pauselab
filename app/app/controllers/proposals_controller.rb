@@ -27,12 +27,10 @@ class ProposalsController < ApplicationController
 	end
 
 	def new
-		@proposal = Proposal.new
     @proposal.build_proposal_budget
 	end
 
 	def edit
-		@proposal = Proposal.find params[:id]
 	end
 
 	def create
@@ -46,25 +44,21 @@ class ProposalsController < ApplicationController
 			flash[:notice] = (t 'proposals.save_success')
 			redirect_to proposals_path
 		else
-			# TODO: need to add logic here
+      flash[:notice] = (t 'proposals.save_fail')
       render 'new'
-			# redirect_back fallback_location: root_url
 		end
 	end
 
 	def show
-		@proposal = Proposal.find(params[:id])
 	end
 
 	def destroy
-	  @proposal = Proposal.find(params[:id])
     @proposal.proposal_comments.destroy_all # remove all associated comments
 	  @proposal.destroy
 	  redirect_to proposals_path
 	end
 
 	def update
-	  @proposal = Proposal.find(params[:id])
 	  if @proposal.update proposal_params
 	  	redirect_to @proposal
 	  else
@@ -72,45 +66,33 @@ class ProposalsController < ApplicationController
 	  end
 	end
 
-	#def proposal_collection
-  #  @ideas = Idea.where :iteration_id => Iteration.get_current.id
-		# @ideas = Idea.all
-  #  @likes = Array.new
-  #  if cookies[:likes] != nil
-  #    @likes = JSON.parse(cookies[:likes])
-  #  end
-	#end
+  def approve
+    @proposal = Proposal.find(params[:id])
+    if @proposal.approved?
+      @proposal.unchecked!
+    else
+      @proposal.approved!
+      @creator = @proposal.user
+      @to = @creator.email
 
-   def approve
-     @proposal = Proposal.find(params[:id])
-     if @proposal.approved?
-       @proposal.unchecked!
-     else
-       @proposal.approved!
-       @creator = @proposal.user
-       @to = @creator.email
-
-       SlpMailer.email_custom_text(@to, "Your proposal was approved, #{@creator.first_name}",
+      SlpMailer.email_custom_text(@to, "Your proposal was approved, #{@creator.first_name}",
         "Congrats, #{@creator.first_name}! Your proposal was approved by PauseLab and will be shown publicly!").deliver
-
-     end
-     @proposal.save
-    # end
+    end
+    @proposal.save
     render 'show'
-   end
+  end
 
 
-   def fund
-     @proposal = Proposal.find(params[:id])
-     if @proposal.funded?
-       @proposal.approved!
-     else
-       @proposal.funded!
-     end
-     @proposal.save
-    # end
+  def fund
+    @proposal = Proposal.find(params[:id])
+    if @proposal.funded?
+      @proposal.approved!
+    else
+      @proposal.funded!
+    end
+    @proposal.save
     render 'show'
-   end
+  end
 
 
 	private

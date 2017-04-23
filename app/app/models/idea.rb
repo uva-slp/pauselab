@@ -12,7 +12,7 @@ class Idea < ApplicationRecord
 	enum medium: [:online, :paper]
 
 	def self.to_csv
-		self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status}
+		self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status medium}
 	end
 
 	def author

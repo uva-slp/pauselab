@@ -7,7 +7,6 @@ class Ability
     can :manage, :pages
 
     # define aliases
-    # alias_action :idea_collection, :to => :create
     alias_action :proposal_collection, :to => :read
 
     if user.admin?

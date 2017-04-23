@@ -10,10 +10,6 @@
     <%= f.input :email %>
     <%= f.input :phone %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
     <%= f.input :password, label: (t 'users.registrations.new_password'), autocomplete: "off",
       hint: (t 'users.registrations.new_password_hint', :length => @minimum_password_length) %>
     <%= f.input :password_confirmation, label: (t 'users.registrations.new_password_confirmation'), autocomplete: "off" %>

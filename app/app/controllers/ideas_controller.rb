@@ -35,13 +35,9 @@ class IdeasController < ApplicationController
   alias_method :proposal_collection, :index
 
   def new
-    @idea = Idea.new
   end
 
-  alias_method :idea_collection, :new
-
   def edit
-    @idea = Idea.find params[:id]
   end
 
 	def create
@@ -54,6 +50,7 @@ class IdeasController < ApplicationController
         (t 'ideas.thanks_body', :name => @idea.first_name)).deliver
 			redirect_to root_path
 		else
+      flash[:notice] = (t 'ideas.save_fail')
 			render 'new'
 		end
 	end
@@ -108,13 +105,11 @@ class IdeasController < ApplicationController
   end
 
   def destroy
-    @idea = Idea.find(params[:id])
     @idea.destroy
     redirect_to ideas_path
   end
 
   def update
-    @idea = Idea.find(params[:id])
     if @idea.update idea_params
       redirect_to @idea
     else
@@ -130,7 +125,6 @@ class IdeasController < ApplicationController
       @idea.approved!
     end
     @idea.save
-		# end
 		render 'show'
 	end
 

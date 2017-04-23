@@ -6,20 +6,7 @@
         <h4 class="modal-title" id="myModalLabel"><%= t 'admins.edit_user' %></h4>
       </div>
 
-      <%= simple_form_for [:admin, @user] do |f| %>
-        <div class="modal-body">
-          <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
-          <%= f.input :role, as: :select, collection: User.roles.keys.to_a, selected: @user.role %>
-          <%= f.input :first_name %>
-          <%= f.input :last_name %>
-          <%= f.input :email %>
-          <%= f.input :phone %>
-        </div>
-        <div class="modal-footer">
-          <%= f.button :submit, (t 'admins.update_user'), class: 'btn btn-primary' %>
-          <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
-        </div>
-      <% end %>
+      <%= render :partial => "form", :locals => {:include_password => false, :inside_modal => true} %>
 
     </div>
   </div>

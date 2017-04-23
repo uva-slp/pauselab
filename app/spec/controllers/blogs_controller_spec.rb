@@ -156,11 +156,12 @@ describe BlogsController, type: :controller do
 
   describe "When a record is not found" do
     it "it redirects to blog index" do
-      #get :destroy, params: {id: 10}
-      blog = create :blog, :id => 10
-      get :destroy, params: {id: 10}
-      get :edit, params: {id: 10}
-      expect(flash[:error]).to be_present
+      blog = create :blog
+      id = blog.id
+      blog.destroy
+      get :show, params: {id: id}
+      expect(response).to be_redirect
+      expect(response).to redirect_to(blogs_path)
     end
   end
 

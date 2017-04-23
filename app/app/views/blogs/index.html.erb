@@ -9,7 +9,6 @@
 <% @blogs.each do |blog| %>
   <div class="card">
     <div class="card-block">
-      <!-- <%= image_tag Faker::Avatar.image, class: 'user-img img-fluid pull-left' %> -->
       <%= image_tag blog.user.avatar.url, class: 'user-img img-fluid pull-left' %>
       <h4 class="card-title"><%= blog.title %></h4>
       <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
@@ -39,20 +38,3 @@
 		 :class => "pagination-wrapper",
 		 :previous_label => (t 'common.previous'),
 		 :next_label => (t 'common.next') %>
-
-
-<!-- TODO handle blog.user.nil?, make sure user deletions cascade -->
-
-<!-- <% @blogs.each do |blog| %>
-  <hr>
-  <% if can? :edit, blog %>
-    <%= link_to (t 'common.edit'), edit_blog_path(blog) %>
-  <% end %>
-  <% if can? :destroy, blog %>
-    | <%= link_to (t 'common.remove'), blog_path(blog), method: :delete, data: { confirm: (t 'common.confirm_message') } %>
-  <% end %>
-  <h4><%= t 'blogs.post_by' %> <b><%= blog.user.fullname %></b></h4>
-  <%= t 'blogs.post_published' %> <%= blog.created_at %>
-  <h2><b><%= blog.title %></b></h2>
-  <p><%= blog.body %></p>
-<% end %> -->
