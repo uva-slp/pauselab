@@ -11,14 +11,14 @@
   <div class="dropdown-menu dropdown-menu-right">
     <!-- We are passing the sort parameter here -->
     <a href="?sort=likes" class="dropdown-item" ><%= Idea.human_attribute_name :likes %></a>
-    <% if user_has_admin_access %>
+    <% if user_has_steering_access %>
       <a href="?sort=author_last_name" class="dropdown-item"><%= t 'common.author_first_name' %></a>
     <% end %>
-    <% if user_has_admin_access %>
+    <% if user_has_steering_access %>
       <a href="?sort=author_first_name" class="dropdown-item"><%= t 'common.author_last_name' %></a>
     <% end %>
     <a href="?sort=date" class="dropdown-item"><%= t 'common.date' %></a>
-    <% if user_has_admin_access %>
+    <% if user_has_steering_access %>
       <a href="?sort=id" class="dropdown-item"><%= t 'common.id' %></a>
     <% end %>
     <a href="?sort=category" class="dropdown-item"><%= Category.model_name.human %></a>
@@ -30,11 +30,11 @@
 
     <thead>
       <tr>
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= t 'common.id' %></th>
         <% end %>
 
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= t 'common.author' %></th>
         <% end %>
 
@@ -44,11 +44,11 @@
 
         <th><%= Idea.human_attribute_name :description %></th>
 
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= Idea.human_attribute_name :status %></th>
         <% end %>
 
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= Idea.human_attribute_name :medium %></th>
         <% end %>
 
@@ -60,7 +60,7 @@
     <% @ideas.each do |idea| %>
 
         <tr class="row-link" data-href="<%= idea_path(idea) %>">
-          <% if idea.respond_to? :id and user_has_admin_access %>
+          <% if idea.respond_to? :id and user_has_steering_access %>
             <td><%= idea.id %></td>
           <% end %>
 

@@ -11,7 +11,7 @@
 <div class="dropdown pull-right ml-1" style="inline-block">
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu dropdown-menu-right">
-    <% if user_has_admin_access %>
+    <% if user_has_steering_access %>
       <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
       <%= link_to (Vote.model_name.human(count:2)), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
     <% end %>
@@ -27,7 +27,7 @@
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.filter' %></a>
   <div class="dropdown-menu dropdown-menu-right">
     <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
-    <% if user_has_admin_access %>
+    <% if user_has_steering_access %>
       <%= link_to (Proposal.human_enum_name :status, :unchecked), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
     <% end %>
     <%= link_to (Proposal.human_enum_name :status, :approved), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
@@ -47,7 +47,7 @@
         <th><%= t 'common.created_at' %></th>
         <th><%= Proposal.human_attribute_name :title %></th>
         <th><%= ProposalBudget.human_attribute_name :cost %></th>
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= Proposal.human_attribute_name :status %></th>
         <% end %>
         <% if user_has_admin_access %>
@@ -76,7 +76,7 @@
           <td><%= number_to_currency proposal.proposal_budget.cost %></td>
         <% end %>
 
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
         <td>
           <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
             <%= Proposal.human_enum_name(:status, proposal.status) %>

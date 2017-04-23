@@ -67,4 +67,10 @@ end
       return ((not current_user.nil?) and (current_user.admin? or current_user.moderator?))
     end
     helper_method :user_has_admin_access
+
+    # returns whether user is admin, moderator, or steering committee
+    def user_has_steering_access
+      return ((not current_user.nil?) and (current_user.admin? or current_user.moderator? or current_user.steerer?))
+    end
+    helper_method :user_has_steering_access
 end

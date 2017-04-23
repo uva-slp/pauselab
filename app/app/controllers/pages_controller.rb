@@ -20,6 +20,7 @@ class PagesController < ApplicationController
   end
 
   def get_categories
+    authorize! :read, Category
     ret_cat = {}
     categories = Category.all.each do |cat|
       ret_cat[cat.id] = if cat.icon.present? then view_context.image_path(cat.icon.url) else "" end
@@ -35,6 +36,7 @@ class PagesController < ApplicationController
 
   def user_info
     @user = User.find(current_user.id)
+    authorize! :read, @user
   end
 
   def steering_home

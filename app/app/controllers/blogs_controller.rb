@@ -11,6 +11,7 @@ class BlogsController < ApplicationController
 
   def admin_console
     @blogs = Blog.all
+    authorize! :read, @blogs
   end
 
   def show

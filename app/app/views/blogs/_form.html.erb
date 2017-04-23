@@ -3,8 +3,8 @@
     <%= f.input :title, placeholder: (t 'blogs.title_placeholder') %>
     <%= f.input :body, placeholder: (t 'blogs.body_placeholder') %>
     <div class='form-group'>
-      <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary' %>
-      <%= link_to (t 'common.cancel'), blogs_path %>
+      <%= f.button :submit, value: (t 'common.submit'), class: 'btn btn-primary' %>
+      <%= link_to (t 'common.cancel'), blogs_path, class: 'btn btn-secondary' %>
     </div>
 <% end %>
 
