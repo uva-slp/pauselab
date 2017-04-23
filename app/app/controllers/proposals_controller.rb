@@ -43,9 +43,14 @@ class ProposalsController < ApplicationController
 
     @proposal.user_id = current_user.id
     @proposal.iteration_id = Iteration.get_current.id
+    @submitter = @proposal.user
+    @to = @submitter.email
 
 		if @proposal.save
 			flash[:notice] = (t 'proposals.save_success')
+                        		flash[:notice] = (t 'proposals.save_success')
+      SlpMailer.email_custom_text(@to, (t 'proposals.thanks_subject', :name => @submitter.first_name),
+        (t 'proposals.thanks_body', :name => @submitter.first_name)).deliver
 			redirect_to proposals_path
 		else
       flash[:error] = (t 'proposals.save_error')

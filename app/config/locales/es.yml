@@ -227,6 +227,8 @@ es:
     save_success: Tu enviaste la propuesta.
     total_cost: Coste Total
     link: Enlace Personal
+    thanks_subject: "PauseLab BeCville - Su propuesta ha sido recibida, %{name}"
+    thanks_body: "Te escuchamos alto y claro. Gracias %{name}, por compartir tu propuesta Vamos a aprobarlo poco después de una revisión rápida. Gracias por estar involucrado - BeCville"
   shared:
     admin: Admin
     admin_console: Consola de Admin
