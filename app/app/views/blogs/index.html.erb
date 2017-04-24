@@ -1,4 +1,10 @@
 
+<style media="screen">
+  .key-img {
+    margin-bottom: 10px ;
+  }
+</style>
+
 <% if can? :create, Blog %>
   <%= link_to (t 'blogs.create_new'), new_blog_path, class: 'btn btn-primary pull-right clearfix' %>
 <% end %>
@@ -6,34 +12,58 @@
 
 <br>
 
-<% @blogs.each do |blog| %>
-  <div class="card">
-    <div class="card-block">
-      <!-- <%= image_tag Faker::Avatar.image, class: 'user-img img-fluid pull-left' %> -->
-      <%= image_tag blog.user.avatar.url, class: 'user-img img-fluid pull-left' %>
-      <h4 class="card-title"><%= blog.title %></h4>
-      <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
-      <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
-      <%= link_to (t 'blogs.read_more'), blog_path(blog), class: 'card-link' %>
+  <% @blogs.each do |blog| %>
 
-      <div class="pull-right">
-        <% if can? :edit, blog %>
-          <%= link_to edit_blog_path(blog), class: "btn btn-sm btn-primary" do %>
-            <i class="fa fa-pencil-square-o"></i>
-          <% end %>
+    <div class="card">
+      <div class="card-block">
+
+        <table>
+          <tr>
+            <td>
+              <%= image_tag blog.user.avatar.url(:thumb), class: 'user-img img-fluid' %>
+            </td>
+            <td>
+              <h4 class="card-title"><%= blog.title %></h4>
+              <h6 class="card-subtitle mb-2"><%= blog.user.fullname %><span class="text-muted"> • <%= blog.created_at.strftime("%b %e") %></span></h6>
+            </td>
+          </tr>
+        </table>
+
+        <% if blog.key_img? %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= image_tag blog.key_img, class: "card-img key-img" %>
+            </div>
+            <div class="col-md-8">
+              <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
+              <%= link_to (t 'blogs.read_more'), blog_path(blog), class: 'card-link' %>
+            </div>
+          </div>
+        <% else %>
+          <p class="card-text"><%= truncate blog.preview, length: 250 %></p>
+          <%= link_to (t 'blogs.read_more'), blog_path(blog), class: 'card-link' %>
         <% end %>
-        <% if can? :destroy, blog %>
-          <%= link_to blog_path(blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message')} do %>
-            <i class="fa fa-trash"></i>
+
+
+
+        <div class="pull-right">
+          <% if can? :edit, blog %>
+            <%= link_to edit_blog_path(blog), class: "btn btn-sm btn-primary" do %>
+              <i class="fa fa-pencil-square-o"></i>
+            <% end %>
           <% end %>
-        <% end %>
+          <% if can? :destroy, blog %>
+            <%= link_to blog_path(blog), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message')} do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          <% end %>
+        </div>
+
       </div>
-
-
-
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+
 
 <%= will_paginate @blogs,
 		 :class => "pagination-wrapper",

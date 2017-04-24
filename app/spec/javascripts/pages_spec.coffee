@@ -32,16 +32,48 @@ describe "pages", ->
     # afterEach ->
       # fixture.cleanup()
 
-    it "initializes properly",  ->
+    it "initializes correctly", ->
+      spyOn($, 'get')
+      spyOn(Pages, 'showMap')
+      spyOn(Pages, 'fillMap')
+      Pages.initialize()
+      expect($.get).toHaveBeenCalled()
+      expect(Pages.showMap).toHaveBeenCalled()
+      expect(Pages.fillMap).toHaveBeenCalled()
+
+    it "shows map correctly",  ->
       map = Pages.showMap this.g
       expect(map).toBeDefined()
 
     it "fills map correctly", ->
       map = Pages.showMap this.g
       markers = Pages.fillMap map, this.g
+      google.maps.event.trigger map, 'click'
+      google.maps.event.trigger markers[0], 'click'
       expect(markers.length).toEqual this.g.ideas.length
 
     it "builds idea infobox correctly", ->
       idea = this.g.ideas[0]
       info = Pages.buildInfo idea
       expect(info.innerHTML).toContain idea.description.substring(0, 10)
+
+    it "shares to facebook", ->
+      spyOn(window, 'open')
+      idea = this.g.ideas[0]
+      info = Pages.buildInfo idea
+      $('#fb-btn', info).click()
+      # $('#twtr-btn', info).click()
+      expect(window.open).toHaveBeenCalled()
+
+    it "shares to twitter", ->
+      spyOn(window, 'open')
+      idea = this.g.ideas[0]
+      info = Pages.buildInfo idea
+      # $('#fb-btn', info).click()
+      $('#twtr-btn', info).click()
+      expect(window.open).toHaveBeenCalled()
+
+    it "formats description correctly", ->
+      idea = this.g.ideas[0]
+      fmt = Pages.format idea
+      expect(fmt).toContain "more at:"

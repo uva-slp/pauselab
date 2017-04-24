@@ -79,6 +79,7 @@
   <% end %>
 
   <div>
+
     <div class="pull-left">
       <%= t 'votes.honor_pledge' %>
       <%= check_box_tag "honor-pledge" %>
@@ -89,6 +90,7 @@
     <% else # otherwise pull up the modal %>
       <button id="submit-button" type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>
     <% end %>
+
   </div>
 
 <% end %>

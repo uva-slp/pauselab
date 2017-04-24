@@ -14,8 +14,14 @@ describe "votes", ->
 
   it "initializes properly", ->
     spyOn(Vote, 'addCheckListener').and.callThrough()
+    spyOn(Vote, 'validatePledge')
+    spyOn(Vote, 'pledgeBoxListener').and.callThrough()
     Vote.initialize()
+    $('#submit-button').click()
+    $('#honor-pledge').click()
     expect(Vote.addCheckListener).toHaveBeenCalled()
+    expect(Vote.validatePledge).toHaveBeenCalled()
+    expect(Vote.pledgeBoxListener).toHaveBeenCalled()
 
   it "adds proposal", ->
     c_old = $('.selected-proposals').children().length
@@ -56,3 +62,10 @@ describe "votes", ->
     $('.proposal-checkbox').each ->
       $(this).trigger 'click'
     expect($(':checked').length).toEqual(3)
+
+  it "validates honor pledge when unchecked", ->
+    expect(Vote.validatePledge()).toEqual false
+
+  it "validaes honor pledge when checked", ->
+    $('#honor-pledge').prop 'checked', true
+    expect(Vote.validatePledge()).toEqual true

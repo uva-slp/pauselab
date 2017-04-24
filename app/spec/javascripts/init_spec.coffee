@@ -10,8 +10,10 @@ describe "init", ->
     fixture.cleanup()
 
   it "initializes properly", ->
-    spyOn(Init, 'init')
+    spyOn(Init, 'init').and.callThrough()
     Init.initialize()
+    $('.btn').mouseup()
+    Init.redirect "https://www.google.com"
     expect(Init.init).toHaveBeenCalled()
 
   it "formats correctly with less than 50 characters", ->
@@ -40,7 +42,7 @@ describe "init", ->
     expect(window.open).toHaveBeenCalled()
 
   it "makes rows clickable", ->
-    spyOn(Init, 'redirect')
+    spyOn(Init, 'redirect') #.and.callThrough()
     Init.rowClicker()
     $('.row-link').first().click()
     expect(Init.redirect).toHaveBeenCalled()

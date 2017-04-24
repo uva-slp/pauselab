@@ -80,8 +80,13 @@ class @Pages
     map.fitBounds bounds
     return markers
 
-  @buildInfo = (idea) ->
+  @format = (idea) ->
+    desc = idea.description
+    if desc.length > 50
+      desc = desc.substring(0, 50) + "..."
+    return "\"" + desc + "\" more at: " + window.location.host + '/ideas/' + idea.id
 
+  @buildInfo = (idea) ->
     date = new (Date)(idea.created_at)
     date_string = date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear()
     elem = $("<div class='infobox'></div>")
@@ -89,19 +94,13 @@ class @Pages
     date_elem = $("<p class='idea-date text-muted'></p>")
     date_elem.append date_string
     desc.append idea.description
-    fb_btn = $("<button class='btn btn-sm btn-primary no-outline'><i class='fa fa-facebook-square'></i></button>")
-    twtr_btn = $("<button class='btn btn-sm btn-primary no-outline'><i class='fa fa-twitter-square'></i></button>")
-
-    format = ->
-      desc = idea.description
-      if desc.length > 50
-        desc = desc.substring(0, 50) + "..."
-      return "\"" + desc + "\" more at: " + window.location.host + '/ideas/' + idea.id
+    fb_btn = $("<button id='fb-btn' class='btn btn-sm btn-primary no-outline'><i class='fa fa-facebook-square'></i></button>")
+    twtr_btn = $("<button id='twtr-btn' class='btn btn-sm btn-primary no-outline'><i class='fa fa-twitter-square'></i></button>")
 
     $(fb_btn).click ->
       window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/ideas/' + idea.id, 'share to facebook', 'height=350,width=500'
     $(twtr_btn).click ->
-      desc = encodeURIComponent format idea.description
+      desc = encodeURIComponent Pages.format(idea)
       window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
 
     $(elem).append desc, date_elem, fb_btn, '&nbsp;&nbsp;', twtr_btn

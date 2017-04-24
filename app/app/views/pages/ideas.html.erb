@@ -37,13 +37,44 @@
 <!-- Last 3 blogs: needs to be prettier -->
 <div>
 <br>
-  <h4> <%= t 'pages.recent_blogs' %> </h4>
-  <% @blogs = Blog.order(id: :desc).limit(3) %>
+<br>
+
+<h4 class="text-center"><%= t 'pages.recent_blogs' %></h4>
+<br>
+
+<% @blogs = Blog.order(id: :desc).limit(3) %>
+
+<div class="row">
   <% @blogs.each do |b| %>
-  <h5> <%= link_to (b.title), blog_path(b)%> <br> </h5>
-  <%= b.user.fullname %> <br>
-  <%= b.created_at.strftime("%b %e, %Y") %> <br>
+
+    <div class="col-md-4 border-left-0">
+
+      <div class="card card-inverse">
+      <% if b.key_img? %>
+        <%= image_tag b.key_img, class: "card-img-top" %>
+      <% end %>
+      <div class="card-block">
+        <h5 class="card-title"><%= link_to (b.title), blog_path(b)%></h5>
+        <p class="card-text">
+          <small class="text-muted">
+            <%= b.user.fullname %> • <%= b.created_at.strftime("%b %e, %Y") %>
+          </small>
+        </p>
+      </div>
+    </div>
+
+
+
+
+      <!-- <h5><%= link_to (b.title), blog_path(b)%></h5>
+
+      <div class="">
+      </div> -->
+
+    </div>
+
   <% end %>
+</div>
 
 </div>
 

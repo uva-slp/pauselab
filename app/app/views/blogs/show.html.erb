@@ -8,10 +8,20 @@
 
 -->
 
-<%= image_tag @blog.user.avatar.url, class: 'user-img img-fluid pull-left' %>
-<!-- <%= image_tag Faker::Avatar.image, class: 'user-img-lg img-fluid pull-left' %> -->
-<h2><b><%= @blog.title %></b></h2>
-<h4 class="text-muted"><%= @blog.user.fullname %></h4>
+<table>
+  <tr>
+    <td>
+      <%= image_tag @blog.user.avatar.url(:thumb), class: 'user-img-lg img-fluid' %>
+    </td>
+    <td>
+      <h2><b><%= @blog.title %></b></h2>
+      <h5>
+        <%= @blog.user.fullname %>
+        <span class="text-muted"> • <%= @blog.created_at.strftime("%b %e") %></span>
+      </h5>
+    </td>
+  </tr>
+</table>
 
 <p class="blog-body"><%= raw @blog.body %></p>
 

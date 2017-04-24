@@ -30,7 +30,7 @@ class @Init
       window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
 
   @redirect: (href) ->
-      window.location = href
+      window.location.href = href
 
   @rowClicker: ->
     $('.row-link').each ->

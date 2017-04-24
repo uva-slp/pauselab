@@ -167,6 +167,7 @@ end
     association :iteration
     association :user
     title {Faker::Hipster.sentence}
+    key_img {Faker::Placeholdit.image("500x300", 'jpg')}
     body {Faker::Hipster.paragraph}
     created_at { Faker::Date.between(6.month.ago, Date.today) }
   end

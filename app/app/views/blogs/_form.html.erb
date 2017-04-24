@@ -1,10 +1,17 @@
 
+<style media="screen">
+  .trumbowyg-box {
+    margin: 0 ;
+  }
+</style>
+
 <%= simple_form_for @blog do |f| %>
     <%= f.input :title, placeholder: (t 'blogs.placeholder_title') %>
+    <%= f.input :key_img, placeholder: 'preview image' %>
     <%= f.input :body, placeholder: (t 'blogs.placeholder_body') %>
     <div class='form-group'>
-      <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary' %>
-      <%= link_to (t 'common.cancel'), blogs_path %>
+      <%= f.button :submit, value: (t 'common.submit'), class: 'btn btn-primary' %>
+      <%= link_to (t 'common.cancel'), blogs_path, class: 'btn btn-danger' %>
     </div>
 <% end %>
 
