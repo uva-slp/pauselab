@@ -241,12 +241,6 @@ es:
     site_title: PauseLab
   mass_emails:
     select_groups_message: "Por favor, escogues uno o más groupos del correo electronico" #CHECK
-    administrators: Administratador
-    moderators: Moderador
-    steerers: Comité del comunidad
-    super_artists: Súper Artistas
-    artists: Artistas
-    residents: Residentes
     subject_placeholder: El Tema
     body_placeholder: Mensaje
     send: Enviar
@@ -308,7 +302,7 @@ es:
     votes_console: Consola de Votas
     manage_profile: Administrar perfil
     steering_home: Inicio de Comité Directivo
-    artist_home: Inicio de Artista 
+    artist_home: Inicio de Artista
     vote: Vota  # navbar header
     create_proposal: Crea Propuestas
     proposals_console: Consola de Propuestas
