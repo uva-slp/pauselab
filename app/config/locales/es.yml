@@ -297,6 +297,8 @@ es:
     add_comment: Añadir Comentario
     save_success: Tu enviaste la propuesta.
     total_cost: Coste Total
+    thanks_subject: "PauseLab BeCville - Su propuesta ha sido recibida, %{name}"
+    thanks_body: "Te escuchamos alto y claro. Gracias %{name}, por compartir tu propuesta Vamos a aprobarlo poco después de una revisión rápida. Gracias por estar involucrado - BeCville"
   shared:
     users_console: Consola de Usuarios
     iteration_console: Consola de Iteración

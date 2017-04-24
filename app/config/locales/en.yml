@@ -305,6 +305,8 @@ en:
     fund: Fund
     unfund: Unfund
     total_cost: Total Cost
+    thanks_subject: "PauseLab BeCville - Your Proposal Has Been Received, %{name}"
+    thanks_body: "We heard you loud and clear. Thanks %{name}, for sharing your proposal. We will approve it shortly after a quick review. Thanks ever so much for being involved – BeCville"
   shared:
     users_console: Users Console
     iteration_console: Iteration Console
