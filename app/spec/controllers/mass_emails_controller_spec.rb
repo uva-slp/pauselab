@@ -22,24 +22,29 @@ describe MassEmailsController, type: :controller do
     end
   end
 
+  # NOTE in the email creation tests, the :to field needs to be overridden with an array
+  #  the normal factory creation will instead create a string for that param, which doesn't work in controller code
   describe "when creating mass email" do
     it "saves the email" do
       create :idea  # ensures idea loop from residents picks up an address
-      e = build :mass_email, :to => ['resident', 'admin']
+      roles = ['resident', 'admin']
+      e = build :mass_email
       expect {
-        post :create, params: {mass_email: e.attributes}
+        post :create, params: {mass_email: e.attributes.merge("to" => roles)}
       }.to change { MassEmail.count }.by 1
     end
     it "fails to send email with empty body" do
+      roles = ['resident', 'admin']
       e = build :mass_email, :body => ''
       expect {
-        post :create, params: {mass_email: e.attributes}
+        post :create, params: {mass_email: e.attributes.merge("to" => roles)}
       }.to_not change { MassEmail.count }
     end
     it "fails to send email with no recipients" do
-      e = build :mass_email, :to => []
+      roles = [""]
+      e = build :mass_email
       expect {
-        post :create, params: {mass_email: e.attributes}
+        post :create, params: {mass_email: e.attributes.merge("to" => roles)}
       }.to_not change { MassEmail.count }
     end
   end

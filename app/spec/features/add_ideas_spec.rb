@@ -11,8 +11,8 @@ feature "adding ideas", :type => :feature do
     # puts Category.all.select(:id, :name).to_yaml
     idea = build :idea, category_id: Category.last.id
     visit new_idea_path
-    fill_in 'First name', with: idea.first_name
-    fill_in 'Last name', with: idea.last_name
+    fill_in 'First Name', with: idea.first_name
+    fill_in 'Last Name', with: idea.last_name
     fill_in 'Email', with: idea.email
     fill_in 'Phone', with: idea.phone
     fill_in 'Description', with: idea.description

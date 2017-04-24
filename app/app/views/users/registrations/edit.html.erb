@@ -1,23 +1,20 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2><%= t 'users.registrations.edit_user' %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="form-group">
-    <%= f.input :avatar, as: :file %>
-    <%= f.input :first_name, label: (t 'common.first_name') %>
-    <%= f.input :last_name, label: (t 'common.last_name') %>
-    <%= f.input :email, label: (t 'common.user_email') %>
-    <%= f.input :phone, label: (t 'common.user_phone') %>
+    <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :email %>
+    <%= f.input :phone %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
-    <%= f.input :password, autocomplete: "off", hint: "(leave blank if you don't want to change it)
-      #{if @minimum_password_length then "(if changing, #{@minimum_password_length} characters minimum)" end}" %>
-    <%= f.input :password_confirmation, autocomplete: "off" %>
-    <%= f.input :current_password, autocomplete: "off", hint: "(we need your current password to confirm your changes)" %>
+    <%= f.input :password, label: (t 'users.registrations.new_password'), autocomplete: "off",
+      hint: (t 'users.registrations.new_password_hint', :length => @minimum_password_length) %>
+    <%= f.input :password_confirmation, label: (t 'users.registrations.new_password_confirmation'), autocomplete: "off" %>
+    <%= f.input :current_password, label: (t 'users.registrations.current_password'), autocomplete: "off",
+      hint: (t 'users.registrations.current_password_hint') %>
 
     <%= f.submit (t 'common.update'), class: 'btn btn-primary' %>
     <%= link_to (t 'common.cancel'), user_info_path, class: 'btn btn-secondary' %>

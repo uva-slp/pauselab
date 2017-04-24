@@ -179,6 +179,10 @@ end
   factory :vote do
     association :iteration
     proposals {create_list(:proposal, 3, iteration: iteration)}
+    first_name {Faker::Name.first_name}
+    last_name {Faker::Name.last_name}
+    email {Faker::Internet.email}
+    phone {Faker::Number.number(10)}
   end
 
 
@@ -192,9 +196,9 @@ end
 end
 
   factory :mass_email do
-    to {['resident']}
     subject {Faker::Hipster.sentence}
     body {Faker::Hipster.paragraph}
+    to []
   end
 
 end

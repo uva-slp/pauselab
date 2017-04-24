@@ -6,34 +6,9 @@
   <br/>
 <% end %>
 
-<h2 class="pull-left"><%= t 'proposals.proposals' %></h2>
+<h2 class="pull-left"><%= Proposal.model_name.human(count:2) %></h2>
 
-<div class="dropdown pull-right ml-1" style="inline-block">
-  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
-  <div class="dropdown-menu dropdown-menu-right">
-    <% if user_has_admin_access %>
-      <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
-      <%= link_to (t 'proposals.votes'), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
-    <% end %>
-    <%= link_to (t 'common.author_first_name'), request.query_parameters.merge(:sort => :first_name), class: 'dropdown-item' %>
-    <%= link_to (t 'common.author_last_name'), request.query_parameters.merge(:sort => :last_name), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.title'), request.query_parameters.merge(:sort => :title), class: 'dropdown-item' %>
-    <%= link_to (t 'common.date'), request.query_parameters.merge(:sort => :date), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.cost'), request.query_parameters.merge(:sort => :cost), class: 'dropdown-item' %>
-  </div>
-</div>
-
-<div class="dropdown pull-right" style="inline-block">
-  <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.filter' %></a>
-  <div class="dropdown-menu dropdown-menu-right">
-    <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
-    <% if user_has_admin_access %>
-      <%= link_to (t 'proposals.unchecked'), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
-    <% end %>
-    <%= link_to (t 'proposals.approved'), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>
-    <%= link_to (t 'proposals.funded'), request.query_parameters.merge(:status => :funded), class: 'dropdown-item' %>
-  </div>
-</div>
+<%= render 'sort_controls' %>
 
 <div class="table-responsive">
   <table class="table table-striped">
@@ -43,27 +18,22 @@
         <% if user_has_admin_access %>
           <th><%= t 'common.id'%></th>
         <% end %>
-        <th><%= t 'proposals.author' %></th>
+        <th><%= t 'common.author' %></th>
         <th><%= t 'common.created_at' %></th>
-        <th><%= t 'proposals.title' %></th>
-        <th><%= t 'proposals.cost' %></th>
-        <% if user_has_admin_access %>
-          <th><%= t 'proposals.status' %></th>
+        <th><%= Proposal.human_attribute_name :title %></th>
+        <th><%= ProposalBudget.human_attribute_name :cost %></th>
+        <% if user_has_steering_access %>
+          <th><%= Proposal.human_attribute_name :status %></th>
         <% end %>
         <% if user_has_admin_access %>
-          <th><%= t 'proposals.votes' %></th>
-        <% end %>
-        <% if can? :show, Proposal or
-          can? :approve, Proposal or
-          can? :edit, Proposal or
-          can? :destroy, Proposal %>
-          <th colspan="1"><%= t 'common.actions' %></th>
+          <th><%= Vote.model_name.human(count:2) %></th>
         <% end %>
       </tr>
     </thead>
 
     <% @proposals.each do |proposal| %>
-      <tr>
+
+      <tr class="row-link" data-href="<%= proposal_path(proposal) %>">
         <% if user_has_admin_access %>
           <td><%= proposal.id %></td>
         <% end %>
@@ -81,35 +51,19 @@
           <td><%= number_to_currency proposal.proposal_budget.cost %></td>
         <% end %>
 
-        <% if user_has_admin_access %>
-          <td><%= proposal.status %></td>
+        <% if user_has_steering_access %>
+        <td>
+          <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
+            <%= Proposal.human_enum_name(:status, proposal.status) %>
+          </span>
+        </td>
         <% end %>
         <% if user_has_admin_access %>
           <td><%= proposal.number_of_votes %></td>
         <% end %>
-        <% if can? :show, proposal %>
-          <td><%= link_to (t 'common.show'), proposal_path(proposal) %></td>
-        <% end %>
 
-        <!-- <% if can? :approve, proposal %>
-          <td><%= link_to 'Approve', proposal_approve_path(proposal),
-    	      method: :post %></td>
-        <% end %>
-        <% if can? :edit, proposal %>
-          <td><%= link_to 'Edit', edit_proposal_path(proposal) %></td>
-        <% end %>
-        <% if can? :destroy, proposal %>
-          <td><%= link_to 'Remove', proposal_path(proposal),
-                   method: :delete,
-                   data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-
-        <% if can? :read, proposal, :title %>
-          <td><%= social_share_button_tag(proposal.title, :popup => "true") %></td>
-        <% end %>
-        -->
       </tr>
-      <% end %>
+    <% end %>
 
   </table>
 </div>

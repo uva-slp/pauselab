@@ -5,26 +5,23 @@
 	<%= f.input :lng, :as => :hidden %>
 	<%= f.input :address, :as => :hidden %>
 
-	<%= f.input :first_name, placeholder: (t 'ideas.first_name_placeholder') %>
-	<%= f.input :last_name, placeholder: (t 'ideas.last_name_placeholder') %>
+	<%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+	<%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
 
-	<%= f.input :email, placeholder: (t 'ideas.email_placeholder') %>
-	<%= f.input :phone, placeholder: (t 'ideas.phone_placeholder') %>
+	<%= f.input :email, placeholder: (t 'common.email_placeholder') %>
+	<%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
 
-	<% if not current_user.nil? and (current_user.admin? or current_user.moderator?) %>
-		<%= f.input :medium, as: :select, collection: Idea.media, selected: Idea.media[@idea.medium] %>
+	<% if user_has_admin_access %>
+		<%= f.input :medium, as: :select, collection: Idea.media.keys.to_a,
+			label_method: lambda {|m| Idea.human_enum_name :media, m }, selected: :online %>
 	<% end %>
 
-	<%= f.input :category_id, as: "select", collection: Category.all, selected: 1 %>
+	<%= f.input :category_id, as: :select, collection: Category.all, selected: 1 %>
 
   <%= f.input :description, placeholder: (t 'ideas.description_placeholder') %>
 
-	<%# Adding a recaptcha to the form %>
-	<%#= recaptcha_tags if not user_signed_in? %>
-
   <div class='form-group'>
     <%= f.button :submit, value: (t 'common.submit'), class: 'btn-primary pull-right' %>
-    <%# link_to ' Cancel', ideas_path %>
   </div>
 
 <% end %>

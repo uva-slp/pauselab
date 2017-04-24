@@ -1,17 +1,14 @@
-
-
-
-<h2>Log in</h2>
+<h2><%= t 'users.sessions.log_in' %></h2>
 
 <%= simple_form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
 
-  <%= f.input :email, placeholder: 'john.smith@company.com' %>
-  <%= f.input :password, placeholder: 'password' %>
+  <%= f.input :email, placeholder: (t 'common.email_placeholder') %>
+  <%= f.input :password %>
 
-  <%= f.input_field :remember_me, as: 'boolean' %> remember me
+  <%= f.input_field :remember_me, as: 'boolean' %> <%= t 'users.sessions.remember_me' %>
 
   <div class="form-group">
-    <%= f.button :submit, "Sign In", class: "btn-primary" %>
+    <%= f.button :submit, (t 'users.sessions.sign_in'), class: "btn-primary" %>
   </div>
 
   <div class="form-group">

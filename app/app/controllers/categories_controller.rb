@@ -7,11 +7,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   def new
-    @category = Category.new
   end
 
   def create
@@ -21,32 +19,21 @@ class CategoriesController < ApplicationController
         format.html { redirect_to categories_path, notice: (t 'categories.save_success') }
         format.json { render json: @resource }
       else
-        format.html { render new_category_path, notice: (t 'categories.save_error') }
+        format.html { render new_category_path, error: (t 'categories.save_error') }
         format.json { render json: @resource }
       end
     end
-    #
-    # if @category.save
-    #   flash[:notice] = 'Your category was saved.'
-    #   redirect_to categories_path
-    # else
-    #   flash[:error] = 'There was in error in creating a category.'
-    #   render new_category_path
-    # end
   end
 
   def edit
-    @category = Category.find(params[:id])
   end
 
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     redirect_to categories_path
   end
 
   def update
-    @category = Category.find(params[:id])
     if @category.update category_params
       redirect_to @category
     else
@@ -57,9 +44,9 @@ class CategoriesController < ApplicationController
   private
     def category_params
       params.require(:category).permit(
-          :name,
-          :icon
-          )
+        :name,
+        :icon
+      )
     end
 
 end

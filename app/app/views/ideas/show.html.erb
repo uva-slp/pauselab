@@ -14,7 +14,7 @@
         <% end %>
 
         <span>
-          <a class="remove-link-style" target="_top" href=<%= "http://maps.apple.com/?ll=#{@idea.lat},#{@idea.lng}" %>>
+          <a class="remove-link-style" target="_top" href=<%= "http://maps.google.com/?ll=#{@idea.lat},#{@idea.lng}" %>>
             <i class="fa fa-map-marker"></i>
           </a>
           &nbsp;<%= @idea.address %>
@@ -43,7 +43,12 @@
         <% end %>
 
         <% if @idea.respond_to? :status %>
-          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>"><%= @idea.status %></span>
+          <span class="badge <%= if @idea.approved? then "badge-success" else "badge-danger" end %>">
+            <%= Idea.human_enum_name(:status, @idea.status) %></span>
+        <% end %>
+
+        <% if @idea.respond_to? :medium %>
+          <span class="badge badge-info"><%= Idea.human_enum_name(:medium, @idea.medium) %></span>
         <% end %>
 
         <br>
@@ -84,7 +89,7 @@
             <i class="fa fa-pencil-square-o"></i>
           <% end %>
         <% end %>
-        <% if can? :delete, @idea %>
+        <% if can? :destroy, @idea %>
           <%= link_to idea_path(@idea), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
             <i class="fa fa-trash"></i>
           <% end %>

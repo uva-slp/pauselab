@@ -9,7 +9,7 @@ class ProposalsController < ApplicationController
       if params[:sort] == "cost"
         @proposals = @proposals.includes(:proposal_budget).order("proposal_budgets.cost")
       elsif params[:sort] == "votes"
-        if user_has_admin_access # prevent non-privileged members from sorting by votes
+        if user_has_steering_access # prevent non-privileged members from sorting by votes
           @proposals = @proposals.left_joins(:votes).group(:id).order("count(votes.id) desc")
         end
       elsif params[:sort] == "first_name"
@@ -18,21 +18,23 @@ class ProposalsController < ApplicationController
         @proposals = @proposals.includes(:user).order("users.last_name")
       elsif params[:sort] == "date"
         @proposals = @proposals.order("created_at desc")
-      else
+      elsif ["title", "id"].include? params[:sort]
         @proposals = @proposals.order params[:sort]
       end
     end
-		@proposals = @proposals.where(status: Proposal.statuses[params[:status]]) if params[:status].present?
+
+    if params[:status].present?
+      @proposals = @proposals.where(status: Proposal.statuses[params[:status]])
+    end
+
     index_respond @proposals, :proposals
 	end
 
 	def new
-		@proposal = Proposal.new
     @proposal.build_proposal_budget
 	end
 
 	def edit
-		@proposal = Proposal.find params[:id]
 	end
 
 	def create
@@ -41,30 +43,31 @@ class ProposalsController < ApplicationController
 
     @proposal.user_id = current_user.id
     @proposal.iteration_id = Iteration.get_current.id
+    @submitter = @proposal.user
+    @to = @submitter.email
 
 		if @proposal.save
 			flash[:notice] = (t 'proposals.save_success')
+                        		flash[:notice] = (t 'proposals.save_success')
+      SlpMailer.email_custom_text(@to, (t 'proposals.thanks_subject', :name => @submitter.first_name),
+        (t 'proposals.thanks_body', :name => @submitter.first_name)).deliver
 			redirect_to proposals_path
 		else
-			# TODO: need to add logic here
+      flash[:error] = (t 'proposals.save_error')
       render 'new'
-			# redirect_back fallback_location: root_url
 		end
 	end
 
 	def show
-		@proposal = Proposal.find(params[:id])
 	end
 
 	def destroy
-	  @proposal = Proposal.find(params[:id])
     @proposal.proposal_comments.destroy_all # remove all associated comments
 	  @proposal.destroy
 	  redirect_to proposals_path
 	end
 
 	def update
-	  @proposal = Proposal.find(params[:id])
 	  if @proposal.update proposal_params
 	  	redirect_to @proposal
 	  else
@@ -72,47 +75,33 @@ class ProposalsController < ApplicationController
 	  end
 	end
 
-	#def proposal_collection
-  #  @ideas = Idea.where :iteration_id => Iteration.get_current.id
-		# @ideas = Idea.all
-  #  @likes = Array.new
-  #  if cookies[:likes] != nil
-  #    @likes = JSON.parse(cookies[:likes])
-  #  end
-	#end
+  def approve
+    @proposal = Proposal.find(params[:id])
+    if @proposal.approved?
+      @proposal.unchecked!
+    else
+      @proposal.approved!
+      @creator = @proposal.user
+      @to = @creator.email
 
-   def approve
-     @proposal = Proposal.find(params[:id])
-     if @proposal.approved?
-       @proposal.unchecked!
-     else
-       @proposal.approved!
-       @creator = @proposal.user
-       @to = @creator.email
-
-       SlpMailer.email_custom_text(@to, "CONGRATULATIONS " + @creator.first_name, "Congrats " + @creator.first_name + "! Your proposal was approved by PauseLab!").deliver
-
-     end
-     @proposal.save
-    # end
+      SlpMailer.email_custom_text(@to, "Your proposal was approved, #{@creator.first_name}",
+        "Congrats, #{@creator.first_name}! Your proposal was approved by PauseLab and will be shown publicly!").deliver
+    end
+    @proposal.save
     render 'show'
-   end
+  end
 
 
-   def fund
-     @proposal = Proposal.find(params[:id])
-     if @proposal.funded?
-       @proposal.approved!
-     else
-       @proposal.funded!
-       @creator = @proposal.user
-       @to = @creator.email
-       SlpMailer.email_custom_text(@to, "CONGRATULATIONS " + @creator.first_name, "Congrats " + @creator.fullname + "! Your proposal was approved by PauseLab!").deliver
-     end
-     @proposal.save
-    # end
+  def fund
+    @proposal = Proposal.find(params[:id])
+    if @proposal.funded?
+      @proposal.approved!
+    else
+      @proposal.funded!
+    end
+    @proposal.save
     render 'show'
-   end
+  end
 
 
 	private

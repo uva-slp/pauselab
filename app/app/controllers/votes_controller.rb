@@ -6,7 +6,6 @@ class VotesController < ApplicationController
   end
 
   def new
-    @vote = Vote.new
   end
 
   def create
@@ -16,9 +15,9 @@ class VotesController < ApplicationController
       flash[:notice] = (t 'votes.save_success')
       redirect_to root_path
     else
+      flash[:error] = (t 'votes.save_error')
       render 'new'
     end
-    # render :plain => params.to_yaml
   end
 
   private
@@ -29,7 +28,7 @@ class VotesController < ApplicationController
     :phone,
     :email,
     :proposal_ids => []
-    )
+  )
   end
 
 end

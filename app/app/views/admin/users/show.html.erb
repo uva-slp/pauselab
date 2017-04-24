@@ -7,7 +7,7 @@
 
 <%= render :layout => 'admin/dashboard', :locals => {position: 'users' } do %>
 
-  <%= render 'edit_user' %>
+  <%= render :partial => 'edit_user' %>
 
   <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
         <br>
         <br>
         <h2 class="display-4"><%= @user.fullname %></h2>
-        <div class="lead"><strong><%= t 'common.user_role' %>&nbsp;&nbsp;</strong><%= @user.role %></div>
+        <div class="lead"><strong><%= User.human_attribute_name :role %>&nbsp;&nbsp;</strong><%= User.human_enum_name(:role, @user.role) %></div>
 
         <hr class="my-1">
 
@@ -32,9 +32,6 @@
             <i class="fa fa-phone"></i>
           </a>&nbsp;<%= number_to_phone @user.phone, area_code: true, delimiter: " " %>
         </div>
-
-        <!-- <div><strong><%= t 'common.user_email' %>&nbsp;&nbsp;</strong><%= @user.email %></div>
-        <div><strong><%= t 'common.user_phone' %>&nbsp;&nbsp;</strong><%= number_to_phone @user.phone, area_code: true, delimiter: " " %></div> -->
 
         <div>
           <strong><%= t 'admins.last_signed_in' %></strong>&nbsp;
@@ -60,6 +57,5 @@
       <i class="fa fa-trash"></i>
     <% end %>
   </div>
-
 
 <% end %>

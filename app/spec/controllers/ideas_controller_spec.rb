@@ -47,18 +47,22 @@ describe IdeasController, type: :controller do
     end
     it "notices when to sorts by last name" do
       user = sign_in (create :admin)
-      get :index, params: {sort: 'author_last_name'}
-      expect(controller.params[:sort]).to eql 'author_last_name'
+      get :index, params: {sort: 'last_name'}
+      expect(controller.params[:sort]).to eql 'last_name'
     end
     it "notices when to sorts by first name" do
       user = sign_in (create :admin)
-      get :index, params: {sort: 'author_first_name'}
-      expect(controller.params[:sort]).to eql 'author_first_name'
+      get :index, params: {sort: 'first_name'}
+      expect(controller.params[:sort]).to eql 'first_name'
     end
     it "notices when to sorts by likes" do
       user = sign_in (create :admin)
       get :index, params: {sort: 'likes'}
       expect(controller.params[:sort]).to eql 'likes'
+    end
+    it "notices when to filter by status" do
+      get :index, params: {status: 'unchecked'}
+      expect(controller.params[:status]).to eql 'unchecked'
     end
     it "knows what ideas you have liked" do
       cookies[:likes] = "[12]"

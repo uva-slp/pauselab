@@ -1,75 +1,50 @@
 
-<!-- <script>alert('No users!')</script>-->
 <% if can? :create, :ideas %>
   <%= link_to (t 'ideas.create_new'), new_idea_path, class: 'btn btn-primary pull-right clearfix' %>
+  <br/>
+  <br/>
 <% end %>
 
-<br/>
-<br/>
+<h2 class="pull-left"><%= t Idea.model_name.human(count:2) %></h2>
 
-<h2 class="pull-left"><%= t 'ideas.ideas' %></h2>
-<div class="dropdown pull-right" style="inline-block">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t 'common.sort' %></a>
-  <div class="dropdown-menu dropdown-menu-right">
-    <!-- We are passing the sort parameter here -->
-    <a href="?sort=likes" class="dropdown-item" ><%= t 'ideas.likes' %></a>
-    <% if user_has_admin_access %>
-      <a href="?sort=author_last_name" class="dropdown-item"><%= t 'common.author_first_name' %></a>
-    <% end %>
-    <% if user_has_admin_access %>
-      <a href="?sort=author_first_name" class="dropdown-item"><%= t 'common.author_last_name' %></a>
-    <% end %>
-    <a href="?sort=date" class="dropdown-item"><%= t 'common.date' %></a>
-    <% if user_has_admin_access %>
-      <a href="?sort=id" class="dropdown-item"><%= t 'common.id' %></a>
-    <% end %>
-    <a href="?sort=category" class="dropdown-item"><%= t 'ideas.category' %></a>
-  </div>
-</div>
+<%= render 'sort_controls' %>
 
 <div class="table-responsive">
   <table class="table table-striped">
 
     <thead>
       <tr>
-        <% if user_has_admin_access %>
+        <% if user_has_steering_access %>
           <th><%= t 'common.id' %></th>
         <% end %>
 
-        <% if user_has_admin_access %>
-          <th><%= t 'ideas.author' %></th>
+        <% if user_has_steering_access %>
+          <th><%= t 'common.author' %></th>
         <% end %>
 
         <th><%= t 'common.created_at' %></th>
 
-        <th><%= t 'ideas.category' %></th>
+        <th><%= Category.model_name.human %></th>
 
-        <th><%= t 'ideas.description' %></th>
+        <th><%= Idea.human_attribute_name :description %></th>
 
-        <% if user_has_admin_access %>
-          <th><%= t 'ideas.status' %></th>
+        <% if user_has_steering_access %>
+          <th><%= Idea.human_attribute_name :status %></th>
         <% end %>
 
-        <% if user_has_admin_access %>
-          <th><%= t 'ideas.medium' %></th>
+        <% if user_has_steering_access %>
+          <th><%= Idea.human_attribute_name :medium %></th>
         <% end %>
-        
-        <th><%= t 'ideas.likes' %></th>
 
-        <!-- <% if can? :like, Idea or
-          can? :show, Idea or
-          can? :edit, Idea or
-          can? :approve, Idea or
-          can? :destroy, Idea %>
-          <th colspan="1"><%= t 'common.actions' %></th>
-         <% end %> -->
+        <th><%= Idea.human_attribute_name :likes %></th>
+
       </tr>
     </thead>
 
     <% @ideas.each do |idea| %>
 
         <tr class="row-link" data-href="<%= idea_path(idea) %>">
-          <% if idea.respond_to? :id and user_has_admin_access %>
+          <% if idea.respond_to? :id and user_has_steering_access %>
             <td><%= idea.id %></td>
           <% end %>
 
@@ -90,42 +65,17 @@
           <% end %>
 
           <% if idea.respond_to? :status %>
-            <% if idea.approved? %>
-              <td><span class="badge badge-success">approved</span></td>
-            <% else %>
-              <td><span class="badge badge-danger">unchecked</span></td>
-            <% end %>
+            <td><span class="badge <%= if idea.approved? then "badge-success" else "badge-danger" end %>">
+              <%= Idea.human_enum_name(:status, idea.status) %></span></td>
           <% end %>
 
           <% if idea.respond_to? :medium %>
-            <td><span class="badge badge-info"><%= idea.medium %></span></td>
+            <td><span class="badge badge-info"><%= Idea.human_enum_name(:medium, idea.medium) %></span></td>
           <% end %>
 
-          <td>
-            <%= idea.likes  %>
-          </td>
-
-          <!-- <% if can? :read, Idea, :description %>
-            <td><%= social_share_button_tag(idea.description, :popup => "true")%></td>
-          <% end %> -->
-
-          <!-- <% if can? :show, Idea %>
-            <td><%= link_to (t 'common.show'), idea_path(idea) %></td>
-          <% end %> -->
-
-          <!-- <% if can? :edit, Idea %>
-            <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+          <% if idea.respond_to? :likes %>
+            <td><%= idea.likes  %></td>
           <% end %>
-
-          <% if can? :approve, Idea %>
-            <td><%= link_to (t 'ideas.approve'), idea_approve_path(idea), method: :post %></td>
-          <% end %>
-
-          <% if can? :destroy, Idea %>
-            <td><%= link_to (t 'common.remove'), idea_path(idea),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-          <% end %> -->
 
         </tr>
     <% end %>

@@ -20,7 +20,24 @@ class User < ApplicationRecord
 	has_many :proposal_comments, dependent: :destroy
   has_many :blogs, dependent: :destroy
 
+	# enumeration of user roles -- if adding more, be sure to modify order_roles below
 	enum role: [:admin, :steerer, :artist, :moderator, :resident, :super_artist]
+
+	# prioritize values from the enum so they present in the given order on a form
+	def self.order_roles(roles)
+		return [
+			'admin',
+			'moderator',
+			'steerer',
+			'super_artist',
+			'artist',
+			'resident',
+		].select{|r| roles.include? r.to_s }
+	end
+
+	def self.roles_ordered
+		return User.order_roles(User.roles.keys.to_a)
+	end
 
 	def change_role(new_role)
 		self.role = new_role

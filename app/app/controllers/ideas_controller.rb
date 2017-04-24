@@ -12,16 +12,20 @@ class IdeasController < ApplicationController
       @ideas = @ideas.order :id
     when "date"
       @ideas = @ideas.order created_at: :desc
-    when "author_last_name"
+    when "last_name"
       if user_has_admin_access # prevent non-privileged users from sorting
         @ideas = @ideas.order :last_name
       end
-    when "author_first_name"
+    when "first_name"
       if user_has_admin_access # prevent non-privileged users from sorting
         @ideas = @ideas.order :first_name
       end
     when "likes"
       @ideas = @ideas.order likes: :desc
+    end
+
+    if params[:status].present?
+      @ideas = @ideas.where(status: Idea.statuses[params[:status]])
     end
 
     @likes = Array.new
@@ -35,24 +39,22 @@ class IdeasController < ApplicationController
   alias_method :proposal_collection, :index
 
   def new
-    @idea = Idea.new
   end
 
-  alias_method :idea_collection, :new
-
   def edit
-    @idea = Idea.find params[:id]
   end
 
 	def create
 		@idea = Idea.new(idea_params)
-                @to = @idea.email
+    @to = @idea.email
     @idea.iteration_id = Iteration.get_current.id
 		if @idea.save
 			flash[:notice] = (t 'ideas.save_success')
-                        SlpMailer.email_custom_text(@to, (t 'ideas.email_subject') + @idea.first_name, (t 'ideas.email_body1') +  @idea.first_name + (t 'ideas.email_body2')).deliver
-			redirect_to ideas_path
+      SlpMailer.email_custom_text(@to, (t 'ideas.thanks_subject', :name => @idea.first_name),
+        (t 'ideas.thanks_body', :name => @idea.first_name)).deliver
+			redirect_to root_path
 		else
+      flash[:error] = (t 'ideas.save_error')
 			render 'new'
 		end
 	end
@@ -107,13 +109,11 @@ class IdeasController < ApplicationController
   end
 
   def destroy
-    @idea = Idea.find(params[:id])
     @idea.destroy
     redirect_to ideas_path
   end
 
   def update
-    @idea = Idea.find(params[:id])
     if @idea.update idea_params
       redirect_to @idea
     else
@@ -129,7 +129,6 @@ class IdeasController < ApplicationController
       @idea.approved!
     end
     @idea.save
-		# end
 		render 'show'
 	end
 
@@ -143,6 +142,7 @@ class IdeasController < ApplicationController
 	    	:email,
 	    	:phone,
 	    	:description,
+        :medium,
         :address,
         :lat,
         :lng
@@ -150,7 +150,7 @@ class IdeasController < ApplicationController
 	  end
 
     def filter_idea_columns ideas
-      unless user_has_admin_access
+      unless user_has_steering_access
         return ideas.select(:id,:address,:created_at,:likes,:lat,:lng,:category_id,:description)
       end
       return ideas

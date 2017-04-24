@@ -2,16 +2,16 @@
 
 <div class="row">
   <div class="col-md-3 cols">
-    <strong><%= t 'common.user_role' %></strong>
+    <strong><%= User.human_attribute_name :role %></strong>
   </div>
   <div class="col-md-4">
-    <%= @user.role %>
+    <%= User.human_enum_name(:role, @user.role) %>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-3">
-    <strong><%= t 'common.user_email' %></strong>
+    <strong><%= User.human_attribute_name :email %></strong>
   </div>
   <div class="col-md-4">
     <%= @user.email %>
@@ -20,7 +20,7 @@
 
 <div class="row">
   <div class="col-md-3">
-    <strong><%= t 'common.user_phone' %></strong>
+    <strong><%= User.human_attribute_name :phone %></strong>
   </div>
   <div class="col-md-4">
     <%= number_to_phone @user.phone, area_code: true, delimiter: " " %>

@@ -1,24 +1,24 @@
 <!-- <div class="col-md-6"> -->
 
-    <h2>Sign up</h2>
+    <h2><%= t 'users.registrations.new_user' %></h2>
 
     <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
 
-        <%= f.input :avatar, as: :file %>
-        <%= f.input :first_name, placeholder: 'clark' %>
-        <%= f.input :last_name, placeholder: 'kent' %>
-        <%= f.input :email, placeholder: 'ckent@dailyplanet.com' %>
-        <%= f.input :password, placeholder: 'password', hint: "#{@minimum_password_length} characters minimum" %>
-        <%= f.input :password_confirmation, placeholder: 'password confirmation' %>
-        <%= f.input :phone, placeholder: '555-555-5555' %>
+        <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
+        <%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+        <%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
+        <%= f.input :email, placeholder: (t 'common.email_placeholder') %>
+        <%= f.input :password, hint: (t 'users.passwords.minimum_length_message', :length => @minimum_password_length) %>
+        <%= f.input :password_confirmation %>
+        <%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
 
         <div class="form-group">
           <%= recaptcha_tags %>
-          <%= f.button :submit, 'Sign Up', style: 'margin-top: 10px;' %>
+          <%= f.button :submit, (t 'users.registrations.sign_up'), style: 'margin-top: 10px;' %>
         </div>
 
         <div class="form-group">
-            <%= render "users/shared/links" %>
+          <%= render "users/shared/links" %>
         </div>
 
     <% end %>

@@ -8,17 +8,14 @@ Rails.application.routes.draw do
     # this will change depending on the current phase of the process
     root 'pages#go_home'
 
-    get '/idea_collection', to: 'ideas#idea_collection', as: 'idea_collection'
     get '/ideas/like/:id' => "ideas#like", as: 'idea_like'
     post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
 
     # admin routes
     # NOTE admin routes and controller actions are singular for consistency
     #  however, it differs with the other RESTful controllers so don't get confused
-    get '/admin', to: 'admin#index', as: 'admin_overview'
     get '/admin/edit_phase', to: 'admin#edit_phase'
     put '/admin/edit_phase', to: 'admin#change_phase', as: 'change_phase'
-    get '/admin/manage_data', to: 'admin#manage_data'
     get '/admin/next_phase', to: 'admin#next_phase'
     get '/admin/end_phase', to: 'admin#end_phase'
     get '/admin/export_zip/:num', to: 'admin#export_zip', as: 'export_zip'
@@ -39,7 +36,7 @@ Rails.application.routes.draw do
     get '/pages/categories_json', to: 'pages#get_categories', as: 'categories_json'
 
     # blogs routes
-    get 'blogs/admin_console', to: "blogs#admin_console", as: 'admin_console'
+    get 'blogs/admin_console', to: "blogs#admin_console", as: 'blogs_admin_console'
 
     # makes RESTful routes for our models
     resources :ideas, :categories, :blogs, :mass_emails, :votes, :landingpages

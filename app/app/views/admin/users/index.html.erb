@@ -1,5 +1,5 @@
 
-<%= render :layout => 'admin/dashboard', :locals => { title: (t 'admins.users'), position: 'users' } do %>
+<%= render :layout => 'admin/dashboard', :locals => { title: User.model_name.human(count:2), position: 'users' } do %>
 <%= link_to (t 'admins.create_user'), new_admin_user_path, class: 'btn btn-primary pull-right' %>
 
 <br>
@@ -11,9 +11,9 @@
 		<thead>
 			<tr>
 				<th><%= t 'common.number_symbol' %></th>
-				<th><%= t 'common.user_name' %></th>
-				<th><%= t 'common.user_email' %></th>
-				<th><%= t 'common.user_role' %></th>
+				<th><%= User.human_attribute_name :fullname %></th>
+				<th><%= User.human_attribute_name :email %></th>
+				<th><%= User.human_attribute_name :role %></th>
 				<th colspan="3"><%= t 'common.actions' %></th>
 			</tr>
 		</thead>
@@ -24,7 +24,7 @@
 					<td><%= user.id %></td>
 					<td><%= user.fullname %></td>
 					<td><%= user.email %></td>
-					<td><%= user.role %></td>
+					<td><%= User.human_enum_name(:role, user.role) %></td>
 					<td><%= link_to (t 'admins.manage'), admin_user_path(user) %></td>
 				</tr>
 			<% end %>
@@ -35,7 +35,7 @@
 
 <%= will_paginate @users,
 			:class => "pagination-wrapper",
-			:previous_label => "previous",
-			:next_label => "next" %>
+			:previous_label => (t 'common.previous'),
+ 		 	:next_label => (t 'common.next') %>
 
 <% end %>

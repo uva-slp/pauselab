@@ -19,41 +19,41 @@
             <thead class="">
               <tr>
                 <td><%= t 'proposals.cost_component' %></td>
-                <td><%= t 'proposals.cost' %></td>
+                <td><%= ProposalBudget.human_attribute_name :cost %></td>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <td><%= t 'proposals.artist_fees' %></td>
+                <td><%= ProposalBudget.human_attribute_name :artist_fees %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.artist_fees, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.project_materials' %></td>
+                <td><%= ProposalBudget.human_attribute_name :project_materials %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.project_materials, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.printing' %></td>
+                <td><%= ProposalBudget.human_attribute_name :printing %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.printing, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.marketing' %></td>
+                <td><%= ProposalBudget.human_attribute_name :marketing %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.marketing, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.documentation' %></td>
+                <td><%= ProposalBudget.human_attribute_name :documentation %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.documentation, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.volunteers' %></td>
+                <td><%= ProposalBudget.human_attribute_name :volunteers %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.volunteers, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.insurance' %></td>
+                <td><%= ProposalBudget.human_attribute_name :insurance %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.insurance, :unit => "$ " %></td>
               </tr>
               <tr>
-                <td><%= t 'proposals.events' %></td>
+                <td><%= ProposalBudget.human_attribute_name :events %></td>
                 <td><%= number_to_currency @proposal.proposal_budget.events, :unit => "$ " %></td>
               </tr>
             </tbody>

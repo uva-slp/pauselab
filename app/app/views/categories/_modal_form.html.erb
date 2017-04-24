@@ -12,12 +12,11 @@
 
       <%= simple_form_for @category do |f| %>
         <div class="modal-body">
-          <%= f.input :name, placeholder: (t 'categories.placeholder_name') %>
+          <%= f.input :name, placeholder: (t 'categories.name_placeholder') %>
           <%= f.input :icon, as: :file, hint: (t 'categories.icon_hint') %>
         </div>
         <div class="modal-footer">
           <%= f.button :submit, value: (t 'common.submit'), class: 'btn btn-primary' %>
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
         </div>
       <% end %>
 

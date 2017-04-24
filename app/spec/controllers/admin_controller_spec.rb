@@ -7,18 +7,6 @@ describe AdminController, type: :controller do
     @iteration = create :iteration
   end
 
-  describe "when getting admin index" do
-    it "responds with success" do
-      get :index
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
-    end
-    it "renders the index template" do
-      get :index
-      expect(response).to render_template('index')
-    end
-  end
-
   describe "when getting change_phase" do
     it "responds with success" do
       get :change_phase

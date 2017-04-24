@@ -1,19 +1,21 @@
+<style media="screen">
+/* keep checkboxes on separate lines */
+.checkbox_container {
+  display: block;
+}
+</style>
 
 <%= simple_form_for @mass_email do |f| %>
   <b><%= t 'mass_emails.select_groups_message' %></b></br>
-  <%= check_box_tag("to[]","admin") %> <%= t 'mass_emails.administrators' %> </br>
-  <%= check_box_tag("to[]","moderator") %> <%= t 'mass_emails.moderators' %> </br>
-  <%= check_box_tag("to[]","steerer") %> <%= t 'mass_emails.steerers' %> </br>
-  <%= check_box_tag("to[]","super_artist") %> <%= t 'mass_emails.super_artists' %> </br>
-  <%= check_box_tag("to[]","artist") %> <%= t 'mass_emails.artists' %> </br>
-  <%= check_box_tag("to[]","resident") %> <%= t 'mass_emails.residents' %> </br>
 
+  <%= f.collection_check_boxes :to, User.roles_ordered, lambda {|s| s},
+    lambda {|r| User.human_enum_name :role, r }, :item_wrapper_class => 'checkbox_container' %>
   <%= f.input :subject, placeholder: (t 'mass_emails.subject_placeholder') %>
   <%= f.input :body, placeholder: (t 'mass_emails.body_placeholder') %>
 
   <div class='form-group'>
-    <%= f.button :submit, value: (t 'mass_emails.send'), class: 'btn-primary pull-right' %>
-    <%= link_to (t 'common.cancel'), mass_emails_path %>
+    <%= f.button :submit, value: (t 'mass_emails.send'), class: 'btn btn-primary' %>
+    <%= link_to (t 'common.cancel'), mass_emails_path, class: 'btn btn-secondary' %>
   </div>
 
 <% end %>

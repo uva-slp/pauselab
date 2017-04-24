@@ -2,12 +2,6 @@ require 'test_helper'
 
 class AdminsControllerTest < ActionDispatch::IntegrationTest
 
-  test "should get admin index" do
-    sign_in_as :admin
-    get admin_overview_path
-    assert_response :success
-  end
-
   test "index should redirect resident" do
     sign_in_as :resident
     assert_response :redirect

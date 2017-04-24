@@ -17,11 +17,7 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-              <%= if current_user.admin? then t 'shared.admin'
-              elsif current_user.moderator? then t 'shared.moderator'
-              elsif current_user.super_artist? or current_user.artist? then t 'shared.artist'
-              elsif current_user.steerer? then t 'shared.steering'
-              elsif current_user.resident? then t 'shared.resident' end %>
+              <%= User.human_enum_name(:role, current_user.role) %>
             </a>
             <div class="dropdown-menu">
             <% if can? :manage, User %>
@@ -63,7 +59,7 @@
         <% if can? :read, Proposal %>
           <% if user_has_admin_access or Iteration.get_current.proposals? %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.proposals' %></a>
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Proposal.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
                 <% if can? :create, Proposal %>
                   <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
@@ -74,7 +70,7 @@
               </div>
             </li>
           <% elsif !Iteration.get_current.ideas? %>
-            <li class="nav-item"><%= link_to (t 'shared.proposals'), proposals_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Proposal.model_name.human(count:2), proposals_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 
@@ -82,7 +78,7 @@
         <% if can? :read, Idea %>
           <% if user_has_admin_access or Iteration.get_current.ideas? %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'shared.ideas' %></a>
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Idea.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
                 <% if can? :create, Idea %>
                   <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
@@ -97,13 +93,13 @@
               </div>
             </li>
           <% else %>
-            <li class="nav-item"><%= link_to (t 'shared.ideas'), proposal_collection_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Idea.model_name.human(count:2), proposal_collection_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 
         <%# Blog, About always visible %>
         <% if can? :read, Blog %>
-          <li class="nav-item"><%= link_to (t 'shared.blog'), blogs_path, class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to Blog.model_name.human(count:2), blogs_path, class: 'nav-link' %></li>
         <% end %>
         <li class="nav-item"><%= link_to (t 'shared.about'),  about_path, class: 'nav-link' %></li>
 
