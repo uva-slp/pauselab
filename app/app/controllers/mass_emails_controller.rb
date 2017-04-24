@@ -13,23 +13,14 @@ class MassEmailsController < ApplicationController
   end
 
   def create
-    if @mass_email.to != '[]' && @mass_email.save
+    # Get list of user roles selected for this mass email
+    roles = User.roles.keys.select { |role| mass_email_params[:to].include? role.to_s }
+    @mass_email.to = roles.to_s
+    # Reject is role list is empty
+    if !roles.empty? && @mass_email.save
       flash[:notice] = (t 'mass_emails.save_success')
-      @to = Array.new
-      #Get an array of all users, then add desired groups to email list
-      @emails_users = User.pluck(:email, :role)
-      @emails_users.each do |eu|
-        if @mass_email.to.include?(eu[1])
-          @to.push(eu[0])
-        end
-      end
-      #Email idea submitters if residents requested
-      if @mass_email.to.include?('resident')
-        @emails_ideas = Idea.pluck(:email)
-        @emails_ideas.each do |ei|
-            @to.push(ei)
-        end
-      end
+      # Get list of addresses corresponding to those roles
+      @to = get_addresses roles
       #Send e-mail
       @subj = @mass_email.subject
       @body = @mass_email.body
@@ -50,9 +41,9 @@ class MassEmailsController < ApplicationController
   private
     def mass_email_params
       params.require(:mass_email).permit(
-          :to,
           :subject,
-          :body
+          :body,
+          :to => []
           )
     end
 

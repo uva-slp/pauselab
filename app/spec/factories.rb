@@ -195,9 +195,9 @@ end
 end
 
   factory :mass_email do
-    to {['resident']}
     subject {Faker::Hipster.sentence}
     body {Faker::Hipster.paragraph}
+    to []
   end
 
 end

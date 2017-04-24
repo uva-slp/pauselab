@@ -3,7 +3,7 @@
     <div class="modal-body">
   <% end %>
   <%= f.input :avatar, as: :file, hint: (t 'common.avatar_hint') %>
-  <%= f.input :role, as: :select, collection: User.roles.keys.to_a - ["resident"],
+  <%= f.input :role, as: :select, collection: User.roles_ordered - ["resident"],
     label_method: lambda {|r| User.human_enum_name :role, r }, selected: @user.role %>
   <%= f.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
   <%= f.input :last_name, placeholder: (t 'common.last_name_placeholder') %>

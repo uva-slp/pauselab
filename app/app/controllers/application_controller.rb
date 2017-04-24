@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     else
       root_url
     end
-end
+  end
 
   protected
     def configure_permitted_parameters
@@ -60,6 +60,20 @@ end
         format.json { render json: scoped_objs }
         format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
       end
+    end
+
+    # given a list of user roles, returns a list of email addresses of users in those roles
+    def get_addresses(roles)
+      to = []
+      roles.each do |role|
+        if role.to_s == "resident"
+          # get emails from Vote and Idea models, which aren't attached to User
+          to.concat(Vote.pluck(:email).reject{ |e| e.nil? or e.blank? })
+          to.concat(Idea.pluck(:email).reject{ |e| e.nil? or e.blank? })
+        end
+        to.concat(User.where(role: role).pluck(:email))
+      end
+      return to.uniq
     end
 
     # returns whether user is an admin or moderator

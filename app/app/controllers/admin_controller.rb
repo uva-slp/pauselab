@@ -12,8 +12,8 @@ class AdminController < ApplicationController
 		authorize! :update, @current
 		@current.save
       if @current.status == "voting"
-        #Get an array of all users, then add desired groups to email list
-        @to = User.pluck(:email)
+        # Send an email notice to everyone who has used the system
+        @to = get_addresses User.roles.keys
         @subj = "PauseLab - Voting Period Now Open"
         @body = "Dear PauseLab users, the voting period for proposal submissions is now open!"
         SlpMailer.email_custom_text_bcc(@to, @subj, @body).deliver

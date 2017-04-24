@@ -248,12 +248,6 @@ en:
     site_title: PauseLab
   mass_emails:
     select_groups_message: "Please select one or more mailing groups."
-    administrators: Administrators
-    moderators: Moderators
-    steerers: Steering Committee
-    super_artists: Super Artists
-    artists: Artists
-    residents: Residents
     subject_placeholder: Subject
     body_placeholder: Message
     send: Send

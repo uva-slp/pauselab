@@ -1,6 +1,4 @@
 
-<%= link_to (t 'common.back'), mass_emails_path %>
-
 <h4><b><%= t 'mass_emails.date_sent' %>: </b></h4>
 <p><%= @mass_email.created_at.strftime("%B %d, %Y") %></p>
 <h4><b><%= MassEmail.human_attribute_name :to %>: </b></h4>

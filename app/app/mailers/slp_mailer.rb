@@ -1,5 +1,5 @@
 class SlpMailer < ApplicationMailer
-    default from: '"PauseLab" <slp.pauselab@gmail.com>'
+  default from: '"PauseLab" <slp.pauselab@gmail.com>'
 
   def email_custom_text(to, subj, body)
     mail(to: to,
