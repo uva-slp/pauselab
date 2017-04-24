@@ -5,11 +5,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     # at this point the resource is created, but now we change role to artist
     resource.role = User.roles[:artist]
-    resource.save
-    @to = resource.email
-    @name = resource.first_name
-    SlpMailer.email_custom_text(@to, (t 'users.registrations.welcome_subject', :name => @name),
-      (t 'users.registrations.welcome_body', :name => @name)).deliver
+    if resource.save
+        @to = resource.email
+        @name = resource.first_name
+        SlpMailer.email_custom_text(@to, (t 'users.registrations.welcome_subject', :name => @name),
+        (t 'users.registrations.welcome_body', :name => @name)).deliver
+    end
   end
 
   private

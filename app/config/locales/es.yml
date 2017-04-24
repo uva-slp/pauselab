@@ -20,7 +20,74 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 es:
   activerecord:
+    models:
+      blog:
+        one: Publicación
+        other: Publicación
+      category:
+        one: Categoría
+        other: Categoría
+      idea:
+        one: Idea
+        other: Ideas
+      iteration:
+        one: Iteratión
+        other: Iteratiónes
+      landingpage:
+        one: Página de Inicio
+        other: Página de Inicio
+      mass_email:
+        one: Correo Electrónico Masivo
+        other: Correos Electrónicos Masivos
+      proposal_comment:
+        one: Comentario
+        other: Comentarios
+      proposal:
+        one: Propuesta
+        other: Propuestas
+      user:
+        one: Usuario
+        other: Usuarios
+      vote:
+        one: Vota
+        other: Votas
     attributes:
+      blog:
+        title: Título
+        body: Descripción
+      category:
+        name: Nombre
+        icon: La Representación Gráfica
+      idea:
+        first_name: Primer Nombre
+        last_name: Apellido
+        phone: Teléfono
+        description: Descripción
+        likes: Gustos
+        email: E-mail
+        status: Estado
+        medium: Medio
+        statuses:
+          unchecked: Sin Comprobar
+          approved: Aprobado
+        media:
+          online: Online
+          paper: Papel
+      iteration:
+        ended: Terminado
+        status: Fase
+        statuses:
+          ideas: Colección de Ideas
+          proposals: Colección de Propuestas
+          voting: Votación
+          progress: Apagado de Estación
+      landingpage:
+        title: Título
+        description: Descripción
+      mass_email:
+        to: Para
+        subject: Tema
+        body: Descripción
       proposal_budget:
         artist_fees: La tarifa del artista
         project_materials: Materiales del Proyecto
@@ -30,18 +97,50 @@ es:
         volunteers: Voluntarios
         insurance: Eguro
         events: Eventos
+      proposal_comment:
+        body: Descripción
+      proposal:
+        title: Título
+        description: Descripción
+        essay: Necesidad de la Comunidad
+        website_link: Portafolio
+        status: Fase
+        artist_cv: Resumen
+        statuses:
+          unchecked: Sin Comprobar
+          approved: Aprobado
+          funded: Fundado
+      user:
+        email: Email
+        phone: Teléfono
+        first_name: Primer Nombre
+        last_name: Apellido
+        fullname: Nombre
+        role: Papel
+        avatar: Avatar
+        roles:
+          resident: Residente
+          artist: Artista
+          super_artist: Super Artista
+          steerer: Comité de Comunidad
+          moderator: Moderador
+          admin: Administrador
+      vote:
+        first_name: Primer Nombre
+        last_name: Apellido
+        phone: Teléfono
+        email: E-mail
+    errors:
+      models:
+        vote:
+          proposal_count: "Necesita elegir tres propuestas."
   common:
     number_symbol: "#"
     id: ID
     actions: Acciónes
-    user_name: Nombre
+    author: Nombre
     author_first_name: Nombre de Pila de Autor
     author_last_name: Apellido de Autor
-    first_name: Nombre de Pila
-    last_name: Apellido
-    user_email: Email
-    user_role: Parte
-    user_phone: Teléfono
     confirm_message: "¿Estás seguro?"
     submit: Enviar
     cancel: Cancelar
@@ -63,11 +162,10 @@ es:
     last_name_placeholder: Last
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
+    avatar_hint: "La imagen no debe ser mayor de 200x200 píxeles."
   admins:
     admin_console: La consola de administración
-    users: Los Usarios
     current_iteration: Iteración actual
-    iterations: Iteraciones
     started_on: Comenzó en
     current_status: Estado actual
     change_phase: Cambia la fase
@@ -79,18 +177,18 @@ es:
     iteration_ended: Terminó
     last_signed_in: Tiempo transcurrido desde el último registro
     change_user_role: Cambia de parte
-    create_user: Crear el Usario
-    create_user_success: El usario está creado con éxito.
-    create_user_fail: El usario no está creado.
-    update_user_success: El perfil de usario está actualizado con éxito.
-    update_user_fail: El perfil de usario no está actualizado con éxito.
-    remove_user_success: El usario está eliminado con éxito. También, todas las informaciónes de usario está eliminado.
-    remove_user_fail: El usario no está eliminado.
-    edit_user: Editar el usario
-    update_user: Actualiza el usario
+    create_user: Crear el Usuario
+    create_user_success: El usuario está creado con éxito.
+    create_user_fail: El usuario no está creado.
+    update_user_success: El perfil de usuario está actualizado con éxito.
+    update_user_fail: El perfil de usuario no está actualizado con éxito.
+    remove_user_success: El usuario está eliminado con éxito. También, todas las informaciónes de usuario está eliminado.
+    remove_user_fail: El usuario no está eliminado.
+    edit_user: Editar el usuario
+    update_user: Actualiza el usuario
     manage: Administrar
     never_signed_in: Nunca registro #This one's iffy
-    deactivate_user: Desactivar el usario
+    deactivate_user: Desactivar el usuario
     line_chart_title: Entregó Ideas
     line_chart_y_axis: Cantidad de Ideas
     pie_chart_title: Ideas por Categoría
@@ -115,10 +213,7 @@ es:
     create_new: Crear Una Categoría Nueva
     creating_category: Creando Categoría
     editing_category: Editando Categoría
-    categories: Categoría
     category_name: El Nombre de Categoría
-    name: Nombre
-    icon: Icono
     no_icon_message: El icono no está presente.
     save_success: Tu categoría fue guardado.
     save_error: Hay una problema cuando creando una categoría.
@@ -128,15 +223,8 @@ es:
     creating_idea: Creando Idea
     editing_idea: Editando Idea
     create_new: Crear un Idea Nueva
-    ideas: Ideas
-    likes: Me gusta
-    author: Autor
-    category: Categoría
-    description: Descripción
-    status: Estado
-    approve: Aprobar
-    disapprove: Desaprobar
     no_location_message: La ubicación no la especificá.
+    map_instructions: Seleccione una ubicación arriba. Comience escribiendo el nombre de la calle donde la idea se llevaría a cabo en el cuadro y pulse Intro. Una vez que se hace un marcador aparecerá que se puede arrastrar a la ubicación exacta.
     calling_artists: Llaman todos artistas
     submit_proposal: Entregar Propuesta
     submitted_ideas: Entregó Ideas
@@ -144,6 +232,7 @@ es:
     thanks_subject: "PauseLab BeCville - Tu idea recibió, %{name}"
     thanks_body: "Nosotros escuchamos fuerte y claro. Gracias %{name}, para compartir tu idea. Nosotros aprobaramoslo en el futuro cercano después un revisión. Esperas para ver en el mapa de las ideas en los siguientes dias. Muchas gracias por estar involucrado – BeCville"
   landingpages:
+    create_new: "Crear Un Nuevo Página"
     description_placeholder: "Detalle a cual el plan implementará"
     editing_landingpage: Editando el Poste de Página Central
     creating_landingpage: Creando el Poste de Página Central
@@ -162,16 +251,14 @@ es:
     body_placeholder: Mensaje
     send: Enviar
     create_new: Crear un nuevo correo electronico #check
-    mass_emails: Correo electrónico grandes
     sent_at: Envió desde
     date_sent: El Dato del Envió
-    to: Para
-    subject:
-    body: Body
-    save_success: Your mass email was sent.
-    save_error: There was an error in sending the email.
+    save_success: Correo electrónico masivo fue enviado.
+    save_error: Se ha producido un error al enviar el correo electrónico.
   pages:
     no_post: PauseLab ya no creó un mensaje.
+    delete_account: Borrar mi cuenta
+    delete_confirm_message: ¿Estás seguro? La eliminación de su cuenta es irreversible
     idea_collection: Colección de las ideas
     submit_idea: Enviar un idea
     create_about: Crear la página del sobre
@@ -181,11 +268,11 @@ es:
     create_homepage: Crear la página Inicio
     edit_homepage: Editar la página Inicio
     idea_collection: Colección de ideas
-    create_steering: Crear la página de comité
-    edit_steering: Editar la página de comité
+    create_steering: Crear la página de comité del comunidad
+    edit_steering: Editar la página de comité del comunidad
     recent_blogs: Los mensajes recientes
   proposal_comments:
-    comments: Commentarios
+    comments: Comentario
     creating_comment: Creando un Comentario
     editing_comment: Editando un Comentario
     show_comment: Monitor el Comentario
@@ -197,49 +284,35 @@ es:
     cost_breakdown: Lista del costo
     view_breakdown: Lista de la vista
     cost_component: Componente
-    cost: Costo
-    artist_fees: La tarifa del artista
-    project_materials: Materiales del Proyecto
-    printing: Costo de impresión
-    marketing: Costo de
-    documentation: Documentation
-    volunteers: Voluntarios
-    insurance: Eguro
-    events: Eventos
-    title_placeholder: "título (caracter máximo 40)"
-    description_placeholder: "Describa para implementará"
-    essay_placeholder: "Como el proyecto ayuda la comunidad?" #
-    website_link_placeholder: "Enlace por carpeta en línea " #
+    title_placeholder: "Título (caracter máximo 40)"
+    description_placeholder: "Detalle los detalles de su proyecto al describir quién, qué y dónde (máxima 500 palabras)."
+    essay_placeholder: "¿Cómo ayudaría este proyecto a la comunidad? (máxima 500 palabras)." #
+    website_link_placeholder: "Comparta un enlace en línea que muestre su trabajo anterior." #
     budget_information: Información del Presupuesto
-    resume: Resumen
+    resume: "Resumen - Comparta un resumen de una página que muestre su experiencia."
+    resume_button: Haga clic para cargar un PDF
     creating_proposal: Crear Tu Propuesta
     editing_proposal: Editar Tu Propuesta
     create_new: Crea un nuevo Propuesta
-    proposals: Propuestas
-    author: Autor
-    title: Título
-    status: Estatus
-    votes: Votos
-    description: Descripción
-    essay: Ensayo
-    cv: CV
     add_comment: Añadir Comentario
     save_success: Tu enviaste la propuesta.
     total_cost: Coste Total
-    link: Enlace Personal
+    thanks_subject: "PauseLab BeCville - Su propuesta ha sido recibida, %{name}"
+    thanks_body: "Te escuchamos alto y claro. Gracias %{name}, por compartir tu propuesta Vamos a aprobarlo poco después de una revisión rápida. Gracias por estar involucrado - BeCville"
   shared:
-    admin: Admin
-    admin_console: Consola de Admin
-    create_category: Crea Category
+    users_console: Consola de Usuarios
+    iteration_console: Consola de Iteración
     categories_console: Consola de Categorias
-    create_mass_email: Creata Correos Electronicos Largos
     mass_emails_console: Consola de Correos Electronicos Largos
+    landingpages_console: Consola de Inicio
     votes_console: Consola de Votas
+    manage_profile: Administrar perfil
+    steering_home: Inicio de Comité Directivo
+    artist_home: Inicio de Artista 
     vote: Vota  # navbar header
-    proposals: Propuestas
     create_proposal: Crea Propuestas
     proposals_console: Consola de Propuestas
-    ideas: Ideas
+    view_ideas: Ver Ideas
     create_idea: Crea Idea
     ideas_console: Consola de Ideas
     blog: Mensaje
@@ -247,11 +320,48 @@ es:
     logout: Cerrar Sesión
     login: Iniciar Sesión
     english_pretranslated: English
+  users:
+    mailer:
+      greeting: "Hola %{name}!"
+      password_change_body: Nos comunicamos con usted para notificarle que su contraseña ha sido cambiada.
+      reset_password_body: Alguien ha solicitado un enlace para cambiar su contraseña. Puede hacerlo a través del siguiente enlace.
+      reset_password_link: Cambiar mi contraseña
+      reset_password_ignore: Si no lo solicitó, ignore este correo electrónico.
+      reset_password_no_change: Tu contraseña no cambiará hasta que accedas al enlace anterior y crea uno nuevo.
+    passwords:
+      change_password: Cambia tu contraseña
+      new_password: Nuevo contraseña
+      confirm_password: Confirmar nueva contraseña
+      minimum_length_message: "%{length} caracteres mínimos."
+      forgot_password: Olvida tu contraseña?
+      forgot_email_placeholder: your.account@example.com
+      forgot_submit: Enviame contraseña Instrucciones de restablecimiento
+    registrations:
+      edit_user: Edite su perfil
+      new_user: Crear un perfil
+      sign_up: Sign up
+      new_password: Nuevo contraseña
+      new_password_hint: "Deje en blanco si no desea cambiar su contraseña. Si cambia,% {length} caracteres son mínimos."
+      new_password_confirmation: Nuevo contraseña confirmación
+      current_password: Actual contraseña
+      current_password_hint: Necesitamos su contraseña actual para confirmar sus cambios.
+      welcome_subject: "Bienvenido a PauseLab, %{name}"
+      welcome_body: "Bienvenido a PauseLab, %{name}. Su cuenta se ha creado correctamente."
+    sessions:
+      log_in: iniciar sesión
+      sign_in: registrarse
+      remember_me: Recuérdame
   votes:
     vote: Vota  # verb
-    votes: Votas  # plural noun
+    voter_ballot: Boleta Electoral
+    personal_information: Informacion personal
     pick_three: Escoger tres opciónes que prefieres
     select: Selecto
     submitted_on: Submitted on
     already_voted: Tu ya votaste.
     save_success: Recibió la vota!
+    save_success: Su voto ha sido recibido!
+    save_error: Se produjo un error al crear su voto.
+    honor_pledge: Me comprometo a vivir en el distrito beneficiándose de estos proyectos, y que estoy votando sólo una vez.
+    top_votes_note: "Si está buscando las mejores propuestas de votación, vaya a Propuestas enviadas."
+    top_votes_link: "Ver las mejores propuestas"
