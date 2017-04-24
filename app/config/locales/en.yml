@@ -81,7 +81,7 @@ en:
           ideas: Idea Collection
           proposals: Proposal Collection
           voting: Voting
-          progress: Offseason
+          progress: Off season
       landingpage:
         title: Title
         description: Body
@@ -311,6 +311,7 @@ en:
     categories_console: Categories Console
     mass_emails_console: Mass Emails Console
     landingpages_console: Landing Pages Console
+    manage_profile: Manage Profile
     votes_console: Votes Console
     steering_home: Steering Committee Home
     artist_home: Artist Home
