@@ -5,7 +5,9 @@ class Iteration < ApplicationRecord
   has_many :proposals
   has_many :votes
 
-  enum status: [:ideas, :proposals, :voting, :progress, :ended].freeze
+  # enum status: [:ideas, :proposals, :voting, :progress, :ended].freeze
+  # removed :progress as a phase as blogs are independent with the PB cycles
+  enum status: [:ideas, :proposals, :voting, :ended].freeze
 
   def self.get_current
     if Iteration.exists?
