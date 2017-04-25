@@ -1,64 +1,127 @@
-PAUSELAB ‚Äì BECVILLE: USER MANUAL
-The PauseLab BeCville web application facilitates community betterment through placemaking and civic engagement. The application will follow the timeline of a community project from the collection of ideas to the finalization of the physical projects.
-This user manual will outline the utilization of the PauseLab BeCville website with respect to the various types of users that will be present.
+PAUSELAB ñ BECVILLE: USER MANUAL
+      
+      The PauseLab BeCville web application facilitates community betterment through placemaking and civic engagement. The application will follow the timeline of a community project from the collection of ideas to the finalization of the physical projects.
+      This user manual will outline the utilization of the PauseLab BeCville website with respect to the various types of users that will be present.
  
 RESIDENT USE OF THE SITE
-Residents are users interacting with the site that DO NOT have a user account. They will have access to Idea Submission, Viewing Ideas, Voting on Project Proposals, and Keeping Up with Projects
+      Residents are users interacting with the site that DO NOT have a user account. They will have access to Idea Submission, Viewing Ideas, Voting on Project Proposals, and Keeping Up with Projects
+      
 Idea Submission
-The Idea Submission feature enables residents to submit an idea that will benefit the community and a location where the idea should be enacted. The Idea Submission feature will only be available during the Idea Collection Phase of the project lifecycle.
+      The Idea Submission feature enables residents to submit an idea that will benefit the community and a location where the idea should be enacted. The Idea Submission feature will only be available during the Idea Collection Phase of the project lifecycle.
+      
   
-There are two ways that residents may submit ideas. The first is by clicking ‚Äúsubmit an idea‚Äù on the homepage of the website. Another way is to click on the ‚ÄúIdeas‚Äù drop down menu on the navigation bar at the top of the page and then selecting ‚ÄúCreate Idea‚Äù. These links will not be available after the Idea Collection phase.
+      
+      There are two ways that residents may submit ideas. The first is by clicking ìsubmit an ideaî on the homepage of the website. Another way is to click on the ìIdeasî drop down menu on the navigation bar at the top of the page and then selecting ìCreate Ideaî. These links will not be available after the Idea Collection phase.
+      
  
-Once at the Idea Submission page, residents will be asked to fill out a form with basic information about their idea, including a pre-defined category. Residents will also need to specify a location where the idea should be enacted. 
+      
+      Once at the Idea Submission page, residents will be asked to fill out a form with basic information about their idea, including a pre-defined category. Residents will also need to specify a location where the idea should be enacted. 
+      
  
-To use the map, the resident will first need to enter a street or location name, then click on the desired result from the search bar. After the map zooms in to the specified location, the resident will then be able to move the red marker around the map to further specify their desired location. 
-After filling all the required fields and specifying a location, the residents may then submit an idea. The residents will then be redirected to the homepage with a message confirming that their idea was received. A resident‚Äôs idea will not be displayed on the homepage map until it has been approved by the steering committee (later section).
+      
+      To use the map, the resident will first need to enter a street or location name, then click on the desired result from the search bar. After the map zooms in to the specified location, the resident will then be able to move the red marker around the map to further specify their desired location. 
+      After filling all the required fields and specifying a location, the residents may then submit an idea. The residents will then be redirected to the homepage with a message confirming that their idea was received. A residentís idea will not be displayed on the homepage map until it has been approved by the steering committee (later section).
 
 Viewing Ideas
-During the idea collection phase, residents will be able to view ideas that others have submitted. On the homepage, there is a map that displays icons at the geographical locations of the submitted ideas with respect to the category of that idea. If the user clicks on the idea, they will then be directed to a page containing more details with the option to like the idea, or share on social media through Facebook or Twitter.
+      During the idea collection phase, residents will be able to view ideas that others have submitted. On the homepage, there is a map that displays icons at the geographical locations of the submitted ideas with respect to the category of that idea. If the user clicks on the idea, they will then be directed to a page containing more details with the option to like the idea, or share on social media through Facebook or Twitter.
+      
 
-Users can also leave comments on the idea by using their Disqus login information.
+      
+      Users can also leave comments on the idea by using their Disqus login information.
+      
+
+
 Voting on Project Proposals
-Once the idea submission phase has ended, artists will have the opportunity to submit proposals. During this phase, the public will see the ideas listed on the homepage, with the ability to like the ideas and share them on social media, they can also click on the card corresponding to the idea for more details. These ideas are also sortable by clicking on the sort drop down menu, with sorting available based on fields such as likes and author name.
+      Once the idea submission phase has ended, artists will have the opportunity to submit proposals. During this phase, the public will see the ideas listed on the homepage, with the ability to like the ideas and share them on social media, they can also click on the card corresponding to the idea for more details. These ideas are also sortable by clicking on the sort drop down menu, with sorting available based on fields such as likes and author name.
+      
 
-While the general public does not participate in the proposal submissions, once the proposals have been collected, it is left to the public to vote on which ones should be carried through. When the voting period begins, the homepage of the website changes to reflect the new phase. Users are shown a page that asks them to vote by selecting their top three proposals.
-The user must first enter his or her information, including first name, last name, phone number and email.
+      
+      While the general public does not participate in the proposal submissions, once the proposals have been collected, it is left to the public to vote on which ones should be carried through. When the voting period begins, the homepage of the website changes to reflect the new phase. Users are shown a page that asks them to vote by selecting their top three proposals.
+      The user must first enter his or her information, including first name, last name, phone number and email.
+      
 
-Then the user sees a card view of all of the approved proposals and is able to choose up to three that he or she would like to see realized. This is done by clicking the ‚ÄúSelect‚Äù button on the proposal card, however, this button is disabled for the remaining cards once three have been chosen, becoming enabled again if one of the chosen proposals is unselected.
+      
+      Then the user sees a card view of all of the approved proposals and is able to choose up to three that he or she would like to see realized. This is done by clicking the ìSelectî button on the proposal card, however, this button is disabled for the remaining cards once three have been chosen, becoming enabled again if one of the chosen proposals is unselected.
+      
 
-Lastly, the user submits their vote by first ensuring that they have voted fairly by honoring the voting policy by clicking on a checkbox and then clicking ‚ÄúSubmit‚Äù.
+      
+      Lastly, the user submits their vote by first ensuring that they have voted fairly by honoring the voting policy by clicking on a checkbox and then clicking ìSubmitî.
+      
+
 
 Keeping Up with Projects
-When the voting phase has ended, the homepage will once again change to show recent news updates as blog-style entries. These entries are written by the artists working on the projects and the PauseLab team.
+      When the voting phase has ended, the homepage will once again change to show recent news updates as blog-style entries. These entries are written by the artists working on the projects and the PauseLab team.
+      
 
-Shown as cards with summaries, users can click ‚ÄúRead More‚Äù to see the full entry. A Disqus commenting section is available on the full entry as well to facilitate discussion. The most recent PauseLab updates are always highlighted on the homepage no matter the current phase.
+      
+      Shown as cards with summaries, users can click ìRead Moreî to see the full entry. A Disqus commenting section is available on the full entry as well to facilitate discussion. The most recent PauseLab updates are always highlighted on the homepage no matter the current phase.
+      
 
 
 ARTIST USE OF THE SITE
-There are two types of artists within the site: artists and the super artist. The latter is an assigned role with permission to post news updates. All artists are able to create ideas, submit proposals, and vote during each phase. 
-	To create an update post, the super artist has to click the news tab and select ‚ÄúCreate new post.‚Äù There, after filling out the title and body, they can hit submit to save the post. The newly created post will appear on the blogs, and will also appear on the home page. The super artist can edit and delete the post by pressing the icons in the bottom-right corner of the screen. 
-	Both super artists and artists can submit proposals. The artist must click the proposal tab and select ‚Äúcreate new proposal.‚Äù There, they will be redirected to the page to completing the form. Items marked with a star are required, such as title and body. After completing, hit submit to save the proposal. Proposals must be approved by a moderator/admin before they appear on the list of approved proposals. 
+	There are two types of artists within the site: artists and the super artist. The latter is an assigned role with permission to post news updates. All artists are able to create ideas, submit proposals, and vote during each phase. 
+	To create an update post, the super artist has to click the news tab and select ìCreate new post.î There, after filling out the title and body, they can hit submit to save the post. The newly created post will appear on the blogs, and will also appear on the home page. The super artist can edit and delete the post by pressing the icons in the bottom-right corner of the screen. 
+	Both super artists and artists can submit proposals. The artist must click the proposal tab and select ìcreate new proposal.î There, they will be redirected to the page to completing the form. Items marked with a star are required, such as title and body. After completing, hit submit to save the proposal. Proposals must be approved by a moderator/admin before they appear on the list of approved proposals. 
 	Likewise, with residents, the super artist and artist can submit ideas and vote for approved proposals when appropriate. 
+
 Account Creation
-Site users, unless assigned by an admin, must create an account for access to features specific to certain roles. However, an account is not needed by the members of the community to submit ideas, view and vote on proposals or follow the blog.
-To create an account, users must first click on the ‚Äúlogin‚Äù button, upon which they will be redirected to the login page.
+      Site users, unless assigned by an admin, must create an account for access to features specific to certain roles. However, an account is not needed by the members of the community to submit ideas, view and vote on proposals or follow the blog.
+To create an account, users must first click on the ìloginî button, upon which they will be redirected to the login page.
 
-If the user has an account already, they may simply login using their email and password. New users, however, will click ‚ÄúSign up‚Äù. To create an account, the users must fill out the new account form.
 
-After the form is completed, the users will have an account with the role of Artist. They may sign out of the website at any time by pressing the ‚Äúlogout‚Äù button on the top left corner of the website. 
+      
+      If the user has an account already, they may simply login using their email and password. New users, however, will click ìSign upî. To create an account, the users must fill out the new account form.
+      
 
-SUPER ARTIST USE OF THE SITE
+      
+      After the form is completed, the users will have an account with the role of Artist. They may sign out of the website at any time by pressing the ìlogoutî button on the top left corner of the website.
 
-STEERING COMMITTEE MEMBER USE OF THE SITE
-		The main goal of the Steering Committee Members is to easily view and evaluate the different proposals to decide which are not only thorough enough, but also beneficial for the community. ¬†The main functionality they have are viewing unapproved and approved proposals and leave comments on proposals that only other committee members and site administrators can see. 
+STEERING COMMITTEE USE OF THE SITE
+	The main goal of the Steering Committee Members is to easily view and evaluate the different proposals to decide which are not only thorough enough, but also beneficial for the community. †The main functionality they have are viewing unapproved and approved proposals and leave comments on proposals that only other committee members and site administrators can see. 
 	On log in a steering committee member is brought to the steering committee homepage which will have instructions on how to navigate the site, and any news the site administrators want them to know. 
-	Committee Members can go to the proposals tab to view a list all proposals, both unapproved and approved. ¬†The list can be sorted by title, author name, cost and date created. ¬†To view full details of a proposal simple click the ‚Äúshow‚Äù button in the rightmost column.
-	Here a Committee Member can view full descriptions, essays and budget information for a proposal. ¬†There is also a feature that allows a committee member to read other comments on a proposal, as well as leave a comment. ¬†Only other steering committee members, site admins and moderators can view these comments. ¬†
+	Committee Members can go to the proposals tab to view a list all proposals, both unapproved and approved. †The list can be sorted by title, author name, cost and date created. †To view full details of a proposal simple click the ìshowî button in the rightmost column.
+	Here a Committee Member can view full descriptions, essays and budget information for a proposal. †There is also a feature that allows a committee member to read other comments on a proposal, as well as leave a comment. †Only other steering committee members, site admins and moderators can view these comments. †
+
 
 	
-	A steering committee member is allowed to create ideas and proposals if they would like. ¬†Go to the ‚ÄúResident Use of the Site‚Äù for help with those.
+	
+      A steering committee member is allowed to create ideas and proposals if they would like. †Go to the ìResident Use of the Siteî for help with those.
 
 MODERATOR USE OF THE SITE
 
+      The moderator is responsible for logistical tasks pertaining to the participatory budgeting process. They have the ability to filter citizen input on the site by either directly editing their content or approving them for public view. 
+      The moderator can view the ideas console, which outlines all submitted ideas for the current iteration. From here they can access the details of each individual idea and approve/edit them for public view. 
+
+
+
+      Furthermore, they can create mass emails to be sent to particular user groups. They can select any number of mailing groups. This is a very useful feature for providing outreach and updates on the participatory budgeting process. 
+
+
+      
+      They can also create landing pages for the base home page, the artist home page, the steering committee home page and lastly the about us page. This allows the moderator to have control over the information that is presented on each of these pages. This is very helpful for keeping the different user groups up to date with any changes or updates with the participatory budgeting process. 
+
 ADMIN USE OF THE SITE
+
+      The administrator has the crucial role of orchestrating the participatory budgeting process. On the hierarchy of user roles, the admin is at the top thus they have all the abilities of the roles below them. 
+      The admin specific roles can be found in the admin console. 
+
+
+
+      The admin can manage users in the ìusersî tab. Here they can create a new user by clicking on ìcreate userî and completing the subsequent form. This will be primarily used for creating accounts on behalf of other users. The create user form can be accessed by other roles however only the admin has the ability to assign roles during creation.
+      
+
+
+
+      The admin can manage each user individually as well by either changing their details (i.e. change their roles). They also have the ability to deactivating users, which can be done by clicking on the trashcan icon from the manage users page.
+      
+
+      
+      From the current iteration tab, the admin can examine the frequency of idea submission along with the distribution of ideas by categories. From this page, they have the ability to change the current phase to either ìvotingî, ìproposalsî or ìideasî. They can also end the current iteration and subsequently start a new one.
+
+
+
+      From the ìiterationî tab, admins can download reports of past iteration. These reports will consist of comma separated values representing the contents of the database for the respective iteration. 
+
+1
+
 
