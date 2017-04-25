@@ -14,6 +14,15 @@ We will assure that the system is correctly installed and fully functional on th
 
 These tests will assure the site is correctly installed and functional on the deployment server.
 
+
+## Results
+I could correctly follow the instruction from the installation plan, and all the functionality of the system worked correctly. A few notes I took on the instruction.
+1. Setting Up RailsApp, Part 2: At first i didn't log out and log in, and rvm and nvm weren't found.  After logging back in it worked fine.
+2. Part 5. I think it would be helpful to say these lines are located around line 60
+3. Part5.3. The easiest way to do this step is comment out all of the exsisting code, then edit/add the correct code.
+4. Part 7. I might have made a slight mistake when I once called "bundle install" instead of "bundle install --deployment --without development test" which I guess changed the default bundler.  Before calling any rails commands i had to recall "rvm 2.3.1" then "bundle install --deployment --without development test", and everything worked fine. 
+
+
 ## Usability Tests
 PauseLab needs to be usable, comfortable and intuitive.  To test this assign various user roles to unfamiliar test users, give them tasks to complete, then talk to them how intuitive or difficult the task was.  Ask about how overall navigation of the website feels. Usability is user feedback generated.  Once given feedback, make any necessary changes, and perform similar tasks on a new unfamiliar group of test users.  The unfamiliar users in this case will be interns and employees of PauseLab and friends with varying levels of web development knowledge.
 	The following are the various roles users should be assigned.  Before the users are tested they should be aware or told what participatory budgeting is, and the goal of the tasks they are performing.  Depending on the role and the task for the user, some ideas and proposals should be created before performing the tests.  Further many pages, such as user homepages, have editable posts that are supposed to give some instruction on how to navigate the site.  To simulate an actual situation, the test giver should make sure those posts are edited to reflect what a user would see.  It is easier to perform tests when test giver is logged in as admin on different machine to easier change phase.  
