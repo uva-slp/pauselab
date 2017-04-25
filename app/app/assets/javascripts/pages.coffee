@@ -12,6 +12,7 @@ class @Pages
         lng: -78.4767
       }
     }
+
     $.when(
       ($.get 'ideas_json', (ideas) -> g.ideas = ideas),
       ($.get 'categories_json', (categories) -> g.categories = categories)

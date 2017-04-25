@@ -9,12 +9,12 @@ describe "init", ->
   afterEach ->
     fixture.cleanup()
 
-  it "initializes properly", ->
-    spyOn(Init, 'init').and.callThrough()
-    Init.initialize()
-    $('.btn').mouseup()
-    Init.redirect "https://www.google.com"
-    expect(Init.init).toHaveBeenCalled()
+  # it "initializes properly", ->
+  #   spyOn(Init, 'init').and.callThrough()
+  #   Init.initialize()
+  #   $('.btn').mouseup()
+  #   Init.redirect "https://www.google.com"
+  #   expect(Init.init).toHaveBeenCalled()
 
   it "formats correctly with less than 50 characters", ->
     desc = "Lorem ipsum dolor sit amet"
