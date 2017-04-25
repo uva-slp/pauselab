@@ -1,0 +1,32 @@
+
+
+<h1 class="page-title"><%= Proposal.model_name.human(count:2) %></h1>
+<br>
+
+<div class="card-columns">
+  <% @proposals.each do |p| %>
+    <div class="card">
+      <div class="card-block">
+
+        <h4 class="card-title">
+          <%= link_to proposal_path(p) do %>
+            <%= p.title %>
+          <% end %>
+        </h4>
+
+        <h6 class="card-subtitle text-muted"><%= p.user.fullname %></h6>
+        <p class="card-text"><%= truncate p.essay, length: 100 %></p>
+
+      </div>
+
+      <div class="card-footer text-muted ">
+        <span class="pull-left">
+          <%= number_to_currency p.proposal_budget.cost %>
+        </span>
+        <span class="pull-right">
+          <%= p.created_at.strftime("%B %d") %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</div>
