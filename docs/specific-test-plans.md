@@ -78,3 +78,6 @@ Our team and PauseLab have come up with a set of requirements for their desired 
 ## Compatibility Testing
 We will execute the requirements test on the most recent version of the major web browsers (Firefox, Chrome, IE, and Safari). If -- and only if -- the requirements test passes on all of those browsers, then the compatibility test will be considered to have passed.   
 
+### Results
+The system runs correctly on Microsoft Edge and iOS devices.
+
