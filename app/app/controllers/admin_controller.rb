@@ -27,8 +27,7 @@ class AdminController < ApplicationController
 		@current.status = case @current.status
 				when "ideas" then "proposals"
 				when "proposals" then "voting"
-				when "voting" then "progress"
-				else "progress"
+				else "voting"
 			end
 		@current.save
 		render json: {:status => @current.status}
