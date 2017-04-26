@@ -62,6 +62,24 @@ PauseLab needs to be usable, comfortable and intuitive.  To test this assign var
     
 On top of specific user tests, let the test user play around with the system.  Ask for feedback about what is easy and what was difficult or confusing. If the subject says something is difficult follow up with questions on why it was difficult, and what would make it easier.  Document the feedback, and consider any necessary design changes.
 
+### Testing Idea Collection
+For the usability tests, we first tested how a user would submit an idea during the idea collection phase. We asked the participants: If you were a resident who wanted to submit an idea, where would you go?
+As the users figured out how to submit an idea, one participant responded that it was obvious how to submit an idea since the button was clearly visible on the homepage. Another remarked that it was strange that the ‘Submit an Idea’ link was part of the Map view instead of a separate button. For the submission form, it was mentioned that the form is simple although selecting a location through the Map view was not. Once users figured out that you could type in the location instead of selecting a pin outright, selecting the location seemed simple. However, they did not know right away that the pin marking a location could be dragged around to new spots.
+
+### Testing Idea Approval
+The second component that was tested was approving an idea as a moderator. The participants were asked how they would do this once they were logged into a moderator account.
+During the first test, it was not obvious that there was a portal available that portrayed all of the submitted ideas in a list view. Most of the participants thought that clicking on the red “unchecked” button would be approving the idea. However, this button simply redirects to the ideas page. It was not so obvious that the checkmark button was used for approving ideas as it was very small and the same color as the other buttons, making it hard to determine which buttons could be clicked.
+
+### Testing Proposal Collection
+We then tested the proposal collection component. We asked the users how they would submit a proposal.
+One participant responded that it was not clear right away that an account is required to submit a proposal since it appears to be a regular login portal. However, the actual form for submitting the proposal was said to be straightforward, with information being easy to add and the fields all being intuitive and noticeable. It was also mentioned that the WYSIWYG editor was very helpful tool for the proposal submission process.
+
+### Testing Voting
+Lastly, we tested how users would handle the voting phase. We asked the participants: How would you submit a vote?
+The participants responded that the voting form was simple and that there was good feedback for when certain items were selected. Though, it was not obvious that the pledge at the end of the form must be checked as the text was too small (but the text does flash red when trying to submit the for without checking the box). Having to verify with RECAPTCHA became a little cumbersome for some participants, especially when there was an error made on the previous page. One user also attempted to submit only two votes instead of the required three because she did not like the proposals presented. It was not clear to her that three proposals must be selected because it is not explicitly stated on the page that the resident must vote for at least three and at most three proposals.
+
+
+
 ## Security Testing
 
   PauseLab is responsible for allocating public money, so there is a lot on the line for security of the system. No money is exchanged on the site, but the decision making behind where it goes is.  This means the system must prevent voter fraud, and unprivileged users performing or viewing privileged actions and content.

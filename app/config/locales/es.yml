@@ -195,6 +195,7 @@ es:
   blogs:
     title_placeholder: "La últimas noticias del mes"
     body_placeholder: "Después de un mes de trabajo difícil..."
+    key_img_placeholder: "URL de imagen"
     admin_console_title: Consola de Administración (Mensaje)
     back_link: Retroceder a Mensajes
     create_new: Crear un Mensaje Nuevo

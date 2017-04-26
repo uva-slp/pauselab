@@ -56,6 +56,7 @@ en:
       blog:
         title: Title
         body: Body
+        key_img: Key image
       category:
         name: Name
         icon: Icon
@@ -200,6 +201,7 @@ en:
   blogs:
     title_placeholder: "This month's update"
     body_placeholder: "After a month's hard work..."
+    key_img_placeholder: "URL to preview image"
     admin_console_title: Admin Console (Posts)
     back_link: Back to Posts
     create_new: Create New Post
