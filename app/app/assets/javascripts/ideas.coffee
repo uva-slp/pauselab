@@ -39,11 +39,14 @@ class @Idea
     # more details for that place.
     marker = undefined
     searchBox.addListener 'places_changed', ->
-      Idea.addressChange(searchBox, marker, map)
+      marker = Idea.addressChange(searchBox, marker, map)
 
     return searchBox
 
   @addressChange: (searchBox, marker, map) ->
+
+    console.log marker
+
     # console.log 'places_changed'
     places = searchBox.getPlaces()
     if places.length == 0
