@@ -45,16 +45,16 @@ describe AdminController, type: :controller do
       get :next_phase, params: {:phase => @iteration.status}
       expect(Iteration.get_current.status).to eq("voting")
     end
-     it "changes voting to progress" do
-      @iteration = create :iteration, :status => Iteration.statuses[:voting]
-      get :next_phase, params: {:phase => @iteration.status}
-      expect(Iteration.get_current.status).to eq("progress")
-    end
-     it "changes undefined to progress" do
-      @iteration = create :iteration, :status => nil
-      get :next_phase, params: {:phase => @iteration.status}
-      expect(Iteration.get_current.status).to eq("progress")
-    end
+    #  it "changes voting to progress" do
+    #   @iteration = create :iteration, :status => Iteration.statuses[:voting]
+    #   get :next_phase, params: {:phase => @iteration.status}
+    #   expect(Iteration.get_current.status).to eq("progress")
+    # end
+    #  it "changes undefined to progress" do
+    #   @iteration = create :iteration, :status => nil
+    #   get :next_phase, params: {:phase => @iteration.status}
+    #   expect(Iteration.get_current.status).to eq("progress")
+    # end
   end
 
   describe "when ending an iteration" do
