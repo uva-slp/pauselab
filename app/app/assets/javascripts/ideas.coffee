@@ -45,8 +45,6 @@ class @Idea
 
   @addressChange: (searchBox, marker, map) ->
 
-    console.log marker
-
     # console.log 'places_changed'
     places = searchBox.getPlaces()
     if places.length == 0
