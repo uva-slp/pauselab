@@ -81,6 +81,18 @@ namespace :populate do
     printf "done\n"
   end
 
+  desc "populate database with votes"
+  task vote: :environment do
+    printf "generating votes ... "
+    Vote.destroy_all
+    cur = Iteration.get_current
+    100.times do
+      FactoryGirl.create :vote,
+        :proposals => Proposal.where(:iteration => cur).order("RAND()").limit(3),
+        :iteration => cur
+    end
+    printf "done\n"
+  end
 
   desc "remove Faker data from database"
   task remove: :environment do

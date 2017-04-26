@@ -3,6 +3,7 @@ class VotesController < ApplicationController
 
   def index
     @votes = @votes.where(:iteration_id => Iteration.get_current.id)
+      .paginate :page => params[:page], :per_page => 25
   end
 
   def new
