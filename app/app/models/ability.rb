@@ -35,6 +35,11 @@ class Ability
       can :crud, Blog, user: user
       can :crud, Proposal, user: user
 
+      #Artist cannot create proposal during voting phase
+      if Iteration.get_current.voting?
+        cannot :create, Proposal
+      end
+
     elsif user.artist?
       can :create, [Proposal, ProposalBudget, Idea, Vote]
       can :read, [Blog, Category, Idea, Proposal, ProposalBudget]
@@ -42,6 +47,11 @@ class Ability
       cannot :read, Proposal, status: Proposal.statuses[:unchecked]
       cannot [:read, :like], Idea, status: Idea.statuses[:unchecked]
       can :crud, Proposal, user: user
+
+      #Artist cannot create proposal during voting phase
+      if Iteration.get_current.voting?
+        cannot :create, Proposal
+      end
 
     else  # resident
       can :create, [Idea, Vote]
