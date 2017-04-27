@@ -11,7 +11,8 @@
 </style>
 
 <% if Iteration.get_current.proposals? %>
-	<h1 class="page-header text-lg-center"><%= t 'ideas.calling_artists' %></h1>
+	<h1 class="page-header text-lg-left"><%= t 'ideas.calling_artists' %></h1>
+	<p> <%= t 'ideas.artist_description' %> </p>
 	<div class="text-lg-center" style="margin-top: 20px;">
 		<% if user_signed_in? %>
 			<%= link_to (t 'ideas.submit_proposal'), new_proposal_path, class: 'btn btn-primary'%>

@@ -234,6 +234,7 @@ en:
     no_location_message: No location specified.
     map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
     calling_artists: Calling all artists
+    artist_description: "BeCville is now accepting proposal from artists and designers that respond to community ideas. Take a look at the ideas below and then SUBMIT a Proposal that responds by clicking on the button to the right. You will need to sign up for an account first."
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
