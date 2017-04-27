@@ -86,6 +86,11 @@ en:
       landingpage:
         title: Title
         description: Body
+        titles:
+          about: About
+          ideas_home: Ideas Home
+          artist_home: Artist Home
+          steering_home: Steering Committee Home
       mass_email:
         to: To
         subject: Subject
@@ -247,6 +252,7 @@ en:
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
     save_success: Your post was saved.
+    save_error: There was an error saving your post.
   layout:
     site_title: PauseLab
   mass_emails:
@@ -265,15 +271,10 @@ en:
     delete_confirm_message: Are you sure? Deleting your account is an irreversible action.
     idea_collection: Idea Collection
     submit_idea: Submit an Idea
-    create_about: Create About
-    edit_about: Edit About
-    create_artist_home: Create Artist Home
-    edit_artist_home: Edit Artist Home
-    create_homepage: Create Homepage
-    edit_homepage: Edit Homepage
-    create_steering: Create Steering Committee Home
-    edit_steering: Edit Steering Committee Home
     recent_blogs: Recent post entries
+    # in next two, title refers to the name of the landing page post
+    create_post: Create %{title}
+    edit_post: Edit %{title}
   proposal_comments:
     creating_comment: Create Your Comment
     editing_comment: Editing Comment

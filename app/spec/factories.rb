@@ -187,7 +187,7 @@ end
 
 
   factory :landingpage do
-    title {Faker::Hipster.sentence}
+    title {rand(4)}
     description {Faker::Hipster.paragraph}
   end
 

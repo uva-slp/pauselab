@@ -15,9 +15,9 @@ describe LandingpagesController, type: :controller do
     end
     it "updates the title" do
       lp = create :landingpage
-      put :update, params: {id: lp, landingpage: {:title => 'Front Page'}}
+      put :update, params: {id: lp, landingpage: {:title => :about}}
       lp.reload
-      expect(lp.title).to eq 'Front Page'
+      expect(lp.title).to eq 'about'
     end
     it "responds with redirect" do
       lp = create :landingpage
@@ -26,22 +26,22 @@ describe LandingpagesController, type: :controller do
     end
     it "for Homepage it redirects to correct place" do
       lp = create :landingpage
-      put :update, params: {id: lp, landingpage: {:title => 'Home'}}
-      expect(response).to redirect_to(root_path)
+      put :update, params: {id: lp, landingpage: {:title => :ideas_home}}
+      expect(response).to redirect_to(ideas_home_path)
     end
     it "for Artist Homepage it redirects to correct place" do
       lp = create :landingpage
-      put :update, params: {id: lp, landingpage: {:title => 'Artist Home'}}
+      put :update, params: {id: lp, landingpage: {:title => :artist_home}}
       expect(response).to redirect_to(artist_home_url)
     end
     it "for steering Homepage it redirects to correct place" do
       lp = create :landingpage
-      put :update, params: {id: lp, landingpage: {:title => 'Steering Committee Home'}}
+      put :update, params: {id: lp, landingpage: {:title => :steering_home}}
       expect(response).to redirect_to(steering_home_url)
     end
     it "for About Us it redirects to correct place" do
       lp = create :landingpage
-      put :update, params: {id: lp, landingpage: {:title => 'About Us'}}
+      put :update, params: {id: lp, landingpage: {:title => :about}}
       expect(response).to redirect_to(about_url)
     end
     it "it re-renders on update failure" do
@@ -60,7 +60,7 @@ describe LandingpagesController, type: :controller do
       }.to_not change {Landingpage.count}
     end
     it "saves the post" do
-       lp = build :landingpage
+      lp = build :landingpage
       expect {
         post :create, params: {landingpage: lp.attributes}
       }.to change { Landingpage.count }.by 1
@@ -69,6 +69,19 @@ describe LandingpagesController, type: :controller do
       lp = build :landingpage
       post :create, params: {landingpage: lp.attributes}
       expect(response).to be_redirect
+    end
+    it "does not save on error" do
+      create :landingpage, :title => :about
+      lp = build :landingpage, :title => :about # fails uniqueness check
+      expect {
+        post :create, params: {landingpage: lp.attributes}
+      }.to_not change { Landingpage.count }
+    end
+    it "rerenders template new on error" do
+      create :landingpage, :title => :about
+      lp = build :landingpage, :title => :about # fails uniqueness check
+      post :create, params: {landingpage: lp.attributes}
+      expect(response).to render_template(:new)
     end
   end
 

@@ -1,0 +1,13 @@
+<% if Landingpage.exists?(title: title) %>
+  <% @landingpage = Landingpage.where(title: title).first%>
+  <h2><%= Landingpage.human_enum_name :title, @landingpage.title%> </h2>
+  <p><%= @landingpage.description.html_safe %> </p>
+  <% if can? :edit, @landingpage %>
+    <p> <%= link_to (t 'pages.edit_post', :title => (Landingpage.human_enum_name :title, title)), edit_landingpage_path(@landingpage) %></p>
+  <% end %>
+<% else %>
+  <p><%= t 'pages.no_post' %></p>
+  <% if can? :create, @landingpage %>
+    <p> <%= link_to (t 'pages.create_post', :title => (Landingpage.human_enum_name :title, title)), new_landingpage_path(:title => title) %></p>
+  <% end %>
+<% end %>

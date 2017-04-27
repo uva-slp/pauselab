@@ -1,15 +1,1 @@
-
-<% if Landingpage.exists?(title: "Steering Committee Home") %>
-  <% @landingpage = Landingpage.where(title: "Steering Committee Home").first%>
-  <h2><%= @landingpage.title%> </h2>
-  <p><%=  @landingpage.description.html_safe %> </p>
-   <% if can? :edit, Landingpage %>
-  <p> <%= link_to (t 'pages.edit_steering'), edit_landingpage_path(@landingpage) %></p>
-  <% end %>
-  <% else %>
-  <p><%= t 'pages.no_post' %></p>
-  <% if can? :create, Landingpage %>
-   <p> <%= link_to (t 'pages.create_steering'), new_landingpage_path %></p>
- <% end %>
-
-  <% end %>
+<%= render partial: 'show_landing_page', :locals => {:title => "steering_home"} %>

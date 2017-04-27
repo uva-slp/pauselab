@@ -1,2 +1,2 @@
 <h1><%= t 'landingpages.creating_landingpage' %></h1>
-<%= render 'form' %>
+<%= render partial: 'form', locals: {:title => params[:title]} %>
