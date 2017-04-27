@@ -15,8 +15,8 @@
     </thead>
     <% @landingpages.each do |landingpage| %>
       <tr>
-        <td><%= landingpage.title %></td>
-        <td><%= truncate(landingpage.description) %></td>
+        <td><%= Landingpage.human_enum_name :title, landingpage.title %></td>
+        <td><%= truncate(strip_tags(landingpage.description)) %></td>
         <td><%= link_to (t 'common.edit'), edit_landingpage_path(landingpage) %></td>
       </tr>
     <% end %>

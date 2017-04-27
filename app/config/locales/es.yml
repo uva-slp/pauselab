@@ -84,6 +84,11 @@ es:
       landingpage:
         title: Título
         description: Descripción
+        titles:
+          about: La página del sobre
+          ideas_home: La página inicio de las ideas
+          artist_home: La página del artista
+          steering_home: La página de comité del comunidad
       mass_email:
         to: Para
         subject: Tema
@@ -208,6 +213,7 @@ es:
     title: Título
     body: La masa
     save_success: El mensaje está guardado.
+    save_error: Se ha producido un error al guardar tu publicación.
   categories:
     name_placeholder: Naturaleza
     icon_hint: Por el icono del mapa para ver una idea. Necesita El formato necesita ser imagen (.jpeg, .png).
@@ -238,6 +244,7 @@ es:
     editing_landingpage: Editando el Poste de Página Central
     creating_landingpage: Creando el Poste de Página Central
     save_success: Archivaste el poste
+    save_error: Se ha producido un error al guardar tu publicación.
   layout:
     site_title: PauseLab
   mass_emails:
@@ -256,16 +263,10 @@ es:
     delete_confirm_message: ¿Estás seguro? La eliminación de su cuenta es irreversible
     idea_collection: Colección de las ideas
     submit_idea: Enviar un idea
-    create_about: Crear la página del sobre
-    edit_about: Edita la página del sobre
-    create_artist_home: Crear la página del Artista
-    edit_artist_home: Editar la página de la Artista
-    create_homepage: Crear la página Inicio
-    edit_homepage: Editar la página Inicio
-    idea_collection: Colección de ideas
-    create_steering: Crear la página de comité del comunidad
-    edit_steering: Editar la página de comité del comunidad
     recent_blogs: Los mensajes recientes
+    # in next two, title refers to the name of the landing page post
+    create_post: Crear %{title}
+    edit_post: Editar %{title}
   proposal_comments:
     comments: Comentario
     creating_comment: Creando un Comentario

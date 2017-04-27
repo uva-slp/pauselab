@@ -10,7 +10,9 @@
 </style>
 
 <%= simple_form_for @landingpage do |f| %>
-<%= f.input :title,priority: [@landingpage], collection: ["Home", "About Us", "Artist Home", "Steering Committee Home"] %>
+<%= f.input :title, as: :select, collection: Landingpage.titles.keys,
+  label_method: lambda {|t| Landingpage.human_enum_name :title, t },
+  selected: if local_assigns[:title].nil? then @landingpage.title else title end %>
 <%= f.input :description, placeholder: (t 'landingpages.description_placeholder') %>
 
 <div class='form-group'>

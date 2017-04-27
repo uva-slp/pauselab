@@ -1,15 +1,1 @@
-
-<% if Landingpage.exists?(title: "About Us") %>
-  <% @landingpage = Landingpage.where(title: "About Us").first%>
-  <h2><%= @landingpage.title%> </h2>
-  <p><%=  @landingpage.description.html_safe %> </p>
-   <% if can? :edit, Landingpage %>
-  <p> <%= link_to (t 'pages.edit_about'), edit_landingpage_path(@landingpage) %></p>
-  <% end %>
-  <% else %>
-  <p><%= t 'pages.no_post' %></p>
-  <% if can? :create, Landingpage %>
-   <p> <%= link_to (t 'pages.create_about'), new_landingpage_path %></p>
- <% end %>
-
-  <% end %>
+<%= render partial: 'show_landing_page', :locals => {:title => "about"} %>
