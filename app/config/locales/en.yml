@@ -283,6 +283,7 @@ en:
     remove_success: Your comment was removed.
     remove_error: There was an error removing your comment.
   proposals:
+    chart_title: Distribution of votes
     cost_breakdown: Cost Breakdown
     view_breakdown: View Breakdown
     cost_component: Component

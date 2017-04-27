@@ -3,6 +3,14 @@
 
 $muted_red: #e74c3c;
 
+// custom font
+@import url('https://fonts.googleapis.com/css?family=Cabin') ;
+$font: 'Cabin', sans-serif ;
+
+body {
+	font-family: $font ;
+}
+
 // // hover will open submenu
 // .dropdown:hover .dropdown-menu {
 //     display: block;

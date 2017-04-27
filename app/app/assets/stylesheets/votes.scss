@@ -5,3 +5,20 @@
 .selected-proposals {
   text-align: center;
 }
+
+.checkbox-wrapper {
+  display: block ;
+  label {
+    display: block ;
+  }
+}
+
+.checkbox {
+  display: block;
+}
+.form-check-label input {
+  display: none;
+}
+.card-title a {
+  text-decoration: none;
+}

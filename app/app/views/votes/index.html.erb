@@ -38,3 +38,8 @@
 
   </table>
 </div>
+
+<%= will_paginate @proposals,
+      :class => "pagination-wrapper",
+      :previous_label => (t 'common.previous'),
+      :next_label => (t 'common.next') %>

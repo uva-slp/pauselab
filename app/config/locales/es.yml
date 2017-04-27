@@ -277,6 +277,7 @@ es:
     remove_success: Tu comentario removó.
     remove_error: Hay una problema con removando tu comentario.
   proposals:
+    chart_title: Distribución de los votos
     cost_breakdown: Lista del costo
     view_breakdown: Lista de la vista
     cost_component: Componente
