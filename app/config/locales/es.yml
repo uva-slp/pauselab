@@ -352,7 +352,7 @@ es:
   votes:
     vote: Vota  # verb
     voter_ballot: Boleta Electoral
-    personal_information: Informacion personal
+    personal_information: Información personal
     pick_three: Escoger tres opciónes que prefieres
     select: Selecto
     submitted_on: Submitted on
