@@ -10,6 +10,15 @@
     <div class="card">
       <div class="card-block">
 
+        <span class="share-btns pull-right">
+          <button class="btn btn-sm btn-outline-primary fb-btns" data-link="proposals" data-desc="<%= p.title %>" data-id="<%= p.id %>">
+            <i class="fa fa-facebook "></i>
+          </button>
+          <button class="btn btn-sm btn-outline-primary twtr-btns" data-link="proposals" data-desc="<%= p.title %>" data-id="<%= p.id %>">
+            <i class="fa fa-twitter "></i>
+          </button>
+        </span>
+
         <h4 class="card-title">
           <%= link_to proposal_path(p) do %>
             <%= p.title %>
@@ -18,6 +27,8 @@
 
         <h6 class="card-subtitle text-muted"><%= p.user.fullname %></h6>
         <p class="card-text"><%= truncate p.essay, length: 100 %></p>
+
+
 
       </div>
 

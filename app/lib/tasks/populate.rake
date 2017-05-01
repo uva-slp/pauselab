@@ -64,7 +64,8 @@ namespace :populate do
       FactoryGirl.create :proposal,
         :iteration => cur,
         :status => :approved,
-        :user => User.where.not(:id => 6).order("RAND()").first
+        :user => User.where.not(:id => 6).order("RAND()").first,
+        :category => Category.order("RAND()").first
     end
     printf "done\n"
   end

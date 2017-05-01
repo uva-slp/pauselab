@@ -109,6 +109,7 @@ class ProposalsController < ApplicationController
 	    params.require(:proposal).permit(
                 :title,
                 :description,
+                :category_id,
                 :essay,
                 :website_link,
                 :artist_cv,

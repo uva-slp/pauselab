@@ -108,6 +108,7 @@ end
 
     association :iteration
     association :user
+    association :category
     description {Faker::Hipster.paragraph}
     essay {Faker::Hipster.paragraph 10}
     website_link {Faker::Internet.url}

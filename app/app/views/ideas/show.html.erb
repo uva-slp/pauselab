@@ -59,10 +59,10 @@
       <% if @idea.respond_to? :description %>
         <p><%= @idea.description %></p>
         <div class="share-btns">
-					<button class="btn btn-sm btn-outline-primary fb-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+					<button class="btn btn-sm btn-outline-primary fb-btns" data-link="ideas" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
 						<i class="fa fa-facebook "></i>
 					</button>
-					<button class="btn btn-sm btn-outline-primary twtr-btns" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
+					<button class="btn btn-sm btn-outline-primary twtr-btns" data-link="ideas" data-desc="<%= @idea.description %>" data-id="<%= @idea.id %>">
 						<i class="fa fa-twitter "></i>
 					</button>
 				</div>
