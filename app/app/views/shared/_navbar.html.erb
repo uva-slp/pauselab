@@ -59,7 +59,7 @@
 
         <%# Proposals menu - "readonly" when not in proposals phase, otherwise has create option %>
         <% if can? :read, Proposal %>
-          <% if user_has_admin_access or Iteration.get_current.proposals? %>
+          <% if user_has_admin_access? or Iteration.get_current.proposals? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Proposal.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
@@ -78,7 +78,7 @@
 
         <%# Ideas menu  - "readonly" when not in voting phase, otherwise has create option %>
         <% if can? :read, Idea %>
-          <% if user_has_admin_access or Iteration.get_current.ideas? %>
+          <% if user_has_admin_access? or Iteration.get_current.ideas? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Idea.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
@@ -86,7 +86,7 @@
                   <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
                 <% end %>
                 <% if can? :read, Idea %>
-                  <% if user_has_admin_access %>
+                  <% if user_has_admin_access? %>
                     <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
                   <% else %>
                     <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>

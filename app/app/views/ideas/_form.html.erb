@@ -11,7 +11,7 @@
 	<%= f.input :email, placeholder: (t 'common.email_placeholder') %>
 	<%= f.input :phone, placeholder: (t 'common.phone_placeholder') %>
 
-	<% if user_has_admin_access %>
+	<% if user_has_admin_access? %>
 		<%= f.input :medium, as: :select, collection: Idea.media.keys.to_a,
 			label_method: lambda {|m| Idea.human_enum_name :media, m }, selected: :online %>
 	<% end %>

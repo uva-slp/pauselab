@@ -6,7 +6,7 @@
   <br/>
 <% end %>
 
-<% if user_has_admin_access %>
+<% if user_has_admin_access? %>
   <h2 class="pull-left"><%= Proposal.model_name.human(count:2) %></h2>
   <%= render 'sort_controls' %>
   <div class="table-responsive">
@@ -14,17 +14,17 @@
 
       <thead>
         <tr>
-          <% if user_has_admin_access %>
+          <% if user_has_admin_access? %>
             <th><%= t 'common.id'%></th>
           <% end %>
           <th><%= t 'common.author' %></th>
           <th><%= t 'common.created_at' %></th>
           <th><%= Proposal.human_attribute_name :title %></th>
           <th><%= ProposalBudget.human_attribute_name :cost %></th>
-          <% if user_has_steering_access %>
+          <% if user_has_steering_access? %>
             <th><%= Proposal.human_attribute_name :status %></th>
           <% end %>
-          <% if user_has_admin_access %>
+          <% if user_has_admin_access? %>
             <th><%= Vote.model_name.human(count:2) %></th>
           <% end %>
         </tr>
@@ -33,7 +33,7 @@
       <% @proposals.each do |proposal| %>
 
         <tr class="row-link" data-href="<%= proposal_path(proposal) %>">
-          <% if user_has_admin_access %>
+          <% if user_has_admin_access? %>
             <td><%= proposal.id %></td>
           <% end %>
 
@@ -50,14 +50,14 @@
             <td><%= number_to_currency proposal.proposal_budget.cost %></td>
           <% end %>
 
-          <% if user_has_steering_access %>
+          <% if user_has_steering_access? %>
           <td>
             <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
               <%= Proposal.human_enum_name(:status, proposal.status) %>
             </span>
           </td>
           <% end %>
-          <% if user_has_admin_access %>
+          <% if user_has_admin_access? %>
             <td><%= proposal.number_of_votes %></td>
           <% end %>
 

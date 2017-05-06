@@ -40,9 +40,17 @@ class PagesController < ApplicationController
   end
 
   def steering_home
+    unless user_has_steering_access?  # prevent residents and artists from seeing
+      flash[:error] = (t 'common.authorization_error')
+      redirect_to root_path
+    end
   end
 
   def artist_home
+    unless user_signed_in?  # prevent residents from seeing
+      flash[:error] = (t 'common.authorization_error')
+      redirect_to root_path
+    end
   end
 
 end

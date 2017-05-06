@@ -1,7 +1,7 @@
 <div class="dropdown pull-right ml-1" style="inline-block">
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.sort' %></a>
   <div class="dropdown-menu dropdown-menu-right">
-    <% if user_has_steering_access %>
+    <% if user_has_steering_access? %>
       <%= link_to (t 'common.id'), request.query_parameters.merge(:sort => :id), class: 'dropdown-item' %>
       <%= link_to (Vote.model_name.human(count:2)), request.query_parameters.merge(:sort => :votes), class: 'dropdown-item' %>
     <% end %>
@@ -17,7 +17,7 @@
   <a class="dropdown-toggle" href="#" data-toggle="dropdown"><%= t 'common.filter' %></a>
   <div class="dropdown-menu dropdown-menu-right">
     <%= link_to (t 'common.all'), request.query_parameters.except(:status), class: 'dropdown-item' %>
-    <% if user_has_steering_access %>
+    <% if user_has_steering_access? %>
       <%= link_to (Proposal.human_enum_name :status, :unchecked), request.query_parameters.merge(:status => :unchecked), class: 'dropdown-item' %>
     <% end %>
     <%= link_to (Proposal.human_enum_name :status, :approved), request.query_parameters.merge(:status => :approved), class: 'dropdown-item' %>

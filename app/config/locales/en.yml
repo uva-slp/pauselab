@@ -179,6 +179,7 @@ en:
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
     avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
+    authorization_error: You are not authorized to access this page.
   admins:
     admin_console: Admin Console
     current_iteration: Current Iteration

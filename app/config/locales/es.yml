@@ -173,6 +173,7 @@ es:
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
     avatar_hint: "La imagen no debe ser mayor de 200x200 píxeles."
+    authorization_error: "No tiene permisos para acceder a esta página."
   admins:
     admin_console: La consola de administración
     current_iteration: Iteración actual

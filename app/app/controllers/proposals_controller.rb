@@ -9,7 +9,7 @@ class ProposalsController < ApplicationController
       if params[:sort] == "cost"
         @proposals = @proposals.includes(:proposal_budget).order("proposal_budgets.cost")
       elsif params[:sort] == "votes"
-        if user_has_steering_access # prevent non-privileged members from sorting by votes
+        if user_has_steering_access? # prevent non-privileged members from sorting by votes
           @proposals = @proposals.left_joins(:votes).group(:id).order("count(votes.id) desc")
         end
       elsif params[:sort] == "first_name"
@@ -127,7 +127,7 @@ class ProposalsController < ApplicationController
 	  end
 
     #def filter_proposal_columns proposals
-    #  unless user_has_admin_access
+    #  unless user_has_admin_access?
     #    return proposals.select(:id,:cost,:description,:essay,:created_at,:updated_at,:website_link,:title)
     #  end
     #  return proposals
