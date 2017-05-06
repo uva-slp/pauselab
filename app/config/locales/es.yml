@@ -61,6 +61,7 @@ es:
       idea:
         first_name: Primer Nombre
         last_name: Apellido
+        category_id: Categoría
         phone: Teléfono
         description: Descripción
         likes: Gustos
@@ -89,6 +90,9 @@ es:
           ideas_home: La página inicio de las ideas
           artist_home: La página del artista
           steering_home: La página de comité del comunidad
+          calling_artists: Llaman todos artistas
+          voting_instructions: Instrucciones de votación
+          proposal_instructions: Instrucciones de propuesta
       mass_email:
         to: Para
         subject: Tema
@@ -106,6 +110,7 @@ es:
         body: Descripción
       proposal:
         title: Título
+        category_id: Categoría
         description: Descripción
         essay: Necesidad de la Comunidad
         website_link: Portafolio
@@ -232,8 +237,6 @@ es:
     create_new: Crear un Idea Nueva
     no_location_message: La ubicación no la especificá.
     map_instructions: Seleccione una ubicación arriba. Comience escribiendo el nombre de la calle donde la idea se llevaría a cabo en el cuadro y pulse Intro. Una vez que se hace un marcador aparecerá que se puede arrastrar a la ubicación exacta.
-    calling_artists: Llaman todos artistas
-    artist_description: "Ahora, BeCville acepta la propuesta de artistas y diseñadores que responden a las ideas de la comunidad. Echa un vistazo a las ideas a continuación y luego PRESENTA una propuesta que responde haciendo clic en el botón de la derecha. Primero deberá registrarse para obtener una cuenta."
     submit_proposal: Entregar Propuesta
     submitted_ideas: Entregó Ideas
     save_success: Tu la envió una idea.

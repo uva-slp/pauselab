@@ -63,6 +63,7 @@ en:
       idea:
         first_name: First Name
         last_name: Last Name
+        category_id: Category
         phone: Phone
         description: Description
         likes: Likes
@@ -91,6 +92,9 @@ en:
           ideas_home: Ideas Home
           artist_home: Artist Home
           steering_home: Steering Committee Home
+          calling_artists: Calling Artists
+          voting_instructions: Voting Instructions
+          proposal_instructions: Proposal Instructions
       mass_email:
         to: To
         subject: Subject
@@ -109,6 +113,7 @@ en:
         body: Body
       proposal:
         title: Title
+        category_id: Category
         description: Description
         essay: Community Need
         website_link: Portfolio
@@ -238,8 +243,6 @@ en:
     create_new: Create New Idea
     no_location_message: No location specified.
     map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
-    calling_artists: Calling all artists
-    artist_description: "BeCville is now accepting proposal from artists and designers that respond to community ideas. Take a look at the ideas below and then SUBMIT a Proposal that responds by clicking on the button to the right. You will need to sign up for an account first."
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.

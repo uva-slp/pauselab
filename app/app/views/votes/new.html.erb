@@ -1,4 +1,5 @@
 
-<h1 class="text-lg-center"><%= t 'votes.voter_ballot' %></h1>
+<h1 class="text-lg-left"><%= t 'votes.voter_ballot' %></h1>
+<%= render partial: 'pages/show_landing_page', :locals => {:title => "voting_instructions"} %>
 <br/>
 <%= render 'form' %>
