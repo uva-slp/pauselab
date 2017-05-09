@@ -23,7 +23,11 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote.destroy
+    if @vote.destroy
+      flash[:notice] = (t 'votes.remove_success')
+    else
+      flash[:error] = (t 'votes.remove_error')
+    end
     redirect_to votes_path
   end
 

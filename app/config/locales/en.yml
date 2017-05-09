@@ -150,6 +150,7 @@ en:
         city: City
         state: State
         zip_code: Zip Code
+        address: Address
     errors:
       models:
         vote:
@@ -385,3 +386,5 @@ en:
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
     top_votes_note: "If you are searching for the top vote-getting proposals, go to Submitted Proposals."
     top_votes_link: "See top proposals"
+    remove_success: The vote was removed successfully.
+    remove_error: There was an error removing the vote.

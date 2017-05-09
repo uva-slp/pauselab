@@ -55,4 +55,18 @@ describe VotesController, type: :controller do
       expect(response).to render_template(:new)
     end
   end
+
+  describe "when deleting a vote" do
+    it "removes the vote successfully" do
+      vote = create :vote
+      expect {
+        delete :destroy, params: {id: vote.id}
+      }.to change {Vote.count}.by -1
+    end
+    it "responds with redirect" do
+      vote = create :vote
+      delete :destroy, params: {id: vote.id}
+      expect(response).to be_redirect
+    end
+  end
 end

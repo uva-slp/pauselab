@@ -23,9 +23,6 @@ class Vote < ApplicationRecord
 
   def author
     "#{first_name} #{last_name}"
-
-  def voter
-    "#{first_name} #{last_name}"
   end
 
   def address

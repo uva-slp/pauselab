@@ -13,14 +13,13 @@
     <thead>
       <tr>
         <th><%= t 'common.id' %></th>
-        <th><%= t 'votes.submitted_on' %></th>
+        <th><%= t 'common.created_at' %></th>
         <th colspan="3"><%= Proposal.model_name.human(count:2) %></th>
-        <th><%= t 'votes.voter_name' %></th>
-        <th><%= t 'votes.phone' %></th>
-        <th><%= t 'votes.email' %></th>
-        <th><%= t 'votes.address' %></th>
-        <th><%= t 'votes.functions' %></th>
-        <th><%= 'pizzas' %></th>
+        <th><%= Vote.human_attribute_name :voter_name %></th>
+        <th><%= Vote.human_attribute_name :phone %></th>
+        <th><%= Vote.human_attribute_name :email %></th>
+        <th><%= Vote.human_attribute_name :address %></th>
+        <th><%= t 'common.actions' %></th>
       </tr>
     </thead>
 
@@ -31,13 +30,18 @@
         <% vote.proposals.each do |proposal| %>
           <td><%= proposal.title %></td>
         <% end %>
-        <td><%= vote.voter %></td>
+        <td><%= vote.author %></td>
         <td><%= vote.phone %></td>
         <td><%= vote.email %></td>
         <td><%= vote.address %></td>
-        <td><%= link_to 'Destroy', vote_path(vote),
+        <td><%= link_to vote_path(vote),
         method: :delete,
-        data: { confirm: 'Are you sure?' } %></td>
+        title: (t 'common.remove'),
+        class: "btn btn-sm btn-danger",
+        data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
+          <i class="fa fa-trash"></i>
+        <% end %>
+      </td>
       </tr>
       <% end %>
 
