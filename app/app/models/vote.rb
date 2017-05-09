@@ -25,4 +25,8 @@ class Vote < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def address
+    "#{street}, #{city}, #{state}, #{zip_code}"
+  end
+
 end
