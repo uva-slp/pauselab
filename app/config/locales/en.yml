@@ -143,6 +143,10 @@ en:
         last_name: Last Name
         phone: Phone
         email: Email
+        street: Street
+        city: City
+        state: State
+        zip_code: Zip Code
     errors:
       models:
         vote:
@@ -178,6 +182,10 @@ en:
     last_name_placeholder: Last
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
+    street_placeholder: Street
+    city_placeholder: City
+    state_placeholder: VA
+    zip_code_placeholder: Zip Code
     avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
     authorization_error: You are not authorized to access this page.
   admins:
