@@ -28,6 +28,10 @@ class VotesController < ApplicationController
     :last_name,
     :phone,
     :email,
+    :street,
+    :city,
+    :state,
+    :zip_code,
     :proposal_ids => []
   )
   end
