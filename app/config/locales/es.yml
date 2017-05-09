@@ -114,6 +114,8 @@ es:
         description: Descripción
         essay: Necesidad de la Comunidad
         website_link: Portafolio
+        credentials: Cartas Credenciales
+        portfolio: Sitio Web de la Artista
         status: Fase
         artist_cv: Resumen
         statuses:
