@@ -117,8 +117,10 @@ en:
         description: Description
         essay: Community Need
         website_link: Portfolio
+        credentials: Credentials
+        portfolio: Portfolio Website
         status: Status
-        artist_cv: Resume
+        artist_cv: Résumé
         statuses:
           unchecked: Unchecked
           approved: Approved

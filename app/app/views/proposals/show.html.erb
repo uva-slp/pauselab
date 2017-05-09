@@ -119,12 +119,26 @@
   </div>
 </div>
 
-<% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
-  <p>
-    <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
-    <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
-  </p>
-<% end %>
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title"><%= Proposal.human_attribute_name :credentials %></h4>
+    <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
+      <p>
+        <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
+        <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
+      </p>
+    <% end %>
+    <p>
+      <strong><%= Proposal.human_attribute_name :portfolio %>:</strong>
+      <%= link_to @proposal.website_link, asset_url(@proposal.website_link) %>
+    </p>
+  </div>
+</div>
+
+
+
+
 
 <br>
 
