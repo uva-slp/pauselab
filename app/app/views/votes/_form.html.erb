@@ -1,4 +1,3 @@
-
 <%= simple_form_for @vote, :url => { :action => "create" } do |vote| %>
 
   <h2 class="text-lg-left"><%= t 'votes.personal_information' %></h2>
@@ -16,6 +15,23 @@
     <div class="col-md-6">
       <%= vote.input :email, placeholder: (t 'common.email_placeholder') %>
     </div>
+
+    <div class="col-md-12">
+      <%= vote.input :street, placeholder: (t 'common.street') %>
+    </div>
+  <div>
+    <div class="col-md-6">
+      <%= vote.input :city, placeholder: (t 'common.city') %>
+    </div>
+    <div class="col-md-1">
+      <%= vote.input :state, placeholder: (t 'common.state') %>
+    </div>
+    <div class="col-md-2">
+      <%= vote.input :zip_code, placeholder: (t 'common.zip_code') %>
+    </div>
+  </div>
+
+
   </div>
 
   <br>

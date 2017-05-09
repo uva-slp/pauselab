@@ -138,6 +138,10 @@ en:
         last_name: Last Name
         phone: Phone
         email: Email
+        street: Street
+        city: City
+        state: State
+        zip_code: Zip Code
     errors:
       models:
         vote:
@@ -174,6 +178,10 @@ en:
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
     avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
+    street: Street
+    city: City
+    state: VA
+    zip_code: Zip Code
   admins:
     admin_console: Admin Console
     current_iteration: Current Iteration

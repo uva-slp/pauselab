@@ -134,7 +134,12 @@ es:
         first_name: Primer Nombre
         last_name: Apellido
         phone: Teléfono
-        email: E-mail
+        email: Email
+        street: Calle
+        city: Ciudad
+        state: VA
+        zip_code: Código Postal
+
     errors:
       models:
         vote:
@@ -168,6 +173,10 @@ es:
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
     avatar_hint: "La imagen no debe ser mayor de 200x200 píxeles."
+    street: Calle
+    city: Ciudad
+    state: VA
+    zip_code: Código Postal
   admins:
     admin_console: La consola de administración
     current_iteration: Iteración actual
