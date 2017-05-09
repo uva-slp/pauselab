@@ -1,0 +1,75 @@
+<style media="screen">
+	.idea_count {
+		font-size: 0.8em;
+		/*border: 1px solid black;*/
+		margin-right: 5px;
+	}
+	.idea-link, .idea-link:hover {
+		text-decoration: none;
+		color: inherit;
+	}
+</style>
+
+<% if Iteration.get_current.proposals? %>
+	<%= render partial: 'pages/show_landing_page', :locals => {:title => "calling_artists"} %>
+	<div class="text-lg-center" style="margin-top: 20px;">
+		<% if user_signed_in? %>
+			<%= link_to (t 'ideas.submit_proposal'), new_proposal_path, class: 'btn btn-primary'%>
+		<% else %>
+			<%= link_to (t 'ideas.submit_proposal'), new_user_session_path, class: 'btn btn-primary'%>
+		<% end %>
+	</div>
+<% else %>
+	<h1 class="page-header text-lg-left"><%= t 'ideas.submitted_ideas' %></h1>
+<% end %>
+
+<br/>
+
+<h2 class="pull-left"><%= t Idea.model_name.human(count:2) %></h2>
+<%= render 'sort_controls' %>
+
+<br/>
+<br/>
+
+<div class="card-columns">
+
+ <% @ideas.each do |idea| %>
+	<div class="card">
+
+		<div class="card-header text-muted">
+			<%= idea.category.name %>
+		</div>
+
+		<%= link_to (idea_path idea), {class: 'idea-link'} do %>
+			<div class="card-block">
+				<p class="card-text">
+					<!-- <%= truncate idea.description, length: 50 %> -->
+					<%= idea.description %>
+				</p>
+			</div>
+		<% end %>
+
+		<div class="card-footer" align="left">
+				<span class="share-btns">
+					<button class="btn btn-sm btn-outline-primary fb-btns" data-link="ideas" data-desc="<%= idea.description %>" data-id="<%= idea.id %>">
+						<i class="fa fa-facebook "></i>
+					</button>
+					<button class="btn btn-sm btn-outline-primary twtr-btns" data-link="ideas" data-desc="<%= idea.description %>" data-id="<%= idea.id %>">
+						<i class="fa fa-twitter "></i>
+					</button>
+				</span>
+        <!-- <%= social_share_button_tag("Pauselab - BeCville: " + idea.description,  :popup => "true")%> -->
+      <span class="pull-right">
+				<%= render :partial => 'like_button', locals: {idea: idea}  %>
+			</span>
+		</div>
+
+	</div>
+ <% end %>
+
+</div>
+
+<%= will_paginate @ideas,
+		 :class => "pagination-wrapper",
+		 :previous_label => (t 'common.previous'),
+		 :next_label => (t 'common.next') %>

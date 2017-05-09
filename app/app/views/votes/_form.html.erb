@@ -1,25 +1,39 @@
-<style media="screen">
-  .checkbox {
-    display: block;
-  }
-  .form-check-label input {
-    display: none;
-  }
-  .card-title a {
-    text-decoration: none;
-  }
-
-</style>
-
 <%= simple_form_for @vote, :url => { :action => "create" } do |vote| %>
 
   <h2 class="text-lg-left"><%= t 'votes.personal_information' %></h2>
-  <%= vote.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
-  <%= vote.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
-  <%= vote.input :phone, placeholder: (t 'common.phone_placeholder') %>
-  <%= vote.input :email, placeholder: (t 'common.email_placeholder') %>
 
-  <h1 class="text-lg-center"><%= t 'votes.pick_three' %></h1></br>
+  <div class="row">
+    <div class="col-md-6">
+      <%= vote.input :first_name, placeholder: (t 'common.first_name_placeholder'), required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= vote.input :last_name, placeholder: (t 'common.last_name_placeholder'), required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= vote.input :phone, placeholder: (t 'common.phone_placeholder'), required: true %>
+    </div>
+    <div class="col-md-6">
+      <%= vote.input :email, placeholder: (t 'common.email_placeholder'), required: true %>
+    </div>
+
+    <div class="col-md-6">
+      <%= vote.input :street, placeholder: (t 'common.street_placeholder'), required: true %>
+    </div>
+    <div class="col-md-3">
+      <%= vote.input :city, placeholder: (t 'common.city_placeholder'), required: true %>
+    </div>
+    <div class="col-md-1">
+      <%= vote.input :state, placeholder: (t 'common.state_placeholder'), required: true %>
+    </div>
+    <div class="col-md-2">
+      <%= vote.input :zip_code, placeholder: (t 'common.zip_code_placeholder'), required: true %>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2 class="text-lg-left"><%= t 'votes.pick_three' %></h2></br>
   <% if @vote.errors[:proposals].any? %>
     <div class="alert alert-danger">
       <%= @vote.errors[:proposals][0] %>
@@ -28,22 +42,29 @@
   <div class="selected-proposals"></div>
   <br/>
   <div class="card-columns">
-  <%= vote.collection_check_boxes :proposal_ids, Proposal.where(status: :approved), :id, :title do |b| %>
+
+  <%= vote.collection_check_boxes :proposal_ids,
+    Proposal.where(status: :approved), :id, :title, item_wrapper_class: 'checkbox-wrapper' do |b| %>
 
     <div class="card">
       <div class="card-block">
+
         <h4 class="card-title">
           <%= link_to proposal_path(b.object) do %>
             <%= b.object.title %>
           <% end %>
         </h4>
+
         <h6 class="card-subtitle text-muted"><%= b.object.user.fullname %></h6>
         <p class="card-text"><%= truncate b.object.essay, length: 100 %></p>
+
         <div class="form-check">
-          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") { b.check_box(class: "form-check-input right-10 proposal-checkbox") + (t 'votes.select') } %>
-          <!-- b.label(class: "my-#{ b.object.class.name.parameterize }", 'data-value': b.value) -->
+          <%= b.label(class: "form-check-label btn btn-outline-primary pull-right") {
+            b.check_box(class: "form-check-input right-10 proposal-checkbox") + (t 'votes.select') } %>
         </div>
+
       </div>
+
       <div class="card-footer text-muted ">
         <span class="pull-left">
           <%= number_to_currency b.object.proposal_budget.cost %>
@@ -52,13 +73,13 @@
           <%= b.object.created_at.strftime("%B %d") %>
         </span>
       </div>
-    </div>
 
+    </div>
   <% end %>
 
   </div>
 
-  <% unless user_has_admin_access # only embed modal if using recaptcha, when user not admin %>
+  <% unless user_has_admin_access? # only embed modal if using recaptcha, when user not admin %>
     <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content" style="width: 340px;">
@@ -84,7 +105,7 @@
       <%= check_box_tag "honor-pledge" %>
     </div>
 
-    <% if user_has_admin_access %>
+    <% if user_has_admin_access? %>
       <%= vote.submit (t 'common.submit'), class: 'btn btn-primary pull-right' %>
     <% else # otherwise pull up the modal %>
       <button id="submit-button" type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>

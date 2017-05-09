@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     # this will change depending on the current phase of the process
     root 'pages#go_home'
 
+    # idea routes
     get '/ideas/like/:id' => "ideas#like", as: 'idea_like'
     post '/ideas/approve/:id', to: 'ideas#approve', as: 'idea_approve'
+    get '/idea_cards', to: 'ideas#card_index'
 
     # admin routes
     # NOTE admin routes and controller actions are singular for consistency
@@ -22,9 +24,9 @@ Rails.application.routes.draw do
     get '/admin/export_iterations', to: 'admin#export_iterations'
 
     # proposal routes
-    get '/proposal_collection', to: 'ideas#proposal_collection'
     post '/proposals/approve/:id', to: 'proposals#approve', as: 'proposal_approve'
     post '/proposals/fund/:id', to: 'proposals#fund', as: 'proposal_fund'
+    get '/proposal_cards', to: 'proposals#card_index'
 
     # static pages routes
     get '/pages/ideas', to: 'pages#ideas', as: 'ideas_home'

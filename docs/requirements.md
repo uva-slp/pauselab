@@ -13,10 +13,10 @@ The system serves two primary purposes:
 The system shall be designed for users with different roles -- these roles are:
 
 * Admins - Site administrators who have the highest privileges, including creation of other users in other roles. They control and maintain the system.
-* Moderators - Trusted users who have permissions to manage any data in the system unrelated to users (e.g. ideas, proposals, blog posts). They filter and revise site content.
+* Moderators - Trusted users who have permissions to manage any data in the system unrelated to users (e.g. ideas, proposals, posts). They filter and revise site content.
 * Steerers - Members of a "steering committee" who have permission to see most data in the system, even if it is not publically available, and are able to use this data to communicate with each other. They direct Pauselab's focus and draw insights from the community.
 * Artists - Community members who propose public art projects to address community needs.
-* Super Artists - Subset of artists who are selected to implement projects and report on their progress through a blog. They carry out the will of the community.
+* Super Artists - Subset of artists who are selected to implement projects and report on their progress through a post. They carry out the will of the community.
 * Residents - Community members who view the system's published content and possibly submit ideas about improvements to an area. They are representatives of the community.
 
 ### Features
@@ -54,8 +54,8 @@ The system follows the lifecycle of one or more public art projects from its inc
 
 **Project Implementation**: after projects are selected, the system presents feedback on their progress.
 
-* Super artists and moderators can create blog posts containing prose and images to report progress about the selected projects.
-* Residents can view blog posts in some type of chronological view. They can apply filters to select certain time periods.
+* Super artists and moderators can create posts containing prose and images to report progress about the selected projects.
+* Residents can view posts in some type of chronological view. They can apply filters to select certain time periods.
 * Ideas or proposals that did not receive funding are stored for future reference (e.g. if they can be applied to the next round).
 
 **Site-wide Requirements**
@@ -67,7 +67,7 @@ The system follows the lifecycle of one or more public art projects from its inc
 * Residents do not need to create accounts. Artists do, and may do so on their own. Steerers, moderators, and admins need accounts and can only have them created by an admin.
 * Only admins have the ability to manage user accounts.
 * Some user roles (that is, steerer and artist) will have a "landing page" that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.
-* The navbar at the top should adjust depending on the phase of the project. All phases will have "About" as static pages that the moderator can edit, as well as the "Blog" page.
+* The navbar at the top should adjust depending on the phase of the project. All phases will have "About" as static pages that the moderator can edit, as well as the "Post" page.
     * Ideas phase: Ideas - Submit Idea, See Ideas
     * Proposals phase: Proposals - Submit Proposals, See Proposals; Ideas
     * Voting phase: Vote; Proposals; Ideas

@@ -15,5 +15,9 @@ RSpec.describe Vote, type: :model do
     expect(vote.author).to eq('John Smith')
   end
 
+  it "returns the vote address" do
+    vote = create :vote, :street=>'101 East St', :city=>'Charlottesville', :state=>'VA', :zip_code=>'12345'
+    expect(vote.address).to eq('101 East St, Charlottesville, VA, 12345')
+  end
 
 end

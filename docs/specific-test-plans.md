@@ -93,9 +93,16 @@ The participants responded that the voting form was simple and that there was go
 ## Requirements Testing
 Our team and PauseLab have come up with a set of requirements for their desired system.  Each requirement will be mapped to at least one, if not many unit tests using RSpec. This way the tests take into account when a user incorrectly uses the system.  The unit test names, as well as a single comment per test, will describe what the test is testing and which requirement it maps to.  
 
+### Results
+The system meets the requirements for designated user roles and features. Depending on login information, users are able to accomplish their assigned abilities. These abilities are not extended to users without given permission. Within features: idea collection, proposal collection, proposal voting, project implementation, and site-wide requirements have all been completed.
+
+Features:
+Idea collection: done
+Proposal collection: done
+Proposal voting: artists can still submit proposals, moderators can not enter votes manually unless they click the vote thing
+
 ## Compatibility Testing
 We will execute the requirements test on the most recent version of the major web browsers (Firefox, Chrome, IE, and Safari). If -- and only if -- the requirements test passes on all of those browsers, then the compatibility test will be considered to have passed.   
 
 ### Results
 The system runs correctly on Microsoft Edge and iOS devices. The system fullfills all given requirements on Firefox, Chrome, Safari and android devices. 
-

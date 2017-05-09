@@ -15,18 +15,19 @@ class @Init
 
   @fbShare: ->
     $('.fb-btns').click ->
-        window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/ideas/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
+        window.open "https://www.facebook.com/sharer.php?u=" + window.location.host + '/' + $(this).data('link') + '/' + $(this).data('id'), 'share to facebook', 'height=350,width=500'
 
-  @format: (desc, id) ->
+  @format: (desc, id, link) ->
     if desc.length > 50
       desc = desc.substring(0, 50) + "..."
-    return "\"" + desc + "\" more at: " + window.location.host + '/ideas/' + id
+    return "\"" + desc + "\" more at: " + window.location.host + '/' + link + '/' + id
 
   @twtrShare: ->
     $('.twtr-btns').click ->
       desc = $(this).data 'desc'
       id = $(this).data 'id'
-      desc = encodeURIComponent Init.format desc, id
+      link = $(this).data 'link'
+      desc = encodeURIComponent Init.format desc, id, link
       window.open "https://twitter.com/intent/tweet?text=" + desc, 'name', 'height=300,width=500'
 
   @redirect: (href) ->

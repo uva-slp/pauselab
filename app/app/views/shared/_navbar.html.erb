@@ -1,12 +1,14 @@
 
 
 <nav class="navbar navbar-light">
+
   <div class="container">
 
-    <button class="navbar-toggler hidden-md-up float-xs-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"></button>
+    <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#navbarResponsive"></button>
     <!-- hidden-sm-down to hide brand -->
 
     <div class="collapse navbar-toggleable-sm" id="navbarResponsive">
+
       <%= link_to root_url, class: 'navbar-brand' do %>
         <i class="fa fa-pause" style="color: #F6992F;"></i>
       <% end %>
@@ -57,7 +59,7 @@
 
         <%# Proposals menu - "readonly" when not in proposals phase, otherwise has create option %>
         <% if can? :read, Proposal %>
-          <% if user_has_admin_access or Iteration.get_current.proposals? %>
+          <% if user_has_admin_access? or Iteration.get_current.proposals? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Proposal.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
@@ -65,18 +67,22 @@
                   <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
                 <% end %>
                 <% if can? :read, Proposal %>
-                  <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
+                  <% if user_has_admin_access? %>
+                    <%= link_to (t 'shared.proposals_console'),  proposals_path, class: 'dropdown-item' %>
+                  <% else %>
+                    <%= link_to (t 'shared.view_proposals'),  proposal_cards_path, class: 'dropdown-item' %>
+                  <% end %>
                 <% end %>
               </div>
             </li>
           <% elsif !Iteration.get_current.ideas? %>
-            <li class="nav-item"><%= link_to Proposal.model_name.human(count:2), proposals_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Proposal.model_name.human(count:2), proposal_cards_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 
         <%# Ideas menu  - "readonly" when not in voting phase, otherwise has create option %>
         <% if can? :read, Idea %>
-          <% if user_has_admin_access or Iteration.get_current.ideas? %>
+          <% if user_has_admin_access? or Iteration.get_current.ideas? %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"><%= Idea.model_name.human(count:2) %></a>
               <div class="dropdown-menu">
@@ -84,16 +90,16 @@
                   <%= link_to (t 'shared.create_idea'),  new_idea_path, class: 'dropdown-item' %>
                 <% end %>
                 <% if can? :read, Idea %>
-                  <% if user_has_admin_access %>
+                  <% if user_has_admin_access? %>
                     <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
                   <% else %>
-                    <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>
+                    <%= link_to (t 'shared.view_ideas'),  idea_cards_path, class: 'dropdown-item' %>
                   <% end %>
                 <% end %>
               </div>
             </li>
           <% else %>
-            <li class="nav-item"><%= link_to Idea.model_name.human(count:2), proposal_collection_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Idea.model_name.human(count:2), idea_cards_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 
@@ -111,7 +117,9 @@
           <% end %>
         </li>
       </ul>
+
     </div> <!-- /.navbar-collapse -->
 
   </div><!-- /.container -->
+
 </nav>

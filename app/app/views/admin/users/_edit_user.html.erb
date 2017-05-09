@@ -1,0 +1,13 @@
+<div class="modal fade" id="change_role_form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t 'admins.edit_user' %></h4>
+      </div>
+
+      <%= render :partial => "form", :locals => {:include_password => false, :inside_modal => true} %>
+
+    </div>
+  </div>
+</div>

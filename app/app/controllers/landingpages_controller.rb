@@ -2,6 +2,7 @@ class LandingpagesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    index_respond @landingpages, :landing_pages
   end
 
   def new
@@ -11,7 +12,10 @@ class LandingpagesController < ApplicationController
     @landingpage = Landingpage.new(landingpage_params)
     if @landingpage.save
     	flash[:notice] = (t 'landingpages.save_success')
-    	redirect_to root_path
+      redirect_to landingpages_path
+    else
+      flash[:error] = (t 'landingpages.save_error')
+      render 'new'
     end
   end
 
@@ -20,18 +24,20 @@ class LandingpagesController < ApplicationController
 
   def update
     if @landingpage.update landingpage_params
-      if @landingpage.title == 'Home'
-        redirect_to root_path
-      elsif @landingpage.title == 'Artist Home'
+      flash[:notice] = (t 'landingpages.save_success')
+      if @landingpage.ideas_home?
+        redirect_to ideas_home_path
+      elsif @landingpage.artist_home?
         redirect_to artist_home_path
-      elsif  @landingpage.title == 'Steering Committee Home'
+      elsif  @landingpage.steering_home?
         redirect_to steering_home_path
-      elsif @landingpage.title == 'About Us'
+      elsif @landingpage.about?
         redirect_to about_path
       else
         redirect_to root_path
       end
     else
+      flash[:error] = (t 'landingpages.save_error')
       render 'edit'
     end
 

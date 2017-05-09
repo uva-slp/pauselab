@@ -12,6 +12,11 @@ describe VotesController, type: :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
+    it "responds with success for csv" do
+      get :index, :format => :csv
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
     it "loads all votes into @votes" do
       votes = create_list(:vote, 10, iteration: @iteration)
       get :index
@@ -48,6 +53,20 @@ describe VotesController, type: :controller do
       vote = build :vote, :first_name => nil
       post :create, params: {vote: vote.attributes}
       expect(response).to render_template(:new)
+    end
+  end
+
+  describe "when deleting a vote" do
+    it "removes the vote successfully" do
+      vote = create :vote
+      expect {
+        delete :destroy, params: {id: vote.id}
+      }.to change {Vote.count}.by -1
+    end
+    it "responds with redirect" do
+      vote = create :vote
+      delete :destroy, params: {id: vote.id}
+      expect(response).to be_redirect
     end
   end
 end

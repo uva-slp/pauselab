@@ -14,11 +14,11 @@
 
     <thead>
       <tr>
-        <% if user_has_steering_access %>
+        <% if user_has_steering_access? %>
           <th><%= t 'common.id' %></th>
         <% end %>
 
-        <% if user_has_steering_access %>
+        <% if user_has_steering_access? %>
           <th><%= t 'common.author' %></th>
         <% end %>
 
@@ -28,11 +28,11 @@
 
         <th><%= Idea.human_attribute_name :description %></th>
 
-        <% if user_has_steering_access %>
+        <% if user_has_steering_access? %>
           <th><%= Idea.human_attribute_name :status %></th>
         <% end %>
 
-        <% if user_has_steering_access %>
+        <% if user_has_steering_access? %>
           <th><%= Idea.human_attribute_name :medium %></th>
         <% end %>
 
@@ -44,7 +44,7 @@
     <% @ideas.each do |idea| %>
 
         <tr class="row-link" data-href="<%= idea_path(idea) %>">
-          <% if idea.respond_to? :id and user_has_steering_access %>
+          <% if idea.respond_to? :id and user_has_steering_access? %>
             <td><%= idea.id %></td>
           <% end %>
 
