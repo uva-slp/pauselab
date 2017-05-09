@@ -1,74 +1,68 @@
-
-
 <% if can? :create, Proposal %>
   <%= link_to (t 'proposals.create_new'), new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
   <br/>
   <br/>
 <% end %>
 
-<% if user_has_admin_access? %>
-  <h2 class="pull-left"><%= Proposal.model_name.human(count:2) %></h2>
-  <%= render 'sort_controls' %>
-  <div class="table-responsive">
-    <table class="table table-striped">
+<h2 class="pull-left"><%= Proposal.model_name.human(count:2) %></h2>
+<%= render 'sort_controls' %>
+<div class="table-responsive">
+  <table class="table table-striped">
 
-      <thead>
-        <tr>
-          <% if user_has_admin_access? %>
-            <th><%= t 'common.id'%></th>
-          <% end %>
-          <th><%= t 'common.author' %></th>
-          <th><%= t 'common.created_at' %></th>
-          <th><%= Proposal.human_attribute_name :title %></th>
-          <th><%= ProposalBudget.human_attribute_name :cost %></th>
-          <% if user_has_steering_access? %>
-            <th><%= Proposal.human_attribute_name :status %></th>
-          <% end %>
-          <% if user_has_admin_access? %>
-            <th><%= Vote.model_name.human(count:2) %></th>
-          <% end %>
-        </tr>
-      </thead>
+    <thead>
+      <tr>
+        <% if user_has_admin_access? %>
+          <th><%= t 'common.id'%></th>
+        <% end %>
+        <th><%= t 'common.author' %></th>
+        <th><%= t 'common.created_at' %></th>
+        <th><%= Proposal.human_attribute_name :title %></th>
+        <th><%= ProposalBudget.human_attribute_name :cost %></th>
+        <% if user_has_steering_access? %>
+          <th><%= Proposal.human_attribute_name :status %></th>
+        <% end %>
+        <% if user_has_admin_access? %>
+          <th><%= Vote.model_name.human(count:2) %></th>
+        <% end %>
+      </tr>
+    </thead>
 
-      <% @proposals.each do |proposal| %>
+    <% @proposals.each do |proposal| %>
 
-        <tr class="row-link" data-href="<%= proposal_path(proposal) %>">
-          <% if user_has_admin_access? %>
-            <td><%= proposal.id %></td>
-          <% end %>
+      <tr class="row-link" data-href="<%= proposal_path(proposal) %>">
+        <% if user_has_admin_access? %>
+          <td><%= proposal.id %></td>
+        <% end %>
 
-          <% if proposal.respond_to? :user %>
-            <td><%= proposal.user.fullname %></td>
-          <% end %>
-          <% if proposal.respond_to? :created_at %>
-            <td><%= proposal.created_at.strftime "%D" %></td>
-          <% end %>
-          <% if proposal.respond_to? :title %>
-  	        <td><%= proposal.title %></td>
-          <% end %>
-          <% if proposal.respond_to? :proposal_budget %>
-            <td><%= number_to_currency proposal.proposal_budget.cost %></td>
-          <% end %>
+        <% if proposal.respond_to? :user %>
+          <td><%= proposal.user.fullname %></td>
+        <% end %>
+        <% if proposal.respond_to? :created_at %>
+          <td><%= proposal.created_at.strftime "%D" %></td>
+        <% end %>
+        <% if proposal.respond_to? :title %>
+	        <td><%= proposal.title %></td>
+        <% end %>
+        <% if proposal.respond_to? :proposal_budget %>
+          <td><%= number_to_currency proposal.proposal_budget.cost %></td>
+        <% end %>
 
-          <% if user_has_steering_access? %>
-          <td>
-            <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
-              <%= Proposal.human_enum_name(:status, proposal.status) %>
-            </span>
-          </td>
-          <% end %>
-          <% if user_has_admin_access? %>
-            <td><%= proposal.number_of_votes %></td>
-          <% end %>
+        <% if user_has_steering_access? %>
+        <td>
+          <span class="badge <%= if proposal.approved? then "badge-primary" elsif proposal.funded? then "badge-success" else "badge-danger" end%>">
+            <%= Proposal.human_enum_name(:status, proposal.status) %>
+          </span>
+        </td>
+        <% end %>
+        <% if user_has_admin_access? %>
+          <td><%= proposal.number_of_votes %></td>
+        <% end %>
 
-        </tr>
-      <% end %>
+      </tr>
+    <% end %>
 
-    </table>
-  </div>
-<% else %>
-  <%= render 'cards_index' %>
-<% end %>
+  </table>
+</div>
 
 <%= will_paginate @proposals,
       :class => "pagination-wrapper",

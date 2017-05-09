@@ -36,7 +36,7 @@ class IdeasController < ApplicationController
 
   end
 
-  alias_method :proposal_collection, :index
+  alias_method :card_index, :index
 
   def new
   end

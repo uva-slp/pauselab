@@ -7,7 +7,7 @@ class Ability
     can :manage, user   # any user can manage its own data
 
     # define aliases
-    alias_action :proposal_collection, :to => :read
+    alias_action :card_index, :to => :read
     alias_action :create, :read, :update, :destroy, :to => :crud
 
     if user.admin?

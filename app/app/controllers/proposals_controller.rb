@@ -30,6 +30,8 @@ class ProposalsController < ApplicationController
     index_respond @proposals, :proposals
 	end
 
+  alias_method :card_index, :index
+
 	def new
     @proposal.build_proposal_budget
 	end

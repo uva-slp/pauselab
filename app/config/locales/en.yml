@@ -321,6 +321,7 @@ en:
     steering_home: Steering Committee Home
     artist_home: Artist Home
     vote: Vote  # navbar header, verb
+    view_proposals: View Proposals
     create_proposal: Create Proposal
     proposals_console: Submitted Proposals
     view_ideas: View Ideas

@@ -312,6 +312,7 @@ es:
     steering_home: Inicio de Comité Directivo
     artist_home: Inicio de Artista
     vote: Vota  # navbar header
+    view_proposals: Ver Propuestas
     create_proposal: Crea Propuestas
     proposals_console: Consola de Propuestas
     view_ideas: Ver Ideas

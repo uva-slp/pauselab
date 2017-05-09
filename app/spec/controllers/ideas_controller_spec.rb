@@ -253,7 +253,7 @@ describe IdeasController, type: :controller do
         describe "when in proposal collection" do
           it "recognizes a cookie for likes" do
             cookies[:likes] = "[12]"
-            get :proposal_collection
+            get :card_index
             expect(assigns(:likes)).to eq([12])
           end
         end

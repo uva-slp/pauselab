@@ -67,12 +67,16 @@
                   <%= link_to (t 'shared.create_proposal'), new_proposal_path, class: 'dropdown-item' %>
                 <% end %>
                 <% if can? :read, Proposal %>
-                  <%= link_to (t 'shared.proposals_console'), proposals_path, class: 'dropdown-item' %>
+                  <% if user_has_admin_access? %>
+                    <%= link_to (t 'shared.proposals_console'),  proposals_path, class: 'dropdown-item' %>
+                  <% else %>
+                    <%= link_to (t 'shared.view_proposals'),  proposal_cards_path, class: 'dropdown-item' %>
+                  <% end %>
                 <% end %>
               </div>
             </li>
           <% elsif !Iteration.get_current.ideas? %>
-            <li class="nav-item"><%= link_to Proposal.model_name.human(count:2), proposals_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Proposal.model_name.human(count:2), proposal_cards_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 
@@ -89,13 +93,13 @@
                   <% if user_has_admin_access? %>
                     <%= link_to (t 'shared.ideas_console'),  ideas_path, class: 'dropdown-item' %>
                   <% else %>
-                    <%= link_to (t 'shared.view_ideas'),  proposal_collection_path, class: 'dropdown-item' %>
+                    <%= link_to (t 'shared.view_ideas'),  idea_cards_path, class: 'dropdown-item' %>
                   <% end %>
                 <% end %>
               </div>
             </li>
           <% else %>
-            <li class="nav-item"><%= link_to Idea.model_name.human(count:2), proposal_collection_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to Idea.model_name.human(count:2), idea_cards_path, class: 'nav-link' %></li>
           <% end %>
         <% end %>
 

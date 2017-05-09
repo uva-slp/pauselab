@@ -253,7 +253,7 @@ describe ProposalsController, type: :controller do
 
           #describe "when getting proposal index" do
           #  it "responds with success" do
-          #    get :proposal_collection
+          #    get :card_index
           #    expect(response).to be_success
           #    expect(response).to have_http_status(200)
           #  end

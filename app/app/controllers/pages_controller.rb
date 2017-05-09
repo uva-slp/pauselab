@@ -4,7 +4,7 @@ class PagesController < ApplicationController
     when 'ideas'
       redirect_to :action => :ideas
     when 'proposals'
-      redirect_to :action => :proposal_collection, :controller => :ideas
+      redirect_to :action => :card_index, :controller => :ideas
     when 'voting'
       redirect_to :action => :new, :controller => :votes
     # when 'progress'
