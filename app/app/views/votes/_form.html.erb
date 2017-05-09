@@ -16,21 +16,18 @@
       <%= vote.input :email, placeholder: (t 'common.email_placeholder'), required: true %>
     </div>
 
-    <div class="col-md-12">
-      <%= vote.input :street, placeholder: (t 'common.street'), required: true %>
-    </div>
-  <div>
     <div class="col-md-6">
-      <%= vote.input :city, placeholder: (t 'common.city'), required: true %>
+      <%= vote.input :street, placeholder: (t 'common.street_placeholder'), required: true %>
+    </div>
+    <div class="col-md-3">
+      <%= vote.input :city, placeholder: (t 'common.city_placeholder'), required: true %>
     </div>
     <div class="col-md-1">
-      <%= vote.input :state, placeholder: (t 'common.state'), required: true %>
+      <%= vote.input :state, placeholder: (t 'common.state_placeholder'), required: true %>
     </div>
     <div class="col-md-2">
-      <%= vote.input :zip_code, placeholder: (t 'common.zip_code'), required: true %>
+      <%= vote.input :zip_code, placeholder: (t 'common.zip_code_placeholder'), required: true %>
     </div>
-  </div>
-
 
   </div>
 
@@ -82,7 +79,7 @@
 
   </div>
 
-  <% unless user_has_admin_access # only embed modal if using recaptcha, when user not admin %>
+  <% unless user_has_admin_access? # only embed modal if using recaptcha, when user not admin %>
     <div class="modal fade" id="cat_form" tabindex="-1" role="dialog" aria-labelledby="submitModal">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content" style="width: 340px;">
@@ -108,7 +105,7 @@
       <%= check_box_tag "honor-pledge" %>
     </div>
 
-    <% if user_has_admin_access %>
+    <% if user_has_admin_access? %>
       <%= vote.submit (t 'common.submit'), class: 'btn btn-primary pull-right' %>
     <% else # otherwise pull up the modal %>
       <button id="submit-button" type="button" class='btn btn-primary pull-right' data-toggle="modal" data-target="#cat_form"><%= t 'common.submit' %></button>

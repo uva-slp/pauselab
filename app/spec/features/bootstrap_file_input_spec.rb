@@ -4,6 +4,7 @@ feature 'bootstrap file input', :type => :feature do
 
   before :each do
     user = login_as create :artist
+    Iteration.get_current.proposals!
   end
 
   scenario "render file input correctly" do

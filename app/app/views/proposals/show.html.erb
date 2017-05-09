@@ -43,7 +43,7 @@
   </h5>
 
   <%# admin, mod, and steering always see status, others only see if it is funded #%>
-  <% if user_has_steering_access or @proposal.funded? %>
+  <% if user_has_steering_access? or @proposal.funded? %>
     <h5 class="text-sm-left">
       <span class="badge <%= if @proposal.approved? then "badge-primary" elsif @proposal.funded? then "badge-success" else "badge-danger" end%>">
         <%= Proposal.human_enum_name(:status, @proposal.status) %>

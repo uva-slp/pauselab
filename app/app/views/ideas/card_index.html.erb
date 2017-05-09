@@ -11,8 +11,7 @@
 </style>
 
 <% if Iteration.get_current.proposals? %>
-	<h1 class="page-header text-lg-left"><%= t 'ideas.calling_artists' %></h1>
-	<p> <%= t 'ideas.artist_description' %> </p>
+	<%= render partial: 'pages/show_landing_page', :locals => {:title => "calling_artists"} %>
 	<div class="text-lg-center" style="margin-top: 20px;">
 		<% if user_signed_in? %>
 			<%= link_to (t 'ideas.submit_proposal'), new_proposal_path, class: 'btn btn-primary'%>
@@ -21,11 +20,12 @@
 		<% end %>
 	</div>
 <% else %>
-	<h1 class="page-header text-lg-center"><%= t 'ideas.submitted_ideas' %></h1>
+	<h1 class="page-header text-lg-left"><%= t 'ideas.submitted_ideas' %></h1>
 <% end %>
 
 <br/>
 
+<h2 class="pull-left"><%= t Idea.model_name.human(count:2) %></h2>
 <%= render 'sort_controls' %>
 
 <br/>

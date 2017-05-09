@@ -25,12 +25,13 @@ class Proposal < ApplicationRecord
     proposal_budget.cost
   end
 
-  def number_of_votes
-    self.votes.size
-  end
-
   def author_name
     user.fullname
+  end
+
+  # the following fields should only be exposed to admins
+  def number_of_votes
+    self.votes.size
   end
 
   def comment_history_to_s

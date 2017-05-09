@@ -1,4 +1,8 @@
-
+<% if can? :create, Proposal %>
+  <%= link_to (t 'proposals.create_new'), new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
+  <br/>
+  <br/>
+<% end %>
 
 <h1 class="page-title"><%= Proposal.model_name.human(count:2) %></h1>
 <%= render 'sort_controls' %>
@@ -28,8 +32,6 @@
         <h6 class="card-subtitle text-muted"><%= p.user.fullname %></h6>
         <p class="card-text"><%= truncate p.essay, length: 100 %></p>
 
-
-
       </div>
 
       <div class="card-footer text-muted ">
@@ -43,3 +45,8 @@
     </div>
   <% end %>
 </div>
+
+<%= will_paginate @proposals,
+      :class => "pagination-wrapper",
+      :previous_label => (t 'common.previous'),
+      :next_label => (t 'common.next') %>
