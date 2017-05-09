@@ -1,50 +1,30 @@
-# language: ruby
-#
-# rvm:
-#     - 2.3.1
-#
-# services:
-#     - mysql
-#
-# gemfile: app/Gemfile
-#
-# before_script:
-#     - "mysql -u root -e \"create database slp_pauselab_test;\""
-#     - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
-#     - cd app
-#
-# script:
-#     - ls
-#     - bin/rails db:schema:load RAILS_ENV=test
-#     - bundle exec rake
-#
-# notifications:
-#     email:
-#         on_success: never
-#         on_failure: always
-#     notifications:
-#         slack: slp-pauselab:TaS7lyjK15WmuNh3p44WYvyS
-#
-# sudo: false
-
-
 language: ruby
 sudo: false
 services:
-  - mysql
+- mysql
 rvm:
-  - 2.3.1
+- 2.3.1
 script:
-  - bin/rails db:migrate RAILS_ENV=test
-  - bundle exec rspec spec
-  - bundle exec rake teaspoon USE_COVERAGE=default
+- bin/rails db:migrate RAILS_ENV=test
+- bundle exec rspec spec
+- bundle exec rake teaspoon USE_COVERAGE=default
 gemfile: app/Gemfile
 notifications:
   email:
     on_success: never
     on_failure: change
 before_install:
-  - npm install -g istanbul
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
-  - "mysql -u root -e \"grant all on slp_pauselab_test.* to 'pauselab';\""
-  - cd app
+- openssl aes-256-cbc -k "$KEYFILE_PASS" -in "${KEYPATH}.enc" -out "${KEYPATH}" -d
+- npm install -g istanbul
+- mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
+- mysql -u root -e "grant all on slp_pauselab_test.* to 'pauselab';"
+- cd app
+after_success:
+- cd ..
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; ssh -i $KEYPATH "${DEPLOY_USER}@${DEPLOY_HOST}" "cd pauselab; bash Scripts/deploy.sh" > /dev/null 2>&1; fi
+env:
+  global:
+  - KEYPATH="./Scripts/deployment"
+  - secure: U3sRCXSW/D7ZzXr5sbMhDhVq3+4BbCXv07ZkXDhbYbniRm18H6kNdaJ57YSZ5BftENwEKUzvk+9Lg7k+fRwEDfKlkAK2dGo3tAVR6FFqU5+fddNCqNeSND003WfKUDzCU4KCHE0RDRE8zJv882af3k0sWLzta25aQCvdH3r8uaKrmiaRf8Jd/Oa2t0dM1kHyGMC2DzrJh5zw4HhsxwuQSSsI5bB82Q74qnSz93QvpN9hL3r1xbCcxBYyziVRSDnQyDbCkPUXpodYwj4uQpG91BT9DWKjGYkurmO2KsAzkYciByahTylmRHj+l8X0sdAv1GRHWNhqFoNXmnBeBQ1F5qQ+bt2pA+9ZPWB51NumMF696y8jMl/LmGyuAyfpWlzor2m4HSErhbh/0vm+Fva0I/bB4nEpFw7Lt7nDf+/xafErmssyGsWCHT7LgQ8uBKOxwuuP4qTRKenPINOWdEnpaf/6vrIAQaRCk050fcVD3Yv9Vk4WWceTWbQOk27xWPJskAnrzpfEN5ss8tVOv9Wts86a/HNRYoNP/Z/UefS1VPbteuutlBa/yfHrWE5AbofP5wAoDHW7QFwhdD+yum6RFi4g1VkcIZm1DCFo0bhe/p7YTt0FcmqcqREdn3cyV0Bf6VAcM+03w9DZMcCU2AzDCWiENDG38fOn80rxhBRfj50=
+  - secure: epBcU4obt9y0RcYNUnP8HyV7VwBUjZLnMz3fH7ybFWAwjXFIGzBjzyxo9DqAuWTtZ3fzwUrx8n0dbamzLGmbNDydmYuOQD2EQnBiibc+7wCbBlWfXDT7kltDsOLWFVCydSuX4zf+dOvm+TpB6/0TWULY65xug/SOKSdMqfED4idO3yy1XtVbLnGGx7A7+7SUpaiMv9ejuv5jWdk+2v92T4WvODHysAtH19EapIzSwhTeXiEuoVs02IsGYfiKi7Fjm9c5lkCO5eY501xegODeRA5pJ+mpicrpq++VJsQbB9i9jlhC6HYKJ1Km03T8CUvL34hRg8UdP1QccZ6Yxs3bJN2Xqz8rveddMTctmGOcUU73fAw8ZiEqR1bPmqcjevWd0G4+jLTCXXxDRXWMRmVKa7P02dE6oZNWKnibYMkU5/1+1FRPqujhWYUOBMKYEKQn5l42EnGoMTSZTSCqtnr+lS4DRwRQpuxyTjPLJsu2YiIHZh2TCB8itMekGNxdMINElYA3P2ZFV5iNvfryodw36eEOhhfr27sTMIMLHchzAqSHCU8CgZgv0wbeEAKg+d+sI6gaTPthtIxIQU+3+giSlyDfJPm3R+jRvt+mrejyQUo7L5NGTDqClOuz+xppaJ5Owzt4ecJkIxwR+kp5t3FniOhw7jGHQoiBIV/N76oTp48=
+  - secure: kzoOJ7Y1ANEiBXVvHM2ZqjGLYHgBvydhmgsrcVgLYmkAj4AW4QBOfDpI0lI+Zon4ZDmCB0HfyRSZ84jyp0c2mL8nPKlF/ckjNsGxu2DzbdzFAf/zNdTeqq1UVBL8NE+ziA51Y9YQ8rL7HFmUg3y//kPrAfT+2vMakAt2OsakgA+gEPqEcirIA5CYUSXYCXx2niRUWJrsTw/h2JBdoUb1Hh4u+/rBpubdBuACx76UL2UnJvee7csdbY7dqOtWxSV2Y2f9PoQe014U9uU2FCHjdNfgd+7KpqQXlfI+s6CwGzyssDEMWs72Kxa+n6MCHrlYZvLt+u2l9VH7Ov0AgycvqP7jdp8/Eou5IHMqj07CD3C675jU0KZHZesDJxSJrVvujZWhHzKwbx78FgDuvrS8qsmUQ4jQnV4FrYb0mpXSabLQFM+FnmufdreKVrUTug8nxoe1xNWEdGH/EByx2ATrwggsCtcFvOvQao3zEFFPr8WKuF4gO8IZ4ibii9kFRFwpUrQ85RmAg4WKiCDpKBx5hh2nzOjTjRNOq58L6hrL8Jj6C03tvZNy96vZE9n3MxhNpBVOl+wGl0Fb8xVa6fBPmtMv8yQKKxfeBTJM31Dua1RdLIq4Hh3hM8drS3V6iR2YPiqt1jthpX/K4bmyLOJIPK8Kn3ZKQUO/HhtC5YQtSow=
