@@ -12,6 +12,11 @@ describe VotesController, type: :controller do
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
+    it "responds with success for csv" do
+      get :index, :format => :csv
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
     it "loads all votes into @votes" do
       votes = create_list(:vote, 10, iteration: @iteration)
       get :index

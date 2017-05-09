@@ -9,4 +9,8 @@ class Landingpage < ApplicationRecord
   def sanitize_description
     Sanitize.fragment(description, Sanitize::Config::RELAXED)
   end
+
+  def self.to_csv options={}
+    self.gen_csv %w{id created_at title description}
+  end
 end

@@ -6,6 +6,24 @@ describe LandingpagesController, type: :controller do
     user = sign_in (create :admin)
   end
 
+  describe "when getting landing pages index" do
+    it "responds with success" do
+      get :index
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+    it "responds with success for csv" do
+      get :index, :format => :csv
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+    it "does not show for residents" do
+      sign_in (create :resident)
+      get :index
+      expect(response).to_not be_success
+    end
+  end
+
   describe "when updating a landingpage post" do
     it "updates the description" do
       lp = create :landingpage

@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html
         format.json { render json: scoped_objs }
-        format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
+        format.csv { send_data (scoped_objs.to_csv is_admin: user_has_admin_access?), filename: "#{name}-#{DateTime.current}.csv"}
       end
     end
 

@@ -68,13 +68,13 @@ class AdminController < ApplicationController
 
 		begin
 
-			ideas_file.write @iteration.ideas.to_csv
+			ideas_file.write (@iteration.ideas.to_csv is_admin: user_has_admin_access?)
 			ideas_file.flush
 
-			proposals_file.write @iteration.proposals.to_csv
+			proposals_file.write (@iteration.proposals.to_csv is_admin: user_has_admin_access?)
 			proposals_file.flush
 
-			blogs_file.write @iteration.blogs.to_csv
+			blogs_file.write (@iteration.blogs.to_csv is_admin: user_has_admin_access?)
 			blogs_file.flush
 
 			Zip::OutputStream.open(zip) { |zos| }

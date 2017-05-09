@@ -11,8 +11,12 @@ class Idea < ApplicationRecord
 	enum status: [:unchecked, :approved]
 	enum medium: [:online, :paper]
 
-	def self.to_csv
-		self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status medium}
+	def self.to_csv is_admin: false
+		if is_admin
+			self.gen_csv %w{id created_at description category_name likes lat lng address author phone email status medium}
+		else
+			self.gen_csv %w{id created_at description category_name likes lat lng address}
+		end
 	end
 
 	after_initialize :set_default_medium, :if => :new_record?

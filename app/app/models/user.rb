@@ -52,7 +52,7 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-	def self.to_csv
+	def self.to_csv options={}
 		self.gen_csv %w{id created_at fullname email phone role}
 	end
 

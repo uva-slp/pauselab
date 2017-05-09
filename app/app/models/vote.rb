@@ -29,4 +29,8 @@ class Vote < ApplicationRecord
     "#{street}, #{city}, #{state}, #{zip_code}"
   end
 
+  def self.to_csv options={}
+    self.gen_csv %w{id created_at first_name last_name phone email street city state zip_code}
+  end
+
 end

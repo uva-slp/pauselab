@@ -17,8 +17,12 @@ class Proposal < ApplicationRecord
 
   enum status: [:unchecked, :approved, :funded]
 
-  def self.to_csv
-    self.gen_csv %w{id created_at title description essay total_cost author_name website_link comment_history_to_s number_of_votes status}
+  def self.to_csv is_admin: false
+    if is_admin
+      self.gen_csv %w{id created_at title description essay total_cost author_name website_link comment_history_to_s number_of_votes status}
+    else
+      self.gen_csv %w{id created_at title description essay total_cost author_name website_link status}
+    end
   end
 
   def total_cost

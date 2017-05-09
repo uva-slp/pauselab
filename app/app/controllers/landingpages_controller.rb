@@ -2,6 +2,7 @@ class LandingpagesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    index_respond @landingpages, :landing_pages
   end
 
   def new
