@@ -21,7 +21,7 @@ before_install:
 - cd app
 after_success:
 - cd ..
-- 'if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then ssh -i $KEYPATH "${DEPLOY_USER}@${DEPLOY_HOST}" "cd pauselab; bash Scripts/deploy.sh" > /dev/null 2>&1; fi'
+- if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then ssh -i $KEYPATH "${DEPLOY_USER}@${DEPLOY_HOST}" "cd pauselab; bash Scripts/deploy.sh" > /dev/null 2>&1; fi
 env:
   global:
   - KEYPATH="./Scripts/deployment"
