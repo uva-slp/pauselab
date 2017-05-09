@@ -140,6 +140,7 @@ es:
       vote:
         first_name: Primer Nombre
         last_name: Apellido
+        voter_name: Nombre Del Votante
         phone: Teléfono
         email: Email
         street: Calle

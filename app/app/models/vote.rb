@@ -21,7 +21,7 @@ class Vote < ApplicationRecord
     errors.add(:proposals, :proposal_count) if proposals.size < 3
   end
 
-  def author
+  def voter
     "#{first_name} #{last_name}"
   end
 

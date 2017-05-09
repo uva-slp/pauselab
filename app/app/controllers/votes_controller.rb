@@ -21,6 +21,11 @@ class VotesController < ApplicationController
     end
   end
 
+  def destroy
+    @vote.destroy
+    redirect_to votes_path
+  end
+
   private
   def vote_params
     params.require(:vote).permit(
