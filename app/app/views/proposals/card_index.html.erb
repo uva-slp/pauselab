@@ -1,4 +1,8 @@
-
+<% if can? :create, Proposal %>
+  <%= link_to (t 'proposals.create_new'), new_proposal_path, class: 'btn btn-primary pull-right clearfix' %>
+  <br/>
+  <br/>
+<% end %>
 
 <h1 class="page-title"><%= Proposal.model_name.human(count:2) %></h1>
 <%= render 'sort_controls' %>
@@ -9,6 +13,15 @@
   <% @proposals.each do |p| %>
     <div class="card">
       <div class="card-block">
+
+        <span class="share-btns pull-right">
+          <button class="btn btn-sm btn-outline-primary fb-btns" data-link="proposals" data-desc="<%= p.title %>" data-id="<%= p.id %>">
+            <i class="fa fa-facebook "></i>
+          </button>
+          <button class="btn btn-sm btn-outline-primary twtr-btns" data-link="proposals" data-desc="<%= p.title %>" data-id="<%= p.id %>">
+            <i class="fa fa-twitter "></i>
+          </button>
+        </span>
 
         <h4 class="card-title">
           <%= link_to proposal_path(p) do %>
@@ -32,3 +45,8 @@
     </div>
   <% end %>
 </div>
+
+<%= will_paginate @proposals,
+      :class => "pagination-wrapper",
+      :previous_label => (t 'common.previous'),
+      :next_label => (t 'common.next') %>

@@ -3,78 +3,101 @@
   .proposal-cost:hover {
     cursor: pointer;
   }
+
+  .proposal-icon {
+    height: 64px ;
+    width: auto ;
+  }
 </style>
 
-<h1 class="text-sm-right">
-  <%= @proposal.title %>
-</h1>
 
-<h3 class="text-sm-right">
-  <% if @proposal.website_link.blank? %>
+
+<div class="proposal-head">
+
+  <div class="pull-right">
+    <img src="<%= @proposal.category.icon %>" alt=""
+      class="img-thumbnail proposal-icon"
+      data-toggle="tooltip"
+      title="<%= @proposal.category.name %>">
+  </div>
+
+  <h1 class="text-sm-left">
+    <%= @proposal.title %>
+  </h1>
+
+  <h3 class="text-sm-left">
     <%= @proposal.user.fullname %>
-  <% else %>
-    <%= link_to @proposal.user.fullname, @proposal.website_link %>
-  <% end %>
-  <small class="text-muted"> • <%= @proposal.created_at.strftime("%b %e") %></small>
-</h3>
+    <small class="text-muted"> • <%= @proposal.created_at.strftime("%b %e") %></small>
+  </h3>
 
-<h5 class="text-muted text-sm-right">
-  <span class="proposal-cost" data-toggle="modal" data-target="#budget_display">
-    <span title="<%= t 'proposals.view_breakdown' %>" data-toggle="tooltip">
-      <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
-    </span>
-  </span>
-</h5>
-
-<%# admin, mod, and steering always see status, others only see if it is funded #%>
-<% if user_has_steering_access or @proposal.funded? %>
-  <h5 class="text-sm-right">
-    <span class="badge <%= if @proposal.approved? then "badge-primary" elsif @proposal.funded? then "badge-success" else "badge-danger" end%>">
-      <%= Proposal.human_enum_name(:status, @proposal.status) %>
+  <h5 class="text-muted text-sm-left">
+    <span class="proposal-cost" data-toggle="modal" data-target="#budget_display">
+      <span title="<%= t 'proposals.view_breakdown' %>" data-toggle="tooltip">
+        <i class="fa fa-dollar"></i> <%= number_to_currency @proposal.proposal_budget.cost, :unit => "" %>
+      </span>
     </span>
   </h5>
-<% end %>
 
-<span class="proposal-tools">
-
-  <% if can? :approve, @proposal %>
-    <% if @proposal.unchecked? %>
-      <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
-        <i class="fa fa-check"></i>
-      <% end %>
-    <% else %>
-      <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
-        <i class="fa fa-times"></i>
-      <% end %>
-    <% end %>
+  <%# admin, mod, and steering always see status, others only see if it is funded #%>
+  <% if user_has_steering_access? or @proposal.funded? %>
+    <h5 class="text-sm-left">
+      <span class="badge <%= if @proposal.approved? then "badge-primary" elsif @proposal.funded? then "badge-success" else "badge-danger" end%>">
+        <%= Proposal.human_enum_name(:status, @proposal.status) %>
+      </span>
+    </h5>
   <% end %>
 
-  <% if can? :edit, @proposal %>
-    <%= link_to edit_proposal_path(@proposal), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
-      <i class="fa fa-pencil-square-o"></i>
-    <% end %>
-  <% end %>
+  <span class="share-btns pull-right">
+    <button class="btn btn-sm btn-outline-primary fb-btns" data-link="proposals" data-desc="<%= @proposal.title %>" data-id="<%= @proposal.id %>">
+      <i class="fa fa-facebook "></i>
+    </button>
+    <button class="btn btn-sm btn-outline-primary twtr-btns" data-link="proposals" data-desc="<%= @proposal.title %>" data-id="<%= @proposal.id %>">
+      <i class="fa fa-twitter "></i>
+    </button>
+  </span>
 
-  <% if can? :destroy, @proposal %>
-    <%= link_to proposal_path(@proposal), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
-      <i class="fa fa-trash"></i>
-    <% end %>
-  <% end %>
+  <span class="proposal-tools">
 
-
-  <% if can? :fund, @proposal %>
-    <% if @proposal.approved? %>
-      <%= link_to proposal_fund_path(@proposal), method: :post, title: (t 'proposals.fund'), class: "btn btn-sm btn-success", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
-        <i class="fa fa-dollar"></i>
+    <% if can? :approve, @proposal %>
+      <% if @proposal.unchecked? %>
+        <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.approve'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+          <i class="fa fa-check"></i>
+        <% end %>
+      <% else %>
+        <%= link_to proposal_approve_path(@proposal), method: :post, title: (t 'common.disapprove'), class: "btn btn-sm btn-primary", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+          <i class="fa fa-times"></i>
+        <% end %>
       <% end %>
-    <% elsif @proposal.funded? %>
-      <%= link_to proposal_fund_path(@proposal), method: :post, title: (t 'proposals.unfund'), class: "btn btn-sm btn-success", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
-        <i class="fa fa-times"></i>
+    <% end %>
+
+    <% if can? :edit, @proposal %>
+      <%= link_to edit_proposal_path(@proposal), title: (t 'common.edit'), class: "btn btn-sm btn-primary", data: {toggle: "tooltip"} do %>
+        <i class="fa fa-pencil-square-o"></i>
       <% end %>
     <% end %>
-  <% end %>
 
-</span>
+    <% if can? :destroy, @proposal %>
+      <%= link_to proposal_path(@proposal), method: :delete, title: (t 'common.remove'), class: "btn btn-sm btn-danger", data: { confirm: (t 'common.confirm_message'), toggle: 'tooltip' } do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    <% end %>
+
+
+    <% if can? :fund, @proposal %>
+      <% if @proposal.approved? %>
+        <%= link_to proposal_fund_path(@proposal), method: :post, title: (t 'proposals.fund'), class: "btn btn-sm btn-success", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+          <i class="fa fa-dollar"></i>
+        <% end %>
+      <% elsif @proposal.funded? %>
+        <%= link_to proposal_fund_path(@proposal), method: :post, title: (t 'proposals.unfund'), class: "btn btn-sm btn-success", data: { confirm: (t 'common.confirm_message'), toggle: "tooltip" } do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  </span>
+</div>
+
 <br>
 <br>
 
@@ -92,11 +115,25 @@
   </div>
 </div>
 
-<% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
-  <p>
-    <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
-    <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
-  </p>
+<%# show the credentials card if a portfolio and/or resume are present %>
+<% unless @proposal.website_link.blank? and !@proposal.artist_cv.file? %>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%= Proposal.human_attribute_name :credentials %></h4>
+      <% if @proposal.artist_cv.file? %>
+        <p>
+          <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
+          <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
+        </p>
+      <% end %>
+      <% if !@proposal.website_link.blank? %>
+        <p>
+          <strong><%= Proposal.human_attribute_name :portfolio %>:</strong>
+          <%= link_to @proposal.website_link, @proposal.website_link %>
+        </p>
+      <% end %>
+    </div>
+  </div>
 <% end %>
 
 <br>

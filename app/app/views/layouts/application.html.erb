@@ -6,7 +6,7 @@
   <head>
     <title><%= t 'layout.site_title' %></title>
     <%= csrf_meta_tags %>
-    <% if params[:controller] == "admin" %>
+    <% if params[:controller] == "admin" || params[:controller] == "proposals" %>
       <%= javascript_include_tag "//www.google.com/jsapi" %>
     <% end %>
     <%= javascript_include_tag :application %>

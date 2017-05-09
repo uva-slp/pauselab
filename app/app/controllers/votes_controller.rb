@@ -3,6 +3,8 @@ class VotesController < ApplicationController
 
   def index
     @votes = @votes.where(:iteration_id => Iteration.get_current.id)
+      .paginate :page => params[:page], :per_page => 25
+    index_respond @votes, :votes
   end
 
   def new
@@ -11,13 +13,22 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.iteration_id = Iteration.get_current.id
-    if (user_has_admin_access or verify_recaptcha model: @vote, attribute: :proposals) and @vote.save
+    if (user_has_admin_access? or verify_recaptcha model: @vote, attribute: :proposals) and @vote.save
       flash[:notice] = (t 'votes.save_success')
       redirect_to root_path
     else
       flash[:error] = (t 'votes.save_error')
       render 'new'
     end
+  end
+
+  def destroy
+    if @vote.destroy
+      flash[:notice] = (t 'votes.remove_success')
+    else
+      flash[:error] = (t 'votes.remove_error')
+    end
+    redirect_to votes_path
   end
 
   private
@@ -27,6 +38,10 @@ class VotesController < ApplicationController
     :last_name,
     :phone,
     :email,
+    :street,
+    :city,
+    :state,
+    :zip_code,
     :proposal_ids => []
   )
   end

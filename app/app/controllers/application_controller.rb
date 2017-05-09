@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html
         format.json { render json: scoped_objs }
-        format.csv { send_data scoped_objs.to_csv, filename: "#{name}-#{DateTime.current}.csv"}
+        format.csv { send_data (scoped_objs.to_csv is_admin: user_has_admin_access?), filename: "#{name}-#{DateTime.current}.csv"}
       end
     end
 
@@ -77,14 +77,14 @@ class ApplicationController < ActionController::Base
     end
 
     # returns whether user is an admin or moderator
-    def user_has_admin_access
+    def user_has_admin_access?
       return ((not current_user.nil?) and (current_user.admin? or current_user.moderator?))
     end
-    helper_method :user_has_admin_access
+    helper_method :user_has_admin_access?
 
     # returns whether user is admin, moderator, or steering committee
-    def user_has_steering_access
+    def user_has_steering_access?
       return ((not current_user.nil?) and (current_user.admin? or current_user.moderator? or current_user.steerer?))
     end
-    helper_method :user_has_steering_access
+    helper_method :user_has_steering_access?
 end

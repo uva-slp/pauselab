@@ -108,6 +108,7 @@ end
 
     association :iteration
     association :user
+    association :category
     description {Faker::Hipster.paragraph}
     essay {Faker::Hipster.paragraph 10}
     website_link {Faker::Internet.url}
@@ -183,11 +184,15 @@ end
     last_name {Faker::Name.last_name}
     email {Faker::Internet.email}
     phone {Faker::Number.number(10)}
+    street {Faker::Address.street_address}
+    city {Faker::Address.city}
+    state {Faker::Address.state_abbr}
+    zip_code {Faker::Address.zip_code}
   end
 
 
   factory :landingpage do
-    title {Faker::Hipster.sentence}
+    title {rand(4)}
     description {Faker::Hipster.paragraph}
   end
 

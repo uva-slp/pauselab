@@ -63,6 +63,7 @@ en:
       idea:
         first_name: First Name
         last_name: Last Name
+        category_id: Category
         phone: Phone
         description: Description
         likes: Likes
@@ -86,6 +87,14 @@ en:
       landingpage:
         title: Title
         description: Body
+        titles:
+          about: About
+          ideas_home: Ideas Home
+          artist_home: Artist Home
+          steering_home: Steering Committee Home
+          calling_artists: Calling Artists
+          voting_instructions: Voting Instructions
+          proposal_instructions: Proposal Instructions
       mass_email:
         to: To
         subject: Subject
@@ -104,11 +113,14 @@ en:
         body: Body
       proposal:
         title: Title
+        category_id: Category
         description: Description
         essay: Community Need
         website_link: Portfolio
+        credentials: Credentials
+        portfolio: Portfolio Website
         status: Status
-        artist_cv: Resume
+        artist_cv: Résumé
         statuses:
           unchecked: Unchecked
           approved: Approved
@@ -131,8 +143,14 @@ en:
       vote:
         first_name: First Name
         last_name: Last Name
+        voter_name: Voter Name
         phone: Phone
         email: Email
+        street: Street
+        city: City
+        state: State
+        zip_code: Zip Code
+        address: Address
     errors:
       models:
         vote:
@@ -168,7 +186,12 @@ en:
     last_name_placeholder: Last
     email_placeholder: "email@example.com"
     phone_placeholder: "123-456-7890"
+    street_placeholder: Street
+    city_placeholder: City
+    state_placeholder: VA
+    zip_code_placeholder: Zip Code
     avatar_hint: "Avatar must be an image no larger than 200x200 pixels."
+    authorization_error: You are not authorized to access this page.
   admins:
     admin_console: Admin Console
     current_iteration: Current Iteration
@@ -233,7 +256,6 @@ en:
     create_new: Create New Idea
     no_location_message: No location specified.
     map_instructions: Select a location above. Start by typing the street name where you idea would take place in the box and hit Enter. Once that is done a marker will appear that you can drag to the exact location.
-    calling_artists: Calling all artists
     submit_proposal: Submit Proposal
     submitted_ideas: Submitted Ideas
     save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
@@ -246,6 +268,7 @@ en:
     editing_landingpage: Editing Landing Page Post
     creating_landingpage: Creating Landing Page Post
     save_success: Your post was saved.
+    save_error: There was an error saving your post.
   layout:
     site_title: PauseLab
   mass_emails:
@@ -264,15 +287,10 @@ en:
     delete_confirm_message: Are you sure? Deleting your account is an irreversible action.
     idea_collection: Idea Collection
     submit_idea: Submit an Idea
-    create_about: Create About
-    edit_about: Edit About
-    create_artist_home: Create Artist Home
-    edit_artist_home: Edit Artist Home
-    create_homepage: Create Homepage
-    edit_homepage: Edit Homepage
-    create_steering: Create Steering Committee Home
-    edit_steering: Edit Steering Committee Home
     recent_blogs: Recent post entries
+    # in next two, title refers to the name of the landing page post
+    create_post: Create %{title}
+    edit_post: Edit %{title}
   proposal_comments:
     creating_comment: Create Your Comment
     editing_comment: Editing Comment
@@ -282,6 +300,7 @@ en:
     remove_success: Your comment was removed.
     remove_error: There was an error removing your comment.
   proposals:
+    chart_title: Distribution of votes
     cost_breakdown: Cost Breakdown
     view_breakdown: View Breakdown
     cost_component: Component
@@ -296,7 +315,7 @@ en:
     editing_proposal: Edit Your Proposal
     create_new: Create New Proposal
     add_comment: Add Comment
-    save_success: Thank you for submitting your idea to BeCville. We appreciate your help in making Charlottesville a better City and giving residents a voice in those efforts.
+    save_success: Thank you for submitting your proposal to BeCville. We appreciate your help in making Charlottesville a better city and giving residents a voice in those efforts.
     save_error: There was an error in creating your proposal.
     fund: Fund
     unfund: Unfund
@@ -314,6 +333,7 @@ en:
     steering_home: Steering Committee Home
     artist_home: Artist Home
     vote: Vote  # navbar header, verb
+    view_proposals: View Proposals
     create_proposal: Create Proposal
     proposals_console: Submitted Proposals
     view_ideas: View Ideas
@@ -366,3 +386,5 @@ en:
     honor_pledge: I pledge that I live in the district benefiting from these projects, and that I am voting only once.
     top_votes_note: "If you are searching for the top vote-getting proposals, go to Submitted Proposals."
     top_votes_link: "See top proposals"
+    remove_success: The vote was removed successfully.
+    remove_error: There was an error removing the vote.

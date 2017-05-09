@@ -45,4 +45,32 @@ describe PagesController, type: :controller do
     end
   end
 
+  describe "when going to artist home" do
+    it "works for artists" do
+      sign_in (create :artist)
+      get :artist_home
+      expect(response).to be_success
+    end
+    it "does not work for residents (who are not signed in)" do
+      r = create :resident
+      sign_in r
+      sign_out r
+      get :artist_home
+      expect(response).to be_redirect
+    end
+  end
+
+  describe "when going to steering home" do
+    it "works for steering" do
+      sign_in (create :steerer)
+      get :steering_home
+      expect(response).to be_success
+    end
+    it "does not work for artists" do
+      sign_in (create :artist)
+      get :steering_home
+      expect(response).to be_redirect
+    end
+  end
+
 end

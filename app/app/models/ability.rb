@@ -7,7 +7,7 @@ class Ability
     can :manage, user   # any user can manage its own data
 
     # define aliases
-    alias_action :proposal_collection, :to => :read
+    alias_action :card_index, :to => :read
     alias_action :create, :read, :update, :destroy, :to => :crud
 
     if user.admin?
@@ -20,8 +20,8 @@ class Ability
     elsif user.steerer?
       can :create, [Blog, Proposal, ProposalBudget, ProposalComment, Idea, Vote]
       can :read, [Blog, Category, Idea, Proposal, ProposalBudget, ProposalComment, Vote, Iteration]
-      can :update, [Proposal, Idea]
       can :like, Idea
+      cannot [:read, :like], Idea, status: Idea.statuses[:unchecked]
       can :crud, Blog, user: user
       can :crud, ProposalComment, user: user
       can :crud, Proposal, user: user
@@ -54,7 +54,13 @@ class Ability
     # adjust permissions based on phase
     unless user.admin? or user.moderator?
       unless Iteration.get_current.voting?
-        cannot :manage, Vote  # voting not allowed unless we are in the phase
+        cannot :manage, Vote      # voting not allowed unless we are in the phase
+      end
+      unless Iteration.get_current.proposals?
+        cannot :create, Proposal  # cannot create proposal unless in proposal collection phase
+      end
+      unless Iteration.get_current.ideas?
+        cannot :create, Idea      # cannot create idea unless in idea collection phase
       end
     end
   end
