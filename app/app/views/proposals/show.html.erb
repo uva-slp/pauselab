@@ -26,11 +26,7 @@
   </h1>
 
   <h3 class="text-sm-left">
-    <% if @proposal.website_link.blank? %>
-      <%= @proposal.user.fullname %>
-    <% else %>
-      <%= link_to @proposal.user.fullname, @proposal.website_link %>
-    <% end %>
+    <%= @proposal.user.fullname %>
     <small class="text-muted"> • <%= @proposal.created_at.strftime("%b %e") %></small>
   </h3>
 
@@ -119,26 +115,26 @@
   </div>
 </div>
 
-
-<div class="card">
-  <div class="card-block">
-    <h4 class="card-title"><%= Proposal.human_attribute_name :credentials %></h4>
-    <% if @proposal.artist_cv.original_filename <=> '/artist_cvs/original/missing.png' %>
-      <p>
-        <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
-        <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
-      </p>
-    <% end %>
-    <p>
-      <strong><%= Proposal.human_attribute_name :portfolio %>:</strong>
-      <%= link_to @proposal.website_link, asset_url(@proposal.website_link) %>
-    </p>
+<%# show the credentials card if a portfolio and/or resume are present %>
+<% unless @proposal.website_link.blank? and !@proposal.artist_cv.file? %>
+  <div class="card">
+    <div class="card-block">
+      <h4 class="card-title"><%= Proposal.human_attribute_name :credentials %></h4>
+      <% if @proposal.artist_cv.file? %>
+        <p>
+          <strong><%= Proposal.human_attribute_name :artist_cv %>:</strong>
+          <%= link_to @proposal.artist_cv.original_filename, asset_url(@proposal.artist_cv.url) %>
+        </p>
+      <% end %>
+      <% if !@proposal.website_link.blank? %>
+        <p>
+          <strong><%= Proposal.human_attribute_name :portfolio %>:</strong>
+          <%= link_to @proposal.website_link, @proposal.website_link %>
+        </p>
+      <% end %>
+    </div>
   </div>
-</div>
-
-
-
-
+<% end %>
 
 <br>
 
