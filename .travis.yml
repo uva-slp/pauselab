@@ -15,6 +15,7 @@ notifications:
     on_failure: change
 before_install:
 - openssl aes-256-cbc -k "$KEYFILE_PASS" -in "${KEYPATH}.enc" -out "${KEYPATH}" -d
+- chmod 0600 $KEYPATH
 - npm install -g istanbul
 - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
 - mysql -u root -e "grant all on slp_pauselab_test.* to 'pauselab';"
