@@ -4,30 +4,30 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= vote.input :first_name, placeholder: (t 'common.first_name_placeholder') %>
+      <%= vote.input :first_name, placeholder: (t 'common.first_name_placeholder'), required: true %>
     </div>
     <div class="col-md-6">
-      <%= vote.input :last_name, placeholder: (t 'common.last_name_placeholder') %>
+      <%= vote.input :last_name, placeholder: (t 'common.last_name_placeholder'), required: true %>
     </div>
     <div class="col-md-6">
-      <%= vote.input :phone, placeholder: (t 'common.phone_placeholder') %>
+      <%= vote.input :phone, placeholder: (t 'common.phone_placeholder'), required: true %>
     </div>
     <div class="col-md-6">
-      <%= vote.input :email, placeholder: (t 'common.email_placeholder') %>
+      <%= vote.input :email, placeholder: (t 'common.email_placeholder'), required: true %>
     </div>
 
     <div class="col-md-12">
-      <%= vote.input :street, placeholder: (t 'common.street') %>
+      <%= vote.input :street, placeholder: (t 'common.street'), required: true %>
     </div>
   <div>
     <div class="col-md-6">
-      <%= vote.input :city, placeholder: (t 'common.city') %>
+      <%= vote.input :city, placeholder: (t 'common.city'), required: true %>
     </div>
     <div class="col-md-1">
-      <%= vote.input :state, placeholder: (t 'common.state') %>
+      <%= vote.input :state, placeholder: (t 'common.state'), required: true %>
     </div>
     <div class="col-md-2">
-      <%= vote.input :zip_code, placeholder: (t 'common.zip_code') %>
+      <%= vote.input :zip_code, placeholder: (t 'common.zip_code'), required: true %>
     </div>
   </div>
 
