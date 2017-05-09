@@ -184,6 +184,10 @@ end
     last_name {Faker::Name.last_name}
     email {Faker::Internet.email}
     phone {Faker::Number.number(10)}
+    street {Faker::Address.street_address}
+    city {Faker::Address.city}
+    state {Faker::Address.state_abbr}
+    zip_code {Faker::Address.zip_code}
   end
 
 
