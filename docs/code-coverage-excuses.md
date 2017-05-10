@@ -1,0 +1,5 @@
+As of now our main code coverage is around 98%, with about 20 lines uncovered. Here are the main issues for those lines:
+
+1. **destroy fallback** - For some of our controller destroy methods we have else statements when something isn't deleted correctly. This is an exceptional case that is difficult to replicate in RSpec (we would only expect it to happen if the DB connection fails suddenly).
+2. **gen_csv**- We are still talking with customer about what he wants exported at end of iteration.  We have code that generates CSVs for all models, but as of now we only generate three of them.  If Matthew wants mass-emails, categories, etc. exported we will include them in the export zip function, and if not we will get rid of those lines of dead code. (Note: that we tested most of these calls anyway)
+3. **user in devise** - Devise is a gem we've been using to make user registration easier. There is functionality in the gem that makes it quite difficult to allow RSpec to create user registrations like most other models. (Mock users can be created, but the controller actions to create users do not work.)

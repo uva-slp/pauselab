@@ -21,10 +21,10 @@
 <p>The system shall be designed for users with different roles -- these roles are:</p>
 <ul>
 <li>Admins - Site administrators who have the highest privileges, including creation of other users in other roles. They control and maintain the system.</li>
-<li>Moderators - Trusted users who have permissions to manage any data in the system unrelated to users (e.g. ideas, proposals, blog posts). They filter and revise site content.</li>
+<li>Moderators - Trusted users who have permissions to manage any data in the system unrelated to users (e.g. ideas, proposals, posts). They filter and revise site content.</li>
 <li>Steerers - Members of a &quot;steering committee&quot; who have permission to see most data in the system, even if it is not publically available, and are able to use this data to communicate with each other. They direct Pauselab's focus and draw insights from the community.</li>
 <li>Artists - Community members who propose public art projects to address community needs.</li>
-<li>Super Artists - Subset of artists who are selected to implement projects and report on their progress through a blog. They carry out the will of the community.</li>
+<li>Super Artists - Subset of artists who are selected to implement projects and report on their progress through a post. They carry out the will of the community.</li>
 <li>Residents - Community members who view the system's published content and possibly submit ideas about improvements to an area. They are representatives of the community.</li>
 </ul>
 <h3 id="features">Features</h3>
@@ -41,16 +41,15 @@
 <li>Residents can no longer submit ideas.</li>
 <li>Artists will submit proposals through a more involved form which contains:
 <ul>
-<li>Idea(s) being addressed</li>
+<li>Idea(s) being addressed (through text)</li>
 <li>Prose, and possibly images, about proposal</li>
-<li>Attachments related to credentials (this is also part of artist's account creation)</li>
-<li>Budget estimates. <em>next semester</em>: the budget fields will be dynamic (rows can be added and deleted on the fly, and the total will adjust).</li>
-<li>Checklist of relevant to-dos</li>
+<li>Attachments related to credentials</li>
+<li>Budget estimates</li>
 </ul></li>
 <li>Moderators can enter proposals if they receive them non-electronically.</li>
 <li>Steerers can see proposals and make internal-facing comments regarding their feasibility.</li>
 <li>Moderators can see proposals and publish them after ensuring the project is feasible. Moderators can edit proposals for syntax or content, or delete them from the system.</li>
-<li>Residents will see published proposals through a grid and can sort by category.</li>
+<li>Residents will see published proposals through a grid and can sort by date.</li>
 </ul>
 <p><strong>Proposal Voting</strong>: the community votes on which projects will receive funding.</p>
 <ul>
@@ -59,29 +58,27 @@
 <ul>
 <li>The form will collect the voter's name, email, phone, address, and have an honor statement that must be agreed to prior to submission.</li>
 <li>They will select a finite number of proposals - 2 or 3 as their top choice.</li>
-<li>They might rank proposals. (<em>note</em>: we are leaning toward equally weighted votes now and should discuss this later.)</li>
-<li>They might allocate votes based on a specified budget.</li>
-<li><em>next semester</em>: Unlike &quot;liking,&quot; voting needs protection against fraud, possibly through a combination of cookies, IP tracking, CAPTCHA, or &quot;honor pledge.&quot;</li>
+<li>They might allocate votes based on a specified budget. (not a desired feature)</li>
+<li><em>next semester</em>: Unlike &quot;liking,&quot; voting needs protection against fraud, through a combination of CAPTCHA and &quot;honor pledge.&quot;</li>
 </ul></li>
 <li>Moderators can enter votes if they receive them non-electronically.</li>
 </ul>
 <p><strong>Project Implementation</strong>: after projects are selected, the system presents feedback on their progress.</p>
 <ul>
-<li>Super artists and moderators can create blog posts containing prose and images to report progress about the selected projects.</li>
-<li>Residents can view blog posts in some type of chronological view. They can apply filters to select certain projects or time periods.</li>
+<li>Super artists and moderators can create posts containing prose and images to report progress about the selected projects.</li>
+<li>Residents can view posts in some type of chronological view. They can apply filters to select certain time periods.</li>
 <li>Ideas or proposals that did not receive funding are stored for future reference (e.g. if they can be applied to the next round).</li>
 </ul>
 <p><strong>Site-wide Requirements</strong></p>
 <ul>
-<li>Integration with social media (Facebook, Twitter, Instagram) during most if not all phases, to increase engagement with residents.</li>
+<li>Integration with social media (Facebook, Twitter) during most if not all phases, to increase engagement with residents.</li>
 <li>Email assist capabilities for moderators/steerers to reach out to artists submitting proposals, and possibly residents submitting ideas.</li>
 <li>Website should be responsive on mobile.</li>
 <li>Website should be designed to be extensible to multiple languages.</li>
 <li>Residents do not need to create accounts. Artists do, and may do so on their own. Steerers, moderators, and admins need accounts and can only have them created by an admin.</li>
-<li>Some accounts may need to go through a review process (e.g. artists need to be approved before having proposal submission privileges).</li>
 <li>Only admins have the ability to manage user accounts.</li>
-<li>Each user role will have a &quot;landing page&quot; that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.</li>
-<li>The navbar at the top should adjust depending on the phase of the project. All phases will have &quot;About&quot; and &quot;Get Involved&quot; as static pages that the moderator can edit, as well as the &quot;Blog&quot; page.
+<li>Some user roles (that is, steerer and artist) will have a &quot;landing page&quot; that contains static content (prose, image, and links to file downloads) about their responsibilities, as well as moderator-published updates. The moderator can post images, text, and links on the landing pages.</li>
+<li>The navbar at the top should adjust depending on the phase of the project. All phases will have &quot;About&quot; as static pages that the moderator can edit, as well as the &quot;Post&quot; page.
 <ul>
 <li>Ideas phase: Ideas - Submit Idea, See Ideas</li>
 <li>Proposals phase: Proposals - Submit Proposals, See Proposals; Ideas</li>

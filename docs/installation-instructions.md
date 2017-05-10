@@ -36,27 +36,22 @@ Steps for setting up a server meant for the deployed app.
 2. Type in "EC2" under Amazon Services and click the first option
 3. Click "Instances" under the Instances tab
 4. Click "Launch Instance"
-
-  1. Select the Ubuntu Server 16.04 option under the Amazon Machine Image (AMI)
-  2. Select the appropriate Instance Type for the application. In this example, select t2.micro and click "Next: Configure Instance Details"
-  3. Configure Instance Details. Leave the default options for "Next: Add Storage"
-  4. Leave the default option and click "Next: Add Tags"
-  5. Leave the default option and click "Next: Configure Security Group"
-  6. Assign the appropriate security group, create a new one if there are none to choose from. Click "Review and Launch" after completion
-  7. Review the information and hit "Launch" once everything is verified. Select a keypair for the instance. Distribute the private key to admin accounts that will be doing the next steps.
-
+    1. Select the Ubuntu Server 16.04 option under the Amazon Machine Image (AMI)
+    2. Select the appropriate Instance Type for the application. In this example, select t2.micro and click "Next: Configure Instance Details"
+    3. Configure Instance Details. Leave the default options for "Next: Add Storage"
+    4. Leave the default option and click "Next: Add Tags"
+    5. Leave the default option and click "Next: Configure Security Group"
+    6. Assign the appropriate security group, create a new one if there are none to choose from. Click "Review and Launch" after completion
+    7. Review the information and hit "Launch" once everything is verified. Select a keypair for the instance. Distribute the private key to admin accounts that will be doing the next steps.
 5. Allow traffic on 0.0.0.0/80 to your newly created instance
-
-  1. Go to "Security Groups" under Network and Security
-  2. Choose your instance group and select the "inbound" tab
-  3. There, press edit to configure settings
-
-    1. Change 'Type' to 'Custom TCP Rule'
-    2. Change 'Port Range' to '80'
-    3. Change 'Source' from 'Custom' to 'Anywhere'
-    4. Hit save upon completing
-
-  4. This will save as two HTTP rules, which is what you'll want for your inbound traffic
+    1. Go to "Security Groups" under Network and Security
+    2. Choose your instance group and select the "inbound" tab
+    3. There, press edit to configure settings
+        1. Change 'Type' to 'Custom TCP Rule'
+        2. Change 'Port Range' to '80'
+        3. Change 'Source' from 'Custom' to 'Anywhere'
+        4. Hit save upon completing
+    4. This will save as two HTTP rules, which is what you'll want for your inbound traffic
 
 ## Setting up the Rails App
 
@@ -123,42 +118,42 @@ Steps for setting up a server meant for the deployed app.
 
   Then update some configuration files. This will require a text editor like `nano`, `vim`, or `emacs` (e.g. the file can be opened with `nano path/to/file/to/edit`), and if the file is in a certain directory like `etc` then `sudo` may be required.
 
-    1. Edit `/etc/nginx/nginx.conf` and uncomment the line below (i.e. remove the `#` character at the start of the line):
+      1. Edit `/etc/nginx/nginx.conf` and uncomment the line below (i.e. remove the `#` character at the start of the line):
 
-    ```
-    include /etc/nginx/passenger.conf;
-    ```
+      ```
+      include /etc/nginx/passenger.conf;
+      ```
 
-    Also, if testing with the public IP AWS provides rather than a personal one (or if the intended domain name happens to be long), then add the following line (it may already exist in the file, commented out with a different number at the end):
+      Also, if testing with the public IP AWS provides rather than a personal one (or if the intended domain name happens to be long), then add the following line (it may already exist in the file, commented out with a different number at the end):
 
-    ```
-    server_names_hash_bucket_size 128;
-    ```
+      ```
+      server_names_hash_bucket_size 128;
+      ```
 
-    2. Edit `/etc/nginx/passenger.conf` and add/change the following line:
+      2. Edit `/etc/nginx/passenger.conf` and add/change the following line:
 
-    ```
-    # this value can be obtained with `passenger-config about ruby-command`
-    passenger_ruby /home/<username>/.rvm/wrappers/ruby-2.3.1/ruby;
-    ```
+      ```
+      # this value can be obtained with `passenger-config about ruby-command`
+      passenger_ruby /home/<username>/.rvm/wrappers/ruby-2.3.1/ruby;
+      ```
 
-    3. Edit `/etc/nginx/sites-enabled/default` (it may be worth backing up the existing file with `sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default-copy`) so it contains these lines:
+      3. Edit `/etc/nginx/sites-enabled/default` (it may be worth backing up the existing file with `sudo cp /etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/default-copy`) so it contains these lines:
 
-    ```
-    server {
-    listen 80;
-    listen [::]:80 ipv6only=on;
+      ```
+      server {
+      listen 80;
+      listen [::]:80 ipv6only=on;
 
-    # for testing, try the public IP that AWS provides
-    server_name <site's domain name, e.g. example.com>;
+      # for testing, try the public IP that AWS provides
+      server_name <site's domain name, e.g. example.com>;
 
-    passenger_enabled on;
-    rails_env production;
+      passenger_enabled on;
+      rails_env production;
 
-    # this is a subfolder of the repo cloned from Github
-    root /home/<username>/pauselab/app/public;
-    }
-    ```
+      # this is a subfolder of the repo cloned from Github
+      root /home/<username>/pauselab/app/public;
+      }
+      ```
 
 6. Setup and deploy a MySQL server (adapted from [Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-16-04)). The first step will download a package and prompt you to create a password for the root user -- make a secure one and remember it! The second step will disable some unsafe features of MySQL -- enter "yes" for all the options except changing root's password, which you just did.
 
