@@ -15,9 +15,9 @@ notifications:
     on_failure: change
 before_install:
 - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-- npm install
 - openssl aes-256-cbc -k "$KEYFILE_PASS" -in "${KEYPATH}.enc" -out "${KEYPATH}" -d
 - chmod 0600 $KEYPATH
+- node --version
 - npm install -g istanbul
 - mysql -e 'CREATE DATABASE IF NOT EXISTS slp_pauselab_test;'
 - mysql -u root -e "grant all on slp_pauselab_test.* to 'pauselab';"
@@ -27,7 +27,7 @@ after_success:
 - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then ssh -i $KEYPATH -o stricthostkeychecking=no -o loglevel=quiet "${DEPLOY_USER}@${DEPLOY_HOST}" "cd pauselab; bash Scripts/deploy.sh > /dev/null 2>&1"; fi
 env:
   global:
-  - TRAVIS_NODE_VERSION="4"
+  - TRAVIS_NODE_VERSION="6"
   - KEYPATH="./Scripts/deployment"
   - secure: U3sRCXSW/D7ZzXr5sbMhDhVq3+4BbCXv07ZkXDhbYbniRm18H6kNdaJ57YSZ5BftENwEKUzvk+9Lg7k+fRwEDfKlkAK2dGo3tAVR6FFqU5+fddNCqNeSND003WfKUDzCU4KCHE0RDRE8zJv882af3k0sWLzta25aQCvdH3r8uaKrmiaRf8Jd/Oa2t0dM1kHyGMC2DzrJh5zw4HhsxwuQSSsI5bB82Q74qnSz93QvpN9hL3r1xbCcxBYyziVRSDnQyDbCkPUXpodYwj4uQpG91BT9DWKjGYkurmO2KsAzkYciByahTylmRHj+l8X0sdAv1GRHWNhqFoNXmnBeBQ1F5qQ+bt2pA+9ZPWB51NumMF696y8jMl/LmGyuAyfpWlzor2m4HSErhbh/0vm+Fva0I/bB4nEpFw7Lt7nDf+/xafErmssyGsWCHT7LgQ8uBKOxwuuP4qTRKenPINOWdEnpaf/6vrIAQaRCk050fcVD3Yv9Vk4WWceTWbQOk27xWPJskAnrzpfEN5ss8tVOv9Wts86a/HNRYoNP/Z/UefS1VPbteuutlBa/yfHrWE5AbofP5wAoDHW7QFwhdD+yum6RFi4g1VkcIZm1DCFo0bhe/p7YTt0FcmqcqREdn3cyV0Bf6VAcM+03w9DZMcCU2AzDCWiENDG38fOn80rxhBRfj50=
   - secure: epBcU4obt9y0RcYNUnP8HyV7VwBUjZLnMz3fH7ybFWAwjXFIGzBjzyxo9DqAuWTtZ3fzwUrx8n0dbamzLGmbNDydmYuOQD2EQnBiibc+7wCbBlWfXDT7kltDsOLWFVCydSuX4zf+dOvm+TpB6/0TWULY65xug/SOKSdMqfED4idO3yy1XtVbLnGGx7A7+7SUpaiMv9ejuv5jWdk+2v92T4WvODHysAtH19EapIzSwhTeXiEuoVs02IsGYfiKi7Fjm9c5lkCO5eY501xegODeRA5pJ+mpicrpq++VJsQbB9i9jlhC6HYKJ1Km03T8CUvL34hRg8UdP1QccZ6Yxs3bJN2Xqz8rveddMTctmGOcUU73fAw8ZiEqR1bPmqcjevWd0G4+jLTCXXxDRXWMRmVKa7P02dE6oZNWKnibYMkU5/1+1FRPqujhWYUOBMKYEKQn5l42EnGoMTSZTSCqtnr+lS4DRwRQpuxyTjPLJsu2YiIHZh2TCB8itMekGNxdMINElYA3P2ZFV5iNvfryodw36eEOhhfr27sTMIMLHchzAqSHCU8CgZgv0wbeEAKg+d+sI6gaTPthtIxIQU+3+giSlyDfJPm3R+jRvt+mrejyQUo7L5NGTDqClOuz+xppaJ5Owzt4ecJkIxwR+kp5t3FniOhw7jGHQoiBIV/N76oTp48=
