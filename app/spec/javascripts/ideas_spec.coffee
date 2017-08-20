@@ -85,7 +85,6 @@ describe "ideas", ->
 
   it "geocodes correctly", (done) ->
     spyOn(Idea, "populateAddress")
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     pos = new google.maps.LatLng(37.020098, -77.167969)
     $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js", ->
       Idea.geocodePosition(pos).then ->
@@ -103,7 +102,6 @@ describe "ideas", ->
     expect($('.address').html()).toEqual('7710 Beef Steak Rd, Waverly, VA 23890, USA')
 
   it "shows map correctly", (done) ->
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000
     $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js", ->
       Idea.showMap().then ->
         expect($("#map").html().trim() != '')
