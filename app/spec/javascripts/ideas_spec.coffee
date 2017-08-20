@@ -102,7 +102,10 @@ describe "ideas", ->
     expect($('.address').html()).toEqual('7710 Beef Steak Rd, Waverly, VA 23890, USA')
 
   it "shows map correctly", (done) ->
+    console.log 'about to get es6-promise'
     $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js", ->
+      console.log 'getting es6-promise + about to show map'
       Idea.showMap().then ->
+        console.log 'map is \'shown\' + about to check expectation'
         expect($("#map").html().trim() != '')
         done()
