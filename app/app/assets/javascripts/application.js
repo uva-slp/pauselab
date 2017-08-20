@@ -15,5 +15,6 @@
 //= require init
 
 //= require autogrow.min
+//= require promise
 
 // disabled for now:  require_tree .

@@ -5,15 +5,15 @@ describe "ideas", ->
   # done is a special jasmine parameter that allows us to test asynchronous functions
   beforeAll (done) ->
     fixture.load "idea.html", append=false
-    # $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places", ->
-    #   done()
-    $.when(
-      $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places",
-      $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js"
-      # $.Deferred ( deferred ) ->
-      #   $( deferred.resolve )
-    ).done ->
+    $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places", ->
       done()
+    # $.when(
+    #   $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places",
+    #   $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js"
+    #   # $.Deferred ( deferred ) ->
+    #   #   $( deferred.resolve )
+    # ).done ->
+    #   done()
 
   afterEach ->
     fixture.cleanup()
@@ -100,7 +100,7 @@ describe "ideas", ->
     expect($('.address').html()).toEqual('7710 Beef Steak Rd, Waverly, VA 23890, USA')
 
   it "shows map correctly", (done) ->
-    console.log 'getting es6-promise + about to show map'
+    console.log 'about to show map'
     Idea.showMap().then ->
       console.log 'map is \'shown\' + about to check expectation'
       expect($("#map").html().trim() != '')
