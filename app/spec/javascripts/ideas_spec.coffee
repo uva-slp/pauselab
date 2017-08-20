@@ -5,16 +5,15 @@ describe "ideas", ->
   # done is a special jasmine parameter that allows us to test asynchronous functions
   beforeAll (done) ->
     fixture.load "idea.html", append=false
-    $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places", ->
-      done()
-    # $.when(
-    #   $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js",
-    #
-    #   $.Deferred ( deferred ) ->
-    #     $( deferred.resolve )
-    # ).done ->
-    #   console.log("\nloaded")
+    # $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places", ->
     #   done()
+    $.when(
+      $.getScript "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4DSpVTh3mv6nZ9D3A9xUtdaX7YpScN28&libraries=places",
+      $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js"
+      # $.Deferred ( deferred ) ->
+      #   $( deferred.resolve )
+    ).done ->
+      done()
 
   afterEach ->
     fixture.cleanup()
@@ -86,10 +85,9 @@ describe "ideas", ->
   it "geocodes correctly", (done) ->
     spyOn(Idea, "populateAddress")
     pos = new google.maps.LatLng(37.020098, -77.167969)
-    $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js", ->
-      Idea.geocodePosition(pos).then ->
-        expect(Idea.populateAddress).toHaveBeenCalled()
-        done()
+    Idea.geocodePosition(pos).then ->
+      expect(Idea.populateAddress).toHaveBeenCalled()
+      done()
 
   it "populates address properly", ->
     pos = new google.maps.LatLng(37.020098, -77.167969)
@@ -102,10 +100,8 @@ describe "ideas", ->
     expect($('.address').html()).toEqual('7710 Beef Steak Rd, Waverly, VA 23890, USA')
 
   it "shows map correctly", (done) ->
-    console.log 'about to get es6-promise'
-    $.getScript "https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.auto.js", ->
-      console.log 'getting es6-promise + about to show map'
-      Idea.showMap().then ->
-        console.log 'map is \'shown\' + about to check expectation'
-        expect($("#map").html().trim() != '')
-        done()
+    console.log 'getting es6-promise + about to show map'
+    Idea.showMap().then ->
+      console.log 'map is \'shown\' + about to check expectation'
+      expect($("#map").html().trim() != '')
+      done()
